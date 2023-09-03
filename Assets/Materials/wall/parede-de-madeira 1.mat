@@ -47,19 +47,19 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: fa3d86629625dfabe831a62061112f62, type: 3}
+        m_Texture: {fileID: 2800000, guid: dd1e8bb5279b9977e9056beafda6ff35, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
-        m_Texture: {fileID: 2800000, guid: c19727e8e052f415cbee918cf90fac18, type: 3}
+        m_Texture: {fileID: 2800000, guid: a8a5950a14882183a83fbf8ed7e61099, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
-        m_Texture: {fileID: 2800000, guid: 1ec9b411784bda1f18177a38ba6e98b6, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6e44457be4cf0e2638c63e3b94699214, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
-        m_Texture: {fileID: 2800000, guid: ccb4766437739561596abf44db57732f, type: 3}
+        m_Texture: {fileID: 2800000, guid: 47fd5dfc5ddbd357c85271963a31611c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
