@@ -2,9 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using System.Collections.Generic;
-using UnityEngine;
-
 [CreateAssetMenu(fileName = "MaterialData", menuName = "ScriptableObjects/MaterialData", order = 1)]
 public class MaterialData : ScriptableObject
 {
@@ -26,9 +23,9 @@ public class MaterialData : ScriptableObject
 
     public Material GetMaterial(string id)
     {
-        if (materialMap.ContainsKey(id))
+        if (Materials.Exists(x => x.id == id))
         {
-            return materialMap[id];
+            return Materials.Find(x => x.id == id).material;
         }
         else
         {

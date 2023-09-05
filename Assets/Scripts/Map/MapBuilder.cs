@@ -20,13 +20,13 @@ public class MapBuilder : MonoBehaviour
     [SerializeField] private Material defaultFloorMaterial;
     [SerializeField] private Material defaultWallMaterial;
 
-    [SerializeField] private Mesh floorMesh;
-    [SerializeField] private Mesh wallMesh;
+    private Mesh floorMesh;
+    private Mesh wallMesh;
 
 
-    private GameObject floorParent = new GameObject("Floor");
-    private GameObject ceilingParent = new GameObject("Ceiling");
-    private GameObject wallsParent = new GameObject("Walls");
+    private GameObject floorParent;
+    private GameObject ceilingParent;
+    private GameObject wallsParent;
 
     private void InstanceFloorTile(string code, int[] startArr, int[] endArr)
     {
@@ -44,10 +44,17 @@ public class MapBuilder : MonoBehaviour
         }
         catch (System.Exception)
         {
+            Debug.LogError("Material " + code + " not found");
             material = defaultFloorMaterial;
         }
-        // get the mesh
-        Mesh mesh = floorMesh;
+
+
+
+        // make a copy of the floor mesh
+        Mesh mesh = new Mesh();
+        mesh.vertices = floorMesh.vertices;
+        mesh.triangles = floorMesh.triangles;
+        mesh.uv = floorMesh.uv;
         // scale the mesh uvs
         var newUvs = new Vector2[mesh.uv.Length];
         for (var i = 0; i < newUvs.Length; i++)
@@ -55,13 +62,25 @@ public class MapBuilder : MonoBehaviour
             newUvs[i] = new Vector2(mesh.uv[i].x * size.x, mesh.uv[i].y * size.z);
         }
         mesh.uv = newUvs;
+        // fix the mesh normals
+        mesh.RecalculateNormals();
+
+
         // create the floor tile
-        floorPiece = GameObject.Instantiate(new GameObject("Floor Tile"));
-        floorPiece.transform.position = center;
+        floorPiece = new GameObject("Floor:" + startArr[0] + "_" + startArr[1]+"_"+endArr[0]+"_"+endArr[1]);
+        floorPiece.transform.position = start + center;
+        floorPiece.transform.rotation = Quaternion.identity;
         floorPiece.transform.localScale = size;
+        floorPiece.transform.parent = floorParent.transform;
+        //add mesh renderer and filter
+        floorPiece.AddComponent<MeshRenderer>();
+        floorPiece.AddComponent<MeshFilter>();
+        floorPiece.AddComponent<MeshCollider>();
+
+
         floorPiece.GetComponent<MeshRenderer>().material = material;
         floorPiece.GetComponent<MeshFilter>().mesh = mesh;
-        floorPiece.transform.parent = floorParent.transform;
+        floorPiece.GetComponent<MeshCollider>().sharedMesh = mesh; 
     }
 
     private void InstanceWallTile(string code, int[] startArr, int[] endArr)
@@ -93,8 +112,24 @@ public class MapBuilder : MonoBehaviour
     }
 
 
+    // Awake is called when the script instance is being loaded.
     void Awake()
     {
+        // Floor mesh
+        this.floorMesh = new Mesh();
+        this.floorMesh.vertices = new Vector3[] { new Vector3(-0.5f, 0, -0.5f), new Vector3(-0.5f, 0, 0.5f), new Vector3(0.5f, 0, 0.5f), new Vector3(0.5f, 0, -0.5f) };
+        this.floorMesh.triangles = new int[] { 0, 1, 2, 0, 2, 3 };
+        this.floorMesh.uv = new Vector2[] { new Vector2(0, 0), new Vector2(0, 1), new Vector2(1, 1), new Vector2(1, 0) };
+        // Wall mesh, its the same as the but vertical
+        this.wallMesh = new Mesh();
+        this.wallMesh.vertices = new Vector3[] { new Vector3(-0.5f, 0, -0.5f), new Vector3(-0.5f, 0, 0.5f), new Vector3(-0.5f, 3, -0.5f), new Vector3(-0.5f, 3, 0.5f) };
+        this.wallMesh.triangles = new int[] { 0, 1, 2, 0, 2, 3 };
+        this.wallMesh.uv = new Vector2[] { new Vector2(0, 0), new Vector2(0, 1), new Vector2(3, 0), new Vector2(3, 1) };
+        // Create the parents
+        this.floorParent = new GameObject("Floor");
+        this.ceilingParent = new GameObject("Ceiling");
+        this.wallsParent = new GameObject("Walls");
+
         // Parse the map file
         IMapParser mapParser = new MapParserJSON(mapFile.text);
         Map map = mapParser.ParseMap();
@@ -102,8 +137,6 @@ public class MapBuilder : MonoBehaviour
         // Build the map
         BuildMap(map);
     }
-
-
     // Start is called before the first frame update
     void Start()
     {

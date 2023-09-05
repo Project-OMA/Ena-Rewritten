@@ -131,8 +131,6 @@ namespace MapObjects
             foreach (Person person in this.layers.persons)
                 sb.Append("\tPerson: " + person.type + " " + person.pos[0] + " " + person.pos[1] + "\n");
 
-
-
             return sb.ToString();
         }
 
