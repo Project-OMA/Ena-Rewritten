@@ -19,7 +19,10 @@ public class MapBuilder : MonoBehaviour
     [SerializeField] private MaterialData wallMaterialData;
     [SerializeField] private Material defaultFloorMaterial;
     [SerializeField] private Material defaultWallMaterial;
-    [SerializeField] private float ceilingHeigth = 3;
+    [SerializeField] private float ceilingHeigth = 3.0f;
+    [SerializeField] private float floorTextureScale = .75f;
+    [SerializeField] private float wallTextureScale = 2.0f;
+    [SerializeField] private float ceilingTextureScale = 1f;
     private Mesh floorMesh;
     private Mesh wallMesh;
 
@@ -48,8 +51,6 @@ public class MapBuilder : MonoBehaviour
             material = defaultFloorMaterial;
         }
 
-
-
         // make a copy of the floor mesh
         Mesh mesh = new Mesh();
         mesh.vertices = floorMesh.vertices;
@@ -60,6 +61,7 @@ public class MapBuilder : MonoBehaviour
         for (var i = 0; i < newUvs.Length; i++)
         {
             newUvs[i] = new Vector2(mesh.uv[i].x * size.x, mesh.uv[i].y * size.z);
+            newUvs[i] *= floorTextureScale;
         }
         mesh.uv = newUvs;
         // fix the mesh normals
@@ -85,13 +87,19 @@ public class MapBuilder : MonoBehaviour
 
     private void InstanceWallTile(string code, int[] startArr, int[] endArr)
     {
-        Vector3 start = new Vector3(startArr[0], 1, -startArr[1]);
-        Vector3 end = new Vector3(endArr[0] + 1, 1, -endArr[1] - 1);
+        Vector3 start = new Vector3(startArr[0], 0, -startArr[1]);
+        Vector3 end = new Vector3(endArr[0] + 1, 0, -endArr[1] - 1);
         Vector3 center = (end - start) / 2;
-        Vector3 size = new Vector3(Mathf.Abs(end.x - start.x), 1, Mathf.Abs(end.z - start.z));
-        GameObject wallPiece = null;
-
-        return; //TODO: Remove this line to enable walls
+        Vector3 size = new Vector3(
+        Mathf.Abs(end.x - start.x),
+        this.ceilingHeigth,
+        Mathf.Abs(end.z - start.z)
+        );
+        GameObject wall;
+        GameObject wallFront;
+        GameObject wallBack;
+        GameObject wallLeft;
+        GameObject wallRight;
 
         // get the material
         Material material = null;
@@ -114,11 +122,11 @@ public class MapBuilder : MonoBehaviour
         meshFront.vertices = wallMesh.vertices;
         meshFront.triangles = wallMesh.triangles;
         meshFront.uv = wallMesh.uv;
-        
+
         meshBack.vertices = wallMesh.vertices;
         meshBack.triangles = wallMesh.triangles;
         meshBack.uv = wallMesh.uv;
-        
+
         meshLeft.vertices = wallMesh.vertices;
         meshLeft.triangles = wallMesh.triangles;
         meshLeft.uv = wallMesh.uv;
@@ -136,15 +144,20 @@ public class MapBuilder : MonoBehaviour
         // front and back
         for (var i = 0; i < newUvsFront.Length; i++)
         {
-            newUvsFront[i] = new Vector2(meshFront.uv[i].x * size.x, meshFront.uv[i].y * size.y);
-            newUvsBack[i] = new Vector2(meshBack.uv[i].x * size.x, meshBack.uv[i].y * size.y);
-        }
+            newUvsFront[i] = new Vector2(meshFront.uv[i].x * size.z, meshFront.uv[i].y * size.y);
+            newUvsBack[i] = new Vector2(meshBack.uv[i].x * size.z, meshBack.uv[i].y * size.y);
 
+            newUvsFront[i] *= wallTextureScale;
+            newUvsBack[i] *= wallTextureScale;
+        }
         // left and right
         for (var i = 0; i < newUvsLeft.Length; i++)
         {
-            newUvsLeft[i] = new Vector2(meshLeft.uv[i].x * size.z, meshLeft.uv[i].y * size.y);
-            newUvsRight[i] = new Vector2(meshRight.uv[i].x * size.z, meshRight.uv[i].y * size.y);
+            newUvsLeft[i] = new Vector2(meshLeft.uv[i].x * size.x, meshLeft.uv[i].y * size.y);
+            newUvsRight[i] = new Vector2(meshRight.uv[i].x * size.x, meshRight.uv[i].y * size.y);
+
+            newUvsLeft[i] *= wallTextureScale;
+            newUvsRight[i] *= wallTextureScale;
         }
 
         meshFront.uv = newUvsFront;
@@ -159,21 +172,53 @@ public class MapBuilder : MonoBehaviour
         meshLeft.RecalculateNormals();
         meshRight.RecalculateNormals();
 
-        // create the wall tile
-        wallPiece = new GameObject("Wall:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
-        wallPiece.transform.position = start + center;
-        wallPiece.transform.rotation = Quaternion.identity;
-        wallPiece.transform.localScale = size;
-        wallPiece.transform.parent = wallsParent.transform;
-        //add mesh renderer and filter
-        wallPiece.AddComponent<MeshRenderer>();
-        wallPiece.AddComponent<MeshFilter>();
-        wallPiece.AddComponent<MeshCollider>();
+        // create the object and tiles
+        wall = new GameObject("Wall:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
+        wallFront = new GameObject("WallFront:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
+        wallBack = new GameObject("WallBack:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
+        wallLeft = new GameObject("WallLeft:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
+        wallRight = new GameObject("WallRight:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
+        var wallPieces = new GameObject[] { wallFront, wallBack, wallLeft, wallRight };
+
+        foreach (var wallPiece in wallPieces)
+        {
+            //wallPiece.transform.position = start + center;
+            wallPiece.transform.rotation = Quaternion.identity;
+            //wallPiece.transform.localScale = size;
+            wallPiece.transform.parent = wall.transform;
+            //add mesh renderer and filter
+            wallPiece.AddComponent<MeshRenderer>();
+            wallPiece.AddComponent<MeshFilter>();
+            wallPiece.AddComponent<MeshCollider>();
+        }
+
+        // rotate the wall pieces
+        wallFront.transform.Rotate(0, 0, 0);
+        wallBack.transform.Rotate(0, 180, 0);
+        wallLeft.transform.Rotate(0, 90, 0);
+        wallRight.transform.Rotate(0, -90, 0);
 
         // add the meshes to the wall
-        wallPiece.GetComponent<MeshRenderer>().material = material;
-        wallPiece.GetComponent<MeshFilter>().mesh = meshFront;
-        wallPiece.GetComponent<MeshCollider>().sharedMesh = meshFront;
+        wallFront.GetComponent<MeshRenderer>().material = material;
+        wallFront.GetComponent<MeshFilter>().mesh = meshFront;
+        wallFront.GetComponent<MeshCollider>().sharedMesh = meshFront;
+
+        wallBack.GetComponent<MeshRenderer>().material = material;
+        wallBack.GetComponent<MeshFilter>().mesh = meshBack;
+        wallBack.GetComponent<MeshCollider>().sharedMesh = meshBack;
+
+        wallLeft.GetComponent<MeshRenderer>().material = material;
+        wallLeft.GetComponent<MeshFilter>().mesh = meshLeft;
+        wallLeft.GetComponent<MeshCollider>().sharedMesh = meshLeft;
+
+        wallRight.GetComponent<MeshRenderer>().material = material;
+        wallRight.GetComponent<MeshFilter>().mesh = meshRight;
+        wallRight.GetComponent<MeshCollider>().sharedMesh = meshRight;
+
+        wall.transform.position = start + center;
+        wall.transform.rotation = Quaternion.identity;
+        wall.transform.localScale = size;
+        wall.transform.parent = wallsParent.transform;
     }
 
     private void InstanceCeilingTile(string code, int[] startArr, int[] endArr)
@@ -216,6 +261,7 @@ public class MapBuilder : MonoBehaviour
         for (var i = 0; i < newUvs.Length; i++)
         {
             newUvs[i] = new Vector2(mesh.uv[i].x * size.x, mesh.uv[i].y * size.z);
+            newUvs[i] *= ceilingTextureScale;
         }
 
         mesh.uv = newUvs;
@@ -223,9 +269,6 @@ public class MapBuilder : MonoBehaviour
 
         // fix the mesh normals
         mesh.RecalculateNormals();
-
-        
-
 
         ceilingPiece.GetComponent<MeshRenderer>().material = material;
         ceilingPiece.GetComponent<MeshFilter>().mesh = mesh;
@@ -283,9 +326,11 @@ public class MapBuilder : MonoBehaviour
         this.floorMesh.uv = new Vector2[] { new Vector2(0, 0), new Vector2(0, 1), new Vector2(1, 1), new Vector2(1, 0) };
         // Wall mesh, its the same as the but vertical
         this.wallMesh = new Mesh();
-        this.wallMesh.vertices = new Vector3[] { new Vector3(-0.5f, 0, -0.5f), new Vector3(-0.5f, 0, 0.5f), new Vector3(-0.5f, 3, -0.5f), new Vector3(-0.5f, 3, 0.5f) };
-        this.wallMesh.triangles = new int[] { 0, 1, 2, 0, 2, 3 };
-        this.wallMesh.uv = new Vector2[] { new Vector2(0, 0), new Vector2(0, 1), new Vector2(3, 0), new Vector2(3, 1) };
+        this.wallMesh.vertices = new Vector3[] { new Vector3(-0.5f, 0, -0.5f), new Vector3(-0.5f, 0, 0.5f), new Vector3(-0.5f, 1, -0.5f), new Vector3(-0.5f, 1, 0.5f) };
+        this.wallMesh.triangles = new int[] { 0, 1, 2, 3, 2, 1 };
+        //this.wallMesh.uv = new Vector2[] { new Vector2(0, 0), new Vector2(0, 1), new Vector2(1, 0), new Vector2(1, 1) };
+
+        this.wallMesh.uv = new Vector2[] { new Vector2(0, 1), new Vector2(1, 1), new Vector2(0, 0), new Vector2(1, 0) };
         // Create the parents
         this.floorParent = new GameObject("Floor");
         this.ceilingParent = new GameObject("Ceiling");

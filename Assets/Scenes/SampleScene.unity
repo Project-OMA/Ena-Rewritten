@@ -341,13 +341,15 @@ MonoBehaviour:
   disableWalls: 0
   disableFloors: 0
   disableCeilings: 0
-  mapFile: {fileID: 0}
+  mapFile: {fileID: 4900000, guid: 30a658d2278c6bf46ae744c3b7591712, type: 3}
   floorMaterialData: {fileID: 11400000, guid: 71bfc194a7310ce4aa7a369fb01175d5, type: 2}
   wallMaterialData: {fileID: 11400000, guid: 1a83cfde63172f9d98175f0f3d9f4700, type: 2}
   defaultFloorMaterial: {fileID: 2100000, guid: fd8d1cbd834065c43b7da5d83054d9c5, type: 2}
   defaultWallMaterial: {fileID: 2100000, guid: fd8d1cbd834065c43b7da5d83054d9c5, type: 2}
-  floorMesh: {fileID: 0}
-  wallMesh: {fileID: 0}
+  ceilingHeigth: 3
+  floorTextureScale: 0.75
+  wallTextureScale: 1
+  ceilingTextureScale: 3
 --- !u!4 &1040234885
 Transform:
   m_ObjectHideFlags: 0
