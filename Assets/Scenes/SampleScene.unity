@@ -347,7 +347,7 @@ MonoBehaviour:
   defaultFloorMaterial: {fileID: 2100000, guid: fd8d1cbd834065c43b7da5d83054d9c5, type: 2}
   defaultWallMaterial: {fileID: 2100000, guid: fd8d1cbd834065c43b7da5d83054d9c5, type: 2}
   ceilingHeigth: 3
-  floorTextureScale: 0.75
+  floorTextureScale: 0.5
   wallTextureScale: 1
   ceilingTextureScale: 3
 --- !u!4 &1040234885
