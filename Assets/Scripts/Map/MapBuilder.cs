@@ -274,8 +274,6 @@ public class MapBuilder : MonoBehaviour
         ceilingPiece.GetComponent<MeshFilter>().mesh = mesh;
         ceilingPiece.GetComponent<MeshCollider>().sharedMesh = mesh;
     }
-
-
     void BuildMap(Map map)
     {
         List<Wall> walls = map.layers.walls;
@@ -312,6 +310,23 @@ public class MapBuilder : MonoBehaviour
             {
                 InstanceCeilingTile(floor.type, floor.start, floor.end);
             }
+        }
+
+        // move player to the map start position
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        float x = (float)persons[0].pos[0];
+        float y = (float)persons[0].pos[1];
+        var startPos =  new Vector3(x, 1.75f, -y);
+        
+        // if there is no player in the scene move the camera to the start position
+        if (player != null)
+        {
+            player.transform.position = startPos;
+        }
+        else
+        {
+            GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
+            camera.transform.position = startPos;
         }
     }
 
