@@ -23,6 +23,12 @@ public class MapBuilder : MonoBehaviour
     [SerializeField] private float floorTextureScale = .75f;
     [SerializeField] private float wallTextureScale = 2.0f;
     [SerializeField] private float ceilingTextureScale = 1f;
+
+    [SerializeField] private bool useGrass = true;
+    [SerializeField] private string grassID = "3.1";
+
+    [SerializeField] GameObject grassSprite;
+
     private Mesh floorMesh;
     private Mesh wallMesh;
 
@@ -83,6 +89,21 @@ public class MapBuilder : MonoBehaviour
         floorPiece.GetComponent<MeshRenderer>().material = material;
         floorPiece.GetComponent<MeshFilter>().mesh = mesh;
         floorPiece.GetComponent<MeshCollider>().sharedMesh = mesh;
+
+        if(code == this.grassID && this.useGrass) {
+            float density = size.x * size.z ;
+            for (int i = 0; i < density; i++)
+            {
+                float x = Random.Range(start.x, end.x);
+                float z = Random.Range(start.z, end.z);
+                float y = 0.01f;
+                Vector3 position = new Vector3(x, y, z);
+                // create cube
+                GameObject grass = Instantiate(grassSprite, position, Quaternion.identity);
+                grass.transform.parent = floorPiece.transform;
+            }
+            
+        }
     }
 
     private void InstanceWallTile(string code, int[] startArr, int[] endArr)
