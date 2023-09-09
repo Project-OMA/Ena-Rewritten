@@ -351,6 +351,18 @@ public class MapBuilder : MonoBehaviour
         }
     }
 
+    bool isJson(string data)
+    {
+        string stripped = data.Trim();
+        return stripped[0] == '{';
+    }
+
+    bool IsXML(string data)
+    {
+        string stripped = data.Trim();
+        return stripped[0] == '<';
+    }
+
 
     // Awake is called when the script instance is being loaded.
     void Awake()
@@ -372,10 +384,31 @@ public class MapBuilder : MonoBehaviour
         this.ceilingParent = new GameObject("Ceiling");
         this.wallsParent = new GameObject("Walls");
 
-        // Parse the map file
-        IMapParser mapParser = new MapParserJSON(mapFile.text);
-        Map map = mapParser.ParseMap();
+        if (this.mapFile == null)
+        {
+            Debug.LogError("No map file found");
+            return;
+        }
 
+        IMapParser mapParser = null;
+
+        // Check if the file is JSON or XML
+        if (isJson(mapFile.text))
+        {
+            Debug.Log("JSON file detected");
+            mapParser = new MapParserJSON(mapFile.text);
+        }
+        else if (IsXML(mapFile.text))
+        {
+            Debug.Log("XML file detected");
+            mapParser = new MapParserXML(mapFile.text);
+        }
+        else
+        {
+            Debug.LogError("Invalid file format");
+            return;
+        }
+        Map map = mapParser.ParseMap();
         // Build the map
         BuildMap(map);
     }
