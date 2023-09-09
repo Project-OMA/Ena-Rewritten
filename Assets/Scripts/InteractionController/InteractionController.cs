@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractionController : MonoBehaviour
+public class InteractionController : MonoBehaviour 
 {
-    public float correr = 2, andar = 1;
+    public float andar = 1;
    private int velocidadeFrente;
    private int velocidadeTras;
 
@@ -40,4 +40,7 @@ public class InteractionController : MonoBehaviour
         transform.Rotate(0,(andar*velocidadeLateral*Time.deltaTime),0);
       
     }
+
+   }
+}
 
