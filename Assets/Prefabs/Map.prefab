@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3467221854412232679
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6407640246248220639}
+  - component: {fileID: 1593772612312908788}
+  m_Layer: 0
+  m_Name: Map
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6407640246248220639
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3467221854412232679}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1593772612312908788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3467221854412232679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd36be92e9c68f868bf05130f6cdfff0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  disableWalls: 0
+  disableFloors: 0
+  disableCeilings: 0
+  mapFile: {fileID: 4900000, guid: 30a658d2278c6bf46ae744c3b7591712, type: 3}
+  floorMaterialData: {fileID: 11400000, guid: 71bfc194a7310ce4aa7a369fb01175d5, type: 2}
+  wallMaterialData: {fileID: 11400000, guid: 1a83cfde63172f9d98175f0f3d9f4700, type: 2}
+  defaultFloorMaterial: {fileID: 2100000, guid: fd8d1cbd834065c43b7da5d83054d9c5, type: 2}
+  defaultWallMaterial: {fileID: 2100000, guid: fd8d1cbd834065c43b7da5d83054d9c5, type: 2}
+  ceilingHeigth: 3
+  floorTextureScale: 0.5
+  wallTextureScale: 1
+  ceilingTextureScale: 3
+  useGrass: 1
+  grassID: 3.1
+  grassSprite: {fileID: 0}
