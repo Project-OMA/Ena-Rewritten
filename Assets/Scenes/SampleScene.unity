@@ -203,7 +203,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3889a0550dabe6f0a865d55a969d68f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
 --- !u!4 &239719839
 Transform:
   m_ObjectHideFlags: 0
@@ -416,11 +415,19 @@ PrefabInstance:
     - target: {fileID: 1593772612312908788, guid: 99f6036f07791e557b820a2bb8e7068c, type: 3}
       propertyPath: mapFile
       value: 
-      objectReference: {fileID: 4900000, guid: 39c770b51c1172d51916349748ae285c, type: 3}
+      objectReference: {fileID: 4900000, guid: 30a658d2278c6bf46ae744c3b7591712, type: 3}
     - target: {fileID: 1593772612312908788, guid: 99f6036f07791e557b820a2bb8e7068c, type: 3}
       propertyPath: grassSprite
       value: 
       objectReference: {fileID: 7732314249986411692, guid: c0050dba3b9fa3fa3834a9b9de53da9e, type: 3}
+    - target: {fileID: 1593772612312908788, guid: 99f6036f07791e557b820a2bb8e7068c, type: 3}
+      propertyPath: defaultWallMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: d397378de621866d38004761d13d9ecd, type: 2}
+    - target: {fileID: 1593772612312908788, guid: 99f6036f07791e557b820a2bb8e7068c, type: 3}
+      propertyPath: defaultFloorMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: d397378de621866d38004761d13d9ecd, type: 2}
     - target: {fileID: 3467221854412232679, guid: 99f6036f07791e557b820a2bb8e7068c, type: 3}
       propertyPath: m_Name
       value: Map

@@ -48,7 +48,7 @@ MonoBehaviour:
     material: {fileID: 2100000, guid: 5121511a0329e7349a80cff8cc913b0a, type: 2}
   - id: 5.1
     name: Neve
-    material: {fileID: 0}
+    material: {fileID: 2100000, guid: f78b39510c423e744b1e34d370c5fbca, type: 2}
   - id: 6.0
     name: "Piso T\xE1til de Dire\xE7\xE3o (borracha) "
     material: {fileID: 2100000, guid: 702e14e6bc1f0004a83548061a456a1f, type: 2}
