@@ -84,6 +84,32 @@ namespace MapObjects
         public int[] size;
         public Layers layers;
 
+        public Map(
+            int[] size,
+            List<Wall> walls,
+            List<Floor> floors,
+            List<DoorAndWindow> door_and_windows,
+            List<Furniture> furniture,
+            List<Utensil> utensils,
+            List<Electronic> eletronics,
+            List<Goal> goals,
+            List<Person> persons
+        )
+        {
+            this.size = size;
+
+            this.layers = new Layers();
+
+            this.layers.walls = walls;
+            this.layers.floors = floors;
+            this.layers.door_and_windows = door_and_windows;
+            this.layers.furniture = furniture;
+            this.layers.utensils = utensils;
+            this.layers.eletronics = eletronics;
+            this.layers.goals = goals;
+            this.layers.persons = persons;
+        }
+
         public string mapRepresentationString()
         {
 
