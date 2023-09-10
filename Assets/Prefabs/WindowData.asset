@@ -13,6 +13,25 @@ MonoBehaviour:
   m_Name: WindowData
   m_EditorClassIdentifier: 
   Objects:
-  - id: 
-    name: 
+  - name: Janela de Vidro
     prefab: {fileID: 0}
+    variations:
+    - id: 6.0
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+    - id: 6.1
+      rotation: 90
+      offsetX: 0
+      offsetY: 0
+  - name: Janela de Madeira
+    prefab: {fileID: 0}
+    variations:
+    - id: 7.0
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+    - id: 7.1
+      rotation: 90
+      offsetX: 0
+      offsetY: 0

@@ -13,6 +13,22 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   Objects:
-  - id: 
-    name: 
+  - name: Jogador
     prefab: {fileID: 0}
+    variations:
+    - id: 0.0
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+    - id: 1.0
+      rotation: 90
+      offsetX: 0
+      offsetY: 0
+    - id: 2.0
+      rotation: 180
+      offsetX: 0
+      offsetY: 0
+    - id: 3.0
+      rotation: 270
+      offsetX: 0
+      offsetY: 0

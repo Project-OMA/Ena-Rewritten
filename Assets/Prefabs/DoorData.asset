@@ -13,6 +13,36 @@ MonoBehaviour:
   m_Name: DoorData
   m_EditorClassIdentifier: 
   Objects:
-  - id: 
-    name: 
+  - name: Porta Trancada
     prefab: {fileID: 0}
+    variations:
+    - id: 0.0
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+    - id: 0.2
+      rotation: 90
+      offsetX: 0
+      offsetY: 0
+  - name: Porta Fechada
+    prefab: {fileID: 0}
+    variations:
+    - id: 2.0
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+    - id: 2.2
+      rotation: 90
+      offsetX: 0
+      offsetY: 0
+  - name: Porta Aberta
+    prefab: {fileID: 0}
+    variations:
+    - id: 4.0
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+    - id: 4.2
+      rotation: 90
+      offsetX: 0
+      offsetY: 0

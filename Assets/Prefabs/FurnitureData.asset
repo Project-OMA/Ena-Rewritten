@@ -13,6 +13,215 @@ MonoBehaviour:
   m_Name: FurnitureData
   m_EditorClassIdentifier: 
   Objects:
-  - id: 
-    name: 
+  - name: Cama de Casal
     prefab: {fileID: 0}
+    variations:
+    - id: 1.1
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+    - id: 2.0
+      rotation: 180
+      offsetX: 0
+      offsetY: 0
+    - id: 5.0
+      rotation: 90
+      offsetX: 0
+      offsetY: 0
+    - id: 6.1
+      rotation: 270
+      offsetX: 0
+      offsetY: 0
+  - name: Cama de Solteiro
+    prefab: {fileID: 0}
+    variations:
+    - id: 0.3
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+    - id: 1.2
+      rotation: 180
+      offsetX: 0
+      offsetY: 0
+    - id: 2.3
+      rotation: 90
+      offsetX: 0
+      offsetY: 0
+    - id: 3.2
+      rotation: 270
+      offsetX: 0
+      offsetY: 0
+  - name: Poltrona
+    prefab: {fileID: 0}
+    variations:
+    - id: 4.2
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+    - id: 4.3
+      rotation: 180
+      offsetX: 0
+      offsetY: 0
+    - id: 5.2
+      rotation: 90
+      offsetX: 0
+      offsetY: 0
+    - id: 5.3
+      rotation: 270
+      offsetX: 0
+      offsetY: 0
+  - name: Cadeira
+    prefab: {fileID: 0}
+    variations:
+    - id: 6.2
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+    - id: 6.3
+      rotation: 180
+      offsetX: 0
+      offsetY: 0
+    - id: 7.2
+      rotation: 90
+      offsetX: 0
+      offsetY: 0
+    - id: 7.3
+      rotation: 270
+      offsetX: 0
+      offsetY: 0
+  - name: Mesa de Jantar (c/ 4 cadeiras)
+    prefab: {fileID: 0}
+    variations:
+    - id: 0.4
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+    - id: 3.5
+      rotation: 90
+      offsetX: 0
+      offsetY: 0
+  - name: Guarda-Roupa
+    prefab: {fileID: 0}
+    variations:
+    - id: 4.5
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+    - id: 5.6
+      rotation: 180
+      offsetX: 0
+      offsetY: 0
+    - id: 6.4
+      rotation: 90
+      offsetX: 0
+      offsetY: 0
+    - id: 6.7
+      rotation: 270
+      offsetX: 0
+      offsetY: 0
+  - name: Armário de Ferro
+    prefab: {fileID: 0}
+    variations:
+    - id: 0.7
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+    - id: 0.8
+      rotation: 180
+      offsetX: 0
+      offsetY: 0
+    - id: 3.6
+      rotation: 90
+      offsetX: 0
+      offsetY: 0
+    - id: 3.9
+      rotation: 270
+      offsetX: 0
+      offsetY: 0
+  - name: Sofá
+    prefab: {fileID: 0}
+    variations:
+    - id: 4.9
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+    - id: 4.10
+      rotation: 180
+      offsetX: 0
+      offsetY: 0
+    - id: 5.8
+      rotation: 90
+      offsetX: 0
+      offsetY: 0
+    - id: 5.11
+      rotation: 270
+      offsetX: 0
+      offsetY: 0
+  - name: Cômoda
+    prefab: {fileID: 0}
+    variations:
+    - id: 0.10
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+    - id: 0.11
+      rotation: 180
+      offsetX: 0
+      offsetY: 0
+    - id: 1.10
+      rotation: 90
+      offsetX: 0
+      offsetY: 0
+    - id: 1.11
+      rotation: 270
+      offsetX: 0
+      offsetY: 0
+  - name: Estante
+    prefab: {fileID: 0}
+    variations:
+    - id: 6.11
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+    - id: 7.10
+      rotation: 180
+      offsetX: 0
+      offsetY: 0
+    - id: 7.12
+      rotation: 90
+      offsetX: 0
+      offsetY: 0
+    - id: 6.13
+      rotation: 270
+      offsetX: 0
+      offsetY: 0
+  - name: Mesa
+    prefab: {fileID: 0}
+    variations:
+    - id: 0.12
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+    - id: 1.12
+      rotation: 90
+      offsetX: 0
+      offsetY: 0
+  - name: Criado Mudo
+    prefab: {fileID: 0}
+    variations:
+    - id: 6.8
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+    - id: 6.9
+      rotation: 180
+      offsetX: 0
+      offsetY: 0
+    - id: 7.8
+      rotation: 90
+      offsetX: 0
+      offsetY: 0
+    - id: 7.9
+      rotation: 270
+      offsetX: 0
+      offsetY: 0

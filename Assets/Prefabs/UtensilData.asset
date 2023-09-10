@@ -13,6 +13,106 @@ MonoBehaviour:
   m_Name: UtensilData
   m_EditorClassIdentifier: 
   Objects:
-  - id: 
-    name: 
+  - name: Piano
     prefab: {fileID: 0}
+    variations:
+    - id: 1.1
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+    - id: 1.2
+      rotation: 90
+      offsetX: 0
+      offsetY: 0
+  - name: Cone
+    prefab: {fileID: 0}
+    variations:
+    - id: 2.0
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+  - name: Lâmpada
+    prefab: {fileID: 0}
+    variations:
+    - id: 3.0
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+  - name: Violão
+    prefab: {fileID: 0}
+    variations:
+    - id: 2.1
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+  - name: Lixeira
+    prefab: {fileID: 0}
+    variations:
+    - id: 3.1
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+  - name: Vaso Sanitário
+    prefab: {fileID: 0}
+    variations:
+    - id: 4.0
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+    - id: 4.1
+      rotation: 180
+      offsetX: 0
+      offsetY: 0
+    - id: 5.0
+      rotation: 90
+      offsetX: 0
+      offsetY: 0
+    - id: 5.1
+      rotation: 270
+      offsetX: 0
+      offsetY: 0
+  - name: Lavatório
+    prefab: {fileID: 0}
+    variations:
+    - id: 6.0
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+    - id: 6.1
+      rotation: 180
+      offsetX: 0
+      offsetY: 0
+    - id: 7.0
+      rotation: 90
+      offsetX: 0
+      offsetY: 0
+    - id: 7.1
+      rotation: 270
+      offsetX: 0
+      offsetY: 0
+  - name: Planta
+    prefab: {fileID: 0}
+    variations:
+    - id: 2.3
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+  - name: Quadro de Pintura
+    prefab: {fileID: 0}
+    variations:
+    - id: 3.2
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+    - id: 3.3
+      rotation: 180
+      offsetX: 0
+      offsetY: 0
+    - id: 4.2
+      rotation: 90
+      offsetX: 0
+      offsetY: 0
+    - id: 4.3
+      rotation: 270
+      offsetX: 0
+      offsetY: 0

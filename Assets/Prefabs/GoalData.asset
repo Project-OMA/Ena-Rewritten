@@ -13,6 +13,168 @@ MonoBehaviour:
   m_Name: GoalData
   m_EditorClassIdentifier: 
   Objects:
-  - id: 
-    name: 
+  - name: Cachorro
     prefab: {fileID: 0}
+    variations:
+    - id: 0.0
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+    - id: 0.1
+      rotation: 270
+      offsetX: 0
+      offsetY: 0
+    - id: 1.0
+      rotation: 90
+      offsetX: 0
+      offsetY: 0
+    - id: 1.1
+      rotation: 180
+      offsetX: 0
+      offsetY: 0
+  - name: Inseto
+    prefab: {fileID: 0}
+    variations:
+    - id: 2.0
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+    - id: 2.1
+      rotation: 270
+      offsetX: 0
+      offsetY: 0
+    - id: 3.0
+      rotation: 90
+      offsetX: 0
+      offsetY: 0
+    - id: 3.1
+      rotation: 180
+      offsetX: 0
+      offsetY: 0
+  - name: Pássaro
+    prefab: {fileID: 0}
+    variations:
+    - id: 4.0
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+    - id: 4.1
+      rotation: 270
+      offsetX: 0
+      offsetY: 0
+    - id: 5.0
+      rotation: 90
+      offsetX: 0
+      offsetY: 0
+    - id: 5.1
+      rotation: 180
+      offsetX: 0
+      offsetY: 0
+  - name: Gato
+    prefab: {fileID: 0}
+    variations:
+    - id: 6.0
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+    - id: 6.1
+      rotation: 270
+      offsetX: 0
+      offsetY: 0
+    - id: 7.0
+      rotation: 90
+      offsetX: 0
+      offsetY: 0
+    - id: 7.1
+      rotation: 180
+      offsetX: 0
+      offsetY: 0
+  - name: Sapo
+    prefab: {fileID: 0}
+    variations:
+    - id: 0.2
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+    - id: 0.3
+      rotation: 270
+      offsetX: 0
+      offsetY: 0
+    - id: 1.2
+      rotation: 90
+      offsetX: 0
+      offsetY: 0
+    - id: 1.3
+      rotation: 180
+      offsetX: 0
+      offsetY: 0
+  - name: Secador de Cabelo
+    prefab: {fileID: 0}
+    variations:
+    - id: 2.2
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+  - name: Liquidificador
+    prefab: {fileID: 0}
+    variations:
+    - id: 3.2
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+  - name: Chaleira
+    prefab: {fileID: 0}
+    variations:
+    - id: 4.2
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+  - name: Impressora
+    prefab: {fileID: 0}
+    variations:
+    - id: 5.2
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+  - name: Celular
+    prefab: {fileID: 0}
+    variations:
+    - id: 6.2
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+  - name: Criança
+    prefab: {fileID: 0}
+    variations:
+    - id: 7.2
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+  - name: Rádio
+    prefab: {fileID: 0}
+    variations:
+    - id: 2.3
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+  - name: Despertador
+    prefab: {fileID: 0}
+    variations:
+    - id: 3.3
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+  - name: Batedeira
+    prefab: {fileID: 0}
+    variations:
+    - id: 4.3
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+  - name: Ventilador
+    prefab: {fileID: 0}
+    variations:
+    - id: 5.3
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
