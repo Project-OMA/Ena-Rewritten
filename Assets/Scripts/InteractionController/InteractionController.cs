@@ -7,7 +7,7 @@ public class InteractionController : MonoBehaviour
     public float andar = 1;
    private int velocidadeFrente;
    private int velocidadeTras;
-
+    public GameObject cam;
    private int velocidadeLateral;
 
    void Start (){
@@ -17,30 +17,14 @@ public class InteractionController : MonoBehaviour
    }
 
    void Update () {
-    if(Input.GetKey("w")){
-         
-        transform.Translate(0,0,andar*velocidadeFrente*Time.deltaTime);
-            
-         
-    }
-    if(Input.GetKey("s")){
-         
-        transform.Translate(0,0,-andar*velocidadeTras*Time.deltaTime);
-      
-    }
+    float x = Input.GetAxis ("Vertical");
+    var control = new Vector3(0,x,0);
 
-    if(Input.GetKey("d")){
-         
-        transform.Rotate(0,(-andar*velocidadeLateral*Time.deltaTime),0);
-            
-         
+    Vector3 right = cam.transform.right;
+    Vector3 forward = Vector3.ProjectOnPlane(cam.transform.forward, Vector3.up).normalized;
+    Vector3 moveVector = forward * control.y + right * control.x;
+    moveVector.y = 0;
+    transform.Translate(moveVector * andar * Time.deltaTime, Space.World);
     }
-    if(Input.GetKey("a")){
-         
-        transform.Rotate(0,(andar*velocidadeLateral*Time.deltaTime),0);
-      
-    }
-
-   }
 }
 
