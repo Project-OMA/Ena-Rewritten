@@ -108,7 +108,7 @@ public class MapBuilder : MonoBehaviour
         floorPiece.GetComponent<MeshFilter>().mesh = mesh;
         floorPiece.GetComponent<MeshCollider>().sharedMesh = mesh;
 
-        if (code == this.grassID && this.useGrass)
+        if (code == grassID && useGrass)
         {
             float density = size.x * size.z;
             for (int i = 0; i < density; i++)
@@ -139,11 +139,6 @@ public class MapBuilder : MonoBehaviour
         ceilingHeigth,
         Mathf.Abs(end.z - start.z)
         );
-        GameObject wallObj;
-        GameObject wallFront;
-        GameObject wallBack;
-        GameObject wallLeft;
-        GameObject wallRight;
 
         // get the material
         Material material = null;
@@ -225,11 +220,11 @@ public class MapBuilder : MonoBehaviour
         meshRight.RecalculateNormals();
 
         // create the object and tiles
-        wallObj = new GameObject("Wall:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
-        wallFront = new GameObject("WallFront:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
-        wallBack = new GameObject("WallBack:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
-        wallLeft = new GameObject("WallLeft:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
-        wallRight = new GameObject("WallRight:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
+        var wall = new GameObject("Wall:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
+        var wallFront = new GameObject("WallFront:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
+        var wallBack = new GameObject("WallBack:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
+        var wallLeft = new GameObject("WallLeft:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
+        var wallRight = new GameObject("WallRight:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
         var wallPieces = new GameObject[] { wallFront, wallBack, wallLeft, wallRight };
 
         foreach (var wallPiece in wallPieces)
@@ -508,18 +503,11 @@ public class MapBuilder : MonoBehaviour
         // move player to the map start position
         float x = (float)persons[0].pos[0];
         float y = (float)persons[0].pos[1];
-        var startPos = new Vector3(x, 1.75f, -y);
+        var startPos = new Vector3(x,
+            player.transform.position.y
+        , -y);
 
-        // if there is no player in the scene move the camera to the start position
-        if (player != null)
-        {
-            player.transform.position = startPos;
-        }
-        else
-        {
-            GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
-            camera.transform.position = startPos;
-        }
+        player.transform.position = startPos;
     }
 
     bool isJson(string data)
