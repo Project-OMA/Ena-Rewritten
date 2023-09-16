@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Objects:
   - name: Janela de Vidro
-    prefab: {fileID: 0}
+    prefab: {fileID: 614322503775666597, guid: 6049c1975e0c7494fa5d307f02a9f153, type: 3}
     variations:
     - id: 6.0
       rotation: 0
@@ -25,7 +25,7 @@ MonoBehaviour:
       offsetX: 0
       offsetY: 0
   - name: Janela de Madeira
-    prefab: {fileID: 0}
+    prefab: {fileID: 614322503775666597, guid: a684b5d70f0bce55486ccc8d0af83aed, type: 3}
     variations:
     - id: 7.0
       rotation: 0

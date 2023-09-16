@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Objects:
   - name: Geladeira
-    prefab: {fileID: 0}
+    prefab: {fileID: 614322503775666597, guid: 38735c0fb88d2096aa8f6a010f2cfcc2, type: 3}
     variations:
     - id: 0.1
       rotation: 0
@@ -32,8 +32,8 @@ MonoBehaviour:
       rotation: 270
       offsetX: 0
       offsetY: 0
-  - name: Fogão
-    prefab: {fileID: 0}
+  - name: "Fog\xE3o"
+    prefab: {fileID: 614322503775666597, guid: 0ef7fd4efb753e381b87c1a93e57affe, type: 3}
     variations:
     - id: 2.0
       rotation: 0
@@ -52,7 +52,7 @@ MonoBehaviour:
       offsetX: 0
       offsetY: 0
   - name: Computador
-    prefab: {fileID: 0}
+    prefab: {fileID: 614322503775666597, guid: 4d76c47d9e438dcfa965c8155b7926fd, type: 3}
     variations:
     - id: 4.0
       rotation: 0
@@ -70,8 +70,8 @@ MonoBehaviour:
       rotation: 270
       offsetX: 0
       offsetY: 0
-  - name: Máquina de Lavar
-    prefab: {fileID: 0}
+  - name: "M\xE1quina de Lavar"
+    prefab: {fileID: 614322503775666597, guid: 5c19f65f369c6da8bb5149dabfa9e1ff, type: 3}
     variations:
     - id: 6.0
       rotation: 0
@@ -90,7 +90,7 @@ MonoBehaviour:
       offsetX: 0
       offsetY: 0
   - name: TV
-    prefab: {fileID: 0}
+    prefab: {fileID: 614322503775666597, guid: c2a8e7c84ebe7aa7486c9063f9190656, type: 3}
     variations:
     - id: 2.2
       rotation: 0
@@ -109,7 +109,7 @@ MonoBehaviour:
       offsetX: 0
       offsetY: 0
   - name: Microondas
-    prefab: {fileID: 0}
+    prefab: {fileID: 614322503775666597, guid: 46dd676781f97da44b061e74133e32c4, type: 3}
     variations:
     - id: 4.2
       rotation: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
       offsetX: 0
       offsetY: 0
   - name: Copiadora
-    prefab: {fileID: 0}
+    prefab: {fileID: 614322503775666597, guid: a4934ab6ba736e65ba18fe56c1d6bfea, type: 3}
     variations:
     - id: 6.3
       rotation: 0
