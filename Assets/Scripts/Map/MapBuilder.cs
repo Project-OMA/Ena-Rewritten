@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using MapObjects;
 using MapParser;
+
 public class MapBuilder : MonoBehaviour
 {
 
@@ -12,12 +13,23 @@ public class MapBuilder : MonoBehaviour
     [SerializeField] bool disableFloors = false;
     [SerializeField] bool disableCeilings = false;
 
+    [SerializeField] bool disableDoorWindow = false;
+    [SerializeField] bool disableFurniture = false;
+    [SerializeField] bool disableUtensil = false;
+    [SerializeField] bool disableElectronic = false;
+    [SerializeField] bool disableGoal = false;
+
     [FormerlySerializedAs("jsonRawFile")]
     [SerializeField] private TextAsset mapFile;
 
 
     [SerializeField] private MaterialData floorMaterialData;
     [SerializeField] private MaterialData wallMaterialData;
+    [SerializeField] private ObjectData doorWindowObjectData;
+    [SerializeField] private ObjectData furnitureObjectData;
+    [SerializeField] private ObjectData utensilObjectData;
+    [SerializeField] private ObjectData electronicObjectData;
+    [SerializeField] private ObjectData goalObjectData;
     [SerializeField] private Material defaultFloorMaterial;
     [SerializeField] private Material defaultWallMaterial;
     [SerializeField] private float ceilingHeigth = 3.0f;
@@ -38,8 +50,12 @@ public class MapBuilder : MonoBehaviour
     private GameObject ceilingParent;
     private GameObject wallsParent;
 
-    private void InstanceFloorTile(string code, int[] startArr, int[] endArr)
+    private void InstanceFloorTile(Floor floor)
     {
+        string code = floor.type;
+        int[] startArr = floor.start;
+        int[] endArr = floor.end;
+
         Vector3 start = new Vector3(startArr[0], 0, -startArr[1]);
         Vector3 end = new Vector3(endArr[0] + 1, 0, -endArr[1] - 1);
         Vector3 center = (end - start) / 2;
@@ -92,7 +108,7 @@ public class MapBuilder : MonoBehaviour
         floorPiece.GetComponent<MeshFilter>().mesh = mesh;
         floorPiece.GetComponent<MeshCollider>().sharedMesh = mesh;
 
-        if (code == grassID && useGrass)
+        if (code == this.grassID && this.useGrass)
         {
             float density = size.x * size.z;
             for (int i = 0; i < density; i++)
@@ -109,8 +125,12 @@ public class MapBuilder : MonoBehaviour
         }
     }
 
-    private void InstanceWallTile(string code, int[] startArr, int[] endArr)
+    private void InstanceWallTile(Wall wall)
     {
+        string code = wall.type;
+        int[] startArr = wall.start;
+        int[] endArr = wall.end;
+
         Vector3 start = new Vector3(startArr[0], 0, -startArr[1]);
         Vector3 end = new Vector3(endArr[0] + 1, 0, -endArr[1] - 1);
         Vector3 center = (end - start) / 2;
@@ -119,6 +139,11 @@ public class MapBuilder : MonoBehaviour
         ceilingHeigth,
         Mathf.Abs(end.z - start.z)
         );
+        GameObject wallObj;
+        GameObject wallFront;
+        GameObject wallBack;
+        GameObject wallLeft;
+        GameObject wallRight;
 
         // get the material
         Material material = null;
@@ -200,11 +225,11 @@ public class MapBuilder : MonoBehaviour
         meshRight.RecalculateNormals();
 
         // create the object and tiles
-        var wall = new GameObject("Wall:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
-        var wallFront = new GameObject("WallFront:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
-        var wallBack = new GameObject("WallBack:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
-        var wallLeft = new GameObject("WallLeft:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
-        var wallRight = new GameObject("WallRight:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
+        wallObj = new GameObject("Wall:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
+        wallFront = new GameObject("WallFront:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
+        wallBack = new GameObject("WallBack:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
+        wallLeft = new GameObject("WallLeft:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
+        wallRight = new GameObject("WallRight:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
         var wallPieces = new GameObject[] { wallFront, wallBack, wallLeft, wallRight };
 
         foreach (var wallPiece in wallPieces)
@@ -212,7 +237,7 @@ public class MapBuilder : MonoBehaviour
             //wallPiece.transform.position = start + center;
             wallPiece.transform.rotation = Quaternion.identity;
             //wallPiece.transform.localScale = size;
-            wallPiece.transform.parent = wall.transform;
+            wallPiece.transform.parent = wallObj.transform;
             //add mesh renderer and filter
             wallPiece.AddComponent<MeshRenderer>();
             wallPiece.AddComponent<MeshFilter>();
@@ -242,14 +267,18 @@ public class MapBuilder : MonoBehaviour
         wallRight.GetComponent<MeshFilter>().mesh = meshRight;
         wallRight.GetComponent<MeshCollider>().sharedMesh = meshRight;
 
-        wall.transform.position = start + center;
-        wall.transform.rotation = Quaternion.identity;
-        wall.transform.localScale = size;
-        wall.transform.parent = wallsParent.transform;
+        wallObj.transform.position = start + center;
+        wallObj.transform.rotation = Quaternion.identity;
+        wallObj.transform.localScale = size;
+        wallObj.transform.parent = wallsParent.transform;
     }
 
-    private void InstanceCeilingTile(string code, int[] startArr, int[] endArr)
+    private void InstanceCeilingTile(Floor floor)
     {
+        string code = floor.type;
+        int[] startArr = floor.start;
+        int[] endArr = floor.end;
+
         Vector3 start = new Vector3(startArr[0], ceilingHeigth, -startArr[1]);
         Vector3 end = new Vector3(endArr[0] + 1, ceilingHeigth, -endArr[1] - 1);
         Vector3 center = (end - start) / 2;
@@ -303,6 +332,95 @@ public class MapBuilder : MonoBehaviour
         ceilingPiece.GetComponent<MeshFilter>().mesh = mesh;
         ceilingPiece.GetComponent<MeshCollider>().sharedMesh = mesh;
     }
+
+    private void InstanceDoorAndWindow(DoorAndWindow doorAndWindow)
+    {
+        ObjectPrefab doorWindowObject = doorWindowObjectData.GetObject(doorAndWindow.type);
+
+        // Prefab
+        GameObject prefab = doorWindowObject.prefab;
+
+        // Position
+        float posX = doorAndWindow.pos[0] + doorWindowObject.offsetX;
+        float posY = -doorAndWindow.pos[1] + doorWindowObject.offsetY;
+        Vector3 pos = new Vector3(posX, 0, posY);
+
+        // Rotation
+        Quaternion rot = Quaternion.Euler(0, doorWindowObject.rotation, 0);
+
+        // Create the object
+        GameObject obj = Instantiate(prefab, pos, rot);
+    }
+    private void InstanceFurniture(Furniture furniture)
+    {
+        ObjectPrefab furnitureObject = furnitureObjectData.GetObject(furniture.type);
+        GameObject prefab = furnitureObject.prefab;
+        float posX = furniture.pos[0] + furnitureObject.offsetX;
+        float posY = -furniture.pos[1] + furnitureObject.offsetY;
+        Vector3 pos = new Vector3(posX, 0, posY);
+        Quaternion rot = Quaternion.Euler(0, furnitureObject.rotation, 0);
+        GameObject obj = Instantiate(prefab, pos, rot);
+    }
+    private void InstanceUtensil(Utensil utensil)
+    {
+        ObjectPrefab utensilObject = utensilObjectData.GetObject(utensil.type);
+        GameObject prefab = utensilObject.prefab;
+        float posX = utensil.pos[0] + utensilObject.offsetX;
+        float posY = -utensil.pos[1] + utensilObject.offsetY;
+        Vector3 pos = new Vector3(posX, 0, posY);
+        Quaternion rot = Quaternion.Euler(0, utensilObject.rotation, 0);
+        GameObject obj = Instantiate(prefab, pos, rot);
+    }
+    private void InstanceElectronic(Electronic electronic)
+    {
+        ObjectPrefab electronicObject = electronicObjectData.GetObject(electronic.type);
+        GameObject prefab = electronicObject.prefab;
+        float posX = electronic.pos[0] + electronicObject.offsetX;
+        float posY = -electronic.pos[1] + electronicObject.offsetY;
+        Vector3 pos = new Vector3(posX, 0, posY);
+        Quaternion rot = Quaternion.Euler(0, electronicObject.rotation, 0);
+        GameObject obj = Instantiate(prefab, pos, rot);
+    }
+    private void InstanceGoal(Goal goal)
+    {
+        ObjectPrefab goalObject = goalObjectData.GetObject(goal.type);
+        GameObject prefab = goalObject.prefab;
+        float posX = goal.pos[0] + goalObject.offsetX;
+        float posY = -goal.pos[1] + goalObject.offsetY;
+        Vector3 pos = new Vector3(posX, 0, posY);
+        Quaternion rot = Quaternion.Euler(0, goalObject.rotation, 0);
+        GameObject obj = Instantiate(prefab, pos, rot);
+    }
+
+
+    private void InstanceProp(MapProp prop, ObjectData objectData)
+    {
+        string type = prop.type;
+        int[] pos = prop.pos;
+
+        try
+        {
+            ObjectPrefab propData = objectData.GetObject(type);
+            GameObject prefab = propData.prefab;
+
+            // Position
+            float posX = pos[0] + propData.offsetX;
+            float posY = -pos[1] + propData.offsetY;
+            Vector3 vecpos = new Vector3(posX, 0, posY);
+
+            // Rotation
+            Quaternion rot = Quaternion.Euler(0, propData.rotation, 0);
+
+            // Create the object
+            GameObject obj = Instantiate(prefab, vecpos, rot);
+        }
+        catch (System.Exception)
+        {
+            Debug.LogError("Prefab not found for type " + type);
+        }
+
+    }
+
     void BuildMap(Map map)
     {
         List<Wall> walls = map.layers.walls;
@@ -319,7 +437,7 @@ public class MapBuilder : MonoBehaviour
         {
             foreach (Floor floor in floors)
             {
-                InstanceFloorTile(floor.type, floor.start, floor.end);
+                InstanceFloorTile(floor);
             }
         }
 
@@ -328,7 +446,7 @@ public class MapBuilder : MonoBehaviour
         {
             foreach (Wall wall in walls)
             {
-                InstanceWallTile(wall.type, wall.start, wall.end);
+                InstanceWallTile(wall);
             }
         }
 
@@ -337,18 +455,71 @@ public class MapBuilder : MonoBehaviour
         {
             foreach (Floor floor in floors)
             {
-                InstanceCeilingTile(floor.type, floor.start, floor.end);
+                InstanceCeilingTile(floor);
             }
         }
+
+        // Build the doors and windows
+        if (!disableDoorWindow)
+        {
+            foreach (DoorAndWindow obj in door_and_windows)
+            {
+                InstanceProp(obj, doorWindowObjectData);
+            }
+        }
+
+        // Build the furniture
+        if (!disableFurniture)
+        {
+            foreach (Furniture obj in furniture)
+            {
+                InstanceProp(obj, furnitureObjectData);
+            }
+        }
+
+        // Build the utensils
+        if (!disableUtensil)
+        {
+            foreach (Utensil obj in utensils)
+            {
+                InstanceProp(obj, utensilObjectData);
+            }
+        }
+
+        // Build the electronics
+        if (!disableElectronic)
+        {
+            foreach (Electronic obj in eletronics)
+            {
+                InstanceProp(obj, electronicObjectData);
+            }
+        }
+
+        // Build the goals
+        if (!disableGoal)
+        {
+            foreach (Goal obj in goals)
+            {
+                InstanceProp(obj, goalObjectData);
+            }
+        }
+
 
         // move player to the map start position
         float x = (float)persons[0].pos[0];
         float y = (float)persons[0].pos[1];
-        var startPos = new Vector3(x,
-            player.transform.position.y
-        , -y);
+        var startPos = new Vector3(x, 1.75f, -y);
 
-        player.transform.position = startPos;
+        // if there is no player in the scene move the camera to the start position
+        if (player != null)
+        {
+            player.transform.position = startPos;
+        }
+        else
+        {
+            GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
+            camera.transform.position = startPos;
+        }
     }
 
     bool isJson(string data)

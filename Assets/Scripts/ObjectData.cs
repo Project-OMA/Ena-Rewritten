@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MapObjects;
 
 [CreateAssetMenu(fileName = "ObjectData", menuName = "ScriptableObjects/ObjectData", order = 1)]
 
@@ -29,16 +30,6 @@ public class ObjectData : ScriptableObject
         public string name;
         public GameObject prefab;
         public List<ObjectVariation> variations = new List<ObjectVariation>();
-    }
-
-    [System.Serializable]
-    public class ObjectPrefab
-    {
-        // Used as a return type for GetObject
-        public GameObject prefab;
-        public int rotation;
-        public int offsetX;
-        public int offsetY;
     }
 
     public ObjectPrefab GetObject(string id)
