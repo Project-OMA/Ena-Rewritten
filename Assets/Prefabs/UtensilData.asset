@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Objects:
   - name: Piano
-    prefab: {fileID: 0}
+    prefab: {fileID: 614322503775666597, guid: 5eb32a8ff097393b5b901738311e89c6, type: 3}
     variations:
     - id: 1.1
       rotation: 0
@@ -25,35 +25,35 @@ MonoBehaviour:
       offsetX: 0
       offsetY: 0
   - name: Cone
-    prefab: {fileID: 0}
+    prefab: {fileID: 614322503775666597, guid: 631a7f0f66bc658a9a279a35bedede32, type: 3}
     variations:
     - id: 2.0
       rotation: 0
       offsetX: 0
       offsetY: 0
-  - name: Lâmpada
-    prefab: {fileID: 0}
+  - name: "L\xE2mpada"
+    prefab: {fileID: 614322503775666597, guid: 1b60e5e67edfd407db5f9686e2fc7a42, type: 3}
     variations:
     - id: 3.0
       rotation: 0
       offsetX: 0
       offsetY: 0
-  - name: Violão
-    prefab: {fileID: 0}
+  - name: "Viol\xE3o"
+    prefab: {fileID: 614322503775666597, guid: 13352117950ad95c8911725b64b033e9, type: 3}
     variations:
     - id: 2.1
       rotation: 0
       offsetX: 0
       offsetY: 0
   - name: Lixeira
-    prefab: {fileID: 0}
+    prefab: {fileID: 614322503775666597, guid: a77d3c3b9dfe40c6cb4517ab63e47755, type: 3}
     variations:
     - id: 3.1
       rotation: 0
       offsetX: 0
       offsetY: 0
-  - name: Vaso Sanitário
-    prefab: {fileID: 0}
+  - name: "Vaso Sanit\xE1rio"
+    prefab: {fileID: 614322503775666597, guid: a3e41cb4c86af09c19be497d98b73e03, type: 3}
     variations:
     - id: 4.0
       rotation: 0
@@ -71,8 +71,8 @@ MonoBehaviour:
       rotation: 270
       offsetX: 0
       offsetY: 0
-  - name: Lavatório
-    prefab: {fileID: 0}
+  - name: "Lavat\xF3rio"
+    prefab: {fileID: 118746, guid: 127019e720225b7478d430b9b3c83f96, type: 3}
     variations:
     - id: 6.0
       rotation: 0
@@ -91,14 +91,14 @@ MonoBehaviour:
       offsetX: 0
       offsetY: 0
   - name: Planta
-    prefab: {fileID: 0}
+    prefab: {fileID: 614322503775666597, guid: 6728c0589d8cf7da2a04846a1cdb37d0, type: 3}
     variations:
     - id: 2.3
       rotation: 0
       offsetX: 0
       offsetY: 0
   - name: Quadro de Pintura
-    prefab: {fileID: 0}
+    prefab: {fileID: 614322503775666597, guid: b219d8ce365b7efbda9b84b50ba954bc, type: 3}
     variations:
     - id: 3.2
       rotation: 0

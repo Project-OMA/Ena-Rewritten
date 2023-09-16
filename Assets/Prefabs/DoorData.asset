@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Objects:
   - name: Porta Trancada
-    prefab: {fileID: 0}
+    prefab: {fileID: 614322503775666597, guid: 61842d33226ee8c5ca4e8da65f30f767, type: 3}
     variations:
     - id: 0.0
       rotation: 0
@@ -25,7 +25,7 @@ MonoBehaviour:
       offsetX: 0
       offsetY: 0
   - name: Porta Fechada
-    prefab: {fileID: 0}
+    prefab: {fileID: 614322503775666597, guid: aa16baad5d33da606b9dfa843d9c5f2b, type: 3}
     variations:
     - id: 2.0
       rotation: 0
@@ -36,7 +36,7 @@ MonoBehaviour:
       offsetX: 0
       offsetY: 0
   - name: Porta Aberta
-    prefab: {fileID: 0}
+    prefab: {fileID: 614322503775666597, guid: 5cb6e94b9bb5706e0962e7fb981fc2d9, type: 3}
     variations:
     - id: 4.0
       rotation: 0
