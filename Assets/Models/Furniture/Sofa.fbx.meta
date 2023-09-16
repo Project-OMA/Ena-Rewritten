@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 522560d0696f5804c8622d8ec6342839
-timeCreated: 1470702435
+guid: 1da05fbed83714140b3f47c9812d1e2f
+timeCreated: 1470702763
 licenseType: Store
 ModelImporter:
   serializedVersion: 19
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Bed
+    4300000: Sofa
   materials:
     importMaterials: 1
     materialName: 0
