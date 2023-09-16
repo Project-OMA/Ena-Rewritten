@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 522560d0696f5804c8622d8ec6342839
-timeCreated: 1470702435
+guid: e26e73044dab43d4e8697635bc6eaaa3
+timeCreated: 1470702764
 licenseType: Store
 ModelImporter:
   serializedVersion: 19
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: Bed
+    4300000: Mirror
   materials:
     importMaterials: 1
     materialName: 0
