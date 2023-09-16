@@ -64,11 +64,11 @@ MonoBehaviour:
       offsetX: 0
       offsetY: 0
     - id: 5.0
-      rotation: 90
+      rotation: 270
       offsetX: 0
       offsetY: 0
     - id: 5.1
-      rotation: 270
+      rotation: 90
       offsetX: 0
       offsetY: 0
   - name: "Lavat\xF3rio"
