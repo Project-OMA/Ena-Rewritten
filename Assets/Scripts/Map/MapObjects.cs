@@ -6,6 +6,22 @@ using UnityEngine;
 
 namespace MapObjects
 {
+    public interface MapProp
+    {
+        int[] pos { get; set; }
+        string type { get; set; }
+    }
+
+
+    [System.Serializable]
+    public class ObjectPrefab
+    {
+        // Used as a return type for GetObject
+        public GameObject prefab;
+        public int rotation;
+        public int offsetX;
+        public int offsetY;
+    }
 
     [System.Serializable]
     public class Wall
@@ -24,45 +40,45 @@ namespace MapObjects
     }
 
     [System.Serializable]
-    public class DoorAndWindow
+    public class DoorAndWindow : MapProp
     {
-        public int[] pos;
-        public string type;
+        public int[] pos { get; set; }
+        public string type { get; set; }
     }
 
     [System.Serializable]
-    public class Furniture
+    public class Furniture : MapProp
     {
-        public int[] pos;
-        public string type;
+        public int[] pos { get; set; }
+        public string type { get; set; }
     }
 
     [System.Serializable]
-    public class Utensil
+    public class Utensil : MapProp
     {
-        public int[] pos;
-        public string type;
+        public int[] pos { get; set; }
+        public string type { get; set; }
     }
 
     [System.Serializable]
-    public class Electronic
+    public class Electronic : MapProp
     {
-        public int[] pos;
-        public string type;
+        public int[] pos { get; set; }
+        public string type { get; set; }
     }
 
     [System.Serializable]
-    public class Goal
+    public class Goal : MapProp
     {
-        public int[] pos;
-        public string type;
+        public int[] pos { get; set; }
+        public string type { get; set; }
     }
 
     [System.Serializable]
-    public class Person
+    public class Person : MapProp
     {
-        public int[] pos;
-        public string type;
+        public int[] pos { get; set; }
+        public string type { get; set; }
     }
 
     [System.Serializable]
