@@ -45,8 +45,20 @@ PrefabInstance:
       value: Bed
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 522560d0696f5804c8622d8ec6342839, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 522560d0696f5804c8622d8ec6342839, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 522560d0696f5804c8622d8ec6342839, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 522560d0696f5804c8622d8ec6342839, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 6.748614
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 522560d0696f5804c8622d8ec6342839, type: 3}
       propertyPath: m_LocalPosition.y
@@ -54,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 522560d0696f5804c8622d8ec6342839, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.1343155
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 522560d0696f5804c8622d8ec6342839, type: 3}
       propertyPath: m_LocalRotation.w

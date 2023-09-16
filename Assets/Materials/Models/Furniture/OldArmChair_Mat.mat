@@ -9,9 +9,12 @@ Material:
   m_PrefabAsset: {fileID: 0}
   m_Name: OldArmChair_Mat
   m_Shader: {fileID: 45, guid: 0000000000000000f000000000000000, type: 0}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
   m_ValidKeywords:
   - _EMISSION
   - _NORMALMAP
+  - _PARALLAXMAP
   - _SPECGLOSSMAP
   m_InvalidKeywords:
   - _METALLICGLOSSMAP
@@ -21,11 +24,12 @@ Material:
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses: []
+  m_LockedProperties: 
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
-        m_Texture: {fileID: 2800000, guid: a31be72bfe5214d4baf12fcbf105640e, type: 3}
+        m_Texture: {fileID: 2800000, guid: c60ea3fb26287df49aba31fefd17296d, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -45,7 +49,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 9f358a09f76055a49b3540beb5f8053b, type: 3}
+        m_Texture: {fileID: 2800000, guid: a7be0a879ca86b645be5ef8f5fd75642, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -57,11 +61,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _ParallaxMap:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: 3daf939e5565b35408b24517c5231c48, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
-        m_Texture: {fileID: 2800000, guid: be175da848fe5f541ade3b223ad45d5f, type: 3}
+        m_Texture: {fileID: 2800000, guid: fc6a6e8721fe4474185adf932c036de1, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
