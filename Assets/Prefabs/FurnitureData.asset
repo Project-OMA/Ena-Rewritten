@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Objects:
   - name: Cama de Casal
-    prefab: {fileID: 0}
+    prefab: {fileID: 123268, guid: 3e591163ff2f0484cb2fb25db71af76a, type: 3}
     variations:
     - id: 1.1
       rotation: 0
@@ -33,7 +33,7 @@ MonoBehaviour:
       offsetX: 0
       offsetY: 0
   - name: Cama de Solteiro
-    prefab: {fileID: 0}
+    prefab: {fileID: 614322503775666597, guid: 1a55b4da90675122f82605c789f59e6f, type: 3}
     variations:
     - id: 0.3
       rotation: 0
@@ -52,7 +52,7 @@ MonoBehaviour:
       offsetX: 0
       offsetY: 0
   - name: Poltrona
-    prefab: {fileID: 0}
+    prefab: {fileID: 614322503775666597, guid: bece06783f54df663b92a7bdabd8a473, type: 3}
     variations:
     - id: 4.2
       rotation: 0
@@ -71,7 +71,7 @@ MonoBehaviour:
       offsetX: 0
       offsetY: 0
   - name: Cadeira
-    prefab: {fileID: 0}
+    prefab: {fileID: 614322503775666597, guid: d453116eb7863ddea8e918097cc1c50e, type: 3}
     variations:
     - id: 6.2
       rotation: 0
@@ -90,7 +90,7 @@ MonoBehaviour:
       offsetX: 0
       offsetY: 0
   - name: Mesa de Jantar (c/ 4 cadeiras)
-    prefab: {fileID: 0}
+    prefab: {fileID: 614322503775666597, guid: 778c2bb3df58be96e98f8f24d0078b3d, type: 3}
     variations:
     - id: 0.4
       rotation: 0
@@ -101,7 +101,7 @@ MonoBehaviour:
       offsetX: 0
       offsetY: 0
   - name: Guarda-Roupa
-    prefab: {fileID: 0}
+    prefab: {fileID: 614322503775666597, guid: faeff082db9a6476698fafcfdd9bf1c6, type: 3}
     variations:
     - id: 4.5
       rotation: 0
@@ -119,8 +119,8 @@ MonoBehaviour:
       rotation: 270
       offsetX: 0
       offsetY: 0
-  - name: Armário de Ferro
-    prefab: {fileID: 0}
+  - name: "Arm\xE1rio de Ferro"
+    prefab: {fileID: 614322503775666597, guid: 5f8573d1c786a885f8cbbc0206d36414, type: 3}
     variations:
     - id: 0.7
       rotation: 0
@@ -138,8 +138,8 @@ MonoBehaviour:
       rotation: 270
       offsetX: 0
       offsetY: 0
-  - name: Sofá
-    prefab: {fileID: 0}
+  - name: "Sof\xE1"
+    prefab: {fileID: 614322503775666597, guid: c083dc7bbd1239b3ba2aca1393ed8e25, type: 3}
     variations:
     - id: 4.9
       rotation: 0
@@ -157,8 +157,8 @@ MonoBehaviour:
       rotation: 270
       offsetX: 0
       offsetY: 0
-  - name: Cômoda
-    prefab: {fileID: 0}
+  - name: "C\xF4moda"
+    prefab: {fileID: 101770, guid: 495cf5d926377ea419ee768070f0da65, type: 3}
     variations:
     - id: 0.10
       rotation: 0
@@ -177,7 +177,7 @@ MonoBehaviour:
       offsetX: 0
       offsetY: 0
   - name: Estante
-    prefab: {fileID: 0}
+    prefab: {fileID: 108630, guid: 6f62946bac32ba444b7e5b41b4315b88, type: 3}
     variations:
     - id: 6.11
       rotation: 0
@@ -196,7 +196,7 @@ MonoBehaviour:
       offsetX: 0
       offsetY: 0
   - name: Mesa
-    prefab: {fileID: 0}
+    prefab: {fileID: 614322503775666597, guid: d7be4ee713d451b45827eaec54b468ed, type: 3}
     variations:
     - id: 0.12
       rotation: 0
@@ -207,7 +207,7 @@ MonoBehaviour:
       offsetX: 0
       offsetY: 0
   - name: Criado Mudo
-    prefab: {fileID: 0}
+    prefab: {fileID: 150400, guid: 66de27a6b14213941920ef82d72c11b6, type: 3}
     variations:
     - id: 6.8
       rotation: 0

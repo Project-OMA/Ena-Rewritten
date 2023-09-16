@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Objects:
   - name: Cachorro
-    prefab: {fileID: 0}
+    prefab: {fileID: 614322503775666597, guid: bde848e32c57d2733ba836019cfef5b4, type: 3}
     variations:
     - id: 0.0
       rotation: 0
@@ -33,7 +33,7 @@ MonoBehaviour:
       offsetX: 0
       offsetY: 0
   - name: Inseto
-    prefab: {fileID: 0}
+    prefab: {fileID: 614322503775666597, guid: 4972c8d9e25de3be9b200f6dc692a25f, type: 3}
     variations:
     - id: 2.0
       rotation: 0
@@ -51,8 +51,8 @@ MonoBehaviour:
       rotation: 180
       offsetX: 0
       offsetY: 0
-  - name: Pássaro
-    prefab: {fileID: 0}
+  - name: "P\xE1ssaro"
+    prefab: {fileID: 614322503775666597, guid: 46091cfda3723caa5bd02d00644a8872, type: 3}
     variations:
     - id: 4.0
       rotation: 0
@@ -71,7 +71,7 @@ MonoBehaviour:
       offsetX: 0
       offsetY: 0
   - name: Gato
-    prefab: {fileID: 0}
+    prefab: {fileID: 614322503775666597, guid: 7347987b44e5a396587c6fc65781acb5, type: 3}
     variations:
     - id: 6.0
       rotation: 0
@@ -90,7 +90,7 @@ MonoBehaviour:
       offsetX: 0
       offsetY: 0
   - name: Sapo
-    prefab: {fileID: 0}
+    prefab: {fileID: 614322503775666597, guid: 5f5a70b8194cb9e4ab3e75349d0e15d6, type: 3}
     variations:
     - id: 0.2
       rotation: 0
@@ -109,70 +109,70 @@ MonoBehaviour:
       offsetX: 0
       offsetY: 0
   - name: Secador de Cabelo
-    prefab: {fileID: 0}
+    prefab: {fileID: 614322503775666597, guid: b88cfcbdf2020eb4a925457b18b31e55, type: 3}
     variations:
     - id: 2.2
       rotation: 0
       offsetX: 0
       offsetY: 0
   - name: Liquidificador
-    prefab: {fileID: 0}
+    prefab: {fileID: 614322503775666597, guid: 1f028d41ddb049cec800631451d8fa95, type: 3}
     variations:
     - id: 3.2
       rotation: 0
       offsetX: 0
       offsetY: 0
   - name: Chaleira
-    prefab: {fileID: 0}
+    prefab: {fileID: 614322503775666597, guid: b15888e5a2dcdd61a99c7439b7cd26e0, type: 3}
     variations:
     - id: 4.2
       rotation: 0
       offsetX: 0
       offsetY: 0
   - name: Impressora
-    prefab: {fileID: 0}
+    prefab: {fileID: 614322503775666597, guid: 7f7fe17ae255d6c19817f76c380dd7dc, type: 3}
     variations:
     - id: 5.2
       rotation: 0
       offsetX: 0
       offsetY: 0
   - name: Celular
-    prefab: {fileID: 0}
+    prefab: {fileID: 614322503775666597, guid: f2247b15ebea86d02b9805106bf05c5b, type: 3}
     variations:
     - id: 6.2
       rotation: 0
       offsetX: 0
       offsetY: 0
-  - name: Criança
-    prefab: {fileID: 0}
+  - name: "Crian\xE7a"
+    prefab: {fileID: 614322503775666597, guid: 1f028d41ddb049cec800631451d8fa95, type: 3}
     variations:
     - id: 7.2
       rotation: 0
       offsetX: 0
       offsetY: 0
-  - name: Rádio
-    prefab: {fileID: 0}
+  - name: "R\xE1dio"
+    prefab: {fileID: 614322503775666597, guid: 3625914fd21405747975b77da6373b5b, type: 3}
     variations:
     - id: 2.3
       rotation: 0
       offsetX: 0
       offsetY: 0
   - name: Despertador
-    prefab: {fileID: 0}
+    prefab: {fileID: 614322503775666597, guid: 971f5ac83d9c320cbb586e137f164041, type: 3}
     variations:
     - id: 3.3
       rotation: 0
       offsetX: 0
       offsetY: 0
   - name: Batedeira
-    prefab: {fileID: 0}
+    prefab: {fileID: 614322503775666597, guid: 0318b3c8594f40e2480bbea7630b6ee6, type: 3}
     variations:
     - id: 4.3
       rotation: 0
       offsetX: 0
       offsetY: 0
   - name: Ventilador
-    prefab: {fileID: 0}
+    prefab: {fileID: 614322503775666597, guid: 62a2fc0f84d846abc98d1bfa853c0d3f, type: 3}
     variations:
     - id: 5.3
       rotation: 0
