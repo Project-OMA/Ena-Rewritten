@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1e7ac310d83f0a64fb93f40a9af9760f, type: 3}
-  m_Name: DoorData
+  m_Name: DoorWindowData
   m_EditorClassIdentifier: 
   Objects:
   - name: Porta Trancada
@@ -43,6 +43,28 @@ MonoBehaviour:
       offsetX: 0
       offsetY: 0
     - id: 4.2
+      rotation: 90
+      offsetX: 0
+      offsetY: 0
+  - name: Janela de Vidro
+    prefab: {fileID: 614322503775666597, guid: 6049c1975e0c7494fa5d307f02a9f153, type: 3}
+    variations:
+    - id: 6.0
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+    - id: 6.1
+      rotation: 90
+      offsetX: 0
+      offsetY: 0
+  - name: Janela de Madeira
+    prefab: {fileID: 614322503775666597, guid: a684b5d70f0bce55486ccc8d0af83aed, type: 3}
+    variations:
+    - id: 7.0
+      rotation: 0
+      offsetX: 0
+      offsetY: 0
+    - id: 7.1
       rotation: 90
       offsetX: 0
       offsetY: 0
