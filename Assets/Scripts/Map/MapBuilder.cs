@@ -22,7 +22,6 @@ public class MapBuilder : MonoBehaviour
     [FormerlySerializedAs("jsonRawFile")]
     [SerializeField] private TextAsset mapFile;
 
-
     [SerializeField] private MaterialData floorMaterialData;
     [SerializeField] private MaterialData wallMaterialData;
     [SerializeField] private ObjectData doorWindowObjectData;
@@ -49,6 +48,11 @@ public class MapBuilder : MonoBehaviour
     private GameObject floorParent;
     private GameObject ceilingParent;
     private GameObject wallsParent;
+    private GameObject doorWindowParent;
+    private GameObject furnitureParent;
+    private GameObject utensilParent;
+    private GameObject electronicParent;
+    private GameObject goalParent;
 
     private void InstanceFloorTile(Floor floor)
     {
@@ -328,7 +332,7 @@ public class MapBuilder : MonoBehaviour
         ceilingPiece.GetComponent<MeshCollider>().sharedMesh = mesh;
     }
 
-    private void InstanceProp(MapProp prop, ObjectData objectData)
+    private void InstanceProp(MapProp prop, ObjectData objectData, GameObject parent = null)
     {
         string type = prop.type;
         int[] pos = prop.pos;
@@ -348,6 +352,10 @@ public class MapBuilder : MonoBehaviour
 
             // Create the object
             GameObject obj = Instantiate(prefab, vecpos, rot);
+            if (parent != null)
+            {
+                obj.transform.parent = parent.transform;
+            }
         }
         catch (System.Exception)
         {
@@ -399,7 +407,7 @@ public class MapBuilder : MonoBehaviour
         {
             foreach (DoorAndWindow obj in door_and_windows)
             {
-                InstanceProp(obj, doorWindowObjectData);
+                InstanceProp(obj, doorWindowObjectData, doorWindowParent);
             }
         }
 
@@ -408,7 +416,7 @@ public class MapBuilder : MonoBehaviour
         {
             foreach (Furniture obj in furniture)
             {
-                InstanceProp(obj, furnitureObjectData);
+                InstanceProp(obj, furnitureObjectData, furnitureParent);
             }
         }
 
@@ -417,7 +425,7 @@ public class MapBuilder : MonoBehaviour
         {
             foreach (Utensil obj in utensils)
             {
-                InstanceProp(obj, utensilObjectData);
+                InstanceProp(obj, utensilObjectData, utensilParent);
             }
         }
 
@@ -426,7 +434,7 @@ public class MapBuilder : MonoBehaviour
         {
             foreach (Electronic obj in eletronics)
             {
-                InstanceProp(obj, electronicObjectData);
+                InstanceProp(obj, electronicObjectData, electronicParent);
             }
         }
 
@@ -435,7 +443,7 @@ public class MapBuilder : MonoBehaviour
         {
             foreach (Goal obj in goals)
             {
-                InstanceProp(obj, goalObjectData);
+                InstanceProp(obj, goalObjectData, goalParent);
             }
         }
 
@@ -488,6 +496,11 @@ public class MapBuilder : MonoBehaviour
         floorParent = new GameObject("Floor");
         ceilingParent = new GameObject("Ceiling");
         wallsParent = new GameObject("Walls");
+        doorWindowParent = new GameObject("DoorWindow");
+        furnitureParent = new GameObject("Furniture");
+        utensilParent = new GameObject("Utensils");
+        electronicParent = new GameObject("Electronics");
+        goalParent = new GameObject("Goals");
 
         if (mapFile == null)
         {
