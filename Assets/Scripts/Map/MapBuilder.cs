@@ -458,6 +458,17 @@ public class MapBuilder : MonoBehaviour
         {
             player.transform.position = startPos;
         }
+
+        // Set Map object as parent of all layers
+        Transform mapTransform = GetComponent<Transform>();
+        floorParent.transform.parent = mapTransform;
+        ceilingParent.transform.parent = mapTransform;
+        wallsParent.transform.parent = mapTransform;
+        doorWindowParent.transform.parent = mapTransform;
+        furnitureParent.transform.parent = mapTransform;
+        utensilParent.transform.parent = mapTransform;
+        electronicParent.transform.parent = mapTransform;
+        goalParent.transform.parent = mapTransform;
     }
 
     bool isJson(string data)
