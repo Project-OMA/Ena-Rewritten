@@ -443,7 +443,7 @@ public class MapBuilder : MonoBehaviour
         // move player to the map start position
         float x = (float)persons[0].pos[0];
         float y = (float)persons[0].pos[1];
-        var startPos = new Vector3(x, 1.75f, -y);
+        var startPos = new Vector3(x, 0f, -y);
 
         // if there is no player in the scene move the camera to the start position
         if (player != null)
