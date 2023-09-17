@@ -8,6 +8,7 @@ using MapParser;
 public class MapBuilder : MonoBehaviour
 {
 
+    [SerializeField] GameObject player;
     [SerializeField] bool disableWalls = false;
     [SerializeField] bool disableFloors = false;
     [SerializeField] bool disableCeilings = false;
@@ -59,7 +60,7 @@ public class MapBuilder : MonoBehaviour
         Vector3 end = new Vector3(endArr[0] + 1, 0, -endArr[1] - 1);
         Vector3 center = (end - start) / 2;
         Vector3 size = new Vector3(Mathf.Abs(end.x - start.x), 1, Mathf.Abs(end.z - start.z));
-        GameObject floorPiece = null;
+
 
         // get the material
         Material material = null;
@@ -74,10 +75,12 @@ public class MapBuilder : MonoBehaviour
         }
 
         // make a copy of the floor mesh
-        Mesh mesh = new Mesh();
-        mesh.vertices = floorMesh.vertices;
-        mesh.triangles = floorMesh.triangles;
-        mesh.uv = floorMesh.uv;
+        Mesh mesh = new Mesh
+        {
+            vertices = floorMesh.vertices,
+            triangles = floorMesh.triangles,
+            uv = floorMesh.uv
+        };
         // scale the mesh uvs
         var newUvs = new Vector2[mesh.uv.Length];
         for (var i = 0; i < newUvs.Length; i++)
@@ -89,9 +92,8 @@ public class MapBuilder : MonoBehaviour
         // fix the mesh normals
         mesh.RecalculateNormals();
 
-
         // create the floor tile
-        floorPiece = new GameObject("Floor:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
+        var floorPiece = new GameObject("Floor:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
         floorPiece.transform.position = start + center;
         floorPiece.transform.rotation = Quaternion.identity;
         floorPiece.transform.localScale = size;
@@ -106,7 +108,7 @@ public class MapBuilder : MonoBehaviour
         floorPiece.GetComponent<MeshFilter>().mesh = mesh;
         floorPiece.GetComponent<MeshCollider>().sharedMesh = mesh;
 
-        if (code == this.grassID && this.useGrass)
+        if (code == grassID && useGrass)
         {
             float density = size.x * size.z;
             for (int i = 0; i < density; i++)
@@ -132,16 +134,11 @@ public class MapBuilder : MonoBehaviour
         Vector3 start = new Vector3(startArr[0], 0, -startArr[1]);
         Vector3 end = new Vector3(endArr[0] + 1, 0, -endArr[1] - 1);
         Vector3 center = (end - start) / 2;
-        Vector3 size = new Vector3(
+        var size = new Vector3(
         Mathf.Abs(end.x - start.x),
-        this.ceilingHeigth,
+        ceilingHeigth,
         Mathf.Abs(end.z - start.z)
         );
-        GameObject wallObj;
-        GameObject wallFront;
-        GameObject wallBack;
-        GameObject wallLeft;
-        GameObject wallRight;
 
         // get the material
         Material material = null;
@@ -156,26 +153,34 @@ public class MapBuilder : MonoBehaviour
         }
 
         // make 4 copies of the wall mesh and rotate them accordingly
-        Mesh meshFront = new Mesh();
-        Mesh meshBack = new Mesh();
-        Mesh meshLeft = new Mesh();
-        Mesh meshRight = new Mesh();
 
-        meshFront.vertices = wallMesh.vertices;
-        meshFront.triangles = wallMesh.triangles;
-        meshFront.uv = wallMesh.uv;
+        Mesh meshFront = new Mesh
+        {
+            vertices = wallMesh.vertices,
+            triangles = wallMesh.triangles,
+            uv = wallMesh.uv
+        };
 
-        meshBack.vertices = wallMesh.vertices;
-        meshBack.triangles = wallMesh.triangles;
-        meshBack.uv = wallMesh.uv;
+        Mesh meshBack = new Mesh
+        {
+            vertices = wallMesh.vertices,
+            triangles = wallMesh.triangles,
+            uv = wallMesh.uv
+        };
 
-        meshLeft.vertices = wallMesh.vertices;
-        meshLeft.triangles = wallMesh.triangles;
-        meshLeft.uv = wallMesh.uv;
+        Mesh meshLeft = new Mesh
+        {
+            vertices = wallMesh.vertices,
+            triangles = wallMesh.triangles,
+            uv = wallMesh.uv
+        };
 
-        meshRight.vertices = wallMesh.vertices;
-        meshRight.triangles = wallMesh.triangles;
-        meshRight.uv = wallMesh.uv;
+        Mesh meshRight = new Mesh
+        {
+            vertices = wallMesh.vertices,
+            triangles = wallMesh.triangles,
+            uv = wallMesh.uv
+        };
 
         // scale the mesh uvs
         var newUvsFront = new Vector2[meshFront.uv.Length];
@@ -215,11 +220,11 @@ public class MapBuilder : MonoBehaviour
         meshRight.RecalculateNormals();
 
         // create the object and tiles
-        wallObj = new GameObject("Wall:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
-        wallFront = new GameObject("WallFront:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
-        wallBack = new GameObject("WallBack:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
-        wallLeft = new GameObject("WallLeft:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
-        wallRight = new GameObject("WallRight:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
+        var wallObj = new GameObject("Wall:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
+        var wallFront = new GameObject("WallFront:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
+        var wallBack = new GameObject("WallBack:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
+        var wallLeft = new GameObject("WallLeft:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
+        var wallRight = new GameObject("WallRight:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
         var wallPieces = new GameObject[] { wallFront, wallBack, wallLeft, wallRight };
 
         foreach (var wallPiece in wallPieces)
@@ -298,10 +303,12 @@ public class MapBuilder : MonoBehaviour
         ceilingPiece.AddComponent<MeshCollider>();
 
         // make a copy of the floor mesh
-        Mesh mesh = new Mesh();
-        mesh.vertices = floorMesh.vertices;
-        mesh.triangles = floorMesh.triangles;
-        mesh.uv = floorMesh.uv;
+        Mesh mesh = new Mesh
+        {
+            vertices = floorMesh.vertices,
+            triangles = floorMesh.triangles,
+            uv = floorMesh.uv
+        };
         // scale the mesh uvs
         var newUvs = new Vector2[mesh.uv.Length];
         for (var i = 0; i < newUvs.Length; i++)
@@ -320,6 +327,95 @@ public class MapBuilder : MonoBehaviour
         ceilingPiece.GetComponent<MeshFilter>().mesh = mesh;
         ceilingPiece.GetComponent<MeshCollider>().sharedMesh = mesh;
     }
+
+    private void InstanceDoorAndWindow(DoorAndWindow doorAndWindow)
+    {
+        ObjectPrefab doorWindowObject = doorWindowObjectData.GetObject(doorAndWindow.type);
+
+        // Prefab
+        GameObject prefab = doorWindowObject.prefab;
+
+        // Position
+        float posX = doorAndWindow.pos[0] + doorWindowObject.offsetX;
+        float posY = -doorAndWindow.pos[1] + doorWindowObject.offsetY;
+        Vector3 pos = new Vector3(posX, 0, posY);
+
+        // Rotation
+        Quaternion rot = Quaternion.Euler(0, doorWindowObject.rotation, 0);
+
+        // Create the object
+        GameObject obj = Instantiate(prefab, pos, rot);
+    }
+    private void InstanceFurniture(Furniture furniture)
+    {
+        ObjectPrefab furnitureObject = furnitureObjectData.GetObject(furniture.type);
+        GameObject prefab = furnitureObject.prefab;
+        float posX = furniture.pos[0] + furnitureObject.offsetX;
+        float posY = -furniture.pos[1] + furnitureObject.offsetY;
+        Vector3 pos = new Vector3(posX, 0, posY);
+        Quaternion rot = Quaternion.Euler(0, furnitureObject.rotation, 0);
+        GameObject obj = Instantiate(prefab, pos, rot);
+    }
+    private void InstanceUtensil(Utensil utensil)
+    {
+        ObjectPrefab utensilObject = utensilObjectData.GetObject(utensil.type);
+        GameObject prefab = utensilObject.prefab;
+        float posX = utensil.pos[0] + utensilObject.offsetX;
+        float posY = -utensil.pos[1] + utensilObject.offsetY;
+        Vector3 pos = new Vector3(posX, 0, posY);
+        Quaternion rot = Quaternion.Euler(0, utensilObject.rotation, 0);
+        GameObject obj = Instantiate(prefab, pos, rot);
+    }
+    private void InstanceElectronic(Electronic electronic)
+    {
+        ObjectPrefab electronicObject = electronicObjectData.GetObject(electronic.type);
+        GameObject prefab = electronicObject.prefab;
+        float posX = electronic.pos[0] + electronicObject.offsetX;
+        float posY = -electronic.pos[1] + electronicObject.offsetY;
+        Vector3 pos = new Vector3(posX, 0, posY);
+        Quaternion rot = Quaternion.Euler(0, electronicObject.rotation, 0);
+        GameObject obj = Instantiate(prefab, pos, rot);
+    }
+    private void InstanceGoal(Goal goal)
+    {
+        ObjectPrefab goalObject = goalObjectData.GetObject(goal.type);
+        GameObject prefab = goalObject.prefab;
+        float posX = goal.pos[0] + goalObject.offsetX;
+        float posY = -goal.pos[1] + goalObject.offsetY;
+        Vector3 pos = new Vector3(posX, 0, posY);
+        Quaternion rot = Quaternion.Euler(0, goalObject.rotation, 0);
+        GameObject obj = Instantiate(prefab, pos, rot);
+    }
+
+
+    private void InstanceProp(MapProp prop, ObjectData objectData)
+    {
+        string type = prop.type;
+        int[] pos = prop.pos;
+
+        try
+        {
+            ObjectPrefab propData = objectData.GetObject(type);
+            GameObject prefab = propData.prefab;
+
+            // Position
+            float posX = pos[0] + propData.offsetX;
+            float posY = -pos[1] + propData.offsetY;
+            Vector3 vecpos = new Vector3(posX, 0, posY);
+
+            // Rotation
+            Quaternion rot = Quaternion.Euler(0, propData.rotation, 0);
+
+            // Create the object
+            GameObject obj = Instantiate(prefab, vecpos, rot);
+        }
+        catch (System.Exception)
+        {
+            Debug.LogError("Prefab not found for type " + type);
+        }
+
+    }
+
 
     private void InstanceDoorAndWindow(DoorAndWindow doorAndWindow)
     {
@@ -494,7 +590,6 @@ public class MapBuilder : MonoBehaviour
 
 
         // move player to the map start position
-        GameObject player = GameObject.FindGameObjectWithTag("Player");
         float x = (float)persons[0].pos[0];
         float y = (float)persons[0].pos[1];
         var startPos = new Vector3(x, 1.75f, -y);
@@ -528,23 +623,27 @@ public class MapBuilder : MonoBehaviour
     void Awake()
     {
         // Floor mesh
-        this.floorMesh = new Mesh();
-        this.floorMesh.vertices = new Vector3[] { new Vector3(-0.5f, 0, -0.5f), new Vector3(-0.5f, 0, 0.5f), new Vector3(0.5f, 0, 0.5f), new Vector3(0.5f, 0, -0.5f) };
-        this.floorMesh.triangles = new int[] { 0, 1, 2, 0, 2, 3 };
-        this.floorMesh.uv = new Vector2[] { new Vector2(0, 0), new Vector2(0, 1), new Vector2(1, 1), new Vector2(1, 0) };
+        floorMesh = new Mesh
+        {
+            vertices = new Vector3[] { new Vector3(-0.5f, 0, -0.5f), new Vector3(-0.5f, 0, 0.5f), new Vector3(0.5f, 0, 0.5f), new Vector3(0.5f, 0, -0.5f) },
+            triangles = new int[] { 0, 1, 2, 0, 2, 3 },
+            uv = new Vector2[] { new Vector2(0, 0), new Vector2(0, 1), new Vector2(1, 1), new Vector2(1, 0) }
+        };
         // Wall mesh, its the same as the but vertical
-        this.wallMesh = new Mesh();
-        this.wallMesh.vertices = new Vector3[] { new Vector3(-0.5f, 0, -0.5f), new Vector3(-0.5f, 0, 0.5f), new Vector3(-0.5f, 1, -0.5f), new Vector3(-0.5f, 1, 0.5f) };
-        this.wallMesh.triangles = new int[] { 0, 1, 2, 3, 2, 1 };
-        //this.wallMesh.uv = new Vector2[] { new Vector2(0, 0), new Vector2(0, 1), new Vector2(1, 0), new Vector2(1, 1) };
+        wallMesh = new Mesh
+        {
+            vertices = new Vector3[] { new Vector3(-0.5f, 0, -0.5f), new Vector3(-0.5f, 0, 0.5f), new Vector3(-0.5f, 1, -0.5f), new Vector3(-0.5f, 1, 0.5f) },
+            triangles = new int[] { 0, 1, 2, 3, 2, 1 },
+            //this.wallMesh.uv = new Vector2[] { new Vector2(0, 0), new Vector2(0, 1), new Vector2(1, 0), new Vector2(1, 1) };
 
-        this.wallMesh.uv = new Vector2[] { new Vector2(0, 1), new Vector2(1, 1), new Vector2(0, 0), new Vector2(1, 0) };
+            uv = new Vector2[] { new Vector2(0, 1), new Vector2(1, 1), new Vector2(0, 0), new Vector2(1, 0) }
+        };
         // Create the parents
-        this.floorParent = new GameObject("Floor");
-        this.ceilingParent = new GameObject("Ceiling");
-        this.wallsParent = new GameObject("Walls");
+        floorParent = new GameObject("Floor");
+        ceilingParent = new GameObject("Ceiling");
+        wallsParent = new GameObject("Walls");
 
-        if (this.mapFile == null)
+        if (mapFile == null)
         {
             Debug.LogError("No map file found");
             return;
