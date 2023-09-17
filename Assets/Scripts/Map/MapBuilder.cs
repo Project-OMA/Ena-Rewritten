@@ -341,6 +341,7 @@ public class MapBuilder : MonoBehaviour
         {
             ObjectPrefab propData = objectData.GetObject(type);
             GameObject prefab = propData.prefab;
+            string name = prefab.name + ":" + prop.type + "_" + pos[0] + "_" + pos[1];
 
             // Position
             float posX = pos[0] + propData.offsetX;
@@ -352,6 +353,7 @@ public class MapBuilder : MonoBehaviour
 
             // Create the object
             GameObject obj = Instantiate(prefab, vecpos, rot);
+            obj.name = name;
             if (parent != null)
             {
                 obj.transform.parent = parent.transform;
