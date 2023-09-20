@@ -22,7 +22,6 @@ public class MapBuilder : MonoBehaviour
     [FormerlySerializedAs("jsonRawFile")]
     [SerializeField] private TextAsset mapFile;
 
-
     [SerializeField] private MaterialData floorMaterialData;
     [SerializeField] private MaterialData wallMaterialData;
     [SerializeField] private ObjectData doorWindowObjectData;
@@ -49,6 +48,11 @@ public class MapBuilder : MonoBehaviour
     private GameObject floorParent;
     private GameObject ceilingParent;
     private GameObject wallsParent;
+    private GameObject doorWindowParent;
+    private GameObject furnitureParent;
+    private GameObject utensilParent;
+    private GameObject electronicParent;
+    private GameObject goalParent;
 
     private void InstanceFloorTile(Floor floor)
     {
@@ -220,7 +224,7 @@ public class MapBuilder : MonoBehaviour
         meshRight.RecalculateNormals();
 
         // create the object and tiles
-        var wall = new GameObject("Wall:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
+        var wallObj = new GameObject("Wall:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
         var wallFront = new GameObject("WallFront:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
         var wallBack = new GameObject("WallBack:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
         var wallLeft = new GameObject("WallLeft:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
@@ -328,67 +332,7 @@ public class MapBuilder : MonoBehaviour
         ceilingPiece.GetComponent<MeshCollider>().sharedMesh = mesh;
     }
 
-    private void InstanceDoorAndWindow(DoorAndWindow doorAndWindow)
-    {
-        ObjectPrefab doorWindowObject = doorWindowObjectData.GetObject(doorAndWindow.type);
-
-        // Prefab
-        GameObject prefab = doorWindowObject.prefab;
-
-        // Position
-        float posX = doorAndWindow.pos[0] + doorWindowObject.offsetX;
-        float posY = -doorAndWindow.pos[1] + doorWindowObject.offsetY;
-        Vector3 pos = new Vector3(posX, 0, posY);
-
-        // Rotation
-        Quaternion rot = Quaternion.Euler(0, doorWindowObject.rotation, 0);
-
-        // Create the object
-        GameObject obj = Instantiate(prefab, pos, rot);
-    }
-    private void InstanceFurniture(Furniture furniture)
-    {
-        ObjectPrefab furnitureObject = furnitureObjectData.GetObject(furniture.type);
-        GameObject prefab = furnitureObject.prefab;
-        float posX = furniture.pos[0] + furnitureObject.offsetX;
-        float posY = -furniture.pos[1] + furnitureObject.offsetY;
-        Vector3 pos = new Vector3(posX, 0, posY);
-        Quaternion rot = Quaternion.Euler(0, furnitureObject.rotation, 0);
-        GameObject obj = Instantiate(prefab, pos, rot);
-    }
-    private void InstanceUtensil(Utensil utensil)
-    {
-        ObjectPrefab utensilObject = utensilObjectData.GetObject(utensil.type);
-        GameObject prefab = utensilObject.prefab;
-        float posX = utensil.pos[0] + utensilObject.offsetX;
-        float posY = -utensil.pos[1] + utensilObject.offsetY;
-        Vector3 pos = new Vector3(posX, 0, posY);
-        Quaternion rot = Quaternion.Euler(0, utensilObject.rotation, 0);
-        GameObject obj = Instantiate(prefab, pos, rot);
-    }
-    private void InstanceElectronic(Electronic electronic)
-    {
-        ObjectPrefab electronicObject = electronicObjectData.GetObject(electronic.type);
-        GameObject prefab = electronicObject.prefab;
-        float posX = electronic.pos[0] + electronicObject.offsetX;
-        float posY = -electronic.pos[1] + electronicObject.offsetY;
-        Vector3 pos = new Vector3(posX, 0, posY);
-        Quaternion rot = Quaternion.Euler(0, electronicObject.rotation, 0);
-        GameObject obj = Instantiate(prefab, pos, rot);
-    }
-    private void InstanceGoal(Goal goal)
-    {
-        ObjectPrefab goalObject = goalObjectData.GetObject(goal.type);
-        GameObject prefab = goalObject.prefab;
-        float posX = goal.pos[0] + goalObject.offsetX;
-        float posY = -goal.pos[1] + goalObject.offsetY;
-        Vector3 pos = new Vector3(posX, 0, posY);
-        Quaternion rot = Quaternion.Euler(0, goalObject.rotation, 0);
-        GameObject obj = Instantiate(prefab, pos, rot);
-    }
-
-
-    private void InstanceProp(MapProp prop, ObjectData objectData)
+    private void InstanceProp(MapProp prop, ObjectData objectData, GameObject parent = null)
     {
         string type = prop.type;
         int[] pos = prop.pos;
@@ -397,6 +341,7 @@ public class MapBuilder : MonoBehaviour
         {
             ObjectPrefab propData = objectData.GetObject(type);
             GameObject prefab = propData.prefab;
+            string name = prefab.name + ":" + prop.type + "_" + pos[0] + "_" + pos[1];
 
             // Position
             float posX = pos[0] + propData.offsetX;
@@ -408,6 +353,11 @@ public class MapBuilder : MonoBehaviour
 
             // Create the object
             GameObject obj = Instantiate(prefab, vecpos, rot);
+            obj.name = name;
+            if (parent != null)
+            {
+                obj.transform.parent = parent.transform;
+            }
         }
         catch (System.Exception)
         {
@@ -459,7 +409,7 @@ public class MapBuilder : MonoBehaviour
         {
             foreach (DoorAndWindow obj in door_and_windows)
             {
-                InstanceProp(obj, doorWindowObjectData);
+                InstanceProp(obj, doorWindowObjectData, doorWindowParent);
             }
         }
 
@@ -468,7 +418,7 @@ public class MapBuilder : MonoBehaviour
         {
             foreach (Furniture obj in furniture)
             {
-                InstanceProp(obj, furnitureObjectData);
+                InstanceProp(obj, furnitureObjectData, furnitureParent);
             }
         }
 
@@ -477,7 +427,7 @@ public class MapBuilder : MonoBehaviour
         {
             foreach (Utensil obj in utensils)
             {
-                InstanceProp(obj, utensilObjectData);
+                InstanceProp(obj, utensilObjectData, utensilParent);
             }
         }
 
@@ -486,7 +436,7 @@ public class MapBuilder : MonoBehaviour
         {
             foreach (Electronic obj in eletronics)
             {
-                InstanceProp(obj, electronicObjectData);
+                InstanceProp(obj, electronicObjectData, electronicParent);
             }
         }
 
@@ -495,7 +445,7 @@ public class MapBuilder : MonoBehaviour
         {
             foreach (Goal obj in goals)
             {
-                InstanceProp(obj, goalObjectData);
+                InstanceProp(obj, goalObjectData, goalParent);
             }
         }
 
@@ -503,11 +453,24 @@ public class MapBuilder : MonoBehaviour
         // move player to the map start position
         float x = (float)persons[0].pos[0];
         float y = (float)persons[0].pos[1];
-        var startPos = new Vector3(x,
-            player.transform.position.y
-        , -y);
+        var startPos = new Vector3(x, 0f, -y);
 
-        player.transform.position = startPos;
+        // if there is no player in the scene move the camera to the start position
+        if (player != null)
+        {
+            player.transform.position = startPos;
+        }
+
+        // Set Map object as parent of all layers
+        Transform mapTransform = GetComponent<Transform>();
+        floorParent.transform.parent = mapTransform;
+        ceilingParent.transform.parent = mapTransform;
+        wallsParent.transform.parent = mapTransform;
+        doorWindowParent.transform.parent = mapTransform;
+        furnitureParent.transform.parent = mapTransform;
+        utensilParent.transform.parent = mapTransform;
+        electronicParent.transform.parent = mapTransform;
+        goalParent.transform.parent = mapTransform;
     }
 
     bool isJson(string data)
@@ -546,6 +509,11 @@ public class MapBuilder : MonoBehaviour
         floorParent = new GameObject("Floor");
         ceilingParent = new GameObject("Ceiling");
         wallsParent = new GameObject("Walls");
+        doorWindowParent = new GameObject("DoorWindow");
+        furnitureParent = new GameObject("Furniture");
+        utensilParent = new GameObject("Utensils");
+        electronicParent = new GameObject("Electronics");
+        goalParent = new GameObject("Goals");
 
         if (mapFile == null)
         {

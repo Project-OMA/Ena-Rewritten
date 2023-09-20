@@ -13,7 +13,7 @@ namespace MapObjects
     }
 
 
-    [System.Serializable]
+    [Serializable]
     public class ObjectPrefab
     {
         // Used as a return type for GetObject
@@ -23,7 +23,7 @@ namespace MapObjects
         public int offsetY;
     }
 
-    [System.Serializable]
+    [Serializable]
     public class Wall
     {
         public string type;
@@ -31,7 +31,7 @@ namespace MapObjects
         public int[] end;
     }
 
-    [System.Serializable]
+    [Serializable]
     public class Floor
     {
         public string type;
@@ -39,49 +39,49 @@ namespace MapObjects
         public int[] end;
     }
 
-    [System.Serializable]
+    [Serializable]
     public class DoorAndWindow : MapProp
     {
         public int[] pos { get; set; }
         public string type { get; set; }
     }
 
-    [System.Serializable]
+    [Serializable]
     public class Furniture : MapProp
     {
         public int[] pos { get; set; }
         public string type { get; set; }
     }
 
-    [System.Serializable]
+    [Serializable]
     public class Utensil : MapProp
     {
         public int[] pos { get; set; }
         public string type { get; set; }
     }
 
-    [System.Serializable]
+    [Serializable]
     public class Electronic : MapProp
     {
         public int[] pos { get; set; }
         public string type { get; set; }
     }
 
-    [System.Serializable]
+    [Serializable]
     public class Goal : MapProp
     {
         public int[] pos { get; set; }
         public string type { get; set; }
     }
 
-    [System.Serializable]
+    [Serializable]
     public class Person : MapProp
     {
         public int[] pos { get; set; }
         public string type { get; set; }
     }
 
-    [System.Serializable]
+    [Serializable]
     public class Layers
     {
         public List<Wall> walls;
@@ -94,7 +94,7 @@ namespace MapObjects
         public List<Person> persons;
     }
 
-    [System.Serializable]
+    [Serializable]
     public class Map
     {
         public int[] size;
@@ -114,16 +114,17 @@ namespace MapObjects
         {
             this.size = size;
 
-            this.layers = new Layers();
-
-            this.layers.walls = walls;
-            this.layers.floors = floors;
-            this.layers.door_and_windows = door_and_windows;
-            this.layers.furniture = furniture;
-            this.layers.utensils = utensils;
-            this.layers.eletronics = eletronics;
-            this.layers.goals = goals;
-            this.layers.persons = persons;
+            this.layers = new Layers
+            {
+                walls = walls,
+                floors = floors,
+                door_and_windows = door_and_windows,
+                furniture = furniture,
+                utensils = utensils,
+                eletronics = eletronics,
+                goals = goals,
+                persons = persons
+            };
         }
 
         public string mapRepresentationString()
