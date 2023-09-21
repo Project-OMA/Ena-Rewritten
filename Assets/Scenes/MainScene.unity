@@ -217,7 +217,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1001 &1722138089
+--- !u!1001 &2066043053
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -225,10 +225,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 30579523217701056, guid: 12035cabdf463774db7582a59164f500, type: 3}
-      propertyPath: alarme
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 9045895302063010096, guid: 12035cabdf463774db7582a59164f500, type: 3}
       propertyPath: m_Name
       value: Player
@@ -273,40 +269,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 30579523217701056, guid: 12035cabdf463774db7582a59164f500, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 9045895302063010096, guid: 12035cabdf463774db7582a59164f500, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1722138092}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12035cabdf463774db7582a59164f500, type: 3}
---- !u!1 &1722138090 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 9045895302063010096, guid: 12035cabdf463774db7582a59164f500, type: 3}
-  m_PrefabInstance: {fileID: 1722138089}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &1722138091 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 3106380170914729192, guid: 12035cabdf463774db7582a59164f500, type: 3}
-  m_PrefabInstance: {fileID: 1722138089}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1722138092
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1722138090}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d57e5b7e1283506cc92302a164e7223d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  alarme: {fileID: 1722138091}
-  rb: {fileID: 0}
-  controller: {fileID: 0}
 --- !u!1001 &9211369014463531979
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -318,7 +285,7 @@ PrefabInstance:
     - target: {fileID: 1593772612312908788, guid: 99f6036f07791e557b820a2bb8e7068c, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 1722138090}
+      objectReference: {fileID: 0}
     - target: {fileID: 1593772612312908788, guid: 99f6036f07791e557b820a2bb8e7068c, type: 3}
       propertyPath: mapFile
       value: 
@@ -394,4 +361,4 @@ SceneRoots:
   m_Roots:
   - {fileID: 705507995}
   - {fileID: 9211369014463531979}
-  - {fileID: 1722138089}
+  - {fileID: 2066043053}

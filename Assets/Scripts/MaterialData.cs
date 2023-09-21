@@ -19,6 +19,10 @@ public class MaterialData : ScriptableObject
         public string id;
         public string name;
         public Material material;
+
+        public bool useGlobalUV = false;
+
+        public Vector2 scale = Vector2.one; 
     }
 
     public Material GetMaterial(string id)
@@ -26,6 +30,30 @@ public class MaterialData : ScriptableObject
         if (Materials.Exists(x => x.id == id))
         {
             return Materials.Find(x => x.id == id).material;
+        }
+        else
+        {
+            throw new System.Exception("Material " + id + " not found");
+        }
+    }
+
+    public bool DoesMaterialUsesGlobalUV(string id)
+    {
+        if (Materials.Exists(x => x.id == id))
+        {
+            return Materials.Find(x => x.id == id).useGlobalUV;
+        }
+        else
+        {
+            throw new System.Exception("Material " + id + " not found");
+        }
+    }
+
+    public Vector2 GetMaterialScale(string id)
+    {
+        if (Materials.Exists(x => x.id == id))
+        {
+            return Materials.Find(x => x.id == id).scale;
         }
         else
         {
