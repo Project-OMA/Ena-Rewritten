@@ -14,12 +14,12 @@ public class HandVibration : MonoBehaviour
     void Update()
     {
         if (isColliding){
-            print("Esta tocando");
+            //print("Esta tocando");
             controller.SendHapticImpulse(0.9f, 10);
         } else
         {
             
-            print("Parou de tocar");
+            //print("Parou de tocar");
         }
     }
 
