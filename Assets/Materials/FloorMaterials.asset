@@ -27,12 +27,12 @@ MonoBehaviour:
     name: Carpete
     material: {fileID: 2100000, guid: 28cba2622514be443b203bb0a11388ab, type: 2}
     useGlobalUV: 0
-    scale: {x: 1, y: 1}
+    scale: {x: 0.5, y: 0.5}
   - id: 1.1
     name: "Met\xE1lico"
     material: {fileID: 2100000, guid: 6504b07ceeb03824a988ebdc59bad62a, type: 2}
     useGlobalUV: 0
-    scale: {x: 1, y: 1}
+    scale: {x: 0.5, y: 0.5}
   - id: 2.0
     name: "\xC1gua"
     material: {fileID: 2100000, guid: fd8d1cbd834065c43b7da5d83054d9c5, type: 2}
@@ -67,7 +67,7 @@ MonoBehaviour:
     name: "Piso T\xE1til de Aten\xE7\xE3o (borracha)"
     material: {fileID: 2100000, guid: 5121511a0329e7349a80cff8cc913b0a, type: 2}
     useGlobalUV: 0
-    scale: {x: 1, y: 1}
+    scale: {x: 0.25, y: 0.25}
   - id: 5.1
     name: Neve
     material: {fileID: 2100000, guid: f78b39510c423e744b1e34d370c5fbca, type: 2}
@@ -77,7 +77,7 @@ MonoBehaviour:
     name: "Piso T\xE1til de Dire\xE7\xE3o (borracha) "
     material: {fileID: 2100000, guid: 702e14e6bc1f0004a83548061a456a1f, type: 2}
     useGlobalUV: 0
-    scale: {x: 1, y: 1}
+    scale: {x: 0.5, y: 0.5}
   - id: 6.1
     name: Piso de Vidro
     material: {fileID: 2100000, guid: dbe7fb72a45779644925f642222c2ad1, type: 2}

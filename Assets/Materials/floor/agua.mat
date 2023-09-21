@@ -29,8 +29,13 @@ Material:
     m_Ints: []
     m_Floats:
     - _BUILTIN_QueueControl: 0
+    - _FoamDesnity: 1.88
+    - _FoamThiccenes: 5.74
+    - _LImiter: 0.59
     - _WaveHeight: 0.005
-    m_Colors: []
+    m_Colors:
+    - _FoamColor: {r: 0.6698113, g: 0.6698113, b: 0.6698113, a: 0}
+    - _WaterColor: {r: 0, g: 0.45140243, b: 0.6313726, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &7038081742592149524
 MonoBehaviour:
