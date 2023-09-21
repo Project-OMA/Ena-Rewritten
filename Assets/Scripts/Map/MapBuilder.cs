@@ -66,11 +66,15 @@ public class MapBuilder : MonoBehaviour
         Vector3 size = new Vector3(Mathf.Abs(end.x - start.x), 1, Mathf.Abs(end.z - start.z));
 
 
-        // get the material
+        // get the material data
         Material material = null;
+        bool useGlobalUV = false;
+        Vector2 scale = Vector2.one;
         try
         {
             material = floorMaterialData.GetMaterial(code);
+            useGlobalUV = floorMaterialData.DoesMaterialUsesGlobalUV(code);
+            scale = floorMaterialData.GetMaterialScale(code);
         }
         catch (System.Exception)
         {
@@ -90,8 +94,24 @@ public class MapBuilder : MonoBehaviour
         for (var i = 0; i < newUvs.Length; i++)
         {
             newUvs[i] = new Vector2(mesh.uv[i].x * size.x, mesh.uv[i].y * size.z);
-            newUvs[i] *= floorTextureScale;
         }
+
+        // apply the scale
+        for (var i = 0; i < newUvs.Length; i++)
+        {
+            newUvs[i] *= scale;
+        }
+
+        // if the material uses global uv, move the uvs to the of the "world"
+        if (useGlobalUV)
+        {
+            for (var i = 0; i < newUvs.Length; i++)
+            {
+                newUvs[i] += new Vector2(start.x, start.z);
+            }
+        }
+
+
         mesh.uv = newUvs;
         // fix the mesh normals
         mesh.RecalculateNormals();
@@ -144,11 +164,15 @@ public class MapBuilder : MonoBehaviour
         Mathf.Abs(end.z - start.z)
         );
 
-        // get the material
+        // get the material data
         Material material = null;
+        //bool useGlobalUV = false;
+        //Vector2 scale = Vector2.one;
         try
         {
             material = wallMaterialData.GetMaterial(code);
+            //useGlobalUV = floorMaterialData.DoesMaterialUsesGlobalUV(code);
+            //scale = floorMaterialData.GetMaterialScale(code);
         }
         catch (System.Exception)
         {
