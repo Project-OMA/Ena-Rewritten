@@ -18,7 +18,9 @@ namespace MapParser
         //  Create a Map object from the JSON string
         private Map CreateFromJSON(string jsonString)
         {
-            return JsonUtility.FromJson<Map>(jsonString);
+            
+            var data = JsonUtility.FromJson<Map>(jsonString);
+            return data;
         }
 
         public Map ParseMap()
