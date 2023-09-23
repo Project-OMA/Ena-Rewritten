@@ -6,7 +6,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class HandVibration : MonoBehaviour
 {
-    private AudioSource alarme;
+    public AudioSource alarme;
     public Rigidbody rb;
     private bool isColliding=false;
 
