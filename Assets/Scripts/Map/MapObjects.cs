@@ -8,8 +8,8 @@ namespace MapObjects
 {
     public interface MapProp
     {
-        int[] pos { get; set; }
-        string type { get; set; }
+        public int[] getPos();
+        public string getType();
     }
 
 
@@ -42,43 +42,123 @@ namespace MapObjects
     [Serializable]
     public class DoorAndWindow : MapProp
     {
-        public int[] pos { get; set; }
-        public string type { get; set; }
+        public int[] pos;
+        public string type;
+
+        public int[] getPos()
+        {
+            return pos;
+        }
+
+        public string getType()
+        {
+            return type;
+        }
     }
 
     [Serializable]
     public class Furniture : MapProp
     {
-        public int[] pos { get; set; }
-        public string type { get; set; }
+        public int[] pos;
+        public string type;
+
+        public int[] getPos()
+        {
+            return pos;
+        }
+
+        public string getType()
+        {
+            return type;
+        }
+
+        public string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            if (this.pos != null)
+            {
+                sb.Append("Furniture: " + this.type + " " + this.pos[0] + " " + this.pos[1]);
+            }
+            else
+            {
+                sb.Append("Furniture: " + this.type + " null");
+            }
+            return sb.ToString();
+        }
     }
 
     [Serializable]
     public class Utensil : MapProp
     {
-        public int[] pos { get; set; }
-        public string type { get; set; }
+        public int[] pos;
+        public string type;
+
+        public int[] getPos()
+        {
+            return pos;
+        }
+
+        public string getType()
+        {
+            return type;
+        }
+
     }
 
     [Serializable]
     public class Electronic : MapProp
     {
-        public int[] pos { get; set; }
-        public string type { get; set; }
+        public int[] pos;
+        public string type;
+
+        public int[] getPos()
+        {
+            return pos;
+        }
+
+        public string getType()
+        {
+            return type;
+        }
     }
 
     [Serializable]
     public class Goal : MapProp
     {
-        public int[] pos { get; set; }
-        public string type { get; set; }
+        public int[] pos;
+        public string type;
+
+        public int[] getPos()
+        {
+            return pos;
+        }
+
+        public string getType()
+        {
+            return type;
+        }
     }
 
     [Serializable]
-    public class Person : MapProp
+    public class Person
     {
-        public int[] pos { get; set; }
-        public string type { get; set; }
+        public int[] pos;
+        public string type;
+
+        public int[] getPos()
+        {
+            return pos;
+        }
+
+        public string getType()
+        {
+            return type;
+        }
+
+        public string ToString()
+        {
+            return "Person: " + this.type + " " + this.pos[0] + " " + this.pos[1];
+        }
     }
 
     [Serializable]

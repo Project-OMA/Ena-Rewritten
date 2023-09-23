@@ -358,14 +358,14 @@ public class MapBuilder : MonoBehaviour
 
     private void InstanceProp(MapProp prop, ObjectData objectData, GameObject parent = null)
     {
-        string type = prop.type;
-        int[] pos = prop.pos;
+        string type = prop.getType();
+        int[] pos = prop.getPos();
 
         try
         {
             ObjectPrefab propData = objectData.GetObject(type);
             GameObject prefab = propData.prefab;
-            string name = prefab.name + ":" + prop.type + "_" + pos[0] + "_" + pos[1];
+            string name = prefab.name + ":" + type + "_" + pos[0] + "_" + pos[1];
 
             // Position
             float posX = pos[0] + propData.offsetX;
