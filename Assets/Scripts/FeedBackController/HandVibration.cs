@@ -6,40 +6,38 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class HandVibration : MonoBehaviour
 {
-    public AudioSource alarme;
+    private AudioSource alarme;
     public Rigidbody rb;
     private bool isColliding=false;
-    public XRBaseController controller;
+
+    public AudioSource Alarme { get => alarme; set => alarme = value; }
 
     void Update()
     {
         if (isColliding){
-            //print("Esta tocando");
-            controller.SendHapticImpulse(0.9f, 10);
+            print("Esta tocando");
         } else
         {
             
-            //print("Parou de tocar");
+            print("Parou de tocar");
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("parede"))
+        if (collision.gameObject.CompareTag("map"))
         {   
             isColliding=true;
-            alarme.Play();
-            controller.SendHapticImpulse(0.9f, 1);
+            Alarme.Play();
         }
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag("parede"))
+        if (collision.gameObject.CompareTag("map"))
         {
             isColliding=false;
-            controller.SendHapticImpulse(0, 0);
-            alarme.Stop();
+            Alarme.Stop();
         }
     }
 }
