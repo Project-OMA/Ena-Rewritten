@@ -4,6 +4,9 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
 
+
+
+
 public class HandVibration : MonoBehaviour
 {
     public AudioSource alarme;
@@ -25,7 +28,7 @@ public class HandVibration : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("map"))
+        if (collision.gameObject.CompareTag("wall"))
         {   
             isColliding=true;
             Alarme.Play();
@@ -34,7 +37,7 @@ public class HandVibration : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag("map"))
+        if (collision.gameObject.CompareTag("wall"))
         {
             isColliding=false;
             Alarme.Stop();

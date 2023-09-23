@@ -127,7 +127,7 @@ public class MapBuilder : MonoBehaviour
         floorPiece.AddComponent<MeshFilter>();
         floorPiece.AddComponent<MeshCollider>();
 
-
+        floorPiece.tag = "floor";
         floorPiece.GetComponent<MeshRenderer>().material = material;
         floorPiece.GetComponent<MeshFilter>().mesh = mesh;
         floorPiece.GetComponent<MeshCollider>().sharedMesh = mesh;
@@ -249,11 +249,13 @@ public class MapBuilder : MonoBehaviour
 
         // create the object and tiles
         var wallObj = new GameObject("Wall:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
+        wallObj.tag = "wall";
         var wallFront = new GameObject("WallFront:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
         var wallBack = new GameObject("WallBack:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
         var wallLeft = new GameObject("WallLeft:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
         var wallRight = new GameObject("WallRight:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
         var wallPieces = new GameObject[] { wallFront, wallBack, wallLeft, wallRight };
+        
 
         foreach (var wallPiece in wallPieces)
         {
@@ -262,9 +264,11 @@ public class MapBuilder : MonoBehaviour
             //wallPiece.transform.localScale = size;
             wallPiece.transform.parent = wallObj.transform;
             //add mesh renderer and filter
+            
             wallPiece.AddComponent<MeshRenderer>();
             wallPiece.AddComponent<MeshFilter>();
             wallPiece.AddComponent<MeshCollider>();
+            
         }
 
         // rotate the wall pieces
@@ -321,6 +325,7 @@ public class MapBuilder : MonoBehaviour
 
         GameObject ceilingPiece = new GameObject("Ceiling:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
         ceilingPiece.transform.position = start + center;
+        ceilingPiece.tag = "ceiling";
         // it needs to be rotated 180 degrees since the mesh is upside down
         ceilingPiece.transform.rotation = Quaternion.Euler(180, 0, 0);
         ceilingPiece.transform.localScale = size;
