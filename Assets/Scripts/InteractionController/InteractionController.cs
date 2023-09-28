@@ -6,22 +6,38 @@ public class InteractionController : MonoBehaviour
 {
     public float walkSpeed = 1;
     public GameObject cam;
+    public Collider collider;
 
-    void Start()
-    {
-
-    }
-
-    void Update()
+    private Vector3 getMoveVector()
     {
         float x = Input.GetAxis("Vertical");
-        var control = new Vector3(0, x, 0);
+        float y = Input.GetAxis("Horizontal");
+        var control = new Vector3(y, x, 0);
 
         Vector3 right = cam.transform.right;
         Vector3 forward = Vector3.ProjectOnPlane(cam.transform.forward, Vector3.up).normalized;
         Vector3 moveVector = forward * control.y + right * control.x;
         moveVector.y = 0;
-        transform.Translate(moveVector * walkSpeed * Time.deltaTime, Space.World);
+
+        return moveVector;
+    }
+
+    void Start()
+    {
+        // Get capsule collider
+        collider = GetComponent<CapsuleCollider>();
+    }
+
+    void Update()
+    {
+        // Get move vector
+        Vector3 moveVector = getMoveVector();
+        var deltaTime = Time.deltaTime;
+
+        // Move player
+        Vector3 movement = moveVector * walkSpeed * deltaTime;
+        transform.position += movement;
+
     }
 }
 
