@@ -1,12 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class InteractionController : MonoBehaviour
 {
     public float walkSpeed = 1;
     public GameObject cam;
-    public Collider collider;
+    private Collider collider;
+    private Rigidbody rigidbody;
 
     private Vector3 getMoveVector()
     {
@@ -19,13 +18,14 @@ public class InteractionController : MonoBehaviour
         Vector3 moveVector = forward * control.y + right * control.x;
         moveVector.y = 0;
 
-        return moveVector;
+        return moveVector.normalized;
     }
 
     void Start()
     {
         // Get capsule collider
         collider = GetComponent<CapsuleCollider>();
+        rigidbody = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -34,10 +34,10 @@ public class InteractionController : MonoBehaviour
         Vector3 moveVector = getMoveVector();
         var deltaTime = Time.deltaTime;
 
-        // Move player
-        Vector3 movement = moveVector * walkSpeed * deltaTime;
-        transform.position += movement;
+        rigidbody.velocity = moveVector * walkSpeed;
 
+        Debug.Log(rigidbody.velocity);
     }
 }
+
 

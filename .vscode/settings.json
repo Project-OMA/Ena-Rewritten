@@ -53,5 +53,8 @@
         "temp/":true,
         "Temp/":true
     },
-    "dotnet.defaultSolution": "Ena-Rewritten.sln"
+    "dotnet.defaultSolution": "Ena-Rewritten.sln",
+    "cSpell.words": [
+        "rigidbody"
+    ]
 }
