@@ -315,13 +315,14 @@ public class MapBuilder : MonoBehaviour
         Material material = null;
         try
         {
-            material = floorMaterialData.GetMaterial(code);
+            material = floorMaterialData.GetMaterial("0.0");
         }
         catch (System.Exception)
         {
             Debug.LogError("Material " + code + " not found");
             material = defaultFloorMaterial;
         }
+        
 
         GameObject ceilingPiece = new GameObject("Ceiling:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
         ceilingPiece.transform.position = start + center;
