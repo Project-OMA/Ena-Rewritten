@@ -24,6 +24,8 @@ public class MapBuilder : MonoBehaviour
 
     [SerializeField] private MaterialData floorMaterialData;
     [SerializeField] private MaterialData wallMaterialData;
+    [SerializeField] private MaterialData ceilingMaterialData;
+
     [SerializeField] private ObjectData doorWindowObjectData;
     [SerializeField] private ObjectData furnitureObjectData;
     [SerializeField] private ObjectData utensilObjectData;
@@ -31,7 +33,8 @@ public class MapBuilder : MonoBehaviour
     [SerializeField] private ObjectData goalObjectData;
     [SerializeField] private Material defaultFloorMaterial;
     [SerializeField] private Material defaultWallMaterial;
-    [SerializeField] private float ceilingHeigth = 3.0f;
+    [SerializeField] private Material defaultCeilingMaterial;
+    [SerializeField] private float ceilingHeight = 3.0f;
     [SerializeField] private float floorTextureScale = .75f;
     [SerializeField] private float wallTextureScale = 2.0f;
     [SerializeField] private float ceilingTextureScale = 1f;
@@ -159,9 +162,9 @@ public class MapBuilder : MonoBehaviour
         Vector3 end = new Vector3(endArr[0] + 1, 0, -endArr[1] - 1);
         Vector3 center = (end - start) / 2;
         var size = new Vector3(
-        Mathf.Abs(end.x - start.x),
-        ceilingHeigth,
-        Mathf.Abs(end.z - start.z)
+            Mathf.Abs(end.x - start.x),
+            ceilingHeight,
+            Mathf.Abs(end.z - start.z)
         );
 
         // get the material data
@@ -255,7 +258,7 @@ public class MapBuilder : MonoBehaviour
         var wallLeft = new GameObject("WallLeft:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
         var wallRight = new GameObject("WallRight:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
         var wallPieces = new GameObject[] { wallFront, wallBack, wallLeft, wallRight };
-        
+
 
         foreach (var wallPiece in wallPieces)
         {
@@ -264,11 +267,11 @@ public class MapBuilder : MonoBehaviour
             //wallPiece.transform.localScale = size;
             wallPiece.transform.parent = wallObj.transform;
             //add mesh renderer and filter
-            
+
             wallPiece.AddComponent<MeshRenderer>();
             wallPiece.AddComponent<MeshFilter>();
             wallPiece.AddComponent<MeshCollider>();
-            
+
         }
 
         // rotate the wall pieces
@@ -300,29 +303,32 @@ public class MapBuilder : MonoBehaviour
         wallObj.transform.parent = wallsParent.transform;
     }
 
-    private void InstanceCeilingTile(Floor floor)
+    private void InstanceCeilingTile(Ceiling ceiling)
     {
-        string code = floor.type;
-        int[] startArr = floor.start;
-        int[] endArr = floor.end;
+        string code = ceiling.type;
+        int[] startArr = ceiling.start;
+        int[] endArr = ceiling.end;
 
-        Vector3 start = new Vector3(startArr[0], ceilingHeigth, -startArr[1]);
-        Vector3 end = new Vector3(endArr[0] + 1, ceilingHeigth, -endArr[1] - 1);
+        Vector3 start = new Vector3(startArr[0], ceilingHeight, -startArr[1]);
+        Vector3 end = new Vector3(endArr[0] + 1, ceilingHeight, -endArr[1] - 1);
         Vector3 center = (end - start) / 2;
         Vector3 size = new Vector3(Mathf.Abs(end.x - start.x), 1, Mathf.Abs(end.z - start.z));
 
         // get the material
         Material material = null;
+        // bool useGlobalUV = false;
+        // Vector2 scale = Vector2.one;
         try
         {
-            material = floorMaterialData.GetMaterial("0.0");
+            material = ceilingMaterialData.GetMaterial("0.0");
+            // useGlobalUV = floorMaterialData.DoesMaterialUsesGlobalUV(code);
+            // scale = floorMaterialData.GetMaterialScale(code);
         }
         catch (System.Exception)
         {
             Debug.LogError("Material " + code + " not found");
-            material = defaultFloorMaterial;
+            material = defaultCeilingMaterial;
         }
-        
 
         GameObject ceilingPiece = new GameObject("Ceiling:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
         ceilingPiece.transform.position = start + center;
@@ -400,6 +406,7 @@ public class MapBuilder : MonoBehaviour
     {
         List<Wall> walls = map.layers.walls;
         List<Floor> floors = map.layers.floors;
+        List<Ceiling> ceilings = map.layers.ceilings;
         List<DoorAndWindow> door_and_windows = map.layers.door_and_windows;
         List<Furniture> furniture = map.layers.furniture;
         List<Utensil> utensils = map.layers.utensils;
@@ -428,9 +435,9 @@ public class MapBuilder : MonoBehaviour
         // Build the ceilings
         if (!disableCeilings)
         {
-            foreach (Floor floor in floors)
+            foreach (Ceiling ceiling in ceilings)
             {
-                InstanceCeilingTile(floor);
+                InstanceCeilingTile(ceiling);
             }
         }
 

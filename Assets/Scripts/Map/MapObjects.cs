@@ -40,6 +40,14 @@ namespace MapObjects
     }
 
     [Serializable]
+    public class Ceiling
+    {
+        public string type;
+        public int[] start;
+        public int[] end;
+    }
+
+    [Serializable]
     public class DoorAndWindow : MapProp
     {
         public int[] pos;
@@ -166,6 +174,7 @@ namespace MapObjects
     {
         public List<Wall> walls;
         public List<Floor> floors;
+        public List<Ceiling> ceilings;
         public List<DoorAndWindow> door_and_windows;
         public List<Furniture> furniture;
         public List<Utensil> utensils;
@@ -184,6 +193,7 @@ namespace MapObjects
             int[] size,
             List<Wall> walls,
             List<Floor> floors,
+            List<Ceiling> ceilings,
             List<DoorAndWindow> door_and_windows,
             List<Furniture> furniture,
             List<Utensil> utensils,
@@ -198,6 +208,7 @@ namespace MapObjects
             {
                 walls = walls,
                 floors = floors,
+                ceilings = ceilings,
                 door_and_windows = door_and_windows,
                 furniture = furniture,
                 utensils = utensils,
@@ -223,6 +234,11 @@ namespace MapObjects
             sb.Append("Floors: \n");
             foreach (Floor floor in this.layers.floors)
                 sb.Append("\tFloor: " + floor.type + " " + floor.start[0] + " " + floor.start[1] + " " + floor.end[0] + " " + floor.end[1] + "\n");
+
+
+            sb.Append("Ceilings: \n");
+            foreach (Ceiling ceiling in this.layers.ceilings)
+                sb.Append("\tCeiling: " + ceiling.type + " " + ceiling.start[0] + " " + ceiling.start[1] + " " + ceiling.end[0] + " " + ceiling.end[1] + "\n");
 
 
             sb.Append("DoorAndWindows: \n");

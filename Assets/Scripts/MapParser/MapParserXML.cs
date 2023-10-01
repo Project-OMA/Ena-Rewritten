@@ -15,6 +15,7 @@ namespace MapParser
         private int[] size = new int[2];
         private List<Wall> walls = new List<Wall>();
         private List<Floor> floors = new List<Floor>();
+        private List<Ceiling> ceilings = new List<Ceiling>();
         private List<DoorAndWindow> door_and_windows = new List<DoorAndWindow>();
         private List<Furniture> furniture = new List<Furniture>();
         private List<Utensil> utensils = new List<Utensil>();
@@ -26,6 +27,7 @@ namespace MapParser
         {
             "floor",
             "walls",
+            "ceiling",
             "door_and_windows",
             "furniture",
             "eletronics",
@@ -112,6 +114,43 @@ namespace MapParser
                     end = new int[2] { x, y }
                 };
                 floors.Add(obj);
+            }
+        }
+
+        private void seekCeiling(List<Ceiling> ceiling)
+        {
+            string name = "ceiling";
+
+            try
+            {
+                List<string> layerData = seekLayer(name);
+                for (int i = 0; i < layerData.Count; i++)
+                {
+                    if (layerData[i] == "-1") continue;
+                    int x = i % size[0];
+                    int y = i / size[0];
+                    Ceiling obj = new()
+                    {
+                        type = layerData[i],
+                        start = new int[2] { x, y },
+                        end = new int[2] { x, y },
+                    };
+                    ceiling.Add(obj);
+                }
+            }
+            catch (System.ArgumentException)
+            {
+                Debug.Log("Ceiling layer not found; using floor layer as ceiling layer");
+                for (int i = 0; i < floors.Count; i++)
+                {
+                    Ceiling obj = new()
+                    {
+                        type = "0.0", // default ceiling type
+                        start = floors[i].start,
+                        end = floors[i].end
+                    };
+                    ceiling.Add(obj);
+                }
             }
         }
         private void seekDoorAndWindow(List<DoorAndWindow> door_and_windows)
@@ -222,6 +261,7 @@ namespace MapParser
             seekSize(size);
             seekWall(walls);
             seekFloor(floors);
+            seekCeiling(ceilings);
             seekDoorAndWindow(door_and_windows);
             seekFurniture(furniture);
             seekUtensil(utensils);
@@ -229,7 +269,7 @@ namespace MapParser
             seekGoals(goals);
             seekPerson(persons);
 
-            return new Map(size, walls, floors, door_and_windows, furniture, utensils, electronics, goals, persons);
+            return new Map(size, walls, floors, ceilings, door_and_windows, furniture, utensils, electronics, goals, persons);
         }
     }
 }
