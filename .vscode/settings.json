@@ -55,6 +55,7 @@
     },
     "dotnet.defaultSolution": "Ena-Rewritten.sln",
     "cSpell.words": [
+        "Behaviour",
         "rigidbody"
     ]
 }

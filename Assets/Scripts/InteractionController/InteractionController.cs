@@ -3,9 +3,16 @@ using UnityEngine;
 public class InteractionController : MonoBehaviour
 {
     public float walkSpeed = 1;
+
+    public float runSpeed = 3;
     public GameObject cam;
     private Collider collider;
     private Rigidbody rigidbody;
+
+    private float runningInput()
+    {
+        return Input.GetAxis("Fire2");
+    }
 
     private Vector3 getMoveVector()
     {
@@ -33,10 +40,12 @@ public class InteractionController : MonoBehaviour
         // Get move vector
         Vector3 moveVector = getMoveVector();
         var deltaTime = Time.deltaTime;
+        var runningInput = this.runningInput();
+        var speed = (walkSpeed * Mathf.Abs(runningInput - 1)) + (runSpeed * runningInput);
+        var move = moveVector * speed;
 
-        rigidbody.velocity = moveVector * walkSpeed;
-
-        Debug.Log(rigidbody.velocity);
+        rigidbody.velocity = move;
+        Debug.Log("plyer velocity: " + rigidbody.velocity.magnitude);
     }
 }
 
