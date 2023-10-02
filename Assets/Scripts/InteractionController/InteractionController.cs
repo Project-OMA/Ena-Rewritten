@@ -45,7 +45,6 @@ public class InteractionController : MonoBehaviour
         var move = moveVector * speed;
 
         rigidbody.velocity = move;
-        Debug.Log("plyer velocity: " + rigidbody.velocity.magnitude);
     }
 }
 

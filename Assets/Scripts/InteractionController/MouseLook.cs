@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MouserLook : MonoBehaviour
+public class MouseLook : MonoBehaviour
 {
     public float mouseSensitivity = 200f;
     public Transform playerBody;
@@ -16,6 +16,5 @@ public class MouserLook : MonoBehaviour
         float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
         xRotation += mouseX;
         transform.localRotation = Quaternion.Euler(0f, xRotation, 0f);
-        playerBody.Rotate(Vector3.up * mouseX);
     }
 }
