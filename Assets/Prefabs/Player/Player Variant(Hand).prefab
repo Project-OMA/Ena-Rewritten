@@ -114,6 +114,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Variant(Hand)
       objectReference: {fileID: 0}
+    - target: {fileID: 6674250241202975928, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
+      propertyPath: m_PositionInput.m_Action.m_Id
+      value: ca894ac0-4c3c-4727-bd92-24d662e8e1ea
+      objectReference: {fileID: 0}
+    - target: {fileID: 6674250241202975928, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
+      propertyPath: m_RotationInput.m_Action.m_Id
+      value: f52830ae-db56-4000-96a5-5e4178a05907
+      objectReference: {fileID: 0}
+    - target: {fileID: 6674250241202975928, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
+      propertyPath: m_PositionInput.m_Action.m_Name
+      value: Position Input
+      objectReference: {fileID: 0}
+    - target: {fileID: 6674250241202975928, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
+      propertyPath: m_RotationInput.m_Action.m_Name
+      value: Rotation Input
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 5730020783969930618, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
