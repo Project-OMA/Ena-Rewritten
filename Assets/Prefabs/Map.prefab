@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1593772612312908788}
   m_Layer: 0
   m_Name: Map
-  m_TagString: Untagged
+  m_TagString: map
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53,7 +53,7 @@ MonoBehaviour:
   disableUtensil: 0
   disableElectronic: 0
   disableGoal: 0
-  mapFile: {fileID: 4900000, guid: 30a658d2278c6bf46ae744c3b7591712, type: 3}
+  mapFile: {fileID: 4900000, guid: e2b4f5cbb8e1128c084466dc7079fc7f, type: 3}
   floorMaterialData: {fileID: 11400000, guid: 71bfc194a7310ce4aa7a369fb01175d5, type: 2}
   wallMaterialData: {fileID: 11400000, guid: 1a83cfde63172f9d98175f0f3d9f4700, type: 2}
   ceilingMaterialData: {fileID: 11400000, guid: bcb2d7a8bfb6ee3489305bde27114448, type: 2}
@@ -62,13 +62,13 @@ MonoBehaviour:
   utensilObjectData: {fileID: 11400000, guid: 90d668ef6a5b477479a58a21cb59f8cf, type: 2}
   electronicObjectData: {fileID: 11400000, guid: e6050d7fb1f31b24caf0a4659d53f2dd, type: 2}
   goalObjectData: {fileID: 11400000, guid: e9876d8e98e5b474e93ae94ad628e78c, type: 2}
-  defaultFloorMaterial: {fileID: 2100000, guid: fd8d1cbd834065c43b7da5d83054d9c5, type: 2}
-  defaultWallMaterial: {fileID: 2100000, guid: fd8d1cbd834065c43b7da5d83054d9c5, type: 2}
-  defaultCeilingMaterial: {fileID: 2100000, guid: fd8d1cbd834065c43b7da5d83054d9c5, type: 2}
+  defaultFloorMaterial: {fileID: 2100000, guid: d397378de621866d38004761d13d9ecd, type: 2}
+  defaultWallMaterial: {fileID: 2100000, guid: d397378de621866d38004761d13d9ecd, type: 2}
+  defaultCeilingMaterial: {fileID: 2100000, guid: d397378de621866d38004761d13d9ecd, type: 2}
   ceilingHeight: 3
   floorTextureScale: 0.5
   wallTextureScale: 1
   ceilingTextureScale: 3
   useGrass: 1
   grassID: 3.1
-  grassSprite: {fileID: 0}
+  grassSprite: {fileID: 7732314249986411692, guid: c0050dba3b9fa3fa3834a9b9de53da9e, type: 3}
