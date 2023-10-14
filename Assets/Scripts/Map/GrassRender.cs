@@ -24,14 +24,14 @@ public class GrassRender : MonoBehaviour
     {
         foreach (GameObject child in childs)
         {
-            if (Vector3.Distance(player.transform.position, child.transform.position) < distance)
-            {
-                child.GetComponent<SpriteRenderer>().enabled = true;
-            }
-            else
-            {
-                child.GetComponent<SpriteRenderer>().enabled = false;
-            }
+            Vector3 playerPosition = player ? player.transform.position : Vector3.zero;
+            Vector3 childPosition = child ? child.transform.position : Vector3.zero;
+
+            float currentDistance = Vector3.Distance(playerPosition, childPosition);
+
+            bool enableSpriteRenderer = currentDistance < distance;
+            child.GetComponent<SpriteRenderer>().enabled = enableSpriteRenderer;
+
         }
     }
 }

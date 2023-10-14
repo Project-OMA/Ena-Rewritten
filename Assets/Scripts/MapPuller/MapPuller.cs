@@ -14,19 +14,26 @@ public class MapPuller : MonoBehaviour
         this.Email = email;
     }
 
-    public async Task<string> GetNextMap(){
-      try {
-        string apiUrl = "https://achernar.eic.cefet-rj.br/mapserverapi/pub/groups/next-map/";
+    void Start()
+    {
+        this.GetNextMap();
+    }
 
+    public string GetNextMap()
+    {
+        try
+        {
+            string apiUrl = "https://achernar.eic.cefet-rj.br/mapserverapi/pub/groups/next-map/";
             using HttpClient httpClient = new HttpClient();
-            HttpResponseMessage response = await httpClient.GetAsync(apiUrl + this.Email);
+            var response = httpClient.GetAsync(apiUrl + this.Email).Result;
             response.EnsureSuccessStatusCode();
 
-            string json = await response.Content.ReadAsStringAsync();
-            return json;
-        } catch (Exception ex){
-        Console.WriteLine("Ocorreu um erro ao obter o próximo mapa: " + ex.Message);
-        throw;
+            return response.Content.ReadAsStringAsync().Result;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("Ocorreu um erro ao obter o próximo mapa: " + ex.Message);
+            throw;
+        }
     }
-  }
 }
