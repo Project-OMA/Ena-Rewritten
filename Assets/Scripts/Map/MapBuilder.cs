@@ -47,6 +47,8 @@ public class MapBuilder : MonoBehaviour
     private Mesh floorMesh;
     private Mesh wallMesh;
 
+    private Mesh objMesh;
+
 
     private GameObject floorParent;
     private GameObject ceilingParent;
@@ -366,39 +368,52 @@ public class MapBuilder : MonoBehaviour
         ceilingPiece.GetComponent<MeshRenderer>().material = material;
         ceilingPiece.GetComponent<MeshFilter>().mesh = mesh;
         ceilingPiece.GetComponent<MeshCollider>().sharedMesh = mesh;
+
     }
 
     private void InstanceProp(MapProp prop, ObjectData objectData, GameObject parent = null)
     {
         string type = prop.getType();
         int[] pos = prop.getPos();
-
+        ObjectPrefab propData = null;
+        GameObject prefab = null;
         try
         {
-            ObjectPrefab propData = objectData.GetObject(type);
-            GameObject prefab = propData.prefab;
-            string name = prefab.name + ":" + type + "_" + pos[0] + "_" + pos[1];
-
-            // Position
-            float posX = pos[0] + propData.offsetX;
-            float posY = -pos[1] + propData.offsetY;
-            Vector3 vecpos = new Vector3(posX, 0, posY);
-
-            // Rotation
-            Quaternion rot = Quaternion.Euler(0, propData.rotation, 0);
-
-            // Create the object
-            GameObject obj = Instantiate(prefab, vecpos, rot);
-            obj.name = name;
-            if (parent != null)
-            {
-                obj.transform.parent = parent.transform;
-            }
+            propData = objectData.GetObject(type);
         }
         catch (System.Exception)
         {
             Debug.LogError("Prefab not found for type " + type);
         }
+
+        prefab = propData.prefab;
+        string name = prefab.name + ":" + type + "_" + pos[0] + "_" + pos[1];
+
+        // Position
+        float posX = pos[0] + propData.offsetX;
+        float posY = -pos[1] + propData.offsetY;
+        Vector3 vecpos = new Vector3(posX, 0, posY);
+
+        // Rotation
+        Quaternion rot = Quaternion.Euler(0, propData.rotation, 0);
+
+        // Create the object
+        GameObject obj = Instantiate(prefab, vecpos, rot);
+
+        obj.name = name;
+        if (parent != null)
+        {
+            obj.transform.parent = parent.transform;
+        }
+
+       
+
+        obj.AddComponent<MeshRenderer>();
+        obj.AddComponent<MeshFilter>();
+        obj.AddComponent<MeshCollider>();
+
+        
+
 
     }
 
