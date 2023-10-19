@@ -58,5 +58,6 @@
         "Behaviour",
         "childs",
         "rigidbody"
-    ]
+    ],
+    "dotnet.preferCSharpExtension": true
 }

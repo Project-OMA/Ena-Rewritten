@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using MapObjects;
 using MapParser;
+using System.Linq;
 
 public class MapBuilder : MonoBehaviour
 {
@@ -46,6 +47,7 @@ public class MapBuilder : MonoBehaviour
 
     private Mesh floorMesh;
     private Mesh wallMesh;
+    private Mesh objMesh;
 
 
     private GameObject floorParent;
@@ -366,40 +368,85 @@ public class MapBuilder : MonoBehaviour
         ceilingPiece.GetComponent<MeshRenderer>().material = material;
         ceilingPiece.GetComponent<MeshFilter>().mesh = mesh;
         ceilingPiece.GetComponent<MeshCollider>().sharedMesh = mesh;
+
     }
 
     private void InstanceProp(MapProp prop, ObjectData objectData, GameObject parent = null)
     {
         string type = prop.getType();
         int[] pos = prop.getPos();
-
+        ObjectPrefab propData = null;
+        GameObject prefab = null;
         try
         {
-            ObjectPrefab propData = objectData.GetObject(type);
-            GameObject prefab = propData.prefab;
-            string name = prefab.name + ":" + type + "_" + pos[0] + "_" + pos[1];
+            propData = objectData.GetObject(type);
 
-            // Position
-            float posX = pos[0] + propData.offsetX;
-            float posY = -pos[1] + propData.offsetY;
-            Vector3 vecpos = new Vector3(posX, 0, posY);
-
-            // Rotation
-            Quaternion rot = Quaternion.Euler(0, propData.rotation, 0);
-
-            // Create the object
-            GameObject obj = Instantiate(prefab, vecpos, rot);
-            obj.name = name;
-            if (parent != null)
-            {
-                obj.transform.parent = parent.transform;
-            }
         }
         catch (System.Exception)
         {
             Debug.LogError("Prefab not found for type " + type);
         }
 
+        prefab = propData.prefab;
+        string name = prefab.name + ":" + type + "_" + pos[0] + "_" + pos[1];
+
+        // Position
+        float posX = pos[0] + propData.offsetX;
+        float posY = -pos[1] + propData.offsetY;
+        Vector3 vecpos = new Vector3(posX, 0, posY);
+
+        // Rotation
+        Quaternion rot = Quaternion.Euler(0, propData.rotation, 0);
+
+        // Create the object
+        GameObject obj = Instantiate(prefab, vecpos, rot);
+        Debug.LogWarning($"nome: {obj.name} quantidade: {obj.GetComponents<MeshCollider>().Count()}");
+        Debug.LogWarning($"nome: {obj.name} quantidade: {prefab.GetComponents<MeshCollider>().Count()}");
+
+        obj.name = name;
+        if (parent != null)
+        {
+            obj.transform.parent = parent.transform;
+        }
+
+        var meshColliders = obj.GetComponents<MeshCollider>();
+
+        if(meshColliders.Count() > 1)
+        {
+            for (int i = 1; i < meshColliders.Count(); i++)
+            {
+                Destroy(meshColliders[i]);
+            }
+        }
+        if(!meshColliders.Any())
+        {
+            obj.AddComponent<MeshCollider>();
+        }
+
+        obj.AddComponent<MeshRenderer>();
+        obj.AddComponent<MeshFilter>();
+        
+        var meshFilter = obj.GetComponent<MeshFilter>();
+
+        if(meshFilter != null)
+        {
+
+            Mesh mesh = meshFilter.mesh;
+
+            var sharedMesh = meshFilter.sharedMesh;
+
+            Vector3[] meshVertices = mesh.vertices; 
+
+            var meshTriangles = sharedMesh.triangles; 
+
+                
+            Mesh newMesh = new Mesh
+            {
+                vertices = meshVertices,
+                triangles = meshTriangles
+            };
+            obj.GetComponent<MeshCollider>().sharedMesh = newMesh;
+        }
     }
 
     void BuildMap(Map map)
@@ -542,6 +589,8 @@ public class MapBuilder : MonoBehaviour
 
             uv = new Vector2[] { new Vector2(0, 1), new Vector2(1, 1), new Vector2(0, 0), new Vector2(1, 0) }
         };
+
+        
         // Create the parents
         floorParent = new GameObject("Floor");
         ceilingParent = new GameObject("Ceiling");
