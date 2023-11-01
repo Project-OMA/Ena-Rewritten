@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -16,31 +17,25 @@ public class HandVibration : MonoBehaviour
     public AudioSource Alarme { get => alarme; set => alarme = value; }
 
     void Update()
-    {
-        if (isColliding){
-            print("Esta tocando");
-        } else
-        {
-            
-            print("Parou de tocar");
-        }
-    }
+    { }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("wall"))
-        {   
-            isColliding=true;
-            Alarme.Play();
+        Debug.Log("Starting OnCollisionEnter");
+        if(FeedBackController.Collisions.Select(x => x.WhatColide).Contains(collision.gameObject.tag))
+        {
+            var colisions = new Collisions
+            {
+                IsActive = true,
+                WhatColide = collision.gameObject.tag
+            };
+            FeedBackController.Collisions.Add(colisions);
         }
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag("wall"))
-        {
-            isColliding=false;
-            Alarme.Stop();
-        }
+        Debug.Log("Starting OnCollisionExit");
+        FeedBackController.Collisions = FeedBackController.Collisions.Where(x => x.WhatColide != collision.gameObject.tag).ToList();
     }
 }
