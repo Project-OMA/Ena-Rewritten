@@ -7,6 +7,6 @@ namespace MapParser
 {
     public interface IMapParser
     {
-        public Map ParseMap();
+        Map ParseMap();
     }
 }
