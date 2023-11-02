@@ -1,16 +1,21 @@
 using System.Linq;
 using UnityEngine;
+using System;
+using System.Collections.Generic;
 
 public class FeedbackController : MonoBehaviour
 {
     private Collider playerCollider;
 
+    
+
+    
+
     private void Start()
     {
         playerCollider = GetComponent<Collider>();
+        
     }
-    void Update()
-    { }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -34,4 +39,9 @@ public class FeedbackController : MonoBehaviour
             itemToUpdate.IsColliding = false;
         }
     }
+
+    void Update(){}
+
+    
+
 }
