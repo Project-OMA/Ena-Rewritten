@@ -29,20 +29,10 @@ public class CollisionEventHandler : MonoBehaviour
     void Update()
     {
         Collisions.RemoveAll(item => {
-            Debug.Log($"Collision with: {item.WhatCollide}");
-            ProcessCollisionItem(item);
-            return !item.IsActive;
+            Debug.Log($"Collision with: {item.CollidedObject}");
+            StartFeedback(item);
+            return !item.IsColliding;
         });
-    }
-
-    private void ProcessCollisionItem(CollisionEvent collision)
-    {
-        StartFeedback(collision);
-        if (!collision.IsActive)
-        {
-            collision.Playing = false;
-            History.Add(collision);
-        }
     }
 
     private void StartFeedback(CollisionEvent collision)
@@ -50,13 +40,15 @@ public class CollisionEventHandler : MonoBehaviour
         if (feedbackActions.TryGetValue(collision.FeedbackType, out var actions))
         {
             var (play, stop) = actions;
-            if (collision.IsActive && !collision.Playing)
+            if (collision.IsColliding && !collision.IsPlaying)
             {
                 play();
             }
-            if (!collision.IsActive)
+            if (!collision.IsColliding)
             {
                 stop();
+                collision.IsPlaying = false;
+                History.Add(collision);
             }
         }
     }
