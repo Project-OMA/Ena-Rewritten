@@ -1,12 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
 public class CollisionEvent
 {
     public string WhatColide { get; set; }
-    public string HandCollision { get; set; }
+    public string HandColliding { get; set; }
+    public FeedbackTypeEnum FeedbackType { get; set; }
     public bool IsActive { get; set; }
     public override bool Equals(object obj)
     {
