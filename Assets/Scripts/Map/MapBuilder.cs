@@ -49,9 +49,6 @@ public class MapBuilder : MonoBehaviour
     private Mesh wallMesh;
     private Mesh objMesh;
 
-    private Mesh objMesh;
-
-
     private GameObject floorParent;
     private GameObject ceilingParent;
     private GameObject wallsParent;
