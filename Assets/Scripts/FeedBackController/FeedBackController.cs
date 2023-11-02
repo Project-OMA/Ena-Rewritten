@@ -14,13 +14,13 @@ public class FeedbackController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Starting OnCollisionEnter");
-        if(CollisionEventHandler.Collisions.Select(x => x.WhatColide).Contains(collision.gameObject.tag))
+        if(!CollisionEventHandler.Collisions.Select(x => x.WhatCollide).Contains(collision.gameObject.tag))
         {
             var colisions = new CollisionEvent
             {
                 IsActive = true,
-                WhatColide = collision.gameObject.tag,
+                Playing = true,
+                WhatCollide = collision.gameObject.tag,
                 FeedbackType = FeedbackTypeEnum.Alarm
             };
             CollisionEventHandler.Collisions.Add(colisions);
@@ -29,9 +29,8 @@ public class FeedbackController : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        Debug.Log("Starting OnCollisionExit");
         string targetTag = collision.gameObject.tag;
-        var itemToUpdate = CollisionEventHandler.Collisions.FirstOrDefault(x => x.WhatColide == targetTag);
+        var itemToUpdate = CollisionEventHandler.Collisions.FirstOrDefault(x => x.WhatCollide == targetTag);
 
         if (itemToUpdate != null)
         {

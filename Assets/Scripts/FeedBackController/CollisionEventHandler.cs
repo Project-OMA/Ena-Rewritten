@@ -4,66 +4,60 @@ using UnityEngine;
 
 public class CollisionEventHandler : MonoBehaviour
 {
-    public AudioSource alarme;
+    public AudioSource alarme { get; set; }
+    public AudioSource Sound;
     public Rigidbody rb;
-
-    public AudioSource Alarme { get => alarme; set => alarme = value; }
     public List<CollisionEvent> History = new List<CollisionEvent>();
     static public List<CollisionEvent> Collisions = new List<CollisionEvent>();
-    void Start()
+
+    private Dictionary<FeedbackTypeEnum, (Action, Action)> feedbackActions;
+
+    private void Awake()
     {
-        
+        InitializeFeedbackActions();
+    }
+
+    private void InitializeFeedbackActions()
+    {
+        feedbackActions = new Dictionary<FeedbackTypeEnum, (Action, Action)>
+        {
+            { FeedbackTypeEnum.Alarm, (alarme.Play, alarme.Stop) },
+            { FeedbackTypeEnum.Sound, (Sound.Play, Sound.Stop) },
+        };
     }
 
     void Update()
     {
         Collisions.RemoveAll(item => {
-            try
-            {
-                ProcessCollisionItem(item);
-                return !item.IsActive;
-            }
-            catch (Exception ex)
-            {
-                Debug.LogError($"An error occurred: {ex.Message}");
-                return false;
-            }
+            Debug.Log($"Collision with: {item.WhatCollide}");
+            ProcessCollisionItem(item);
+            return !item.IsActive;
         });
     }
 
-    void ProcessCollisionItem(CollisionEvent item)
+    private void ProcessCollisionItem(CollisionEvent collision)
     {
-        if (item.IsActive)
+        StartFeedback(collision);
+        if (!collision.IsActive)
         {
-            Debug.Log("Playing");
-            Alarme.Play();
-            return;
+            collision.Playing = false;
+            History.Add(collision);
         }
-        Debug.Log("Stopping");
-        History.Add(item);
-        Alarme.Stop();
-        return;
     }
 
     private void StartFeedback(CollisionEvent collision)
     {
-        switch (collision.FeedbackType)
+        if (feedbackActions.TryGetValue(collision.FeedbackType, out var actions))
         {
-            case FeedbackTypeEnum.Alarm:
-                AlarmFeedback(collision.IsActive);
-                break;
-            default:
-                break;
+            var (play, stop) = actions;
+            if (collision.IsActive && !collision.Playing)
+            {
+                play();
+            }
+            if (!collision.IsActive)
+            {
+                stop();
+            }
         }
-    }
-
-    private void AlarmFeedback(bool active)
-    {
-        if(active)
-        {
-            Alarme.Play();
-            return;
-        }
-        Alarme.Stop();
     }
 }
