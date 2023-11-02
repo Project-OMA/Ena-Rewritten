@@ -408,6 +408,20 @@ public class MapBuilder : MonoBehaviour
             obj.transform.parent = parent.transform;
         }
 
+        var meshFilters = obj.GetComponents<MeshFilter>();
+
+        if(meshFilters.Count() > 1)
+        {
+            for (int i = 1; i < meshFilters.Count(); i++)
+            {
+                Destroy(meshFilters[i]);
+            }
+        }
+        if(!meshFilters.Any())
+        {
+            obj.AddComponent<MeshFilter>();
+        }
+
         var meshColliders = obj.GetComponents<MeshCollider>();
 
         if(meshColliders.Count() > 1)
@@ -422,8 +436,20 @@ public class MapBuilder : MonoBehaviour
             obj.AddComponent<MeshCollider>();
         }
 
-        obj.AddComponent<MeshRenderer>();
-        obj.AddComponent<MeshFilter>();
+        var meshRenderers = obj.GetComponents<MeshRenderer>();
+
+        if(meshRenderers.Count() > 1)
+        {
+            for (int i = 1; i < meshRenderers.Count(); i++)
+            {
+                Destroy(meshRenderers[i]);
+            }
+        }
+        if(!meshRenderers.Any())
+        {
+            obj.AddComponent<MeshRenderer>();
+        }
+
         
         var meshFilter = obj.GetComponent<MeshFilter>();
 
