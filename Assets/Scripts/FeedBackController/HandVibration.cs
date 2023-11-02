@@ -24,7 +24,7 @@ public class HandVibration : MonoBehaviour
         Debug.Log("Starting OnCollisionEnter");
         if(FeedBackController.Collisions.Select(x => x.WhatColide).Contains(collision.gameObject.tag))
         {
-            var colisions = new Collisions
+            var colisions = new CollisionEvent
             {
                 IsActive = true,
                 WhatColide = collision.gameObject.tag
@@ -36,6 +36,12 @@ public class HandVibration : MonoBehaviour
     private void OnCollisionExit(Collision collision)
     {
         Debug.Log("Starting OnCollisionExit");
-        FeedBackController.Collisions = FeedBackController.Collisions.Where(x => x.WhatColide != collision.gameObject.tag).ToList();
+        string targetTag = collision.gameObject.tag;
+        var itemToUpdate = FeedBackController.Collisions.FirstOrDefault(x => x.WhatColide == targetTag);
+
+        if (itemToUpdate != null)
+        {
+            itemToUpdate.IsActive = false;
+        }
     }
 }

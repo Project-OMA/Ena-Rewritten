@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,8 +7,7 @@ using UnityEngine;
 public class FeedBackController : MonoBehaviour
 {
     static public List<string> History = new List<string>();
-    static public List<Collisions> Collisions = new List<Collisions>();
-    public List<Collisions> CollisionPlaying = new List<Collisions>();
+    static public List<CollisionEvent> Collisions = new List<CollisionEvent>();
     public HandVibration HandVibration;
     // Start is called before the first frame update
     void Start()
@@ -18,21 +18,30 @@ public class FeedBackController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Collisions.Any(x => x.IsActive))
-        {
-            Debug.Log("Have collision");
-            foreach (var item in Collisions)
+        Collisions.RemoveAll(item => {
+            try
             {
-                Debug.Log("Playing");
-                CollisionPlaying.Add(item);
-                HandVibration.Alarme.Play();
+                ProcessCollisionItem(item);
+                return !item.IsActive;
             }
-        }
-        foreach(var item in CollisionPlaying.Except(Collisions.Where(x => x.IsActive)))
+            catch (Exception ex)
+            {
+                Debug.LogError($"An error occurred: {ex.Message}");
+                return true;
+            }
+        });
+    }
+    void ProcessCollisionItem(CollisionEvent item)
+    {
+        if (item.IsActive)
         {
-            Debug.Log("Stoping");
-            History.Add($"Collision on: {item.WhatColide}, in hand: {item.HandCollision}");
-            HandVibration.Alarme.Stop();
+            Debug.Log("Playing");
+            HandVibration.Alarme.Play();
+            return;
         }
+        Debug.Log("Stopping");
+        History.Add($"Collision on: {item.WhatColide}, in hand: {item.HandCollision}");
+        HandVibration.Alarme.Stop();
+        return;
     }
 }
