@@ -3,17 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Collision
+public class Collisions
 {
-    public Guid IteractionId { get; set; }
     public string WhatColide { get; set; }
-    public string WhereColide { get; set; }
+    public string HandCollision { get; set; }
+    public bool IsActive { get; set; }
     public override bool Equals(object obj)
     {
-        return this.IteractionId.Equals(IteractionId);
+        return this.WhatColide.Equals(WhatColide);
     }
     public override int GetHashCode()
     {
-        return IteractionId.GetHashCode();
+        return WhatColide.GetHashCode();
     }
 }
