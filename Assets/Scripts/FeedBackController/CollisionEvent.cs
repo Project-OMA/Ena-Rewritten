@@ -4,6 +4,7 @@ public class CollisionEvent
 {
     private DateTime startPlaying;
     private TimeSpan timePlaying;
+    private bool isPlaying;
 
     public string CollidedObject { get; }
     public string CollisionLocationOnPlayer { get; }
@@ -13,19 +14,19 @@ public class CollisionEvent
     {
         get
         {
-            return IsPlaying;
+            return isPlaying;
         }
         set
         {
             if (value)
             {
                 startPlaying = DateTime.Now;
-                IsPlaying = true;
+                isPlaying = true;
             }
-            else if (IsPlaying)
+            else if (isPlaying)
             {
                 timePlaying += DateTime.Now - startPlaying;
-                IsPlaying = false;
+                isPlaying = false;
             }
         }
     }
@@ -42,5 +43,6 @@ public class CollisionEvent
         FeedbackType = feedbackType;
         IsColliding = true;
         IsPlaying = false;
+	timePlaying = TimeSpan.Zero;
     }
 }
