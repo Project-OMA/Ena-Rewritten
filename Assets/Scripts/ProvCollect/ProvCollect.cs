@@ -1,14 +1,10 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
-using System;
-using System.Text;
 using System.IO;
 
 public class ProvCollect : MonoBehaviour
 {
-    private List<Vector3> playerPositions = new List<Vector3>();
     private float waitTime = 2.0f;
 
     private float timer = 0.0f;
@@ -17,30 +13,24 @@ public class ProvCollect : MonoBehaviour
 
     private float scrollBar = 1.0f;
 
-    private Transform playerTransform;    
+    private Transform playerTransform;
 
     private StreamWriter writer;
 
-    
-    
-    private string fileName = $"{Directory.GetCurrentDirectory()}/PlayerLogs/myfile.txt";
+    private readonly string fileName = $"{Directory.GetCurrentDirectory()}/PlayerLogs/myfile.txt";
 
-    private string endpointUrl = "";
+    private readonly string endpointUrl = "";
+
     // Start is called before the first frame update
     void Start()
     {
-        
         playerTransform = transform;
         writer = new StreamWriter(fileName, true);
     }
 
-    private void SavePositionsToFile(Vector3 pos, string fileName)
+    private void SavePositionsToFile(Vector3 pos)
     {
-        
-            
-            writer.WriteLine(pos.ToString());
-            
-        
+        writer.WriteLine(pos.ToString());
     }
 
     // Update is called once per frame
@@ -53,34 +43,32 @@ public class ProvCollect : MonoBehaviour
             visualTime = timer;
 
             // Remove the recorded 2 seconds.
-            timer = timer - waitTime;
+            timer -= waitTime;
             Time.timeScale = scrollBar;
             var pos = playerTransform.position;
             Debug.Log(pos);
-            SavePositionsToFile(pos, fileName);
-
+            SavePositionsToFile(pos);
         }
-        
     }
 
     private IEnumerator Upload()
     {
-
         // Create a UnityWebRequest with a POST method
-        UnityWebRequest www = UnityWebRequest.Post(endpointUrl, "POST");
+        UnityWebRequest www = UnityWebRequest.Post(endpointUrl, new WWWForm());
 
         // Create a new MultipartFormDataSection to upload the file
         byte[] fileData = File.ReadAllBytes(fileName);
-        www.uploadHandler = new UploadHandlerRaw(fileData);
-        www.uploadHandler.contentType = "application/octet-stream";
+        www.uploadHandler = new UploadHandlerRaw(fileData)
+        {
+            contentType = "application/octet-stream"
+        };
 
-        // Set headers (if needed)
-        www.SetRequestHeader("Authorization", "Bearer YourAccessToken");
+        // authentication if needed.
+        // www.SetRequestHeader("Authorization", "Bearer YourAccessToken");
 
-        // Send the request
         yield return www.SendWebRequest();
 
-        if (www.isNetworkError || www.isHttpError)
+        if (www.result == UnityWebRequest.Result.ConnectionError || www.result == UnityWebRequest.Result.ProtocolError)
         {
             Debug.LogError("Error: " + www.error);
         }
@@ -90,8 +78,9 @@ public class ProvCollect : MonoBehaviour
         }
     }
 
-    void OnApplicationQuit(){
+    void OnApplicationQuit()
+    {
         writer.Close();
-        //Upload();
+        StartCoroutine(Upload());
     }
 }

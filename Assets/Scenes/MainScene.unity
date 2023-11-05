@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -397,6 +397,11 @@ LineRenderer:
   m_UseWorldSpace: 1
   m_Loop: 0
   m_ApplyActiveColorSpace: 1
+--- !u!82 &101291842 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 1477162865842979718, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
+  m_PrefabInstance: {fileID: 112244043}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &112244043
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -812,6 +817,7 @@ GameObject:
   - component: {fileID: 391423212}
   - component: {fileID: 391423211}
   - component: {fileID: 391423210}
+  - component: {fileID: 391423214}
   m_Layer: 0
   m_Name: Left Controller
   m_TagString: Untagged
@@ -1453,6 +1459,20 @@ MonoBehaviour:
   m_OccludeARHitsWith3DObjects: 0
   m_OccludeARHitsWith2DObjects: 0
   m_ScaleMode: 0
+--- !u!114 &391423214
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 391423203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59b9bf09e40811b2487ba616c9176d5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Alarme: {fileID: 101291842}
+  Sound: {fileID: 101291842}
 --- !u!1 &492519317
 GameObject:
   m_ObjectHideFlags: 0
@@ -1669,6 +1689,7 @@ GameObject:
   - component: {fileID: 630651521}
   - component: {fileID: 630651520}
   - component: {fileID: 630651519}
+  - component: {fileID: 630651523}
   m_Layer: 0
   m_Name: Right Controller
   m_TagString: Untagged
@@ -2310,6 +2331,20 @@ MonoBehaviour:
   m_OccludeARHitsWith3DObjects: 0
   m_OccludeARHitsWith2DObjects: 0
   m_ScaleMode: 0
+--- !u!114 &630651523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 630651512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59b9bf09e40811b2487ba616c9176d5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Alarme: {fileID: 101291842}
+  Sound: {fileID: 101291842}
 --- !u!114 &658378911 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7030759997054412983, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}

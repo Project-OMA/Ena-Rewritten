@@ -2,38 +2,37 @@ using System;
 
 public class CollisionEvent
 {
-    private DateTime startPlaying;
-    private TimeSpan timePlaying;
-    private bool isPlaying;
+    private DateTime startColliding;
+    private TimeSpan timeColliding;
+    private bool isColliding;
 
     public string CollidedObject { get; }
     public string CollisionLocationOnPlayer { get; }
     public FeedbackTypeEnum FeedbackType { get; }
-    public bool IsColliding { get; set; }
-    public bool IsPlaying
+    public bool IsColliding
     {
         get
         {
-            return isPlaying;
+            return isColliding;
         }
         set
         {
             if (value)
             {
-                startPlaying = DateTime.Now;
-                isPlaying = true;
+                startColliding = DateTime.Now;
+                isColliding = true;
             }
-            else if (isPlaying)
+            else if (isColliding)
             {
-                timePlaying += DateTime.Now - startPlaying;
-                isPlaying = false;
+                timeColliding += DateTime.Now - startColliding;
+                isColliding = false;
             }
         }
     }
 
-    public TimeSpan TimePlaying
+    public TimeSpan TimeColliding
     {
-        get { return IsPlaying ? timePlaying + (DateTime.Now - startPlaying) : timePlaying; }
+        get { return IsColliding ? timeColliding + (DateTime.Now - startColliding) : timeColliding; }
     }
 
     public CollisionEvent(string collidedObject, string collisionLocationOnPlayer, FeedbackTypeEnum feedbackType)
@@ -42,7 +41,6 @@ public class CollisionEvent
         CollisionLocationOnPlayer = collisionLocationOnPlayer;
         FeedbackType = feedbackType;
         IsColliding = true;
-        IsPlaying = false;
-	timePlaying = TimeSpan.Zero;
+	    timeColliding = TimeSpan.Zero;
     }
 }
