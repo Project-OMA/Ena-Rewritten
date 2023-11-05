@@ -11,7 +11,7 @@ public class FeedbackController : MonoBehaviour
     public AudioSource Sound;
     public Rigidbody Rb { get; set; }
     private XRController xrController;
-    private HapticFeedback haptic;
+    private HapticFeedback HapticImpulse;
     static public List<CollisionEvent> History { get; } = new List<CollisionEvent>();
     private static readonly List<CollisionEvent> Collisions = new List<CollisionEvent>();
 
@@ -22,7 +22,7 @@ public class FeedbackController : MonoBehaviour
     private void Awake()
     {
         xrController = GetComponent<XRController>();
-        haptic = new HapticFeedback(xrController);
+        HapticImpulse = new HapticFeedback(xrController);
         Debug.Log($"tag{gameObject?.name ?? string.Empty}");
         InitializeFeedbackActions();
     }
@@ -33,7 +33,7 @@ public class FeedbackController : MonoBehaviour
         {
             { FeedbackTypeEnum.Alarm, (Alarme.Play, Alarme.Stop, () => Alarme.isPlaying) },
             { FeedbackTypeEnum.Sound, (Sound.Play, Sound.Stop, () => Sound.isPlaying) },
-            { FeedbackTypeEnum.Haptic, (haptic.Start, haptic.Stop, () => haptic.IsPlaying) }
+            { FeedbackTypeEnum.Haptic, (HapticImpulse.Play, HapticImpulse.Stop, () => HapticImpulse.IsPlaying) }
         };
     }
 

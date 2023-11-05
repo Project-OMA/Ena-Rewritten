@@ -1,35 +1,46 @@
+using System.Collections;
+using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class HapticFeedback
 {
-    /*
-        Class responsible for handling the haptic feedback.
-    */
     private XRController xrController;
+    private bool isHapticFeedbackPlaying = false;
+    private float hapticFeedbackAmplitude = 0.5f;
+    private float hapticFeedbackDuration = 0.75f;
+    private float stopDuration = 30f; // Stop haptic feedback after 30 seconds
+    private float timer = 0f;
+
     public HapticFeedback(XRController xrController)
     {
         this.xrController = xrController;
     }
-    private bool isHapticFeedbackPlaying = false;
 
-    public void Start()
+    public void Play()
     {
         if (!isHapticFeedbackPlaying)
         {
-            if (xrController != null)
-            {
-                xrController.SendHapticImpulse(0.5f, 0.75f);
-            }
             isHapticFeedbackPlaying = true;
+            xrController.StartCoroutine(PlayHapticFeedback());
         }
+    }
+
+    private IEnumerator PlayHapticFeedback()
+    {
+        while (isHapticFeedbackPlaying && timer < stopDuration)
+        {
+            xrController.SendHapticImpulse(hapticFeedbackAmplitude, hapticFeedbackDuration);
+            timer += hapticFeedbackDuration;
+
+            yield return new WaitForSeconds(hapticFeedbackDuration);
+        }
+
+        Stop();
     }
 
     public void Stop()
     {
-        if (isHapticFeedbackPlaying)
-        {
-            isHapticFeedbackPlaying = false;
-        }
+        isHapticFeedbackPlaying = false;
     }
 
     public bool IsPlaying
