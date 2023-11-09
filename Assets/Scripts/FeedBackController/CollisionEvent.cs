@@ -8,7 +8,7 @@ public class CollisionEvent
 
     public string CollidedObject { get; }
     public string CollisionLocationOnPlayer { get; }
-    public FeedbackTypeEnum FeedbackType { get; }
+    public FeedbackTypeEnum [] FeedbackType { get; }
     public bool IsColliding
     {
         get
@@ -35,7 +35,7 @@ public class CollisionEvent
         get { return IsColliding ? timeColliding + (DateTime.Now - startColliding) : timeColliding; }
     }
 
-    public CollisionEvent(string collidedObject, string collisionLocationOnPlayer, FeedbackTypeEnum feedbackType)
+    public CollisionEvent(string collidedObject, string collisionLocationOnPlayer, params FeedbackTypeEnum[] feedbackType)
     {
         CollidedObject = collidedObject;
         CollisionLocationOnPlayer = collisionLocationOnPlayer;

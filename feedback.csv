@@ -1,0 +1,2 @@
+CollidedObject,CollisionLocationOnPlayer,FeedbackType,IsColliding,TimeColliding
+WallFront:14_16_14_17,Player Variant(Controller),FeedbackTypeEnum[],False,00:00:01.6809455

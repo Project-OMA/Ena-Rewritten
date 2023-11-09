@@ -1,38 +1,52 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit;
-
+using UnityEngine.XR;
 public class HapticFeedback
 {
-    private XRController xrController;
+    private InputDevice xrController;
+    private MonoBehaviour self;
     private bool isHapticFeedbackPlaying = false;
     private float hapticFeedbackAmplitude = 0.5f;
-    private float hapticFeedbackDuration = 0.75f;
     private float stopDuration = 30f; // Stop haptic feedback after 30 seconds
-    private float timer = 0f;
 
-    public HapticFeedback(XRController xrController)
+    public HapticFeedback(InputDevice inputDevice, MonoBehaviour self)
     {
-        this.xrController = xrController;
+        this.xrController = inputDevice;
+        this.self = self;
     }
 
     public void Play()
     {
+        Debug.Log($"isHapticFeedbackPlaying: {isHapticFeedbackPlaying}");
         if (!isHapticFeedbackPlaying)
         {
             isHapticFeedbackPlaying = true;
-            xrController.StartCoroutine(PlayHapticFeedback());
+            self.StartCoroutine(PlayHapticFeedback());
         }
     }
 
     private IEnumerator PlayHapticFeedback()
     {
-        while (isHapticFeedbackPlaying && timer < stopDuration)
+        if (xrController != null && xrController.TryGetHapticCapabilities(out var capabilities))
         {
-            xrController.SendHapticImpulse(hapticFeedbackAmplitude, hapticFeedbackDuration);
-            timer += hapticFeedbackDuration;
-
-            yield return new WaitForSeconds(hapticFeedbackDuration);
+            Debug.Log($"capabilities: {capabilities}");
+            if (capabilities.supportsImpulse)
+            {
+                uint channel = 0;
+                for (float elapsed = 0; elapsed < stopDuration; elapsed += Time.deltaTime)
+                {
+                    if(isHapticFeedbackPlaying)
+                    {
+                        xrController.SendHapticImpulse(channel, hapticFeedbackAmplitude);
+                        yield return null;
+                    }
+                    yield return null;
+                }
+            }
+        }
+        else
+        {
+            Debug.Log($"xrcontroller: {xrController}");
         }
 
         Stop();

@@ -791,10 +791,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8270855663187062767}
-  - component: {fileID: 9078200112856291836}
   - component: {fileID: 8183275356367109385}
   - component: {fileID: 3602117740461284198}
-  - component: {fileID: 5581739125422043946}
+  - component: {fileID: 195445055339462722}
   m_Layer: 0
   m_Name: XR Controller Left
   m_TagString: Untagged
@@ -823,20 +822,6 @@ Transform:
   - {fileID: 8173916776436821938}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &9078200112856291836
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8758423527188247893}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e487039280002f4587e215c292d9818, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  alarme: {fileID: 8183275356367109385}
-  rb: {fileID: 0}
 --- !u!82 &8183275356367109385
 AudioSource:
   m_ObjectHideFlags: 0
@@ -844,7 +829,7 @@ AudioSource:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8758423527188247893}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
@@ -954,7 +939,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.03
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5581739125422043946
+--- !u!114 &195445055339462722
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -963,7 +948,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8758423527188247893}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59b9bf09e40811b2487ba616c9176d5c, type: 3}
+  m_Script: {fileID: 11500000, guid: 6ef0e4723b64c884699a375196c13ac0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HandVibration: {fileID: 9078200112856291836}
+  m_FallbackIfEyeTrackingUnavailable: 1

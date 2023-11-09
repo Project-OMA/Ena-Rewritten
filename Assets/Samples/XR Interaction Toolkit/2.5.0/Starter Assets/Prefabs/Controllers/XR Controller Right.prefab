@@ -483,11 +483,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3475118261464492563}
-  - component: {fileID: 332473987212670024}
   - component: {fileID: 8335531320670790456}
   - component: {fileID: 4995224107770087480}
-  - component: {fileID: 3506074644865589263}
   - component: {fileID: 8526267191679857314}
+  - component: {fileID: 4154701381696822359}
   m_Layer: 0
   m_Name: XR Controller Right
   m_TagString: Untagged
@@ -517,20 +516,6 @@ Transform:
   - {fileID: 72774941846877320}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &332473987212670024
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4283425761326543017}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e487039280002f4587e215c292d9818, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  alarme: {fileID: 8335531320670790456}
-  rb: {fileID: 0}
 --- !u!82 &8335531320670790456
 AudioSource:
   m_ObjectHideFlags: 0
@@ -648,19 +633,6 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.03
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &3506074644865589263
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4283425761326543017}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59b9bf09e40811b2487ba616c9176d5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  HandVibration: {fileID: 332473987212670024}
 --- !u!114 &8526267191679857314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -675,6 +647,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bengala: {fileID: 613428835707328605}
   controller: {fileID: 0}
+--- !u!114 &4154701381696822359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4283425761326543017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59b9bf09e40811b2487ba616c9176d5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Alarme: {fileID: 8335531320670790456}
+  Sound: {fileID: 8335531320670790456}
 --- !u!1 &6118169511635425143
 GameObject:
   m_ObjectHideFlags: 0

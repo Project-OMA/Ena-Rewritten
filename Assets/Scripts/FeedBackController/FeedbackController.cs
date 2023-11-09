@@ -2,28 +2,34 @@ using System.Linq;
 using UnityEngine;
 using System;
 using System.Collections.Generic;
-using UnityEngine.XR.Interaction.Toolkit;
 using System.IO;
+using UnityEngine.XR;
 
 public class FeedbackController : MonoBehaviour
 {
     public AudioSource Alarme;
     public AudioSource Sound;
     public Rigidbody Rb { get; set; }
-    private XRController xrController;
+    public InputDevice inputDevice;
     private HapticFeedback HapticImpulse;
     static public List<CollisionEvent> History { get; } = new List<CollisionEvent>();
     private static readonly List<CollisionEvent> Collisions = new List<CollisionEvent>();
 
-    private readonly string fileName = $"{Directory.GetCurrentDirectory()}/PlayerLogs/feedback.csv";
+    private readonly string fileName = $"{Directory.GetCurrentDirectory()}/feedback.csv";
 
     private Dictionary<FeedbackTypeEnum, (Action, Action, Func<bool>)> feedbackActions;
 
     private void Awake()
     {
-        xrController = GetComponent<XRController>();
-        HapticImpulse = new HapticFeedback(xrController);
-        Debug.Log($"tag{gameObject?.name ?? string.Empty}");
+        // Initialize the InputDevice for the left Oculus Touch controller
+        List<InputDevice> devices = new List<InputDevice>();
+        var isRightHand = gameObject.name.ToLower().Contains("right");
+        InputDevices.GetDevicesAtXRNode(isRightHand ? XRNode.RightHand : XRNode.LeftHand, devices);
+        if (devices.Count > 0)
+        {
+            inputDevice = devices[0];
+        }
+        HapticImpulse = new HapticFeedback(inputDevice, this);
         InitializeFeedbackActions();
     }
 
@@ -47,18 +53,21 @@ public class FeedbackController : MonoBehaviour
 
     private void HandleFeedback(CollisionEvent collision)
     {
-        if (feedbackActions.TryGetValue(collision.FeedbackType, out var actions))
+        foreach (var item in collision.FeedbackType)
         {
-            var (play, stop, isPlaying) = actions;
-            if (collision.IsColliding && !isPlaying())
+            if (feedbackActions.TryGetValue(item, out var actions))
             {
-                Debug.Log($"Playing: {collision.CollidedObject}");
-                play();
-            }
-            if(!collision.IsColliding)
-            {
-                Debug.Log($"Stopping: {collision.CollidedObject}");
-                stop();
+                var (play, stop, isPlaying) = actions;
+                if (collision.IsColliding && !isPlaying())
+                {
+                    Debug.Log($"Playing: {item}");
+                    play();
+                }
+                if(!collision.IsColliding)
+                {
+                    Debug.Log($"Stopping: {item}");
+                    stop();
+                }
             }
         }
     }
@@ -73,7 +82,7 @@ public class FeedbackController : MonoBehaviour
             var collisionEvent = new CollisionEvent(
                 collidedObject: collidedObjectTag,
                 collisionLocationOnPlayer: playerColliderTag,
-                feedbackType: FeedbackTypeEnum.Alarm);
+                feedbackType: new [] { FeedbackTypeEnum.Haptic, FeedbackTypeEnum.Alarm });
             Collisions.Add(collisionEvent);
         }
     }
