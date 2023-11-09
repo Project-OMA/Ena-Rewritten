@@ -1,4 +1,0 @@
-CollidedObject,CollisionLocationOnPlayer,FeedbackType,IsColliding,TimeColliding
-WallFront:14_16_14_17,Player Variant(Controller),Alarm,False,00:00:02.0360760
-WallFront:14_16_14_17,Player Variant(Controller),Alarm,False,00:00:00.1089710
-WallFront:14_16_14_17,Player Variant(Controller),Alarm,False,00:00:00.7273620

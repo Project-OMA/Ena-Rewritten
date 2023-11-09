@@ -15,7 +15,7 @@ public class FeedbackController : MonoBehaviour
     static public List<CollisionEvent> History { get; } = new List<CollisionEvent>();
     private static readonly List<CollisionEvent> Collisions = new List<CollisionEvent>();
 
-    private readonly string fileName = $"{Directory.GetCurrentDirectory()}/feedback.csv";
+    private readonly string fileName = $"{Directory.GetCurrentDirectory()}/PlayerLogs/feedback.csv";
 
     private Dictionary<FeedbackTypeEnum, (Action, Action, Func<bool>)> feedbackActions;
 
