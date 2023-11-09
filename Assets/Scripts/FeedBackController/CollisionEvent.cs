@@ -5,9 +5,8 @@ public class CollisionEvent
     private DateTime lastColliding;
 
     [CsvColumn("Start Colliding Time")]
-    private DateTime startColliding;
+    public DateTime StartColliding { get; }
 
-    [CsvColumn("Total Time Colliding")]
     private TimeSpan timeColliding;
     private bool isColliding;
 
@@ -50,7 +49,7 @@ public class CollisionEvent
         CollisionLocationOnPlayer = collisionLocationOnPlayer;
         FeedbackType = feedbackType;
         IsColliding = true;
-        startColliding = DateTime.Now;
+        StartColliding = DateTime.Now;
         timeColliding = TimeSpan.Zero;
     }
 }

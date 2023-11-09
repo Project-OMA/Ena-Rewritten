@@ -1,6 +1,6 @@
 using System;
 
-[AttributeUsage(AttributeTargets.All, Inherited = false, AllowMultiple = false)]
+[AttributeUsage(AttributeTargets.Property, Inherited = false, AllowMultiple = false)]
 sealed class CsvColumnAttribute : Attribute
 {
     public string ColumnName { get; }
