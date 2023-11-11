@@ -1,4 +1,5 @@
 using UnityEngine;
+using UI;
 
 public class InteractionController : MonoBehaviour
 {
@@ -9,8 +10,15 @@ public class InteractionController : MonoBehaviour
     private Collider collider;
     private Rigidbody rigidbody;
 
+    private TTSManager ttsManager;
+    
+
+
     private float runningInput()
+
     {
+
+        ttsManager.Speak("Currently Running!");
         return Input.GetAxis("Fire2");
     }
 
@@ -33,6 +41,7 @@ public class InteractionController : MonoBehaviour
         // Get capsule collider
         collider = GetComponent<CapsuleCollider>();
         rigidbody = GetComponent<Rigidbody>();
+        ttsManager = GameObject.FindObjectOfType<TTSManager>();
     }
 
     void Update()

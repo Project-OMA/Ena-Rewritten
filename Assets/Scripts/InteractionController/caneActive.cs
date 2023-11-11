@@ -6,6 +6,8 @@ using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
 
 
+
+
 public class caneActive : MonoBehaviour
 {
     public GameObject bengala;
@@ -15,6 +17,10 @@ public class caneActive : MonoBehaviour
     readonly bool lastPrimaryButtonState = false;
 
     InputDevice xrInputDevice;
+
+    
+
+
 
 
     // Start is called before the first frame update
@@ -38,6 +44,7 @@ public class caneActive : MonoBehaviour
         xrInputDevice = xrInputDevices.FirstOrDefault();
 
         var isFeatureAvalible = xrInputDevice.TryGetFeatureValue(CommonUsages.primaryButton, out var buttonValue);
+
 
         return isFeatureAvalible && buttonValue;
     }
