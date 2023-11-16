@@ -12,12 +12,11 @@ public class FeedbackController : MonoBehaviour
     public Rigidbody Rb { get; set; }
     public InputDevice inputDevice;
     private HapticFeedback HapticImpulse;
+    private bool isWalking;
     static public List<CollisionEvent> History { get; } = new List<CollisionEvent>();
-    private static readonly List<CollisionEvent> Collisions = new List<CollisionEvent>();
+    private static readonly Dictionary<string, CollisionEvent> Collisions = new Dictionary<string, CollisionEvent>();
 
     private readonly string fileName = $"{Directory.GetCurrentDirectory()}/PlayerLogs/feedback.csv";
-
-    private Dictionary<FeedbackTypeEnum, (Action, Action, Func<bool>)> feedbackActions;
 
     private void Awake()
     {
@@ -30,45 +29,17 @@ public class FeedbackController : MonoBehaviour
             inputDevice = devices[0];
         }
         HapticImpulse = new HapticFeedback(inputDevice, this);
-        InitializeFeedbackActions();
-    }
-
-    private void InitializeFeedbackActions()
-    {
-        feedbackActions = new Dictionary<FeedbackTypeEnum, (Action, Action, Func<bool>)>
-        {
-            { FeedbackTypeEnum.Alarm, (Alarme.Play, Alarme.Stop, () => Alarme.isPlaying) },
-            { FeedbackTypeEnum.Sound, (Sound.Play, Sound.Stop, () => Sound.isPlaying) },
-            { FeedbackTypeEnum.Haptic, (HapticImpulse.Play, HapticImpulse.Stop, () => HapticImpulse.IsPlaying) }
-        };
     }
 
     private void Update()
     {
-        foreach (var item in Collisions)
+        foreach (var item in Collisions.Values)
         {
-            HandleFeedback(item);
-        }
-    }
-
-    private void HandleFeedback(CollisionEvent collision)
-    {
-        foreach (var item in collision.FeedbackType)
-        {
-            if (feedbackActions.TryGetValue(item, out var actions))
+            if(item.CollidedObject.Contains("floor"))
             {
-                var (play, stop, isPlaying) = actions;
-                if (collision.IsColliding && !isPlaying())
-                {
-                    Debug.Log($"Playing: {item}");
-                    play();
-                }
-                if(!collision.IsColliding)
-                {
-                    Debug.Log($"Stopping: {item}");
-                    stop();
-                }
+                HanldeWalkSound(item);
             }
+            HandleFeedback(item);
         }
     }
 
@@ -77,13 +48,19 @@ public class FeedbackController : MonoBehaviour
         string collidedObjectTag = GetObjectName(collision.gameObject);
         string playerColliderTag = GetObjectName(gameObject);
 
-        if (!collidedObjectTag.Contains("floor") && !Collisions.Any(x => FilterCollision(x, collidedObjectTag, playerColliderTag)))
+        var feedbackSettings = collision.gameObject.GetComponent<ObjectFeedbackSettings>().settings;
+
+        if (Collisions.TryGetValue(collidedObjectTag+playerColliderTag, out var item))
+        {
+            item.IsColliding = true;
+        }
+        else
         {
             var collisionEvent = new CollisionEvent(
                 collidedObject: collidedObjectTag,
                 collisionLocationOnPlayer: playerColliderTag,
-                feedbackType: new [] { FeedbackTypeEnum.Haptic, FeedbackTypeEnum.Alarm });
-            Collisions.Add(collisionEvent);
+                feedbackSettings: feedbackSettings);
+            Collisions.Add(collidedObjectTag+playerColliderTag, collisionEvent);
         }
     }
 
@@ -92,16 +69,88 @@ public class FeedbackController : MonoBehaviour
         string collidedObjectTag = GetObjectName(collision.gameObject);
         string playerColliderTag = GetObjectName(gameObject);
 
-        var itemToUpdate = Collisions.FirstOrDefault(x => FilterCollision(x, collidedObjectTag, playerColliderTag));
-
-        if (itemToUpdate != null)
+        if (Collisions.TryGetValue(collidedObjectTag+playerColliderTag, out var itemToUpdate))
         {
             itemToUpdate.IsColliding = false;
             HandleFeedback(itemToUpdate);
             History.Add(itemToUpdate);
-            Collisions.Remove(itemToUpdate);
+            Collisions.Remove(collidedObjectTag+playerColliderTag);
         }
     }
+
+    private void HanldeWalkSound(CollisionEvent item)
+    {
+        // Check if the player is moving (you can customize this based on your movement script)
+        if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
+        {
+            if (!item.CanPlay)
+            {
+                item.CanPlay = true;
+            }
+        }
+        else
+        {
+            if (item.CanPlay)
+            {
+                item.CanPlay = false;
+            }
+        }
+    }
+    private void HandleFeedback(CollisionEvent collision)
+    {
+        if (!collision.IsColliding || !collision.CanPlay)
+        {
+            StopAllFeedback();
+            return;
+        }
+
+        foreach (var feedbackType in collision.FeedbackSettings.feedbackTypes)
+        {
+            switch (feedbackType)
+            {
+                case FeedbackTypeEnum.Sound:
+                    PlaySoundFeedback(collision.FeedbackSettings.sound);
+                    break;
+                case FeedbackTypeEnum.Haptic:
+                    PlayHapticFeedback(collision.FeedbackSettings.hapticForce);
+                    break;
+                default:
+                    break;
+            }
+        }
+    }
+
+    private void PlaySoundFeedback(AudioClip sound)
+    {
+        if (!Sound.isPlaying)
+        {
+            Sound.clip = sound;
+            Sound.Play();
+        }
+        else
+        {
+            Sound.Stop();
+        }
+    }
+
+    private void PlayHapticFeedback(float hapticForce)
+    {
+        if (!HapticImpulse.isPlaying)
+        {
+            HapticImpulse.Play(hapticForce);
+        }
+        else
+        {
+            HapticImpulse.Stop();
+        }
+    }
+
+    private void StopAllFeedback()
+    {
+        Sound.Stop();
+        HapticImpulse.Stop();
+    }
+
 
     private static bool FilterCollision(CollisionEvent x, string collidedObjectTag, string playerColliderTag)
     {

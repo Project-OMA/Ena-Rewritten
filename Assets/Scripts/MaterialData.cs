@@ -23,6 +23,10 @@ public class MaterialData : ScriptableObject
         public bool useGlobalUV = false;
 
         public Vector2 scale = Vector2.one; 
+
+        public AudioClip sound;
+        public FeedbackTypeEnum[] feedbackTypes;
+        public float hapticForce;
     }
 
     public Material GetMaterial(string id)
@@ -30,6 +34,24 @@ public class MaterialData : ScriptableObject
         if (Materials.Exists(x => x.id == id))
         {
             return Materials.Find(x => x.id == id).material;
+        }
+        else
+        {
+            throw new System.Exception("Material " + id + " not found");
+        }
+    }
+
+    public FeedbackSettings GetFeedbackSettings(string id)
+    {
+        if (Materials.Exists(x => x.id == id))
+        {
+            var material = Materials.Find(x => x.id == id);
+            return new FeedbackSettings
+            {
+                feedbackTypes = material.feedbackTypes,
+                sound = material.sound,
+                hapticForce = material.hapticForce
+            };
         }
         else
         {

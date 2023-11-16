@@ -74,11 +74,13 @@ public class MapBuilder : MonoBehaviour
         Material material = null;
         bool useGlobalUV = false;
         Vector2 scale = Vector2.one;
+        FeedbackSettings feedbackSettings =  new FeedbackSettings();
         try
         {
             material = floorMaterialData.GetMaterial(code);
             useGlobalUV = floorMaterialData.DoesMaterialUsesGlobalUV(code);
             scale = floorMaterialData.GetMaterialScale(code);
+            feedbackSettings = floorMaterialData.GetFeedbackSettings(code);
         }
         catch (System.Exception)
         {
@@ -128,11 +130,13 @@ public class MapBuilder : MonoBehaviour
         floorPiece.transform.parent = floorParent.transform;
         //add mesh renderer and filter
         floorPiece.AddComponent<MeshRenderer>();
+        floorPiece.AddComponent<ObjectFeedbackSettings>();
         floorPiece.AddComponent<MeshFilter>();
         floorPiece.AddComponent<MeshCollider>();
 
         floorPiece.tag = "floor";
         floorPiece.GetComponent<MeshRenderer>().material = material;
+        floorPiece.GetComponent<ObjectFeedbackSettings>().settings = feedbackSettings;
         floorPiece.GetComponent<MeshFilter>().mesh = mesh;
         floorPiece.GetComponent<MeshCollider>().sharedMesh = mesh;
 

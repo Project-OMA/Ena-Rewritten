@@ -6,7 +6,6 @@ public class HapticFeedback
     private InputDevice xrController;
     private MonoBehaviour self;
     private bool isHapticFeedbackPlaying = false;
-    private float hapticFeedbackAmplitude = 0.5f;
     private float stopDuration = 30f; // Stop haptic feedback after 30 seconds
 
     public HapticFeedback(InputDevice inputDevice, MonoBehaviour self)
@@ -15,17 +14,17 @@ public class HapticFeedback
         this.self = self;
     }
 
-    public void Play()
+    public void Play(float amplitude = 0.4f)
     {
         Debug.Log($"isHapticFeedbackPlaying: {isHapticFeedbackPlaying}");
         if (!isHapticFeedbackPlaying)
         {
             isHapticFeedbackPlaying = true;
-            self.StartCoroutine(PlayHapticFeedback());
+            self.StartCoroutine(PlayHapticFeedback(amplitude));
         }
     }
 
-    private IEnumerator PlayHapticFeedback()
+    private IEnumerator PlayHapticFeedback(float amplitude)
     {
         if (xrController != null && xrController.TryGetHapticCapabilities(out var capabilities))
         {
@@ -37,7 +36,7 @@ public class HapticFeedback
                 {
                     if(isHapticFeedbackPlaying)
                     {
-                        xrController.SendHapticImpulse(channel, hapticFeedbackAmplitude);
+                        xrController.SendHapticImpulse(channel, amplitude);
                         yield return null;
                     }
                     yield return null;
@@ -57,7 +56,7 @@ public class HapticFeedback
         isHapticFeedbackPlaying = false;
     }
 
-    public bool IsPlaying
+    public bool isPlaying
     {
         get { return isHapticFeedbackPlaying; }
     }

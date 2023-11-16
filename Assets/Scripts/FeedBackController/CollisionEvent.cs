@@ -15,7 +15,7 @@ public class CollisionEvent
 
     [CsvColumn("Collision Location on Player")]
     public string CollisionLocationOnPlayer { get; }
-    public FeedbackTypeEnum[] FeedbackType { get; }
+    public FeedbackSettings FeedbackSettings { get; }
     public bool IsColliding
     {
         get
@@ -37,17 +37,19 @@ public class CollisionEvent
         }
     }
 
+    public bool CanPlay { get; set; }
+
     [CsvColumn("Current Time Colliding")]
     public TimeSpan TimeColliding
     {
         get { return IsColliding ? timeColliding + (DateTime.Now - lastColliding) : timeColliding; }
     }
 
-    public CollisionEvent(string collidedObject, string collisionLocationOnPlayer, params FeedbackTypeEnum[] feedbackType)
+    public CollisionEvent(string collidedObject, string collisionLocationOnPlayer, FeedbackSettings feedbackSettings)
     {
         CollidedObject = collidedObject;
         CollisionLocationOnPlayer = collisionLocationOnPlayer;
-        FeedbackType = feedbackType;
+        FeedbackSettings = feedbackSettings;
         IsColliding = true;
         StartColliding = DateTime.Now;
         timeColliding = TimeSpan.Zero;
