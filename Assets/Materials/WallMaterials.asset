@@ -18,33 +18,54 @@ MonoBehaviour:
     material: {fileID: 2100000, guid: c52e5cd2e15930dbdba219f28f081c02, type: 2}
     useGlobalUV: 0
     scale: {x: 2, y: 3}
+    sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
+    feedbackTypes: 0200000001000000
+    hapticForce: 0.25
   - id: 1.0
     name: 'Parede de Azulejo '
     material: {fileID: 2100000, guid: 66395c95e2382f379a574d954af451a6, type: 2}
     useGlobalUV: 0
     scale: {x: 1, y: 1}
+    sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
+    feedbackTypes: 0200000001000000
+    hapticForce: 0.25
   - id: 3.0
     name: 'Parede de Tijolo '
     material: {fileID: 2100000, guid: a423847a25616a94e9497b5b5525491c, type: 2}
     useGlobalUV: 0
     scale: {x: 2, y: 2}
+    sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
+    feedbackTypes: 0200000001000000
+    hapticForce: 0.25
   - id: 4.0
     name: Parede de Vidro
     material: {fileID: 2100000, guid: b18899030e782da57a423c2f4e125a66, type: 2}
     useGlobalUV: 0
     scale: {x: 1, y: 1}
+    sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
+    feedbackTypes: 0200000001000000
+    hapticForce: 0.25
   - id: 5.0
     name: "Parede de Pl\xE1stico "
     material: {fileID: 2100000, guid: ca0a2faa615310b75ac86abdeabcf1a7, type: 2}
     useGlobalUV: 0
     scale: {x: 1, y: 1}
+    sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
+    feedbackTypes: 0200000001000000
+    hapticForce: 0.25
   - id: 6.0
     name: 'Parede de Gesso '
     material: {fileID: 2100000, guid: 6f0bf68d5dd298ffb9df49a0a9fffd38, type: 2}
     useGlobalUV: 0
     scale: {x: 3, y: 3}
+    sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
+    feedbackTypes: 0200000001000000
+    hapticForce: 0.25
   - id: 7.0
     name: Parede de Madeira 2
     material: {fileID: 2100000, guid: 6fa4952d991f82bcfbb21a85a1e9a62d, type: 2}
     useGlobalUV: 0
     scale: {x: 1, y: 1}
+    sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
+    feedbackTypes: 0200000001000000
+    hapticForce: 0.25

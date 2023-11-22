@@ -10,7 +10,7 @@ public class MaterialData : ScriptableObject
     private Dictionary<string, Material> materialMap = new Dictionary<string, Material>();
 
     [SerializeField]
-    private List<MaterialEntry> materials = new List<MaterialEntry>();
+    private List<MaterialEntry> Materials = new List<MaterialEntry>();
 
     [Serializable]
     public class MaterialEntry
@@ -71,9 +71,9 @@ public class MaterialData : ScriptableObject
 
     public Material GetDefaultMaterial()
     {
-        if (materials.Count > 0)
+        if (Materials.Count > 0)
         {
-            return materials[0].material;
+            return Materials[0].material;
         }
         throw new InvalidOperationException("No materials available in MaterialData");
     }
@@ -85,7 +85,7 @@ public class MaterialData : ScriptableObject
             throw new InvalidOperationException($"Material {id} already registered");
         }
         materialMap[id] = material;
-        materials.Add(new MaterialEntry { id = id, name = name, material = material });
+        Materials.Add(new MaterialEntry { id = id, name = name, material = material });
         return material;
     }
 
@@ -94,7 +94,7 @@ public class MaterialData : ScriptableObject
         if (materialMap.ContainsKey(id))
         {
             materialMap.Remove(id);
-            materials.RemoveAll(x => x.id == id);
+            Materials.RemoveAll(x => x.id == id);
         }
         else
         {
@@ -104,7 +104,7 @@ public class MaterialData : ScriptableObject
 
     private bool TryGetMaterialEntry(string id, out MaterialEntry materialEntry)
     {
-        materialEntry = materials.FirstOrDefault(x => x.id == id);
+        materialEntry = Materials.FirstOrDefault(x => x.id == id);
         return materialEntry != null;
     }
 }
