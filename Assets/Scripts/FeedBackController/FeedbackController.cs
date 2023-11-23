@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine.XR;
+using Palmmedia.ReportGenerator.Core.Common;
 
 public class FeedbackController : MonoBehaviour
 {
@@ -53,6 +54,7 @@ public class FeedbackController : MonoBehaviour
         if (Collisions.TryGetValue(collidedObjectTag+playerColliderTag, out var item))
         {
             item.IsColliding = true;
+            Debug.Log($"{JsonSerializer.ToJsonString(item)}");
         }
         else
         {
@@ -61,7 +63,9 @@ public class FeedbackController : MonoBehaviour
                 collisionLocationOnPlayer: playerColliderTag,
                 feedbackSettings: feedbackSettings);
             Collisions.Add(collidedObjectTag+playerColliderTag, collisionEvent);
+            Debug.Log($"{JsonSerializer.ToJsonString(collisionEvent)}");
         }
+        
     }
 
     private void OnCollisionExit(Collision collision)
@@ -124,7 +128,11 @@ public class FeedbackController : MonoBehaviour
     {
         if (!Sound.isPlaying)
         {
-            Sound.clip = sound;
+            Debug.Log($"{sound}");
+            if(sound != null)
+            {
+                Sound.clip = sound;
+            }
             Sound.Play();
         }
         else

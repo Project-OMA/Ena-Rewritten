@@ -74,11 +74,11 @@ public class MapBuilder : MonoBehaviour
         Material material = null;
         bool useGlobalUV = false;
         Vector2 scale = Vector2.one;
-        FeedbackSettings feedbackSettings =  new FeedbackSettings();
+        FeedbackSettings feedbackSettings = new FeedbackSettings();
         try
         {
             material = floorMaterialData.GetMaterial(code);
-            useGlobalUV = floorMaterialData.DoesMaterialUsesGlobalUV(code);
+            useGlobalUV = floorMaterialData.DoesMaterialUseGlobalUV(code);
             scale = floorMaterialData.GetMaterialScale(code);
             feedbackSettings = floorMaterialData.GetFeedbackSettings(code);
         }
@@ -129,16 +129,10 @@ public class MapBuilder : MonoBehaviour
         floorPiece.transform.localScale = size;
         floorPiece.transform.parent = floorParent.transform;
         //add mesh renderer and filter
-        floorPiece.AddComponent<MeshRenderer>();
-        floorPiece.AddComponent<ObjectFeedbackSettings>();
-        floorPiece.AddComponent<MeshFilter>();
-        floorPiece.AddComponent<MeshCollider>();
+        AddComponentsToMaterial(floorPiece);
 
         floorPiece.tag = "floor";
-        floorPiece.GetComponent<MeshRenderer>().material = material;
-        floorPiece.GetComponent<ObjectFeedbackSettings>().settings = feedbackSettings;
-        floorPiece.GetComponent<MeshFilter>().mesh = mesh;
-        floorPiece.GetComponent<MeshCollider>().sharedMesh = mesh;
+        MaterialConfigComponents(material, feedbackSettings, mesh, floorPiece);
 
         if (code == grassID && useGrass)
         {
@@ -155,6 +149,14 @@ public class MapBuilder : MonoBehaviour
             }
 
         }
+    }
+
+    private static void MaterialConfigComponents(Material material, FeedbackSettings feedbackSettings, Mesh mesh, GameObject obj)
+    {
+        obj.GetComponent<MeshRenderer>().material = material;
+        obj.GetComponent<ObjectFeedbackSettings>().settings = feedbackSettings;
+        obj.GetComponent<MeshFilter>().mesh = mesh;
+        obj.GetComponent<MeshCollider>().sharedMesh = mesh;
     }
 
     private void InstanceWallTile(Wall wall)
@@ -174,12 +176,14 @@ public class MapBuilder : MonoBehaviour
 
         // get the material data
         Material material = null;
+        FeedbackSettings feedbackSettings = null;
         //bool useGlobalUV = false;
         //Vector2 scale = Vector2.one;
         try
         {
             material = wallMaterialData.GetMaterial(code);
-            //useGlobalUV = floorMaterialData.DoesMaterialUsesGlobalUV(code);
+            feedbackSettings = floorMaterialData.GetFeedbackSettings(code);
+            //useGlobalUV = floorMaterialData.DoesMaterialUseGlobalUV(code);
             //scale = floorMaterialData.GetMaterialScale(code);
         }
         catch (System.Exception)
@@ -190,28 +194,28 @@ public class MapBuilder : MonoBehaviour
 
         // make 4 copies of the wall mesh and rotate them accordingly
 
-        Mesh meshFront = new Mesh
+        var meshFront = new Mesh
         {
             vertices = wallMesh.vertices,
             triangles = wallMesh.triangles,
             uv = wallMesh.uv
         };
 
-        Mesh meshBack = new Mesh
+        var meshBack = new Mesh
         {
             vertices = wallMesh.vertices,
             triangles = wallMesh.triangles,
             uv = wallMesh.uv
         };
 
-        Mesh meshLeft = new Mesh
+        var meshLeft = new Mesh
         {
             vertices = wallMesh.vertices,
             triangles = wallMesh.triangles,
             uv = wallMesh.uv
         };
 
-        Mesh meshRight = new Mesh
+        var meshRight = new Mesh
         {
             vertices = wallMesh.vertices,
             triangles = wallMesh.triangles,
@@ -256,27 +260,26 @@ public class MapBuilder : MonoBehaviour
         meshRight.RecalculateNormals();
 
         // create the object and tiles
-        var wallObj = new GameObject("Wall:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
-        wallObj.tag = "wall";
+        var wallObj = new GameObject("Wall:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1])
+        {
+            tag = "wall"
+        };
         var wallFront = new GameObject("WallFront:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
         var wallBack = new GameObject("WallBack:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
         var wallLeft = new GameObject("WallLeft:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
         var wallRight = new GameObject("WallRight:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
-        var wallPieces = new GameObject[] { wallFront, wallBack, wallLeft, wallRight };
+        var wallPieces = new [] { (wallFront, meshFront), (wallBack, meshBack), (wallLeft, meshLeft), (wallRight, meshRight) };
 
 
-        foreach (var wallPiece in wallPieces)
+        foreach (var (obj, _) in wallPieces)
         {
             //wallPiece.transform.position = start + center;
-            wallPiece.transform.rotation = Quaternion.identity;
+            obj.transform.rotation = Quaternion.identity;
             //wallPiece.transform.localScale = size;
-            wallPiece.transform.parent = wallObj.transform;
+            obj.transform.parent = wallObj.transform;
             //add mesh renderer and filter
 
-            wallPiece.AddComponent<MeshRenderer>();
-            wallPiece.AddComponent<MeshFilter>();
-            wallPiece.AddComponent<MeshCollider>();
-
+            AddComponentsToMaterial(obj);
         }
 
         // rotate the wall pieces
@@ -286,26 +289,23 @@ public class MapBuilder : MonoBehaviour
         wallRight.transform.Rotate(0, -90, 0);
 
         // add the meshes to the wall
-        wallFront.GetComponent<MeshRenderer>().material = material;
-        wallFront.GetComponent<MeshFilter>().mesh = meshFront;
-        wallFront.GetComponent<MeshCollider>().sharedMesh = meshFront;
-
-        wallBack.GetComponent<MeshRenderer>().material = material;
-        wallBack.GetComponent<MeshFilter>().mesh = meshBack;
-        wallBack.GetComponent<MeshCollider>().sharedMesh = meshBack;
-
-        wallLeft.GetComponent<MeshRenderer>().material = material;
-        wallLeft.GetComponent<MeshFilter>().mesh = meshLeft;
-        wallLeft.GetComponent<MeshCollider>().sharedMesh = meshLeft;
-
-        wallRight.GetComponent<MeshRenderer>().material = material;
-        wallRight.GetComponent<MeshFilter>().mesh = meshRight;
-        wallRight.GetComponent<MeshCollider>().sharedMesh = meshRight;
+        foreach (var (obj, mesh) in wallPieces)
+        {
+            MaterialConfigComponents(material, feedbackSettings, mesh, obj);
+        }
 
         wallObj.transform.position = start + center;
         wallObj.transform.rotation = Quaternion.identity;
         wallObj.transform.localScale = size;
         wallObj.transform.parent = wallsParent.transform;
+    }
+
+    private static void AddComponentsToMaterial(GameObject obj)
+    {
+        obj.AddComponent<MeshRenderer>();
+        obj.AddComponent<ObjectFeedbackSettings>();
+        obj.AddComponent<MeshFilter>();
+        obj.AddComponent<MeshCollider>();
     }
 
     private void InstanceCeilingTile(Ceiling ceiling)
@@ -321,12 +321,14 @@ public class MapBuilder : MonoBehaviour
 
         // get the material
         Material material = null;
+        FeedbackSettings feedbackSettings = null;
         // bool useGlobalUV = false;
         // Vector2 scale = Vector2.one;
         try
         {
             material = ceilingMaterialData.GetMaterial("0.0");
-            // useGlobalUV = floorMaterialData.DoesMaterialUsesGlobalUV(code);
+            feedbackSettings = floorMaterialData.GetFeedbackSettings(code);
+            // useGlobalUV = floorMaterialData.DoesMaterialUseGlobalUV(code);
             // scale = floorMaterialData.GetMaterialScale(code);
         }
         catch (System.Exception)
@@ -343,9 +345,8 @@ public class MapBuilder : MonoBehaviour
         ceilingPiece.transform.localScale = size;
         ceilingPiece.transform.parent = ceilingParent.transform;
         //add mesh renderer and filter
-        ceilingPiece.AddComponent<MeshRenderer>();
-        ceilingPiece.AddComponent<MeshFilter>();
-        ceilingPiece.AddComponent<MeshCollider>();
+        
+        AddComponentsToMaterial(ceilingPiece);
 
         // make a copy of the floor mesh
         Mesh mesh = new Mesh
@@ -368,9 +369,7 @@ public class MapBuilder : MonoBehaviour
         // fix the mesh normals
         mesh.RecalculateNormals();
 
-        ceilingPiece.GetComponent<MeshRenderer>().material = material;
-        ceilingPiece.GetComponent<MeshFilter>().mesh = mesh;
-        ceilingPiece.GetComponent<MeshCollider>().sharedMesh = mesh;
+        MaterialConfigComponents(material, feedbackSettings, mesh, ceilingPiece);
 
     }
 

@@ -10,7 +10,7 @@ public class InteractionController : MonoBehaviour
     private Collider collider;
     private Rigidbody rigidbody;
 
-    private TTSManager ttsManager;
+    public TTSManager ttsManager;
     
 
 
