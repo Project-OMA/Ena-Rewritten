@@ -51,6 +51,7 @@ public class CollisionEvent
         CollisionLocationOnPlayer = collisionLocationOnPlayer;
         FeedbackSettings = feedbackSettings;
         IsColliding = true;
+        CanPlay = true;
         StartColliding = DateTime.Now;
         timeColliding = TimeSpan.Zero;
     }

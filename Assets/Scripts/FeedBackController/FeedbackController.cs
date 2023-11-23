@@ -1,60 +1,98 @@
-using System.Linq;
-using UnityEngine;
-using System;
 using System.Collections.Generic;
+using UnityEngine;
 using System.IO;
 using UnityEngine.XR;
-using Palmmedia.ReportGenerator.Core.Common;
 
 public class FeedbackController : MonoBehaviour
 {
-    public AudioSource Alarme;
-    public AudioSource Sound;
+    #region Fields
+
+    private static readonly Dictionary<string, CollisionEvent> Collisions = new Dictionary<string, CollisionEvent>();
+    private readonly string fileName = $"{Directory.GetCurrentDirectory()}/PlayerLogs/feedback.csv";
+
+    #endregion
+
+    #region Properties
+
+    public Dictionary<string, AudioSource> SoundSources { get; private set; }
     public Rigidbody Rb { get; set; }
     public InputDevice inputDevice;
     private HapticFeedback HapticImpulse;
-    private bool isWalking;
-    static public List<CollisionEvent> History { get; } = new List<CollisionEvent>();
-    private static readonly Dictionary<string, CollisionEvent> Collisions = new Dictionary<string, CollisionEvent>();
 
-    private readonly string fileName = $"{Directory.GetCurrentDirectory()}/PlayerLogs/feedback.csv";
+    #endregion
+
+    #region Unity Callbacks
 
     private void Awake()
     {
-        // Initialize the InputDevice for the left Oculus Touch controller
-        List<InputDevice> devices = new List<InputDevice>();
-        var isRightHand = gameObject.name.ToLower().Contains("right");
-        InputDevices.GetDevicesAtXRNode(isRightHand ? XRNode.RightHand : XRNode.LeftHand, devices);
-        if (devices.Count > 0)
-        {
-            inputDevice = devices[0];
-        }
-        HapticImpulse = new HapticFeedback(inputDevice, this);
+        InitializeInputDevice();
+        InitializeFeedbackComponents();
     }
 
     private void Update()
     {
+        HandleCollisionFeedback();
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        HandleCollisionEnter(collision);
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        HandleCollisionExit(collision);
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveCollisionDataToCsv();
+    }
+
+    #endregion
+
+    #region Initialization
+
+    private void InitializeInputDevice()
+    {
+        List<InputDevice> devices = new List<InputDevice>();
+        var isRightHand = gameObject.name.ToLower().Contains("right");
+        InputDevices.GetDevicesAtXRNode(isRightHand ? XRNode.RightHand : XRNode.LeftHand, devices);
+        inputDevice = devices.Count > 0 ? devices[0] : default;
+    }
+
+    private void InitializeFeedbackComponents()
+    {
+        HapticImpulse = new HapticFeedback(inputDevice, this);
+        SoundSources = new Dictionary<string, AudioSource>();
+    }
+
+    #endregion
+
+    #region Collision Handling
+
+    private void HandleCollisionFeedback()
+    {
         foreach (var item in Collisions.Values)
         {
-            if(item.CollidedObject.Contains("floor"))
+            if (item.CollidedObject.Contains("floor"))
             {
-                HanldeWalkSound(item);
+                HandleWalkSound(item);
             }
             HandleFeedback(item);
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void HandleCollisionEnter(Collision collision)
     {
         string collidedObjectTag = GetObjectName(collision.gameObject);
         string playerColliderTag = GetObjectName(gameObject);
 
-        var feedbackSettings = collision.gameObject.GetComponent<ObjectFeedbackSettings>().settings;
+        var feedbackSettings = collision.gameObject.GetComponent<ObjectFeedbackSettings>()?.settings;
 
-        if (Collisions.TryGetValue(collidedObjectTag+playerColliderTag, out var item))
+        if (Collisions.TryGetValue(collidedObjectTag + playerColliderTag, out var item))
         {
             item.IsColliding = true;
-            Debug.Log($"{JsonSerializer.ToJsonString(item)}");
         }
         else
         {
@@ -62,27 +100,27 @@ public class FeedbackController : MonoBehaviour
                 collidedObject: collidedObjectTag,
                 collisionLocationOnPlayer: playerColliderTag,
                 feedbackSettings: feedbackSettings);
-            Collisions.Add(collidedObjectTag+playerColliderTag, collisionEvent);
-            Debug.Log($"{JsonSerializer.ToJsonString(collisionEvent)}");
+            Collisions.Add(collidedObjectTag + playerColliderTag, collisionEvent);
         }
-        
     }
 
-    private void OnCollisionExit(Collision collision)
+    private void HandleCollisionExit(Collision collision)
     {
         string collidedObjectTag = GetObjectName(collision.gameObject);
         string playerColliderTag = GetObjectName(gameObject);
 
-        if (Collisions.TryGetValue(collidedObjectTag+playerColliderTag, out var itemToUpdate))
+        if (Collisions.TryGetValue(collidedObjectTag + playerColliderTag, out var itemToUpdate))
         {
             itemToUpdate.IsColliding = false;
             HandleFeedback(itemToUpdate);
-            History.Add(itemToUpdate);
-            Collisions.Remove(collidedObjectTag+playerColliderTag);
         }
     }
 
-    private void HanldeWalkSound(CollisionEvent item)
+    #endregion
+
+    #region Feedback Handling
+
+    private void HandleWalkSound(CollisionEvent item)
     {
         // Check if the player is moving (you can customize this based on your movement script)
         if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
@@ -100,23 +138,18 @@ public class FeedbackController : MonoBehaviour
             }
         }
     }
+
     private void HandleFeedback(CollisionEvent collision)
     {
-        if (!collision.IsColliding || !collision.CanPlay)
-        {
-            StopAllFeedback();
-            return;
-        }
-
-        foreach (var feedbackType in collision.FeedbackSettings.feedbackTypes)
+        foreach (var feedbackType in collision.FeedbackSettings?.feedbackTypes ?? new FeedbackTypeEnum[0])
         {
             switch (feedbackType)
             {
                 case FeedbackTypeEnum.Sound:
-                    PlaySoundFeedback(collision.FeedbackSettings.sound);
+                    PlaySoundFeedback(collision.FeedbackSettings.sound, collision);
                     break;
                 case FeedbackTypeEnum.Haptic:
-                    PlayHapticFeedback(collision.FeedbackSettings.hapticForce);
+                    PlayHapticFeedback(collision.FeedbackSettings.hapticForce, collision.IsColliding && collision.CanPlay);
                     break;
                 default:
                     break;
@@ -124,28 +157,44 @@ public class FeedbackController : MonoBehaviour
         }
     }
 
-    private void PlaySoundFeedback(AudioClip sound)
+    #endregion
+
+    #region Feedback Methods
+
+    private void PlaySoundFeedback(AudioClip sound, CollisionEvent collision)
     {
-        if (!Sound.isPlaying)
+        var source = SoundSources.GetValueOrDefault(collision.FeedbackSettings.sound?.name);
+        if (source is null)
         {
-            Debug.Log($"{sound}");
-            if(sound != null)
+            source = gameObject.AddComponent<AudioSource>();
+            SoundSources.Add(collision.FeedbackSettings.sound?.name, source);
+        }
+
+        if (collision.CanPlay && collision.IsColliding)
+        {
+            if (!source.isPlaying)
             {
-                Sound.clip = sound;
+                if (sound != null)
+                {
+                    source.clip = sound;
+                }
+                source.Play();
             }
-            Sound.Play();
         }
         else
         {
-            Sound.Stop();
+            source.Stop();
         }
     }
 
-    private void PlayHapticFeedback(float hapticForce)
+    private void PlayHapticFeedback(float hapticForce, bool isToPlay)
     {
-        if (!HapticImpulse.isPlaying)
+        if (isToPlay)
         {
-            HapticImpulse.Play(hapticForce);
+            if (!HapticImpulse.isPlaying)
+            {
+                HapticImpulse.Play(hapticForce);
+            }
         }
         else
         {
@@ -153,25 +202,19 @@ public class FeedbackController : MonoBehaviour
         }
     }
 
-    private void StopAllFeedback()
-    {
-        Sound.Stop();
-        HapticImpulse.Stop();
-    }
+    #endregion
 
-
-    private static bool FilterCollision(CollisionEvent x, string collidedObjectTag, string playerColliderTag)
-    {
-        return x.CollidedObject == collidedObjectTag && x.CollisionLocationOnPlayer == playerColliderTag;
-    }
+    #region Utility Methods
 
     private string GetObjectName(GameObject gameObject)
     {
-        return (gameObject.tag == "Untagged"? "" : gameObject.tag) + gameObject.name;
+        return string.IsNullOrEmpty(gameObject.tag) ? gameObject.name : gameObject.tag + gameObject.name;
     }
 
-    void OnApplicationQuit()
+    private void SaveCollisionDataToCsv()
     {
-        CsvWriter.WriteToCsv(fileName, History);
+        CsvWriter.WriteToCsv(fileName, Collisions.Values);
     }
+
+    #endregion
 }

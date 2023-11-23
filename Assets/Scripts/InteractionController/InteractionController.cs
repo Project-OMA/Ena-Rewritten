@@ -17,8 +17,7 @@ public class InteractionController : MonoBehaviour
     private float runningInput()
 
     {
-
-        ttsManager.Speak("Currently Running!");
+        ttsManager?.Speak("Currently Running!");
         return Input.GetAxis("Fire2");
     }
 

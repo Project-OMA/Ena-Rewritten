@@ -182,7 +182,7 @@ public class MapBuilder : MonoBehaviour
         try
         {
             material = wallMaterialData.GetMaterial(code);
-            feedbackSettings = floorMaterialData.GetFeedbackSettings(code);
+            feedbackSettings = wallMaterialData.GetFeedbackSettings(code);
             //useGlobalUV = floorMaterialData.DoesMaterialUseGlobalUV(code);
             //scale = floorMaterialData.GetMaterialScale(code);
         }
@@ -327,7 +327,7 @@ public class MapBuilder : MonoBehaviour
         try
         {
             material = ceilingMaterialData.GetMaterial("0.0");
-            feedbackSettings = floorMaterialData.GetFeedbackSettings(code);
+            feedbackSettings = ceilingMaterialData.GetFeedbackSettings(code);
             // useGlobalUV = floorMaterialData.DoesMaterialUseGlobalUV(code);
             // scale = floorMaterialData.GetMaterialScale(code);
         }
