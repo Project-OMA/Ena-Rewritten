@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -140,8 +140,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b9bf09e40811b2487ba616c9176d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Alarme: {fileID: 0}
-  Sound: {fileID: 1600812348}
 --- !u!114 &65284400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162,6 +160,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7886968323738021, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
+      propertyPath: ttsManager
+      value: 
+      objectReference: {fileID: 1075604382}
     - target: {fileID: 4734949644885722770, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10
@@ -344,8 +346,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b9bf09e40811b2487ba616c9176d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Alarme: {fileID: 1600812348}
-  Sound: {fileID: 1600812348}
 --- !u!114 &782628387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,6 +367,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1075604381}
+  - component: {fileID: 1075604382}
   m_Layer: 0
   m_Name: TTSManager
   m_TagString: Untagged
@@ -389,6 +390,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1075604382
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075604380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc5ac0b338db64047a025ebd3fae9c6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1114040580 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1160577484010764770, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
@@ -406,8 +419,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b9bf09e40811b2487ba616c9176d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Alarme: {fileID: 1600812348}
-  Sound: {fileID: 1600812348}
 --- !u!114 &1114040588
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,11 +431,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1293b0c20ac966346aa578f948b747b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!82 &1600812348 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 1477162865842979718, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
-  m_PrefabInstance: {fileID: 112244043}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9211369014463531979
 PrefabInstance:
   m_ObjectHideFlags: 0

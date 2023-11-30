@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using UnityEngine.XR;
+using System.Linq;
 
 public class FeedbackController : MonoBehaviour
 {
@@ -122,11 +123,11 @@ public class FeedbackController : MonoBehaviour
 
     private void HandleWalkSound(CollisionEvent item)
     {
-        // Check if the player is moving (you can customize this based on your movement script)
         if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
         {
             if (!item.CanPlay)
             {
+                Debug.Log($"CanPlay: {item.CanPlay}, {item.CollidedObject}, {item.IsColliding}, {item.TimeColliding},{item.FeedbackSettings?.feedbackTypes?.FirstOrDefault()}, {item.FeedbackSettings?.sound?.name}");
                 item.CanPlay = true;
             }
         }
@@ -134,6 +135,7 @@ public class FeedbackController : MonoBehaviour
         {
             if (item.CanPlay)
             {
+                Debug.LogError($"CanPlay: {item.CanPlay}, {item.CollidedObject}, {item.IsColliding}, {item.TimeColliding},{item.FeedbackSettings?.feedbackTypes?.FirstOrDefault()}, {item.FeedbackSettings?.sound?.name}");
                 item.CanPlay = false;
             }
         }
@@ -163,15 +165,16 @@ public class FeedbackController : MonoBehaviour
 
     private void PlaySoundFeedback(AudioClip sound, CollisionEvent collision)
     {
-        var source = SoundSources.GetValueOrDefault(collision.FeedbackSettings.sound?.name);
+        var source = SoundSources.GetValueOrDefault(collision.CollidedObject);
         if (source is null)
         {
             source = gameObject.AddComponent<AudioSource>();
-            SoundSources.Add(collision.FeedbackSettings.sound?.name, source);
+            SoundSources.Add(collision.CollidedObject, source);
         }
 
         if (collision.CanPlay && collision.IsColliding)
         {
+            Debug.Log($"aaaaaaaaa: {collision.CanPlay}, {collision.CollidedObject}, {collision.IsColliding}, {!source.isPlaying}");
             if (!source.isPlaying)
             {
                 if (sound != null)
@@ -183,6 +186,7 @@ public class FeedbackController : MonoBehaviour
         }
         else
         {
+            Debug.LogError($"aaaaaaaaa: {collision.CanPlay}, {collision.CollidedObject}, {collision.IsColliding}");
             source.Stop();
         }
     }

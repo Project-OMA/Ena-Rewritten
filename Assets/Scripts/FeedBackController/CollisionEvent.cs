@@ -20,6 +20,10 @@ public class CollisionEvent
     {
         get
         {
+            if(DateTime.Now - lastColliding < TimeSpan.FromSeconds(1))
+            {
+                return true;
+            }
             return isColliding;
         }
         set
