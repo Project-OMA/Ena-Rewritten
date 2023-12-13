@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
-using System.Text.Json;
-//using System.Text.Json.Serialization;
 using UnityEngine;
 using JsonUtility = UnityEngine.JsonUtility;
 
@@ -40,7 +38,6 @@ public class MapPuller
             string jsonString = response.Content.ReadAsStringAsync().Result;
             Debug.Log(jsonString);
             var data = JsonUtility.FromJson<MapJson>(jsonString);
-            //MapJson jsonFormated = JsonSerializer.Deserialize<MapJson>(jsonString);
             this.idMap = data.id_map;
 
             var json = data.json;
