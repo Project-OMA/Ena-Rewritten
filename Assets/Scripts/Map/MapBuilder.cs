@@ -268,7 +268,7 @@ public class MapBuilder : MonoBehaviour
         var wallBack = new GameObject("WallBack:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
         var wallLeft = new GameObject("WallLeft:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
         var wallRight = new GameObject("WallRight:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
-        var wallPieces = new [] { (wallFront, meshFront), (wallBack, meshBack), (wallLeft, meshLeft), (wallRight, meshRight) };
+        var wallPieces = new[] { (wallFront, meshFront), (wallBack, meshBack), (wallLeft, meshLeft), (wallRight, meshRight) };
 
 
         foreach (var (obj, _) in wallPieces)
@@ -345,7 +345,7 @@ public class MapBuilder : MonoBehaviour
         ceilingPiece.transform.localScale = size;
         ceilingPiece.transform.parent = ceilingParent.transform;
         //add mesh renderer and filter
-        
+
         AddComponentsToMaterial(ceilingPiece);
 
         // make a copy of the floor mesh
@@ -413,61 +413,61 @@ public class MapBuilder : MonoBehaviour
 
         var meshFilters = obj.GetComponents<MeshFilter>();
 
-        if(meshFilters.Count() > 1)
+        if (meshFilters.Count() > 1)
         {
             for (int i = 1; i < meshFilters.Count(); i++)
             {
                 Destroy(meshFilters[i]);
             }
         }
-        if(!meshFilters.Any())
+        if (!meshFilters.Any())
         {
             obj.AddComponent<MeshFilter>();
         }
 
         var meshColliders = obj.GetComponents<MeshCollider>();
 
-        if(meshColliders.Count() > 1)
+        if (meshColliders.Count() > 1)
         {
             for (int i = 1; i < meshColliders.Count(); i++)
             {
                 Destroy(meshColliders[i]);
             }
         }
-        if(!meshColliders.Any())
+        if (!meshColliders.Any())
         {
             obj.AddComponent<MeshCollider>();
         }
 
         var meshRenderers = obj.GetComponents<MeshRenderer>();
 
-        if(meshRenderers.Count() > 1)
+        if (meshRenderers.Count() > 1)
         {
             for (int i = 1; i < meshRenderers.Count(); i++)
             {
                 Destroy(meshRenderers[i]);
             }
         }
-        if(!meshRenderers.Any())
+        if (!meshRenderers.Any())
         {
             obj.AddComponent<MeshRenderer>();
         }
 
-        
+
         var meshFilter = obj.GetComponent<MeshFilter>();
 
-        if(meshFilter != null)
+        if (meshFilter != null)
         {
 
             Mesh mesh = meshFilter.mesh;
 
             var sharedMesh = meshFilter.sharedMesh;
 
-            Vector3[] meshVertices = mesh.vertices; 
+            Vector3[] meshVertices = mesh.vertices;
 
-            var meshTriangles = sharedMesh.triangles; 
+            var meshTriangles = sharedMesh.triangles;
 
-                
+
             Mesh newMesh = new Mesh
             {
                 vertices = meshVertices,
@@ -618,7 +618,7 @@ public class MapBuilder : MonoBehaviour
             uv = new Vector2[] { new Vector2(0, 1), new Vector2(1, 1), new Vector2(0, 0), new Vector2(1, 0) }
         };
 
-        
+
         // Create the parents
         floorParent = new GameObject("Floor");
         ceilingParent = new GameObject("Ceiling");
@@ -629,6 +629,8 @@ public class MapBuilder : MonoBehaviour
         electronicParent = new GameObject("Electronics");
         goalParent = new GameObject("Goals");
 
+        MapPuller mapPuller = new MapPuller("joaoaluno@gmail.com");
+        string mapData = mapPuller.GetNextMap();
         if (mapFile == null)
         {
             Debug.LogError("No map file found");
@@ -637,16 +639,22 @@ public class MapBuilder : MonoBehaviour
 
         IMapParser mapParser = null;
 
+
+
         // Check if the file is JSON or XML
-        if (isJson(mapFile.text))
+        if (isJson(mapData))
+        //if (isJson(mapFile.text))
         {
             Debug.Log("JSON file detected");
-            mapParser = new MapParserJSON(mapFile.text);
+            mapParser = new MapParserJSON(mapData);
+            //mapParser = new MapParserJSON(mapFile.text);
         }
-        else if (IsXML(mapFile.text))
+        else if (IsXML(mapData))
+        //else if (IsXML(mapFile.text))
         {
             Debug.Log("XML file detected");
-            mapParser = new MapParserXML(mapFile.text);
+            mapParser = new MapParserXML(mapData);
+            //mapParser = new MapParserXML(mapFile.text);
         }
         else
         {

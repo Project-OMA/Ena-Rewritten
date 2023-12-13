@@ -4,31 +4,28 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Text.Json;
+//using System.Text.Json.Serialization;
 using UnityEngine;
+using JsonUtility = UnityEngine.JsonUtility;
 
-
+[Serializable]
 public class MapJson
 {
-    public int id_map { get; set; }
-    public int id_user { get; set; }
-    public int id_owner { get; set; }
-    public string name { get; set; }
-    public string json { get; set; }
+    public int id_map;
+    public int id_user;
+    public int id_owner;
+    public string name;
+    public string json;
 }
 
-public class MapPuller : MonoBehaviour
+public class MapPuller
 {
-    private readonly string Email;
-    private readonly int idMap;
+    private string email;
+    private int idMap;
 
     public MapPuller(string email)
     {
-        this.Email = email;
-    }
-
-    void Start()
-    {
-        this.GetNextMap();
+        this.email = email;
     }
 
     public string GetNextMap()
@@ -37,14 +34,18 @@ public class MapPuller : MonoBehaviour
         {
             string apiUrl = "https://achernar.eic.cefet-rj.br/mapserverapi/pub/groups/next-map/";
             using HttpClient httpClient = new HttpClient();
-            var response = httpClient.GetAsync(apiUrl + this.Email).Result;
+            var response = httpClient.GetAsync(apiUrl + this.email).Result;
             response.EnsureSuccessStatusCode();
 
-            string jsonString =  response.Content.ReadAsStringAsync().Result;
-            MapJson jsonFormated = JsonSerializer.Deserialize<MapJson>(jsonString);
-            this.idMap = jsonFormated.id_map;
+            string jsonString = response.Content.ReadAsStringAsync().Result;
+            Debug.Log(jsonString);
+            var data = JsonUtility.FromJson<MapJson>(jsonString);
+            //MapJson jsonFormated = JsonSerializer.Deserialize<MapJson>(jsonString);
+            this.idMap = data.id_map;
 
-            return jsonFormated.json;
+            var json = data.json;
+            Debug.Log(json);
+            return json;
         }
         catch (Exception ex)
         {
@@ -53,7 +54,8 @@ public class MapPuller : MonoBehaviour
         }
     }
 
-    public async void FinishMap(){
+    public async void FinishMap()
+    {
         try
         {
             // URL da API que fornece o próximo mapa em JSON (substitua pela URL real)
@@ -68,10 +70,11 @@ public class MapPuller : MonoBehaviour
             response.EnsureSuccessStatusCode();
             Console.WriteLine("Mapa Finalizado com sucesso.");
         }
-        catch (Exception ex){
+        catch (Exception ex)
+        {
             // Lida com erros de solicitação
             Console.WriteLine("Ocorreu um erro para finalizar mapa: " + ex.Message);
             throw;
         }
-  }
+    }
 }
