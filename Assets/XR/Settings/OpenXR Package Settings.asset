@@ -308,6 +308,22 @@ MonoBehaviour:
   company: Unity
   priority: 0
   required: 0
+--- !u!114 &-4855219702449033140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Standalone
+  m_EditorClassIdentifier: 
+  features: []
+  m_renderMode: 1
+  m_depthSubmissionMode: 0
+  m_symmetricProjection: 0
 --- !u!114 &-4696152722193054643
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -488,9 +504,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Keys: 010000000d00000007000000
   Values:
-  - {fileID: -8038536968607193894}
+  - {fileID: -4855219702449033140}
   - {fileID: -3301461976360807508}
-  - {fileID: -6940803765985610260}
+  - {fileID: 191451869080778404}
 --- !u!114 &18957657764802200
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -513,6 +529,22 @@ MonoBehaviour:
   required: 0
   targetQuest: 1
   targetQuest2: 1
+--- !u!114 &191451869080778404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Android
+  m_EditorClassIdentifier: 
+  features: []
+  m_renderMode: 1
+  m_depthSubmissionMode: 0
+  m_symmetricProjection: 0
 --- !u!114 &1441760665211913795
 MonoBehaviour:
   m_ObjectHideFlags: 0
