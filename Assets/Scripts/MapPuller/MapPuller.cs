@@ -16,11 +16,24 @@ public class MapJson
     public string json;
 }
 
+enum PullState{
+    ERROR,
+    RUNNING
+}
+
 public class MapPuller
 {
     private string email;
     private int idMap;
 
+    private string m_Path;
+
+    private string defaultMapPath;
+
+    private TextAsset defaultMapFile;
+
+    private PullState pullState;
+    
     public MapPuller(string email)
     {
         this.email = email;
@@ -46,8 +59,19 @@ public class MapPuller
         }
         catch (Exception ex)
         {
-            Console.WriteLine("Ocorreu um erro ao obter o próximo mapa: " + ex.Message);
-            throw;
+            // TODO: enviar erro para a camada de interface
+            Debug.LogWarning("Ocorreu um erro ao obter o próximo mapa: " + ex.Message);
+            Debug.LogWarning("Utilizando mapa local de teste");
+
+            m_Path = Application.dataPath;
+            Debug.Log("dataPath : " + m_Path);
+
+            defaultMapPath = "Maps/DefaultMap";
+
+            Debug.Log("defaultMapPath : " + defaultMapPath);
+            defaultMapFile = Resources.Load<TextAsset>(defaultMapPath);
+            Debug.Log(defaultMapFile);
+            return defaultMapFile.text;
         }
     }
 
