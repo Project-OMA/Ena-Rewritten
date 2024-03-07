@@ -402,79 +402,16 @@ public class MapBuilder : MonoBehaviour
 
         // Create the object
         GameObject obj = Instantiate(prefab, vecpos, rot);
-        Debug.LogWarning($"nome: {obj.name} quantidade: {obj.GetComponents<MeshCollider>().Count()}");
-        Debug.LogWarning($"nome: {obj.name} quantidade: {prefab.GetComponents<MeshCollider>().Count()}");
+        // Debug.LogWarning($"nome: {.name} quantidade: {obj.GetComponents<MeshCollider>().Count()}");
+        // Debug.LogWarning($"nome: {obj.name} quantidade: {prefab.GetComponents<MeshCollider>().Count()}");
 
         obj.name = name;
-        if (parent != null)
-        {
-            obj.transform.parent = parent.transform;
-        }
-
-        var meshFilters = obj.GetComponents<MeshFilter>();
-
-        if (meshFilters.Count() > 1)
-        {
-            for (int i = 1; i < meshFilters.Count(); i++)
-            {
-                Destroy(meshFilters[i]);
-            }
-        }
-        if (!meshFilters.Any())
-        {
-            obj.AddComponent<MeshFilter>();
-        }
-
-        var meshColliders = obj.GetComponents<MeshCollider>();
-
-        if (meshColliders.Count() > 1)
-        {
-            for (int i = 1; i < meshColliders.Count(); i++)
-            {
-                Destroy(meshColliders[i]);
-            }
-        }
-        if (!meshColliders.Any())
-        {
-            obj.AddComponent<MeshCollider>();
-        }
-
-        var meshRenderers = obj.GetComponents<MeshRenderer>();
-
-        if (meshRenderers.Count() > 1)
-        {
-            for (int i = 1; i < meshRenderers.Count(); i++)
-            {
-                Destroy(meshRenderers[i]);
-            }
-        }
-        if (!meshRenderers.Any())
-        {
-            obj.AddComponent<MeshRenderer>();
-        }
+        
+        
+        
 
 
-        var meshFilter = obj.GetComponent<MeshFilter>();
-
-        if (meshFilter != null)
-        {
-
-            Mesh mesh = meshFilter.mesh;
-
-            var sharedMesh = meshFilter.sharedMesh;
-
-            Vector3[] meshVertices = mesh.vertices;
-
-            var meshTriangles = sharedMesh.triangles;
-
-
-            Mesh newMesh = new Mesh
-            {
-                vertices = meshVertices,
-                triangles = meshTriangles
-            };
-            obj.GetComponent<MeshCollider>().sharedMesh = newMesh;
-        }
+        
     }
 
     void BuildMap(Map map)
