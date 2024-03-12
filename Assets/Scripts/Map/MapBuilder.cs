@@ -382,14 +382,13 @@ public class MapBuilder : MonoBehaviour
         try
         {
             propData = objectData.GetObject(type);
-
+            prefab = propData.prefab;
         }
         catch (System.Exception)
         {
             Debug.LogError("Prefab not found for type " + type);
         }
 
-        prefab = propData.prefab;
         string name = prefab.name + ":" + type + "_" + pos[0] + "_" + pos[1];
 
         // Position
