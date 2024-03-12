@@ -84,7 +84,7 @@ public class MapBuilder : MonoBehaviour
         }
         catch (System.Exception)
         {
-            Debug.LogError("Material " + code + " not found");
+            Debug.LogError("Floor material " + code + " not found");
             material = defaultFloorMaterial;
         }
 
@@ -188,7 +188,7 @@ public class MapBuilder : MonoBehaviour
         }
         catch (System.Exception)
         {
-            Debug.LogError("Material " + code + " not found");
+            Debug.LogError("Wall material " + code + " not found");
             material = defaultWallMaterial;
         }
 
@@ -333,7 +333,7 @@ public class MapBuilder : MonoBehaviour
         }
         catch (System.Exception)
         {
-            Debug.LogError("Material " + code + " not found");
+            Debug.LogError("Ceiling material " + code + " not found");
             material = defaultCeilingMaterial;
         }
 
@@ -386,7 +386,8 @@ public class MapBuilder : MonoBehaviour
         }
         catch (System.Exception)
         {
-            Debug.LogError("Prefab not found for type " + type);
+            Debug.LogError("Prefab not found for type " + type + " in data file " + objectData);
+            return;
         }
 
         string name = prefab.name + ":" + type + "_" + pos[0] + "_" + pos[1];
