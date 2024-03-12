@@ -66,7 +66,7 @@ public class MapPuller
             m_Path = Application.dataPath;
             Debug.Log("dataPath : " + m_Path);
 
-            defaultMapPath = "Maps/DefaultMap";
+            defaultMapPath = "Maps/map_all_objects";
 
             Debug.Log("defaultMapPath : " + defaultMapPath);
             defaultMapFile = Resources.Load<TextAsset>(defaultMapPath);
