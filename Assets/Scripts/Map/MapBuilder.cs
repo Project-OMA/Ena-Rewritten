@@ -406,6 +406,18 @@ public class MapBuilder : MonoBehaviour
         // Debug.LogWarning($"nome: {obj.name} quantidade: {prefab.GetComponents<MeshCollider>().Count()}");
 
         obj.name = name;
+
+        // Use this code to remove extra colliders in the prefab
+        
+        // var meshColliders = prefab.GetComponents<MeshCollider>();
+        // if (meshColliders.Count() > 0)
+        // {
+        //     //Debug.Log("Deleting " + meshColliders.Count() + " colliders");
+        //     for (int i = 0; i < meshColliders.Count(); i++)
+        //     {
+        //         DestroyImmediate(meshColliders[i], true);
+        //     }
+        // }
         
         
         
