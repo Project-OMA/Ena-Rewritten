@@ -16,7 +16,7 @@ public class HapticFeedback
 
     public void Play(float amplitude = 0.4f)
     {
-        Debug.Log($"isHapticFeedbackPlaying: {isHapticFeedbackPlaying}");
+        // Debug.Log($"isHapticFeedbackPlaying: {isHapticFeedbackPlaying}");
         if (!isHapticFeedbackPlaying)
         {
             isHapticFeedbackPlaying = true;
@@ -45,7 +45,7 @@ public class HapticFeedback
         }
         else
         {
-            Debug.Log($"xrcontroller: {xrController}");
+            // Debug.Log($"xrcontroller: {xrController}");
         }
 
         Stop();

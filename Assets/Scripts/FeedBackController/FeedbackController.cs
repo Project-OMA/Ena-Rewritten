@@ -174,7 +174,7 @@ public class FeedbackController : MonoBehaviour
 
         if (collision.CanPlay && collision.IsColliding)
         {
-            Debug.Log($"aaaaaaaaa: {collision.CanPlay}, {collision.CollidedObject}, {collision.IsColliding}, {!source.isPlaying}");
+            // Debug.Log($"aaaaaaaaa: {collision.CanPlay}, {collision.CollidedObject}, {collision.IsColliding}, {!source.isPlaying}");
             if (!source.isPlaying)
             {
                 if (sound != null)
@@ -186,7 +186,7 @@ public class FeedbackController : MonoBehaviour
         }
         else
         {
-            Debug.LogError($"aaaaaaaaa: {collision.CanPlay}, {collision.CollidedObject}, {collision.IsColliding}");
+            // Debug.LogError($"aaaaaaaaa: {collision.CanPlay}, {collision.CollidedObject}, {collision.IsColliding}");
             source.Stop();
         }
     }
