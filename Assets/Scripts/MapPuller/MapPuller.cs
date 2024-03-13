@@ -43,6 +43,7 @@ public class MapPuller
     {
         try
         {
+            Debug.Log("Obtendo mapa a partir do servidor");
             string apiUrl = "https://achernar.eic.cefet-rj.br/mapserverapi/pub/groups/next-map/";
             using HttpClient httpClient = new HttpClient();
             var response = httpClient.GetAsync(apiUrl + this.email).Result;
