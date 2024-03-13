@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2370264314703672948}
   - component: {fileID: -8514515138654372406}
   - component: {fileID: -4612343165323848556}
-  - component: {fileID: -3368557720275262064}
   m_Layer: 0
   m_Name: computador
   m_TagString: Untagged
@@ -84,28 +83,6 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 614322503775666597}
-  m_Mesh: {fileID: 0}
---- !u!64 &-3368557720275262064
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 614322503775666597}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
   m_Mesh: {fileID: 0}
 --- !u!1001 &6651816758041834331
 PrefabInstance:
@@ -192,6 +169,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: cd0ec0e6656f7117c8fdd46e684239ad, type: 2}
     - target: {fileID: -5327470363487806873, guid: ad8b94566d7b7550c87cd13d4f4bcd29, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -5327470363487806873, guid: ad8b94566d7b7550c87cd13d4f4bcd29, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 2eb39e5097d0dec86b3f8f0e713edf6c, type: 2}
@@ -203,6 +184,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 2eb39e5097d0dec86b3f8f0e713edf6c, type: 2}
+    - target: {fileID: -2630524480750688891, guid: ad8b94566d7b7550c87cd13d4f4bcd29, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: -2630524480750688891, guid: ad8b94566d7b7550c87cd13d4f4bcd29, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
