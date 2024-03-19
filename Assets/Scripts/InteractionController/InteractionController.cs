@@ -3,7 +3,7 @@ using UI;
 
 public class InteractionController : MonoBehaviour
 {
-    public float walkSpeed = 1;
+    public float walkDistance = 1.5f;
 
     public float runSpeed = 3;
     public GameObject cam;
@@ -32,7 +32,7 @@ public class InteractionController : MonoBehaviour
         Vector3 moveVector = forward * control.y + right * control.x;
         moveVector.y = 0;
 
-        return moveVector.normalized;
+        return moveVector.normalized*walkDistance;
     }
 
     void Start()
@@ -47,12 +47,11 @@ public class InteractionController : MonoBehaviour
     {
         // Get move vector
         Vector3 moveVector = getMoveVector();
-        var deltaTime = Time.deltaTime;
-        var runningInput = this.runningInput();
-        var speed = (walkSpeed * Mathf.Abs(runningInput - 1)) + (runSpeed * runningInput);
-        var move = moveVector * speed;
 
-        rigidbody.velocity = move;
+        Debug.Log(transform.position);
+
+        rigidbody.MovePosition(transform.position + moveVector);
+        
     }
 }
 
