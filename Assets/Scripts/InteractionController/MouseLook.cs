@@ -2,13 +2,14 @@ using UnityEngine;
 
 public class MouseLook : MonoBehaviour
 {
-    public float mouseSensitivity = 200f;
-    public Transform playerBody;
+    public float mouseSensitivity = 300f;
+    GameObject camera;
     float xRotation = 0f;
     float yRotation = 0f;
 
     void Start()
     {
+        camera = GameObject.FindWithTag("camera");
         Cursor.lockState = CursorLockMode.Locked;
     }
 
@@ -18,6 +19,6 @@ public class MouseLook : MonoBehaviour
         float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
         xRotation += mouseX;
         yRotation += mouseY;
-        transform.localRotation = Quaternion.Euler(-yRotation, xRotation, 0f);
+        camera.transform.localRotation = Quaternion.Euler(-yRotation, xRotation, 0f);
     }
 }

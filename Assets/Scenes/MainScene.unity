@@ -220,6 +220,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Variant(Controller)
       objectReference: {fileID: 0}
+    - target: {fileID: 7331675978371474208, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
+      propertyPath: m_TagString
+      value: camera
+      objectReference: {fileID: 0}
     - target: {fileID: 8641347127079785214, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
       propertyPath: m_Enabled
       value: 1

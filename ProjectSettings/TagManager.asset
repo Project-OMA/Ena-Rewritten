@@ -9,6 +9,7 @@ TagManager:
   - floor
   - ceiling
   - player
+  - camera
   layers:
   - Default
   - TransparentFX
