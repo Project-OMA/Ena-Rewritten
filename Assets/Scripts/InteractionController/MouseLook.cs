@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class MouseLook : MonoBehaviour
 {
-    public float mouseSensitivity = 400f;
+    public float mouseSensitivity = 1.5f;
     GameObject camera;
     float xRotation = 0f;
     float yRotation = 0f;
@@ -15,10 +15,10 @@ public class MouseLook : MonoBehaviour
 
     void Update()
     {
-        float mouseX = Input.GetAxis("Mouse X") * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * Time.deltaTime;
-        xRotation += mouseX * mouseSensitivity;
-        yRotation += mouseY * mouseSensitivity;
+        float mouseX = Input.GetAxis("Mouse X") / 100 * mouseSensitivity;
+        float mouseY = Input.GetAxis("Mouse Y") / 100 * mouseSensitivity;
+        xRotation += mouseX;
+        yRotation += mouseY;
         camera.transform.localRotation = Quaternion.Euler(-yRotation, xRotation, 0f);
     }
 }
