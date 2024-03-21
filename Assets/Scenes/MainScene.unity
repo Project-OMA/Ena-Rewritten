@@ -165,12 +165,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1075604382}
     - target: {fileID: 93569333190484527, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
+      propertyPath: m_Height
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 93569333190484527, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
       propertyPath: m_Radius
-      value: 0.5
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 93569333190484527, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1477162865842979718, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
       propertyPath: m_Enabled
@@ -181,12 +185,20 @@ PrefabInstance:
       value: 1.7
       objectReference: {fileID: 0}
     - target: {fileID: 1869770834678664610, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1869770834678664610, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
+      propertyPath: m_Constraints
+      value: 126
+      objectReference: {fileID: 0}
+    - target: {fileID: 1869770834678664610, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
       propertyPath: m_Interpolate
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1869770834678664610, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
       propertyPath: m_CollisionDetection
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4734949644885722770, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
       propertyPath: m_LocalPosition.x
@@ -230,7 +242,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4821809682427395678, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
       propertyPath: m_Name
-      value: Player Variant(Controller)
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7331675978371474208, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
       propertyPath: m_TagString
@@ -242,8 +254,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1477162865842979718, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
-    - {fileID: 1869770834678664610, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
-    - {fileID: 93569333190484527, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
