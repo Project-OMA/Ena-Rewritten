@@ -17,6 +17,7 @@ namespace MapObjects
     public class ObjectPrefab
     {
         // Used as a return type for GetObject
+        public string name;
         public GameObject prefab;
         public int rotation;
         public int offsetX;

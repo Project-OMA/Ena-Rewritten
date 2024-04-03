@@ -103,8 +103,15 @@ public class MaterialData : ScriptableObject
     }
 
     private bool TryGetMaterialEntry(string id, out MaterialEntry materialEntry)
+
+
     {
+        
+
         materialEntry = Materials.FirstOrDefault(x => x.id == id);
+
+        
+
         return materialEntry != null;
     }
 }

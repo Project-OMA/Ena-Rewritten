@@ -159,6 +159,10 @@ public class MapBuilder : MonoBehaviour
         obj.GetComponent<MeshCollider>().sharedMesh = mesh;
     }
 
+    
+
+
+
     private void InstanceWallTile(Wall wall)
     {
         string code = wall.type;
@@ -379,16 +383,20 @@ public class MapBuilder : MonoBehaviour
         int[] pos = prop.getPos();
         ObjectPrefab propData = null;
         GameObject prefab = null;
+        FeedbackSettings feedbackSettings = new FeedbackSettings();
         try
         {
             propData = objectData.GetObject(type);
             prefab = propData.prefab;
+            
         }
         catch (System.Exception)
         {
             Debug.LogError("Prefab not found for type " + type + " in data file " + objectData);
             return;
         }
+
+        feedbackSettings = objectData.GetFeedbackSettings(propData.name);
 
         string name = prefab.name + ":" + type + "_" + pos[0] + "_" + pos[1];
 
@@ -406,6 +414,9 @@ public class MapBuilder : MonoBehaviour
         // Debug.LogWarning($"nome: {obj.name} quantidade: {prefab.GetComponents<MeshCollider>().Count()}");
 
         obj.name = name;
+
+        obj.AddComponent<ObjectFeedbackSettings>();
+        obj.GetComponent<ObjectFeedbackSettings>().settings = feedbackSettings;
 
         // Use this code to remove extra colliders in the prefab
         

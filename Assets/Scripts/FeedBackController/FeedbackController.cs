@@ -79,6 +79,8 @@ public class FeedbackController : MonoBehaviour
             if (item.CollidedObject.Contains("floor"))
             {
                 HandleWalkSound(item);
+            }else{
+                Debug.LogWarning(item.CollidedObject);
             }
             HandleFeedback(item);
         }
