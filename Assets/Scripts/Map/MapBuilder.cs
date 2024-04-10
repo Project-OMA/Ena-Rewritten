@@ -415,6 +415,8 @@ public class MapBuilder : MonoBehaviour
 
         obj.name = name;
 
+        obj.transform.parent = parent.transform;
+
         obj.AddComponent<ObjectFeedbackSettings>();
         obj.GetComponent<ObjectFeedbackSettings>().settings = feedbackSettings;
 
