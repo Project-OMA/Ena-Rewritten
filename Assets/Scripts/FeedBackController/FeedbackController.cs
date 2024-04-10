@@ -93,12 +93,10 @@ public class FeedbackController : MonoBehaviour
 
         while (feedbackSettings == null) {
             // Get parent of the object we're looking at
-            Debug.Log("" + currentObject.name);
             currentObject = currentObject.transform.parent.gameObject;
             feedbackSettings = currentObject.GetComponent<ObjectFeedbackSettings>();
         }
 
-        Debug.Log("Collided with parent object: " + currentObject.name);
         return currentObject;
     }
 
@@ -115,8 +113,6 @@ public class FeedbackController : MonoBehaviour
 
         string collidedObjectTag = GetObjectName(collidedObject);
         string playerColliderTag = GetObjectName(gameObject);
-
-        Debug.LogError("PLAYER COLLIDED WITH:" + collidedObjectTag);
 
         var feedbackSettings = collidedObject.GetComponent<ObjectFeedbackSettings>()?.settings;
         
@@ -158,7 +154,7 @@ public class FeedbackController : MonoBehaviour
         {
             if (!item.CanPlay)
             {
-                Debug.Log($"CanPlay: {item.CanPlay}, {item.CollidedObject}, {item.IsColliding}, {item.TimeColliding},{item.FeedbackSettings?.feedbackTypes?.FirstOrDefault()}, {item.FeedbackSettings?.sound?.name}");
+                // Debug.Log($"CanPlay: {item.CanPlay}, {item.CollidedObject}, {item.IsColliding}, {item.TimeColliding},{item.FeedbackSettings?.feedbackTypes?.FirstOrDefault()}, {item.FeedbackSettings?.sound?.name}");
                 item.CanPlay = true;
             }
         }
@@ -166,7 +162,7 @@ public class FeedbackController : MonoBehaviour
         {
             if (item.CanPlay)
             {
-                Debug.LogError($"CanPlay: {item.CanPlay}, {item.CollidedObject}, {item.IsColliding}, {item.TimeColliding},{item.FeedbackSettings?.feedbackTypes?.FirstOrDefault()}, {item.FeedbackSettings?.sound?.name}");
+                // Debug.LogError($"CanPlay: {item.CanPlay}, {item.CollidedObject}, {item.IsColliding}, {item.TimeColliding},{item.FeedbackSettings?.feedbackTypes?.FirstOrDefault()}, {item.FeedbackSettings?.sound?.name}");
                 item.CanPlay = false;
             }
         }
