@@ -86,13 +86,40 @@ public class FeedbackController : MonoBehaviour
         }
     }
 
+    private GameObject LocateCollidedObjectRoot(GameObject collidedObject) {
+
+        var feedbackSettings = collidedObject.GetComponent<ObjectFeedbackSettings>();
+        GameObject currentObject = collidedObject;
+
+        while (feedbackSettings == null) {
+            // Get parent of the object we're looking at
+            Debug.Log("" + currentObject.name);
+            currentObject = currentObject.transform.parent.gameObject;
+            feedbackSettings = currentObject.GetComponent<ObjectFeedbackSettings>();
+        }
+
+        Debug.Log("Collided with parent object: " + currentObject.name);
+        return currentObject;
+    }
+
     private void HandleCollisionEnter(Collision collision)
     {
-        string collidedObjectTag = GetObjectName(collision.gameObject);
+        // Collisions with the Player game object are reported sometimes. This causes problems in the
+        // LocateCollidedObjectRoot method, since the Player is located in the scene root (has no parent)
+        if (collision.gameObject.name == "Player") return;
+
+        // Since objects have their mesh colliders placed in the inner objects in the hierarchy,
+        // we have to "move up" the object tree until we find the root object of the prop (which 
+        // contains the FeedbackSettings component)
+        GameObject collidedObject = LocateCollidedObjectRoot(collision.gameObject);
+
+        string collidedObjectTag = GetObjectName(collidedObject);
         string playerColliderTag = GetObjectName(gameObject);
 
-        var feedbackSettings = collision.gameObject.GetComponent<ObjectFeedbackSettings>()?.settings;
+        Debug.LogError("PLAYER COLLIDED WITH:" + collidedObjectTag);
 
+        var feedbackSettings = collidedObject.GetComponent<ObjectFeedbackSettings>()?.settings;
+        
         if (Collisions.TryGetValue(collidedObjectTag + playerColliderTag, out var item))
         {
             item.IsColliding = true;
@@ -109,7 +136,9 @@ public class FeedbackController : MonoBehaviour
 
     private void HandleCollisionExit(Collision collision)
     {
-        string collidedObjectTag = GetObjectName(collision.gameObject);
+        GameObject collidedObject = LocateCollidedObjectRoot(collision.gameObject);
+
+        string collidedObjectTag = GetObjectName(collidedObject);
         string playerColliderTag = GetObjectName(gameObject);
 
         if (Collisions.TryGetValue(collidedObjectTag + playerColliderTag, out var itemToUpdate))
