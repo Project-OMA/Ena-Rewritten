@@ -10,6 +10,12 @@ TagManager:
   - ceiling
   - player
   - camera
+  - prop
+  - DoorWindow
+  - Furniture
+  - Goals
+  - Utensils
+  - Electronics
   layers:
   - Default
   - TransparentFX
