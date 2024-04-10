@@ -377,7 +377,7 @@ public class MapBuilder : MonoBehaviour
 
     }
 
-    private void InstanceProp(MapProp prop, ObjectData objectData, GameObject parent = null)
+    private void InstanceProp(MapProp prop, ObjectData objectData, GameObject parent = null, string tag = "")
     {
         string type = prop.getType();
         int[] pos = prop.getPos();
@@ -416,6 +416,7 @@ public class MapBuilder : MonoBehaviour
         obj.name = name;
 
         obj.transform.parent = parent.transform;
+        obj.tag = tag;
 
         obj.AddComponent<ObjectFeedbackSettings>();
         obj.GetComponent<ObjectFeedbackSettings>().settings = feedbackSettings;
@@ -483,7 +484,7 @@ public class MapBuilder : MonoBehaviour
         {
             foreach (DoorAndWindow obj in door_and_windows)
             {
-                InstanceProp(obj, doorWindowObjectData, doorWindowParent);
+                InstanceProp(obj, doorWindowObjectData, doorWindowParent, "DoorWindow");
             }
         }
 
@@ -492,7 +493,7 @@ public class MapBuilder : MonoBehaviour
         {
             foreach (Furniture obj in furniture)
             {
-                InstanceProp(obj, furnitureObjectData, furnitureParent);
+                InstanceProp(obj, furnitureObjectData, furnitureParent, "Furniture");
             }
         }
 
@@ -501,7 +502,7 @@ public class MapBuilder : MonoBehaviour
         {
             foreach (Utensil obj in utensils)
             {
-                InstanceProp(obj, utensilObjectData, utensilParent);
+                InstanceProp(obj, utensilObjectData, utensilParent, "Utensils");
             }
         }
 
@@ -510,7 +511,7 @@ public class MapBuilder : MonoBehaviour
         {
             foreach (Electronic obj in eletronics)
             {
-                InstanceProp(obj, electronicObjectData, electronicParent);
+                InstanceProp(obj, electronicObjectData, electronicParent, "Electronics");
             }
         }
 
@@ -519,7 +520,7 @@ public class MapBuilder : MonoBehaviour
         {
             foreach (Goal obj in goals)
             {
-                InstanceProp(obj, goalObjectData, goalParent);
+                InstanceProp(obj, goalObjectData, goalParent, "Goals");
             }
         }
 
