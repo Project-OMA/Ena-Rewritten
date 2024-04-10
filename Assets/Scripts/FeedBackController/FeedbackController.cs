@@ -76,12 +76,7 @@ public class FeedbackController : MonoBehaviour
     {
         foreach (var item in Collisions.Values)
         {
-            if (item.CollidedObject.Contains("floor"))
-            {
-                HandleWalkSound(item);
-            }else{
-                Debug.LogWarning(item.CollidedObject);
-            }
+            Debug.LogWarning(item.CollidedObject);
             HandleFeedback(item);
         }
     }
@@ -92,6 +87,7 @@ public class FeedbackController : MonoBehaviour
         GameObject currentObject = collidedObject;
 
         while (feedbackSettings == null) {
+            Debug.Log(collidedObject.name);
             // Get parent of the object we're looking at
             currentObject = currentObject.transform.parent.gameObject;
             feedbackSettings = currentObject.GetComponent<ObjectFeedbackSettings>();
@@ -132,6 +128,8 @@ public class FeedbackController : MonoBehaviour
 
     private void HandleCollisionExit(Collision collision)
     {
+        if (collision.gameObject.name == "Player") return;
+
         GameObject collidedObject = LocateCollidedObjectRoot(collision.gameObject);
 
         string collidedObjectTag = GetObjectName(collidedObject);
@@ -152,11 +150,20 @@ public class FeedbackController : MonoBehaviour
     {
         if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
         {
-            if (!item.CanPlay)
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 2))
             {
-                // Debug.Log($"CanPlay: {item.CanPlay}, {item.CollidedObject}, {item.IsColliding}, {item.TimeColliding},{item.FeedbackSettings?.feedbackTypes?.FirstOrDefault()}, {item.FeedbackSettings?.sound?.name}");
-                item.CanPlay = true;
+                if (hit.collider != null) {
+                    if (hit.collider.gameObject.tag == "floor") {
+                        if (!item.CanPlay)
+                            {
+                                // Debug.Log($"CanPlay: {item.CanPlay}, {item.CollidedObject}, {item.IsColliding}, {item.TimeColliding},{item.FeedbackSettings?.feedbackTypes?.FirstOrDefault()}, {item.FeedbackSettings?.sound?.name}");
+                                item.CanPlay = true;
+                            }
+                    }
+                }
             }
+           
         }
         else
         {

@@ -63,7 +63,7 @@ public class InteractionController : MonoBehaviour
         ttsManager = GameObject.FindObjectOfType<TTSManager>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         // Get inputs
         float x = Input.GetAxis("Vertical");
@@ -83,6 +83,7 @@ public class InteractionController : MonoBehaviour
                 }
             }
         }
+       
     }
 
     void OnControllerColliderHit() {
