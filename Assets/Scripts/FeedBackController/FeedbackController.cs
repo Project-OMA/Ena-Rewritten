@@ -9,6 +9,8 @@ public class FeedbackController : MonoBehaviour
     #region Fields
 
     private static readonly Dictionary<string, CollisionEvent> Collisions = new Dictionary<string, CollisionEvent>();
+    private static readonly Dictionary<string, CollisionEvent> FloorDetects = new Dictionary<string, CollisionEvent>();
+
     private readonly string fileName = $"{Directory.GetCurrentDirectory()}/PlayerLogs/feedback.csv";
 
     #endregion
@@ -33,6 +35,7 @@ public class FeedbackController : MonoBehaviour
     private void Update()
     {
         HandleCollisionFeedback();
+        DetectFloor();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -74,12 +77,16 @@ public class FeedbackController : MonoBehaviour
 
     private void HandleCollisionFeedback()
     {
+        
         foreach (var item in Collisions.Values)
         {
-            Debug.LogWarning(item.CollidedObject);
-            HandleFeedback(item);
+            
+                HandleFeedback(item);
+            
+            
         }
     }
+    
 
     private GameObject LocateCollidedObjectRoot(GameObject collidedObject) {
 
@@ -122,6 +129,7 @@ public class FeedbackController : MonoBehaviour
                 collidedObject: collidedObjectTag,
                 collisionLocationOnPlayer: playerColliderTag,
                 feedbackSettings: feedbackSettings);
+            
             Collisions.Add(collidedObjectTag + playerColliderTag, collisionEvent);
         }
     }
@@ -146,34 +154,75 @@ public class FeedbackController : MonoBehaviour
 
     #region Feedback Handling
 
-    private void HandleWalkSound(CollisionEvent item)
+    private void DetectFloor()
     {
-        if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
-        {
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 2))
+        RaycastHit hit;
+        CollisionEvent collisionEvent=null;
+
+        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 2))
             {
-                if (hit.collider != null) {
+            if (hit.collider != null) {
                     if (hit.collider.gameObject.tag == "floor") {
-                        if (!item.CanPlay)
-                            {
-                                // Debug.Log($"CanPlay: {item.CanPlay}, {item.CollidedObject}, {item.IsColliding}, {item.TimeColliding},{item.FeedbackSettings?.feedbackTypes?.FirstOrDefault()}, {item.FeedbackSettings?.sound?.name}");
-                                item.CanPlay = true;
-                            }
+
+                        GameObject collidedObject = hit.collider.gameObject;
+
+                        string collidedObjectTag = GetObjectName(collidedObject);
+                        string playerColliderTag = GetObjectName(gameObject);
+
+                        var feedbackSettings = collidedObject.GetComponent<ObjectFeedbackSettings>()?.settings;
+
+                        if (FloorDetects.TryGetValue(collidedObjectTag + playerColliderTag, out var item))
+                        {
+                            collisionEvent = item;
+                            collisionEvent.IsColliding = true;
+                            HandleWalkFeedBack(item);
+                            
+                        }
+                        else
+                        {
+                            collisionEvent = new CollisionEvent(
+                                collidedObject: collidedObjectTag,
+                                collisionLocationOnPlayer: playerColliderTag,
+                                feedbackSettings: feedbackSettings);
+                            
+                            collisionEvent.IsColliding = true;
+                            FloorDetects.Add(collidedObjectTag + playerColliderTag, collisionEvent);
+                            HandleWalkFeedBack(collisionEvent);
+                            
+                        }   
+                        Debug.Log("Collision event: " + collidedObject.name);
                     }
                 }
-            }
-           
-        }
-        else
+        } 
+    }
+
+    private void HandleWalkFeedBack(CollisionEvent item){
+        
+        
+        
+        //item = DetectFloor();
+        //if (item == null) return;
+
+        if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
         {
-            if (item.CanPlay)
-            {
+                // Debug.LogError($"CanPlay: {item.CanPlay}, {item.CollidedObject}, {item.IsColliding}, {item.TimeColliding},{item.FeedbackSettings?.feedbackTypes?.FirstOrDefault()}, {item.FeedbackSettings?.sound?.name}");
+                item.CanPlay = true;
+                HandleFeedback(item);
+            
+            
+
+        }
+        else{
                 // Debug.LogError($"CanPlay: {item.CanPlay}, {item.CollidedObject}, {item.IsColliding}, {item.TimeColliding},{item.FeedbackSettings?.feedbackTypes?.FirstOrDefault()}, {item.FeedbackSettings?.sound?.name}");
                 item.CanPlay = false;
+                HandleFeedback(item);
             }
+            
         }
-    }
+
+        
+    
+    
 
     private void HandleFeedback(CollisionEvent collision)
     {
