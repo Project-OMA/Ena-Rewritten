@@ -73,7 +73,7 @@ MonoBehaviour:
     name: Grama
     material: {fileID: 2100000, guid: d183964653756bc469d41b5151aaafe9, type: 2}
     useGlobalUV: 0
-    scale: {x: 1, y: 1}
+    scale: {x: 0.125, y: 0.125}
     sound: {fileID: 8300000, guid: c82c96e33d751714faab517eb8848d5d, type: 3}
     feedbackTypes: 02000000
     hapticForce: 0
@@ -129,7 +129,7 @@ MonoBehaviour:
     name: Cascalho
     material: {fileID: 2100000, guid: a2565fc6a4244334eb101cce8c4e1f3e, type: 2}
     useGlobalUV: 0
-    scale: {x: 1, y: 1}
+    scale: {x: 0.25, y: 0.25}
     sound: {fileID: 8300000, guid: f0965152129f83f42b34be122babd052, type: 3}
     feedbackTypes: 02000000
     hapticForce: 0
