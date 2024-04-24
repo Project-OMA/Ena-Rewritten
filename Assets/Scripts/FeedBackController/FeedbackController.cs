@@ -162,6 +162,20 @@ public class FeedbackController : MonoBehaviour
         Debug.Log("Player did a step");
         DetectFloor();
     }
+
+    public void handleMovementStart() {
+
+        //DetectFloor();
+
+        //HandleWalkFeedback();
+    }
+
+    public void handleMovementStop() {
+
+        //DetectFloor();
+
+        //HandleStopFeedback();
+    }
     
     private void DetectFloor()
     {
@@ -186,7 +200,7 @@ public class FeedbackController : MonoBehaviour
                         {
                             collisionEvent = item;
                             collisionEvent.IsColliding = true;
-                            HandleWalkFeedBack(item);
+                            HandleWalkFeedback(item);
                             
                         }
                         else
@@ -198,37 +212,21 @@ public class FeedbackController : MonoBehaviour
                             
                             collisionEvent.IsColliding = true;
                             FloorDetects.Add(collidedObjectTag + playerColliderTag, collisionEvent);
-                            HandleWalkFeedBack(collisionEvent);
+                            HandleWalkFeedback(collisionEvent);
                             
                         }
                     }
                 }
         } 
     }
-
-    private void HandleWalkFeedBack(CollisionEvent item){
-        
-        
-        
-        //item = DetectFloor();
-        //if (item == null) return;
-
-        if (Input.GetAxis("Vertical") != 0 || Input.GetAxis("Horizontal") != 0)
-        {
-                // Debug.LogError($"CanPlay: {item.CanPlay}, {item.CollidedObject}, {item.IsColliding}, {item.TimeColliding},{item.FeedbackSettings?.feedbackTypes?.FirstOrDefault()}, {item.FeedbackSettings?.sound?.name}");
-                item.CanPlay = true;
-                HandleFeedback(item);
-            
-            
-
-        }
-        else{
-                // Debug.LogError($"CanPlay: {item.CanPlay}, {item.CollidedObject}, {item.IsColliding}, {item.TimeColliding},{item.FeedbackSettings?.feedbackTypes?.FirstOrDefault()}, {item.FeedbackSettings?.sound?.name}");
-                item.CanPlay = false;
-                HandleFeedback(item);
-            }
-            
-        }
+    private void HandleWalkFeedback(CollisionEvent item) {
+        item.CanPlay = true;
+        HandleFeedback(item);
+    }
+    private void HandleStopFeedback(CollisionEvent item) {
+        item.CanPlay = false;
+        HandleFeedback(item);
+    }
 
         
     
@@ -262,6 +260,7 @@ public class FeedbackController : MonoBehaviour
         if (source is null)
         {
             source = gameObject.AddComponent<AudioSource>();
+            source.loop = false;
             SoundSources.Add(collision.CollidedObject, source);
         }
 

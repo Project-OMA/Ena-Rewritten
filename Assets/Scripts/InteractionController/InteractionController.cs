@@ -76,12 +76,12 @@ public class InteractionController : MonoBehaviour
         if (x == 0 && y == 0) {
             // Stop moving
             nextStepTime = -1;
-            handleMovementStop();
+            startMovement();
         } else {
             // Do first step
             if (nextStepTime == -1) {
                 doStep();
-                handleMovementStart();
+                stopMovement();
             } else {
                 // Repeat for following steps
                 if (Time.time > nextStepTime) {
