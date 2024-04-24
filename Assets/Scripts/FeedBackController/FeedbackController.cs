@@ -35,7 +35,7 @@ public class FeedbackController : MonoBehaviour
     private void Update()
     {
         HandleCollisionFeedback();
-        DetectFloor();
+        //DetectFloor();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -154,10 +154,21 @@ public class FeedbackController : MonoBehaviour
 
     #region Feedback Handling
 
+    public void handleWallCollision(GameObject collidedObject) {
+        Debug.Log("Player collided with wall " + collidedObject.name);
+    }
+
+    public void handleStep() {
+        Debug.Log("Player did a step");
+        DetectFloor();
+    }
+    
     private void DetectFloor()
     {
         RaycastHit hit;
         CollisionEvent collisionEvent=null;
+    
+        Debug.Log("RAYCAST");
 
         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 2))
             {
@@ -189,8 +200,7 @@ public class FeedbackController : MonoBehaviour
                             FloorDetects.Add(collidedObjectTag + playerColliderTag, collisionEvent);
                             HandleWalkFeedBack(collisionEvent);
                             
-                        }   
-                        Debug.Log("Collision event: " + collidedObject.name);
+                        }
                     }
                 }
         } 

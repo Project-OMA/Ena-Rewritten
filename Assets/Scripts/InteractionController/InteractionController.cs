@@ -14,6 +14,8 @@ public class InteractionController : MonoBehaviour
     private Collider collider;
     private CharacterController controller;
 
+    private FeedbackController feedbackController;
+
     public TTSManager ttsManager;
 
     private float runningInput()
@@ -45,13 +47,14 @@ public class InteractionController : MonoBehaviour
         Vector3 previousPos = player.transform.position;
         controller.Move(moveVector);
 
-        // If the Y position has changed, cancel the movement.
-        // This is done to prevent slope climbing, since it cannot be effectively disabled in CharacterController.
-        // See: https://forum.unity.com/threads/character-controller-unexpected-step-offset-behaviour.640828/
-        if (player.transform.position.y != previousPos.y) {
-            Debug.Log("Canceling movement");
-            //player.transform.Translate(moveVector * -1);
-        }
+        feedbackController.handleStep();
+    }
+
+    private void startMovement() {
+        feedbackController.handleMovementStart();
+    }
+    private void stopMovement() {
+        feedbackController.handleMovementStop();
     }
 
     void Start()
@@ -60,6 +63,7 @@ public class InteractionController : MonoBehaviour
         player = GameObject.Find("Player");
         collider = GetComponent<CapsuleCollider>();
         controller = GetComponent<CharacterController>();
+        feedbackController = GetComponent<FeedbackController>();
         ttsManager = GameObject.FindObjectOfType<TTSManager>();
     }
 
@@ -72,10 +76,12 @@ public class InteractionController : MonoBehaviour
         if (x == 0 && y == 0) {
             // Stop moving
             nextStepTime = -1;
+            handleMovementStop();
         } else {
             // Do first step
             if (nextStepTime == -1) {
                 doStep();
+                handleMovementStart();
             } else {
                 // Repeat for following steps
                 if (Time.time > nextStepTime) {
@@ -83,11 +89,11 @@ public class InteractionController : MonoBehaviour
                 }
             }
         }
-       
     }
 
-    void OnControllerColliderHit() {
+    void OnControllerColliderHit(ControllerColliderHit hit) {
         Debug.Log("Player collided with wall");
+        feedbackController.handleWallCollision(hit.gameObject);
     }
 }
 
