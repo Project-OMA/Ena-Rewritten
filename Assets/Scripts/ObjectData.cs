@@ -53,6 +53,7 @@ public class ObjectData : ScriptableObject
                     rotation = variation.rotation,
                     offsetX = variation.offsetX,
                     offsetY = variation.offsetY
+
                 };
             }
         }

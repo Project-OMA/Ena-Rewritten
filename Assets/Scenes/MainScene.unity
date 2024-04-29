@@ -174,6 +174,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 93569333190484527, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
       propertyPath: m_Enabled
+<<<<<<< Updated upstream
+=======
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 93569333190484527, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+>>>>>>> Stashed changes
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1477162865842979718, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}

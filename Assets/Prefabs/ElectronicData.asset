@@ -32,6 +32,12 @@ MonoBehaviour:
       rotation: 270
       offsetX: 0
       offsetY: 0
+<<<<<<< Updated upstream
+=======
+    sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
+    feedbackTypes: 0100000002000000
+    hapticForce: 0.25
+>>>>>>> Stashed changes
   - name: "Fog\xE3o"
     prefab: {fileID: 614322503775666597, guid: 0ef7fd4efb753e381b87c1a93e57affe, type: 3}
     variations:
@@ -51,6 +57,12 @@ MonoBehaviour:
       rotation: 270
       offsetX: 0
       offsetY: 0
+<<<<<<< Updated upstream
+=======
+    sound: {fileID: 8300000, guid: c8bf01ee37a04df459719e4259c02edf, type: 3}
+    feedbackTypes: 0100000002000000
+    hapticForce: 0.25
+>>>>>>> Stashed changes
   - name: Computador
     prefab: {fileID: 614322503775666597, guid: 4d76c47d9e438dcfa965c8155b7926fd, type: 3}
     variations:
@@ -70,6 +82,12 @@ MonoBehaviour:
       rotation: 270
       offsetX: 0
       offsetY: 0
+<<<<<<< Updated upstream
+=======
+    sound: {fileID: 8300000, guid: f88ccfdce8be12242aef1b703eb42cf3, type: 3}
+    feedbackTypes: 0100000002000000
+    hapticForce: 0.25
+>>>>>>> Stashed changes
   - name: "M\xE1quina de Lavar"
     prefab: {fileID: 614322503775666597, guid: 5c19f65f369c6da8bb5149dabfa9e1ff, type: 3}
     variations:
@@ -89,6 +107,12 @@ MonoBehaviour:
       rotation: 270
       offsetX: 0
       offsetY: 0
+<<<<<<< Updated upstream
+=======
+    sound: {fileID: 8300000, guid: 3de6b353cbd8ddb4a900de138e0e080e, type: 3}
+    feedbackTypes: 0100000002000000
+    hapticForce: 0.25
+>>>>>>> Stashed changes
   - name: TV
     prefab: {fileID: 614322503775666597, guid: c2a8e7c84ebe7aa7486c9063f9190656, type: 3}
     variations:
@@ -108,6 +132,12 @@ MonoBehaviour:
       rotation: 270
       offsetX: 0
       offsetY: 0
+<<<<<<< Updated upstream
+=======
+    sound: {fileID: 8300000, guid: 6f058b9023707aa4e898393cf12acf26, type: 3}
+    feedbackTypes: 0100000002000000
+    hapticForce: 0.25
+>>>>>>> Stashed changes
   - name: Microondas
     prefab: {fileID: 614322503775666597, guid: 46dd676781f97da44b061e74133e32c4, type: 3}
     variations:
@@ -127,6 +157,12 @@ MonoBehaviour:
       rotation: 270
       offsetX: 0
       offsetY: 0
+<<<<<<< Updated upstream
+=======
+    sound: {fileID: 8300000, guid: 0665cc05c774beb41890019cfa804e3e, type: 3}
+    feedbackTypes: 0100000002000000
+    hapticForce: 0.25
+>>>>>>> Stashed changes
   - name: Copiadora
     prefab: {fileID: 614322503775666597, guid: a4934ab6ba736e65ba18fe56c1d6bfea, type: 3}
     variations:
@@ -134,3 +170,9 @@ MonoBehaviour:
       rotation: 0
       offsetX: 0
       offsetY: 0
+<<<<<<< Updated upstream
+=======
+    sound: {fileID: 8300000, guid: a6f677943c98a94489913a42c2abe35e, type: 3}
+    feedbackTypes: 0100000002000000
+    hapticForce: 0.25
+>>>>>>> Stashed changes
