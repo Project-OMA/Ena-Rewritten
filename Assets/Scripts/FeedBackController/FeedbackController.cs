@@ -76,7 +76,6 @@ public class FeedbackController : MonoBehaviour
     {
         foreach (var item in Collisions.Values)
         {
-<<<<<<< Updated upstream
             if (item.CollidedObject.Contains("floor"))
             {
                 HandleWalkSound(item);
@@ -84,17 +83,6 @@ public class FeedbackController : MonoBehaviour
                 Debug.LogWarning(item.CollidedObject);
             }
             HandleFeedback(item);
-=======
-            
-            if(!item.CollidedObject.Contains("floor")){
-                    
-                HandleFeedback(item);
-            }
-            
-            
-            
-            
->>>>>>> Stashed changes
         }
     }
 

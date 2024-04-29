@@ -24,12 +24,9 @@ MonoBehaviour:
       rotation: 90
       offsetX: 0
       offsetY: 0
-<<<<<<< Updated upstream
-=======
     sound: {fileID: 8300000, guid: 5aaa0d774fd65c84b92fabb4e5404ff7, type: 3}
     feedbackTypes: 0200000001000000
     hapticForce: 0.25
->>>>>>> Stashed changes
   - name: Cone
     prefab: {fileID: 614322503775666597, guid: 631a7f0f66bc658a9a279a35bedede32, type: 3}
     variations:
@@ -37,12 +34,9 @@ MonoBehaviour:
       rotation: 0
       offsetX: 0
       offsetY: 0
-<<<<<<< Updated upstream
-=======
     sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
     feedbackTypes: 0100000002000000
     hapticForce: 0.25
->>>>>>> Stashed changes
   - name: "L\xE2mpada"
     prefab: {fileID: 614322503775666597, guid: 1b60e5e67edfd407db5f9686e2fc7a42, type: 3}
     variations:
@@ -50,12 +44,9 @@ MonoBehaviour:
       rotation: 0
       offsetX: 0
       offsetY: 0
-<<<<<<< Updated upstream
-=======
     sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
     feedbackTypes: 0100000002000000
     hapticForce: 0
->>>>>>> Stashed changes
   - name: "Viol\xE3o"
     prefab: {fileID: 614322503775666597, guid: 13352117950ad95c8911725b64b033e9, type: 3}
     variations:
@@ -63,12 +54,9 @@ MonoBehaviour:
       rotation: 0
       offsetX: 0
       offsetY: 0
-<<<<<<< Updated upstream
-=======
     sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
     feedbackTypes: 0100000002000000
     hapticForce: 0.25
->>>>>>> Stashed changes
   - name: Lixeira
     prefab: {fileID: 614322503775666597, guid: a77d3c3b9dfe40c6cb4517ab63e47755, type: 3}
     variations:
@@ -76,12 +64,9 @@ MonoBehaviour:
       rotation: 0
       offsetX: 0
       offsetY: 0
-<<<<<<< Updated upstream
-=======
     sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
     feedbackTypes: 0100000002000000
     hapticForce: 0.25
->>>>>>> Stashed changes
   - name: "Vaso Sanit\xE1rio"
     prefab: {fileID: 614322503775666597, guid: a3e41cb4c86af09c19be497d98b73e03, type: 3}
     variations:
@@ -101,12 +86,9 @@ MonoBehaviour:
       rotation: 90
       offsetX: 0
       offsetY: 0
-<<<<<<< Updated upstream
-=======
     sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
     feedbackTypes: 0100000002000000
     hapticForce: 0.25
->>>>>>> Stashed changes
   - name: "Lavat\xF3rio"
     prefab: {fileID: 118746, guid: 127019e720225b7478d430b9b3c83f96, type: 3}
     variations:
@@ -126,12 +108,9 @@ MonoBehaviour:
       rotation: 270
       offsetX: 0
       offsetY: 0
-<<<<<<< Updated upstream
-=======
     sound: {fileID: 0}
     feedbackTypes: 0100000002000000
     hapticForce: 0.25
->>>>>>> Stashed changes
   - name: Planta
     prefab: {fileID: 614322503775666597, guid: 6728c0589d8cf7da2a04846a1cdb37d0, type: 3}
     variations:
@@ -139,12 +118,9 @@ MonoBehaviour:
       rotation: 0
       offsetX: 0
       offsetY: 0
-<<<<<<< Updated upstream
-=======
     sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
     feedbackTypes: 0100000002000000
     hapticForce: 0
->>>>>>> Stashed changes
   - name: Quadro de Pintura
     prefab: {fileID: 614322503775666597, guid: b219d8ce365b7efbda9b84b50ba954bc, type: 3}
     variations:
@@ -164,9 +140,6 @@ MonoBehaviour:
       rotation: 270
       offsetX: 0
       offsetY: 0
-<<<<<<< Updated upstream
-=======
     sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
     feedbackTypes: 0100000002000000
     hapticForce: 0.25
->>>>>>> Stashed changes
