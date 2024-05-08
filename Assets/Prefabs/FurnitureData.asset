@@ -98,7 +98,7 @@ MonoBehaviour:
       rotation: 270
       offsetX: 0
       offsetY: 0
-    sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
+    sound: {fileID: 8300000, guid: ad9feaf1cef2b1e4b8b358e5091cad8f, type: 3}
     feedbackTypes: 0100000002000000
     hapticForce: 0.25
   - name: Mesa de Jantar (c/ 4 cadeiras)
@@ -112,7 +112,7 @@ MonoBehaviour:
       rotation: 90
       offsetX: 0
       offsetY: 0
-    sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
+    sound: {fileID: 8300000, guid: bae8b1f9cd5af2745a6b625568e1d46e, type: 3}
     feedbackTypes: 0100000002000000
     hapticForce: 0.25
   - name: Guarda-Roupa
@@ -134,7 +134,7 @@ MonoBehaviour:
       rotation: 270
       offsetX: 0
       offsetY: 0
-    sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
+    sound: {fileID: 8300000, guid: 5c91593d2fd42044296eaa1563c199bf, type: 3}
     feedbackTypes: 0100000002000000
     hapticForce: 0.25
   - name: "Arm\xE1rio de Ferro"
@@ -156,7 +156,7 @@ MonoBehaviour:
       rotation: 270
       offsetX: 0
       offsetY: 0
-    sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
+    sound: {fileID: 8300000, guid: 5c91593d2fd42044296eaa1563c199bf, type: 3}
     feedbackTypes: 0100000002000000
     hapticForce: 0.25
   - name: "Sof\xE1"
@@ -200,7 +200,7 @@ MonoBehaviour:
       rotation: 270
       offsetX: 0
       offsetY: 0
-    sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
+    sound: {fileID: 8300000, guid: 5c91593d2fd42044296eaa1563c199bf, type: 3}
     feedbackTypes: 0100000002000000
     hapticForce: 0.25
   - name: Estante
@@ -222,7 +222,7 @@ MonoBehaviour:
       rotation: 270
       offsetX: 0
       offsetY: 0
-    sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
+    sound: {fileID: 8300000, guid: ad9feaf1cef2b1e4b8b358e5091cad8f, type: 3}
     feedbackTypes: 0100000002000000
     hapticForce: 0.25
   - name: Mesa
@@ -236,7 +236,7 @@ MonoBehaviour:
       rotation: 90
       offsetX: 0
       offsetY: 0
-    sound: {fileID: 0}
+    sound: {fileID: 8300000, guid: ad9feaf1cef2b1e4b8b358e5091cad8f, type: 3}
     feedbackTypes: 0100000002000000
     hapticForce: 0.25
   - name: Criado Mudo
@@ -258,6 +258,6 @@ MonoBehaviour:
       rotation: 270
       offsetX: 0
       offsetY: 0
-    sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
+    sound: {fileID: 8300000, guid: 5c91593d2fd42044296eaa1563c199bf, type: 3}
     feedbackTypes: 0100000002000000
     hapticForce: 0.25

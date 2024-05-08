@@ -24,7 +24,7 @@ MonoBehaviour:
       rotation: 90
       offsetX: 0
       offsetY: 0
-    sound: {fileID: 8300000, guid: 5aaa0d774fd65c84b92fabb4e5404ff7, type: 3}
+    sound: {fileID: 8300000, guid: c02bd7b62cfcd8743b5db28137ad8033, type: 3}
     feedbackTypes: 0200000001000000
     hapticForce: 0.25
   - name: Cone
