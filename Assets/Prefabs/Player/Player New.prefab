@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7886968323738021, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 6895607415780474094}
     - target: {fileID: 93569333190484527, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
       propertyPath: m_Height
       value: 1.8
@@ -90,7 +94,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4821809682427395678, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
       propertyPath: m_Name
-      value: Player Variant 1
+      value: Player New
+      objectReference: {fileID: 0}
+    - target: {fileID: 4821809682427395678, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 7331675978371474208, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
       propertyPath: m_TagString

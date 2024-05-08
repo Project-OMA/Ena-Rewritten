@@ -60,7 +60,7 @@ public class InteractionController : MonoBehaviour
     void Start()
     {
         // Get capsule collider
-        player = GameObject.Find("Player");
+        //player = GameObject.Find("Player");
         collider = GetComponent<CapsuleCollider>();
         controller = GetComponent<CharacterController>();
         feedbackController = GetComponent<FeedbackController>();
