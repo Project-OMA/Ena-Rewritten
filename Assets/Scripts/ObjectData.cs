@@ -21,8 +21,8 @@ public class ObjectData : ScriptableObject
     {
         public string id;
         public int rotation;
-        public int offsetX;
-        public int offsetY;
+        public float offsetX;
+        public float offsetY;
 
     }
 

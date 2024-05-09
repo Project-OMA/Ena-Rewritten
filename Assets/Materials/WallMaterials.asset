@@ -18,7 +18,7 @@ MonoBehaviour:
     material: {fileID: 2100000, guid: c52e5cd2e15930dbdba219f28f081c02, type: 2}
     useGlobalUV: 0
     scale: {x: 2, y: 3}
-    sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
+    sound: {fileID: 8300000, guid: 79e055a6a22ea2d47942ce6b1482341d, type: 3}
     feedbackTypes: 0200000001000000
     hapticForce: 0.25
   - id: 1.0

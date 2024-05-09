@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2370264314703672948}
   - component: {fileID: -8626863410959422207}
   - component: {fileID: 7221944116183289647}
+  - component: {fileID: 2062338327483614159}
   m_Layer: 0
   m_Name: passaro
   m_TagString: Untagged
@@ -84,6 +85,28 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 614322503775666597}
   m_Mesh: {fileID: 0}
+--- !u!64 &2062338327483614159
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 614322503775666597}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
 --- !u!1001 &746317649718426989
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -106,19 +129,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 575f7529b7953524f91a42ba4042a279, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 575f7529b7953524f91a42ba4042a279, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 575f7529b7953524f91a42ba4042a279, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 575f7529b7953524f91a42ba4042a279, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 575f7529b7953524f91a42ba4042a279, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -126,7 +149,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 575f7529b7953524f91a42ba4042a279, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 180
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 575f7529b7953524f91a42ba4042a279, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z

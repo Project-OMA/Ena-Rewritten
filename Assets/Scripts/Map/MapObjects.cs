@@ -20,8 +20,8 @@ namespace MapObjects
         public string name;
         public GameObject prefab;
         public int rotation;
-        public int offsetX;
-        public int offsetY;
+        public float offsetX;
+        public float offsetY;
     }
 
     [Serializable]

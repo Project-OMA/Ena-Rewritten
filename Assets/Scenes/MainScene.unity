@@ -261,6 +261,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc5ac0b338db64047a025ebd3fae9c6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2097357243 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6895607415780474094, guid: 4429871703991d3459478bc86d09bc91, type: 3}
+  m_PrefabInstance: {fileID: 6301724732680385401}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6301724732680385401
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -269,13 +274,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 336185129184726802, guid: 4429871703991d3459478bc86d09bc91, type: 3}
+      propertyPath: m_Constraints
+      value: 126
+      objectReference: {fileID: 0}
     - target: {fileID: 2108978841106107157, guid: 4429871703991d3459478bc86d09bc91, type: 3}
       propertyPath: ttsManager
       value: 
       objectReference: {fileID: 1075604382}
+    - target: {fileID: 5059716781146580058, guid: 4429871703991d3459478bc86d09bc91, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6696139816947270690, guid: 4429871703991d3459478bc86d09bc91, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6696139816947270690, guid: 4429871703991d3459478bc86d09bc91, type: 3}
       propertyPath: m_LocalPosition.y
@@ -283,7 +296,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6696139816947270690, guid: 4429871703991d3459478bc86d09bc91, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -17
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6696139816947270690, guid: 4429871703991d3459478bc86d09bc91, type: 3}
       propertyPath: m_LocalRotation.w
@@ -317,6 +330,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8613841966493107006, guid: 4429871703991d3459478bc86d09bc91, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8613841966493107006, guid: 4429871703991d3459478bc86d09bc91, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8613841966493107006, guid: 4429871703991d3459478bc86d09bc91, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -333,7 +358,11 @@ PrefabInstance:
     - target: {fileID: 1593772612312908788, guid: 99f6036f07791e557b820a2bb8e7068c, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2097357243}
+    - target: {fileID: 1593772612312908788, guid: 99f6036f07791e557b820a2bb8e7068c, type: 3}
+      propertyPath: mapFile
+      value: 
+      objectReference: {fileID: 4900000, guid: d75b9713e655dfe4fababcc207758788, type: 3}
     - target: {fileID: 1593772612312908788, guid: 99f6036f07791e557b820a2bb8e7068c, type: 3}
       propertyPath: floorTextureScale
       value: 1

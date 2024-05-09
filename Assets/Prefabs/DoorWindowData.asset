@@ -18,12 +18,12 @@ MonoBehaviour:
     variations:
     - id: 0.0
       rotation: 0
-      offsetX: 0
-      offsetY: 0
+      offsetX: 0.5
+      offsetY: -0.5
     - id: 0.2
       rotation: 90
-      offsetX: 0
-      offsetY: 0
+      offsetX: 0.5
+      offsetY: -0.5
     sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
     feedbackTypes: 0100000002000000
     hapticForce: 0.25
@@ -32,12 +32,12 @@ MonoBehaviour:
     variations:
     - id: 2.0
       rotation: 0
-      offsetX: 0
-      offsetY: 0
+      offsetX: 0.5
+      offsetY: -0.5
     - id: 2.2
       rotation: 90
-      offsetX: 0
-      offsetY: 0
+      offsetX: 0.5
+      offsetY: -0.5
     sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
     feedbackTypes: 0100000002000000
     hapticForce: 0.25
@@ -46,12 +46,12 @@ MonoBehaviour:
     variations:
     - id: 4.0
       rotation: 0
-      offsetX: 0
-      offsetY: 0
+      offsetX: 0.5
+      offsetY: -0.5
     - id: 4.2
       rotation: 90
-      offsetX: 0
-      offsetY: 0
+      offsetX: 0.5
+      offsetY: -0.5
     sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
     feedbackTypes: 0100000002000000
     hapticForce: 0.25
@@ -60,12 +60,12 @@ MonoBehaviour:
     variations:
     - id: 6.0
       rotation: 0
-      offsetX: 0
-      offsetY: 0
+      offsetX: 0.5
+      offsetY: -0.5
     - id: 6.1
       rotation: 90
-      offsetX: 0
-      offsetY: 0
+      offsetX: 0.5
+      offsetY: -0.5
     sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
     feedbackTypes: 0100000002000000
     hapticForce: 0.25
@@ -74,12 +74,12 @@ MonoBehaviour:
     variations:
     - id: 7.0
       rotation: 0
-      offsetX: 0
-      offsetY: 0
+      offsetX: 0.5
+      offsetY: -0.5
     - id: 7.1
       rotation: 90
-      offsetX: 0
-      offsetY: 0
+      offsetX: 0.5
+      offsetY: -0.5
     sound: {fileID: 0}
     feedbackTypes: 0100000002000000
     hapticForce: 0.25
