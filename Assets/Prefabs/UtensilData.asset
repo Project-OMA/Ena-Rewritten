@@ -17,13 +17,13 @@ MonoBehaviour:
     prefab: {fileID: 614322503775666597, guid: 5eb32a8ff097393b5b901738311e89c6, type: 3}
     variations:
     - id: 1.1
-      rotation: 0
-      offsetX: 0.5
-      offsetY: -0.5
-    - id: 1.2
       rotation: 90
-      offsetX: 0.5
-      offsetY: -0.5
+      offsetX: 0
+      offsetY: 0
+    - id: 1.2
+      rotation: 0
+      offsetX: 0
+      offsetY: -1
     sound: {fileID: 8300000, guid: c02bd7b62cfcd8743b5db28137ad8033, type: 3}
     feedbackTypes: 0200000001000000
     hapticForce: 0.25
