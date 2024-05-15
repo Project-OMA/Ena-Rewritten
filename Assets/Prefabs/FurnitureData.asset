@@ -18,20 +18,20 @@ MonoBehaviour:
     variations:
     - id: 1.1
       rotation: 0
-      offsetX: -0.5
-      offsetY: -0.5
+      offsetX: 0
+      offsetY: 0
     - id: 2.0
       rotation: 180
-      offsetX: -0.5
-      offsetY: -0.5
+      offsetX: 1
+      offsetY: -1
     - id: 5.0
-      rotation: 90
-      offsetX: -0.5
-      offsetY: -0.5
-    - id: 6.1
       rotation: 270
-      offsetX: -0.5
-      offsetY: -0.5
+      offsetX: 0
+      offsetY: -1
+    - id: 6.1
+      rotation: 90
+      offsetX: 1
+      offsetY: 0
     sound: {fileID: 8300000, guid: 150d8fd856896234db3d8851ea79704a, type: 3}
     feedbackTypes: 0100000002000000
     hapticForce: 0.25
@@ -40,19 +40,19 @@ MonoBehaviour:
     variations:
     - id: 0.3
       rotation: 0
-      offsetX: -0.5
-      offsetY: -0.5
+      offsetX: 0.5
+      offsetY: 0
     - id: 1.2
       rotation: 180
-      offsetX: -0.5
-      offsetY: -0.5
+      offsetX: 0.5
+      offsetY: -1
     - id: 2.3
       rotation: 90
-      offsetX: -0.5
+      offsetX: 1
       offsetY: -0.5
     - id: 3.2
       rotation: 270
-      offsetX: -0.5
+      offsetX: 0
       offsetY: -0.5
     sound: {fileID: 8300000, guid: 150d8fd856896234db3d8851ea79704a, type: 3}
     feedbackTypes: 0100000002000000
@@ -62,19 +62,19 @@ MonoBehaviour:
     variations:
     - id: 4.2
       rotation: 0
-      offsetX: -0.5
+      offsetX: 0.5
       offsetY: -0.5
     - id: 4.3
       rotation: 180
-      offsetX: -0.5
+      offsetX: 0.5
       offsetY: -0.5
     - id: 5.2
       rotation: 270
-      offsetX: -0.5
+      offsetX: 0.5
       offsetY: -0.5
     - id: 5.3
       rotation: 90
-      offsetX: -0.5
+      offsetX: 0.5
       offsetY: -0.5
     sound: {fileID: 8300000, guid: 9ee9a123905c4924895884d6d19e1542, type: 3}
     feedbackTypes: 0100000002000000
@@ -84,19 +84,19 @@ MonoBehaviour:
     variations:
     - id: 6.2
       rotation: 0
-      offsetX: -0.5
+      offsetX: 0.5
       offsetY: -0.5
     - id: 6.3
-      rotation: 180
-      offsetX: -0.5
+      rotation: 270
+      offsetX: 0.5
       offsetY: -0.5
     - id: 7.2
-      rotation: 90
-      offsetX: -0.5
+      rotation: 180
+      offsetX: 0.5
       offsetY: -0.5
     - id: 7.3
-      rotation: 270
-      offsetX: -0.5
+      rotation: 90
+      offsetX: 0.5
       offsetY: -0.5
     sound: {fileID: 8300000, guid: ad9feaf1cef2b1e4b8b358e5091cad8f, type: 3}
     feedbackTypes: 0100000002000000
@@ -110,7 +110,7 @@ MonoBehaviour:
       offsetY: -1
     - id: 3.5
       rotation: 90
-      offsetX: -1
+      offsetX: 1
       offsetY: -0.25
     sound: {fileID: 8300000, guid: bae8b1f9cd5af2745a6b625568e1d46e, type: 3}
     feedbackTypes: 0100000002000000
@@ -120,20 +120,20 @@ MonoBehaviour:
     variations:
     - id: 4.5
       rotation: 0
-      offsetX: -0.5
+      offsetX: 1
       offsetY: -0.5
     - id: 5.6
       rotation: 180
-      offsetX: -0.5
+      offsetX: 0
       offsetY: -0.5
     - id: 6.4
       rotation: 90
-      offsetX: -0.5
-      offsetY: -0.5
+      offsetX: 0.5
+      offsetY: -1
     - id: 6.7
       rotation: 270
-      offsetX: -0.5
-      offsetY: -0.5
+      offsetX: 0.5
+      offsetY: 0
     sound: {fileID: 8300000, guid: 5c91593d2fd42044296eaa1563c199bf, type: 3}
     feedbackTypes: 0100000002000000
     hapticForce: 0.25
@@ -142,19 +142,19 @@ MonoBehaviour:
     variations:
     - id: 0.7
       rotation: 0
-      offsetX: -0.5
+      offsetX: 0.5
       offsetY: -0.5
     - id: 0.8
       rotation: 180
-      offsetX: -0.5
+      offsetX: 0.5
       offsetY: -0.5
     - id: 3.6
       rotation: 90
-      offsetX: -0.5
+      offsetX: 0.5
       offsetY: -0.5
     - id: 3.9
       rotation: 270
-      offsetX: -0.5
+      offsetX: 0.5
       offsetY: -0.5
     sound: {fileID: 8300000, guid: 5c91593d2fd42044296eaa1563c199bf, type: 3}
     feedbackTypes: 0100000002000000
@@ -163,20 +163,20 @@ MonoBehaviour:
     prefab: {fileID: 614322503775666597, guid: c083dc7bbd1239b3ba2aca1393ed8e25, type: 3}
     variations:
     - id: 4.9
-      rotation: 0
-      offsetX: -0.5
-      offsetY: -0.5
+      rotation: 270
+      offsetX: 0.5
+      offsetY: 0
     - id: 4.10
-      rotation: 180
-      offsetX: -0.5
+      rotation: 0
+      offsetX: 1
       offsetY: -0.5
     - id: 5.8
       rotation: 90
-      offsetX: -0.5
-      offsetY: -0.5
+      offsetX: 0.5
+      offsetY: -1
     - id: 5.11
-      rotation: 270
-      offsetX: -0.5
+      rotation: 180
+      offsetX: 0
       offsetY: -0.5
     sound: {fileID: 8300000, guid: 9ee9a123905c4924895884d6d19e1542, type: 3}
     feedbackTypes: 0100000002000000
@@ -186,19 +186,19 @@ MonoBehaviour:
     variations:
     - id: 0.10
       rotation: 0
-      offsetX: -0.5
+      offsetX: 0.5
       offsetY: -0.5
     - id: 0.11
       rotation: 180
-      offsetX: -0.5
+      offsetX: 0.5
       offsetY: -0.5
     - id: 1.10
-      rotation: 90
-      offsetX: -0.5
+      rotation: 270
+      offsetX: 0.5
       offsetY: -0.5
     - id: 1.11
-      rotation: 270
-      offsetX: -0.5
+      rotation: 90
+      offsetX: 0.5
       offsetY: -0.5
     sound: {fileID: 8300000, guid: 5c91593d2fd42044296eaa1563c199bf, type: 3}
     feedbackTypes: 0100000002000000
@@ -208,19 +208,19 @@ MonoBehaviour:
     variations:
     - id: 6.11
       rotation: 0
-      offsetX: -0.5
+      offsetX: 0.5
       offsetY: -0.5
     - id: 7.10
       rotation: 180
-      offsetX: -0.5
+      offsetX: 0.5
       offsetY: -0.5
     - id: 7.12
       rotation: 90
-      offsetX: -0.5
+      offsetX: 0.5
       offsetY: -0.5
     - id: 6.13
       rotation: 270
-      offsetX: -0.5
+      offsetX: 0.5
       offsetY: -0.5
     sound: {fileID: 8300000, guid: ad9feaf1cef2b1e4b8b358e5091cad8f, type: 3}
     feedbackTypes: 0100000002000000
@@ -229,12 +229,12 @@ MonoBehaviour:
     prefab: {fileID: 614322503775666597, guid: d7be4ee713d451b45827eaec54b468ed, type: 3}
     variations:
     - id: 0.12
-      rotation: 0
-      offsetX: -0.5
-      offsetY: -0.5
-    - id: 1.12
       rotation: 90
-      offsetX: -0.5
+      offsetX: 0.5
+      offsetY: -1
+    - id: 1.12
+      rotation: 0
+      offsetX: 1
       offsetY: -0.5
     sound: {fileID: 8300000, guid: ad9feaf1cef2b1e4b8b358e5091cad8f, type: 3}
     feedbackTypes: 0100000002000000
@@ -244,19 +244,19 @@ MonoBehaviour:
     variations:
     - id: 6.8
       rotation: 0
-      offsetX: -0.5
+      offsetX: 0.5
       offsetY: -0.5
     - id: 6.9
       rotation: 180
-      offsetX: -0.5
+      offsetX: 0.5
       offsetY: -0.5
     - id: 7.8
       rotation: 90
-      offsetX: -0.5
+      offsetX: 0.5
       offsetY: -0.5
     - id: 7.9
       rotation: 270
-      offsetX: -0.5
+      offsetX: 0.5
       offsetY: -0.5
     sound: {fileID: 8300000, guid: 5c91593d2fd42044296eaa1563c199bf, type: 3}
     feedbackTypes: 0100000002000000
