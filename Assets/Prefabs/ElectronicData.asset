@@ -113,11 +113,11 @@ MonoBehaviour:
       offsetX: 0.5
       offsetY: -0.5
     - id: 3.2
-      rotation: 90
+      rotation: 270
       offsetX: 0.5
       offsetY: -0.5
     - id: 3.3
-      rotation: 270
+      rotation: 90
       offsetX: 0.5
       offsetY: -0.5
     sound: {fileID: 8300000, guid: 9095faaef704c8340a8aed303a0402e1, type: 3}
