@@ -16,6 +16,7 @@ TagManager:
   - Goals
   - Utensils
   - Electronics
+  - Door
   layers:
   - Default
   - TransparentFX
