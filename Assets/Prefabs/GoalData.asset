@@ -223,3 +223,13 @@ MonoBehaviour:
     sound: {fileID: 0}
     feedbackTypes: 
     hapticForce: 0
+  - name: FinalObject
+    prefab: {fileID: 8160157643549910973, guid: bfff5e67767c3f444a6065f6391b1b78, type: 3}
+    variations:
+    - id: 9.99
+      rotation: 0
+      offsetX: 0.5
+      offsetY: -0.5
+    sound: {fileID: 0}
+    feedbackTypes: 
+    hapticForce: 0

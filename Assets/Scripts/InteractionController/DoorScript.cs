@@ -16,8 +16,6 @@ public class DoorScript : MonoBehaviour
 
             if(playCollider.gameObject.tag == "Player" && DoorOpen == false){
                 
-                
-                 
                 openDoor();
             }  
         }
