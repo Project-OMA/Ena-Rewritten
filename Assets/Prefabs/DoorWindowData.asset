@@ -18,11 +18,19 @@ MonoBehaviour:
     variations:
     - id: 0.0
       rotation: 0
-      offsetX: 0.5
+      offsetX: 0
       offsetY: -0.5
-    - id: 0.2
+    - id: 0.1
       rotation: 90
       offsetX: 0.5
+      offsetY: 0
+    - id: 0.2
+      rotation: 270
+      offsetX: 0.5
+      offsetY: -1
+    - id: 1.0
+      rotation: 180
+      offsetX: 1
       offsetY: -0.5
     sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
     feedbackTypes: 0100000002000000
@@ -34,6 +42,10 @@ MonoBehaviour:
       rotation: 0
       offsetX: 0
       offsetY: -0.5
+    - id: 2.1
+      rotation: 90
+      offsetX: 0.5
+      offsetY: 0
     - id: 2.2
       rotation: 270
       offsetX: 0.5
@@ -42,10 +54,6 @@ MonoBehaviour:
       rotation: 180
       offsetX: 1
       offsetY: -0.5
-    - id: 2.1
-      rotation: 90
-      offsetX: 0.5
-      offsetY: 0
     sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
     feedbackTypes: 0100000002000000
     hapticForce: 0.25
@@ -53,12 +61,20 @@ MonoBehaviour:
     prefab: {fileID: 614322503775666597, guid: 5cb6e94b9bb5706e0962e7fb981fc2d9, type: 3}
     variations:
     - id: 4.0
-      rotation: 0
-      offsetX: 0.5
+      rotation: -78
+      offsetX: 0
       offsetY: -0.5
     - id: 4.2
-      rotation: 90
+      rotation: 192
       offsetX: 0.5
+      offsetY: -1
+    - id: 4.1
+      rotation: 168
+      offsetX: 0.5
+      offsetY: 0
+    - id: 5.0
+      rotation: 258
+      offsetX: 1
       offsetY: -0.5
     sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
     feedbackTypes: 0100000002000000
