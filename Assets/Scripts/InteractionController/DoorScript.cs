@@ -12,13 +12,18 @@ public class DoorScript : MonoBehaviour
 
     public bool DoorOpen;
 
+
     void OnTriggerEnter(Collider playCollider){
 
             if(playCollider.gameObject.tag == "Player" && DoorOpen == false){
                 
                 openDoor();
-            }  
+
+            }
+            
         }
+    
+    
 
     void openDoor(){
         if(!DoorOpen){
