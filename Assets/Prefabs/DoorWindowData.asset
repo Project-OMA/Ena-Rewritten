@@ -32,7 +32,7 @@ MonoBehaviour:
       rotation: 180
       offsetX: 1
       offsetY: -0.5
-    sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
+    sound: {fileID: 8300000, guid: 3e0c4e9ed7620a24883faa8b33fc4437, type: 3}
     feedbackTypes: 0100000002000000
     hapticForce: 0.25
   - name: Porta Fechada
@@ -54,7 +54,7 @@ MonoBehaviour:
       rotation: 180
       offsetX: 1
       offsetY: -0.5
-    sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
+    sound: {fileID: 8300000, guid: ad9feaf1cef2b1e4b8b358e5091cad8f, type: 3}
     feedbackTypes: 0100000002000000
     hapticForce: 0.25
   - name: Porta Aberta
@@ -76,7 +76,7 @@ MonoBehaviour:
       rotation: 258
       offsetX: 1
       offsetY: -0.5
-    sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
+    sound: {fileID: 8300000, guid: ad9feaf1cef2b1e4b8b358e5091cad8f, type: 3}
     feedbackTypes: 0100000002000000
     hapticForce: 0.25
   - name: Janela de Vidro
@@ -84,13 +84,13 @@ MonoBehaviour:
     variations:
     - id: 6.0
       rotation: 0
-      offsetX: 0.5
-      offsetY: -0.5
+      offsetX: 0
+      offsetY: -1
     - id: 6.1
       rotation: 90
-      offsetX: 0.5
-      offsetY: -0.5
-    sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
+      offsetX: 0
+      offsetY: 0
+    sound: {fileID: 8300000, guid: 62352e16614dd6c47b20aeb24f5811f2, type: 3}
     feedbackTypes: 0100000002000000
     hapticForce: 0.25
   - name: Janela de Madeira
@@ -98,12 +98,12 @@ MonoBehaviour:
     variations:
     - id: 7.0
       rotation: 0
-      offsetX: 0.5
-      offsetY: -0.5
+      offsetX: 0
+      offsetY: -1
     - id: 7.1
       rotation: 90
-      offsetX: 0.5
-      offsetY: -0.5
-    sound: {fileID: 0}
+      offsetX: 0
+      offsetY: 0
+    sound: {fileID: 8300000, guid: 62352e16614dd6c47b20aeb24f5811f2, type: 3}
     feedbackTypes: 0100000002000000
     hapticForce: 0.25

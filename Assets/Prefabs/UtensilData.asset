@@ -126,20 +126,20 @@ MonoBehaviour:
     variations:
     - id: 3.2
       rotation: 0
-      offsetX: 0.5
-      offsetY: -0.5
+      offsetX: 0
+      offsetY: -1
     - id: 3.3
       rotation: 180
-      offsetX: 0.5
-      offsetY: -0.5
+      offsetX: 0
+      offsetY: 0
     - id: 4.2
-      rotation: 90
-      offsetX: 0.5
-      offsetY: -0.5
-    - id: 4.3
       rotation: 270
-      offsetX: 0.5
-      offsetY: -0.5
+      offsetX: 0
+      offsetY: 0
+    - id: 4.3
+      rotation: 90
+      offsetX: 0
+      offsetY: 0
     sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
     feedbackTypes: 0100000002000000
     hapticForce: 0.25
