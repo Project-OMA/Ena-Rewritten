@@ -14,7 +14,7 @@ public class caneActive : MonoBehaviour
     public XRBaseController controller;
 
     bool isItemActive = false;
-    readonly bool lastPrimaryButtonState = false;
+    bool lastPrimaryButtonState = false;
 
     InputDevice xrInputDevice;
 
@@ -34,6 +34,7 @@ public class caneActive : MonoBehaviour
             bengala.SetActive(isItemActive);
         }
 
+        lastPrimaryButtonState = primaryButtonValue;
     }
 
     // Update is called once per frame
