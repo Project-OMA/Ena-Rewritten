@@ -18,6 +18,15 @@ public class caneActive : MonoBehaviour
 
     InputDevice xrInputDevice;
 
+    AudioSource m_MyAudioSource;
+
+    void Start()
+    {
+        //Fetch the AudioSource from the GameObject
+        m_MyAudioSource = GetComponent<AudioSource>();
+        
+    }
+
     
 
 
@@ -32,6 +41,13 @@ public class caneActive : MonoBehaviour
         {
             isItemActive = !isItemActive;
             bengala.SetActive(isItemActive);
+
+            if (isItemActive) {
+                m_MyAudioSource.pitch = 1.0f;
+            } else {
+                m_MyAudioSource.pitch = 0.5f;
+            }
+            m_MyAudioSource.Play();
         }
 
         lastPrimaryButtonState = primaryButtonValue;
