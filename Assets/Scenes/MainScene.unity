@@ -285,6 +285,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &949940199 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1761980273700267624, guid: 4429871703991d3459478bc86d09bc91, type: 3}
+  m_PrefabInstance: {fileID: 6301724732680385401}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1075604380
 GameObject:
   m_ObjectHideFlags: 0
@@ -334,6 +339,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 6895607415780474094, guid: 4429871703991d3459478bc86d09bc91, type: 3}
   m_PrefabInstance: {fileID: 6301724732680385401}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2097357268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097357243}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b13ea92881166346a0334ac51a611e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &6301724732680385401
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -342,14 +359,34 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 215194208786762215, guid: 4429871703991d3459478bc86d09bc91, type: 3}
+      propertyPath: cane
+      value: 
+      objectReference: {fileID: 949940199}
+    - target: {fileID: 215194208786762215, guid: 4429871703991d3459478bc86d09bc91, type: 3}
+      propertyPath: m_MyAudioSource
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 336185129184726802, guid: 4429871703991d3459478bc86d09bc91, type: 3}
       propertyPath: m_Constraints
       value: 126
+      objectReference: {fileID: 0}
+    - target: {fileID: 1761980273700267624, guid: 4429871703991d3459478bc86d09bc91, type: 3}
+      propertyPath: m_TagString
+      value: Cane
       objectReference: {fileID: 0}
     - target: {fileID: 2108978841106107157, guid: 4429871703991d3459478bc86d09bc91, type: 3}
       propertyPath: ttsManager
       value: 
       objectReference: {fileID: 1075604382}
+    - target: {fileID: 5019787656333671981, guid: 4429871703991d3459478bc86d09bc91, type: 3}
+      propertyPath: cane
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5059716781146580058, guid: 4429871703991d3459478bc86d09bc91, type: 3}
+      propertyPath: m_Radius
+      value: 0.22
+      objectReference: {fileID: 0}
     - target: {fileID: 5059716781146580058, guid: 4429871703991d3459478bc86d09bc91, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -410,10 +447,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5019787656333671981, guid: 4429871703991d3459478bc86d09bc91, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6895607415780474094, guid: 4429871703991d3459478bc86d09bc91, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2097357268}
   m_SourcePrefab: {fileID: 100100000, guid: 4429871703991d3459478bc86d09bc91, type: 3}
 --- !u!1001 &9211369014463531979
 PrefabInstance:

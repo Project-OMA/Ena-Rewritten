@@ -17,6 +17,7 @@ TagManager:
   - Utensils
   - Electronics
   - Door
+  - Cane
   layers:
   - Default
   - TransparentFX

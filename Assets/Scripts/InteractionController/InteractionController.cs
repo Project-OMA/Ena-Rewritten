@@ -1,12 +1,16 @@
 using UnityEngine;
 using UI;
 
+using System;
+
 public class InteractionController : MonoBehaviour
 {
     public float walkDistance = 1.5f;
     
     float stepPeriod = 0.25f;
     float nextStepTime = -1f;
+    
+    int wallhit;
 
     public float runSpeed = 30;
     public GameObject player;
@@ -25,7 +29,7 @@ public class InteractionController : MonoBehaviour
         return Input.GetAxis("Fire2");
     }
 
-    private Vector3 getMoveVector()
+    public Vector3 getMoveVector()
     {
         float x = Input.GetAxis("Vertical");
         float y = Input.GetAxis("Horizontal");
@@ -46,6 +50,22 @@ public class InteractionController : MonoBehaviour
 
         Vector3 previousPos = player.transform.position;
         controller.Move(moveVector);
+
+        Vector3 currentPos = player.transform.position;
+
+        Vector3 desiredPos = moveVector+previousPos;
+
+       
+
+        Debug.Log("" + currentPos.x);
+        Debug.Log("" + currentPos.z);
+
+        Debug.Log(moveVector.x+previousPos.x);
+        Debug.Log(moveVector.z+previousPos.z);
+
+        diff(previousPos, desiredPos,currentPos, moveVector);
+
+        
 
         feedbackController.handleStep();
     }
@@ -92,8 +112,25 @@ public class InteractionController : MonoBehaviour
     }
 
     void OnControllerColliderHit(ControllerColliderHit hit) {
-        Debug.Log("Player collided with wall");
-        feedbackController.handleWallCollision(hit.gameObject);
+
+        
+        feedbackController.handleWallCollision(hit.gameObject, wallhit);
+    }
+
+    public void diff(Vector3 prevPos, Vector3 desPos, Vector3 acPos, Vector3 movVec){
+
+
+        
+
+        if(Math.Abs(prevPos.x - desPos.x)<Math.Abs(movVec.x) || Math.Abs(prevPos.y - desPos.y)<Math.Abs(movVec.y)){
+                wallhit=+1;
+            }
+            
+        
+
+
+        
+
     }
 }
 

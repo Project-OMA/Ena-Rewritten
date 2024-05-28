@@ -18,7 +18,7 @@ public class caneActive : MonoBehaviour
 
     InputDevice xrInputDevice;
 
-    AudioSource m_MyAudioSource;
+    public AudioSource m_MyAudioSource;
 
     void Start()
     {

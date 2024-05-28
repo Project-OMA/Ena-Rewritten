@@ -22,10 +22,34 @@ public class FeedbackController : MonoBehaviour
     public InputDevice inputDevice;
     private HapticFeedback HapticImpulse;
 
+    public GameObject cane;
+
+    private AudioSource WallStopSource;
+    private AudioSource CaneSource;
+
+    private InteractionController interactionController;
+
+    
+    
+
+
     #endregion
 
     #region Unity Callbacks
 
+    void Start()
+    {
+        //Fetch the AudioSource from the GameObject
+        WallStopSource = gameObject.AddComponent<AudioSource>();
+        CaneSource = gameObject.AddComponent<AudioSource>();
+        interactionController = GetComponent<InteractionController>();
+
+        AudioClip audioClip = Resources.Load<AudioClip>("Sounds/wallstop");
+        
+        WallStopSource.clip = audioClip;
+        
+        
+    }
     private void Awake()
     {
         InitializeInputDevice();
@@ -61,6 +85,7 @@ public class FeedbackController : MonoBehaviour
     {
         List<InputDevice> devices = new List<InputDevice>();
         var isRightHand = gameObject.name.ToLower().Contains("right");
+        var isLeftHand = gameObject.name.ToLower().Contains("left");
         InputDevices.GetDevicesAtXRNode(isRightHand ? XRNode.RightHand : XRNode.LeftHand, devices);
         inputDevice = devices.Count > 0 ? devices[0] : default;
     }
@@ -88,7 +113,7 @@ public class FeedbackController : MonoBehaviour
     }
     
 
-    private GameObject LocateCollidedObjectRoot(GameObject collidedObject) {
+    public GameObject LocateCollidedObjectRoot(GameObject collidedObject) {
 
         var feedbackSettings = collidedObject.GetComponent<ObjectFeedbackSettings>();
         GameObject currentObject = collidedObject;
@@ -118,20 +143,47 @@ public class FeedbackController : MonoBehaviour
         string playerColliderTag = GetObjectName(gameObject);
 
         var feedbackSettings = collidedObject.GetComponent<ObjectFeedbackSettings>()?.settings;
-        
-        if (Collisions.TryGetValue(collidedObjectTag + playerColliderTag, out var item))
-        {
-            item.IsColliding = true;
-        }
-        else
-        {
+
+        if (collidedObject.tag == "floor") {
+
+            if(cane.tag == "Cane"){
+                Debug.Log("Caneeee");
+            
+                handleCaneCollision(collision);
+            }
+            
+
+        }else{
+            if (Collisions.TryGetValue(collidedObjectTag + playerColliderTag, out var item))
+            {
+                item.IsColliding = true;
+            }
+            else
+            {
             var collisionEvent = new CollisionEvent(
                 collidedObject: collidedObjectTag,
                 collisionLocationOnPlayer: playerColliderTag,
                 feedbackSettings: feedbackSettings);
             
-            Collisions.Add(collidedObjectTag + playerColliderTag, collisionEvent);
+                Collisions.Add(collidedObjectTag + playerColliderTag, collisionEvent);
+            }
         }
+        
+        
+    }
+    public void handleCaneCollision(Collision collision){
+
+
+        GameObject collidedObject = LocateCollidedObjectRoot(collision.gameObject);
+        var feedbackSettings = collidedObject.GetComponent<ObjectFeedbackSettings>()?.settings;
+        
+        Debug.Log(feedbackSettings.sound);
+
+        CaneSource.clip = feedbackSettings.sound;
+        CaneSource.Play();
+
+        
+
     }
 
     private void HandleCollisionExit(Collision collision)
@@ -139,6 +191,12 @@ public class FeedbackController : MonoBehaviour
         if (collision.gameObject.name == "Player") return;
 
         GameObject collidedObject = LocateCollidedObjectRoot(collision.gameObject);
+
+        if (collidedObject.tag == "floor"){
+            CaneSource.Stop();
+        }
+
+        
 
         string collidedObjectTag = GetObjectName(collidedObject);
         string playerColliderTag = GetObjectName(gameObject);
@@ -154,8 +212,15 @@ public class FeedbackController : MonoBehaviour
 
     #region Feedback Handling
 
-    public void handleWallCollision(GameObject collidedObject) {
-        Debug.Log("Player collided with wall " + collidedObject.name);
+    public void handleWallCollision(GameObject collidedObject, int wallhit) {
+
+        if(wallhit<1){
+            WallStopSource.Play();
+        }else{
+            Debug.Log("PARADO");
+        }
+
+
     }
 
     public void handleStep() {
@@ -302,7 +367,7 @@ public class FeedbackController : MonoBehaviour
 
     #region Utility Methods
 
-    private string GetObjectName(GameObject gameObject)
+    public string GetObjectName(GameObject gameObject)
     {
         return string.IsNullOrEmpty(gameObject.tag) ? gameObject.name : gameObject.tag + gameObject.name;
     }
@@ -310,6 +375,18 @@ public class FeedbackController : MonoBehaviour
     private void SaveCollisionDataToCsv()
     {
         CsvWriter.WriteToCsv(fileName, Collisions.Values);
+    }
+
+    private Vector3 checkpos(){
+
+        var move = interactionController.getMoveVector();
+        
+        var playerpos = gameObject.transform.position;
+
+        var potentialpos = move+playerpos;
+
+        return potentialpos;
+
     }
 
     #endregion
