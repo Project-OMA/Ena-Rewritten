@@ -143,6 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b9bf09e40811b2487ba616c9176d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cane: {fileID: 0}
 --- !u!1 &1761980273700267624 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 372483254220825816, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
@@ -160,6 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b9bf09e40811b2487ba616c9176d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cane: {fileID: 0}
 --- !u!1 &6895607415780474094 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4821809682427395678, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
@@ -203,3 +205,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b9bf09e40811b2487ba616c9176d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cane: {fileID: 0}

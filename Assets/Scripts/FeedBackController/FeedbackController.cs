@@ -26,6 +26,8 @@ public class FeedbackController : MonoBehaviour
 
     private AudioSource WallStopSource;
     private AudioSource CaneSource;
+    private AudioSource wallSource;
+    private AudioSource prefabSource;
 
     private InteractionController interactionController;
 
@@ -43,6 +45,8 @@ public class FeedbackController : MonoBehaviour
         WallStopSource = gameObject.AddComponent<AudioSource>();
         CaneSource = gameObject.AddComponent<AudioSource>();
         interactionController = GetComponent<InteractionController>();
+        wallSource = gameObject.AddComponent<AudioSource>();
+        prefabSource = gameObject.AddComponent<AudioSource>();
 
         AudioClip audioClip = Resources.Load<AudioClip>("Sounds/alarme");
         
@@ -320,6 +324,7 @@ public class FeedbackController : MonoBehaviour
     private void PlaySoundFeedback(AudioClip sound, CollisionEvent collision)
     {
         var source = SoundSources.GetValueOrDefault(collision.CollidedObject);
+
         if (source is null)
         {
             source = gameObject.AddComponent<AudioSource>();

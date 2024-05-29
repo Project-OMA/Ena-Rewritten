@@ -18,6 +18,8 @@ TagManager:
   - Electronics
   - Door
   - Cane
+  - trigger1
+  - trigger2
   layers:
   - Default
   - TransparentFX

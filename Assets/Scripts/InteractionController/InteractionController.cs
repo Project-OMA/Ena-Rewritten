@@ -20,6 +20,8 @@ public class InteractionController : MonoBehaviour
 
     private FeedbackController feedbackController;
 
+    Vector3 moveVector;
+
     public TTSManager ttsManager;
 
     bool toggleHit = false;
@@ -47,7 +49,7 @@ public class InteractionController : MonoBehaviour
 
     private void doStep() {
         Debug.Log("Doing step at " + nextStepTime);
-        Vector3 moveVector = getMoveVector();
+        moveVector = getMoveVector();
         nextStepTime = Time.time + stepPeriod;
 
         Vector3 previousPos = player.transform.position;
@@ -83,34 +85,35 @@ public class InteractionController : MonoBehaviour
         };
 
         Vector3 origin = transform.position + rayOffset;
+        float radius = 0.15f; // Set the radius of your sphere cast
 
         foreach (var direction in directions)
         {
             Ray ray = new Ray(origin + direction, direction * raylen);
             RaycastHit hit;
 
-            if (Physics.Raycast(origin, direction, out hit, maxDistance:0.3f))
+            if (Physics.SphereCast(origin, radius, direction, out hit, maxDistance:0.15f))
             {
                 Debug.DrawRay(origin, ray.direction, Color.yellow);
 
-                if (hit.collider != null){
-
-                    if(hit.collider.gameObject.name.Contains("Wall")) {
-
-                    feedbackController.handleWallCollision(toggleHit);
-                    toggleHit = true;
-                    Debug.Log("PAREDE");
-                    break;
-
-                
-                }else if(toggleHit) {
-                    toggleHit = false;
+                if (hit.collider != null)
+                {
+                    if(hit.collider.gameObject.name.Contains("Wall")) 
+                    {
+                        feedbackController.handleWallCollision(toggleHit);
+                        toggleHit = true;
+                        Debug.Log("PAREDE");
+                        break;
+                    }
+                    else if(toggleHit) 
+                    {
+                        toggleHit = false;
+                    }
                 }
             }
         }
-
-        }
-    }
+                }
+            
 
     void Start()
     {
