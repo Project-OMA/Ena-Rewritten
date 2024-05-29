@@ -12,6 +12,8 @@ public class DoorScript : MonoBehaviour
 
     public bool DoorOpen;
 
+    public AudioSource doorSound; 
+
 
     void OnTriggerEnter(Collider playCollider){
 
@@ -22,6 +24,11 @@ public class DoorScript : MonoBehaviour
             }
             
         }
+
+    
+    void Start(){
+        doorSound = GameObject.FindGameObjectWithTag("Door").GetComponent<AudioSource>();
+    }
     
     
 
@@ -29,6 +36,7 @@ public class DoorScript : MonoBehaviour
         if(!DoorOpen){
             Door.transform.Rotate(xAngle, yAngle, zAngle, Space.Self); 
             DoorOpen = true;
+            doorSound.Play();
         }
     }
 
