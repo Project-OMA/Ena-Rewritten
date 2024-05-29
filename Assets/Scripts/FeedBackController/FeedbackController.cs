@@ -44,7 +44,7 @@ public class FeedbackController : MonoBehaviour
         CaneSource = gameObject.AddComponent<AudioSource>();
         interactionController = GetComponent<InteractionController>();
 
-        AudioClip audioClip = Resources.Load<AudioClip>("Sounds/wallstop");
+        AudioClip audioClip = Resources.Load<AudioClip>("Sounds/alarme");
         
         WallStopSource.clip = audioClip;
         
@@ -146,11 +146,11 @@ public class FeedbackController : MonoBehaviour
 
         if (collidedObject.tag == "floor") {
 
-            if(cane.tag == "Cane"){
-                Debug.Log("Caneeee");
             
-                handleCaneCollision(collision);
-            }
+            Debug.Log("Caneeee");
+            
+            handleCaneCollision(collision);
+            
             
 
         }else{
@@ -212,14 +212,12 @@ public class FeedbackController : MonoBehaviour
 
     #region Feedback Handling
 
-    public void handleWallCollision(GameObject collidedObject, int wallhit) {
+    public void handleWallCollision(bool toggle) {
 
-        if(wallhit<1){
+        if(!toggle){
             WallStopSource.Play();
-        }else{
-            Debug.Log("PARADO");
         }
-
+       
 
     }
 

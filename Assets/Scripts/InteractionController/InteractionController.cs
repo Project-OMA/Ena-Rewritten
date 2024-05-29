@@ -22,6 +22,8 @@ public class InteractionController : MonoBehaviour
 
     public TTSManager ttsManager;
 
+    bool toggleHit = false;
+
     private float runningInput()
 
     {
@@ -55,15 +57,7 @@ public class InteractionController : MonoBehaviour
 
         Vector3 desiredPos = moveVector+previousPos;
 
-       
-
-        Debug.Log("" + currentPos.x);
-        Debug.Log("" + currentPos.z);
-
-        Debug.Log(moveVector.x+previousPos.x);
-        Debug.Log(moveVector.z+previousPos.z);
-
-        diff(previousPos, desiredPos,currentPos, moveVector);
+        wallDetect();
 
         
 
@@ -75,6 +69,47 @@ public class InteractionController : MonoBehaviour
     }
     private void stopMovement() {
         feedbackController.handleMovementStop();
+    }
+
+    private void wallDetect(){
+        float raylen = 0.01f;
+        Vector3 rayOffset = new Vector3(0,1,0);
+
+        Vector3[] directions = new Vector3[] {
+            transform.TransformDirection(Vector3.left),
+            transform.TransformDirection(Vector3.right),
+            transform.TransformDirection(Vector3.forward),
+            transform.TransformDirection(Vector3.back)
+        };
+
+        Vector3 origin = transform.position + rayOffset;
+
+        foreach (var direction in directions)
+        {
+            Ray ray = new Ray(origin + direction, direction * raylen);
+            RaycastHit hit;
+
+            if (Physics.Raycast(origin, direction, out hit, maxDistance:0.3f))
+            {
+                Debug.DrawRay(origin, ray.direction, Color.yellow);
+
+                if (hit.collider != null){
+
+                    if(hit.collider.gameObject.name.Contains("Wall")) {
+
+                    feedbackController.handleWallCollision(toggleHit);
+                    toggleHit = true;
+                    Debug.Log("PAREDE");
+                    break;
+
+                
+                }else if(toggleHit) {
+                    toggleHit = false;
+                }
+            }
+        }
+
+        }
     }
 
     void Start()
@@ -109,29 +144,28 @@ public class InteractionController : MonoBehaviour
                 }
             }
         }
+
+        
+
+        
+
+        
+
+
+        
+        
+        
+        //feedbackController.handleWallCollision(hit.gameObject, wallhit);
+        //feedbackController.handleWallCollision(hit.gameObject, wallhit);
+        //feedbackController.handleWallCollision(hit.gameObject, wallhit);
+
+        
+
+       
+
     }
 
-    void OnControllerColliderHit(ControllerColliderHit hit) {
-
-        
-        feedbackController.handleWallCollision(hit.gameObject, wallhit);
-    }
-
-    public void diff(Vector3 prevPos, Vector3 desPos, Vector3 acPos, Vector3 movVec){
-
-
-        
-
-        if(Math.Abs(prevPos.x - desPos.x)<Math.Abs(movVec.x) || Math.Abs(prevPos.y - desPos.y)<Math.Abs(movVec.y)){
-                wallhit=+1;
-            }
-            
-        
-
-
-        
-
-    }
+    
 }
 
 
