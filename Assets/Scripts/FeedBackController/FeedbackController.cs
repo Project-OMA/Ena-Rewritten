@@ -11,6 +11,8 @@ public class FeedbackController : MonoBehaviour
     private static readonly Dictionary<string, CollisionEvent> Collisions = new Dictionary<string, CollisionEvent>();
     private static readonly Dictionary<string, CollisionEvent> FloorDetects = new Dictionary<string, CollisionEvent>();
 
+    private string[] tagPrefab = {"floor"};
+
     private readonly string fileName = $"{Directory.GetCurrentDirectory()}/PlayerLogs/feedback.csv";
 
     #endregion
@@ -26,8 +28,7 @@ public class FeedbackController : MonoBehaviour
 
     private AudioSource WallStopSource;
     private AudioSource CaneSource;
-    private AudioSource wallSource;
-    private AudioSource prefabSource;
+    
 
     private InteractionController interactionController;
 
@@ -45,8 +46,7 @@ public class FeedbackController : MonoBehaviour
         WallStopSource = gameObject.AddComponent<AudioSource>();
         CaneSource = gameObject.AddComponent<AudioSource>();
         interactionController = GetComponent<InteractionController>();
-        wallSource = gameObject.AddComponent<AudioSource>();
-        prefabSource = gameObject.AddComponent<AudioSource>();
+        
 
         AudioClip audioClip = Resources.Load<AudioClip>("Sounds/alarme");
         
@@ -58,11 +58,12 @@ public class FeedbackController : MonoBehaviour
     {
         InitializeInputDevice();
         InitializeFeedbackComponents();
+        CreateDictSource();
     }
 
     private void Update()
     {
-        HandleCollisionFeedback();
+        //HandleCollisionFeedback();
         //DetectFloor();
     }
 
@@ -98,6 +99,17 @@ public class FeedbackController : MonoBehaviour
     {
         HapticImpulse = new HapticFeedback(inputDevice, this);
         SoundSources = new Dictionary<string, AudioSource>();
+    }
+
+    private void CreateDictSource(){
+        AudioSource source;
+        foreach (string tag in tagPrefab){
+
+            source = gameObject.AddComponent<AudioSource>();
+            source.loop = false;
+            SoundSources.Add(tag, source);
+
+        }
     }
 
     #endregion
@@ -321,15 +333,36 @@ public class FeedbackController : MonoBehaviour
 
     #region Feedback Methods
 
+
+
     private void PlaySoundFeedback(AudioClip sound, CollisionEvent collision)
     {
-        var source = SoundSources.GetValueOrDefault(collision.CollidedObject);
 
+        
+        string inputString = collision.CollidedObject;
+
+        int lineSeparatorIndex = inputString.IndexOf("%");
+
+
+        string firstLine = lineSeparatorIndex >= 0 ? inputString.Substring(0, lineSeparatorIndex) : inputString;
+
+        var source = SoundSources.GetValueOrDefault(collision.CollidedObject);;
+
+        if(firstLine == "floor"){
+            source = SoundSources.GetValueOrDefault(firstLine);
+        }
+        
         if (source is null)
-        {
+        {   
             source = gameObject.AddComponent<AudioSource>();
             source.loop = false;
             SoundSources.Add(collision.CollidedObject, source);
+            
+
+            
+            
+        } else{
+            source.clip = sound;
         }
 
         if (collision.CanPlay && collision.IsColliding)
@@ -372,7 +405,7 @@ public class FeedbackController : MonoBehaviour
 
     public string GetObjectName(GameObject gameObject)
     {
-        return string.IsNullOrEmpty(gameObject.tag) ? gameObject.name : gameObject.tag + gameObject.name;
+        return string.IsNullOrEmpty(gameObject.tag) ? gameObject.name : gameObject.tag + "%" + gameObject.name;
     }
 
     private void SaveCollisionDataToCsv()

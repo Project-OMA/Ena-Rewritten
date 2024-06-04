@@ -14,6 +14,8 @@ public class DoorScript : MonoBehaviour
 
     public AudioSource doorSound; 
 
+    public GameObject Parent;
+
 
     void OnTriggerEnter(Collider playCollider){
 
@@ -27,7 +29,7 @@ public class DoorScript : MonoBehaviour
 
     
     void Start(){
-        doorSound = GameObject.FindGameObjectWithTag("DoorWindow").GetComponent<AudioSource>();
+        doorSound = Parent.GetComponent<AudioSource>();
     }
     
     
