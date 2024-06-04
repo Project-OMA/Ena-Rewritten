@@ -1,6 +1,9 @@
 Start Colliding Time,Collided Object,Collision Location on Player,Current Time Colliding
-29/05/2024 19:22:54,UntaggedWallRight:0_0_39_0,PlayerPlayer,00:00:01.4203803
-29/05/2024 19:23:01,UntaggedWallFront:6_1_6_2,PlayerPlayer,00:00:00.5811520
-29/05/2024 19:23:04,DoorWindowporta-aberta:4.2_6_3,PlayerPlayer,00:00:08.7202478
-29/05/2024 19:23:13,UntaggedWallFront:6_4_6_5,PlayerPlayer,00:00:01.5607089
-29/05/2024 19:23:13,UntaggedWallLeft:6_4_6_5,PlayerPlayer,00:00:01.3167340
+04/06/2024 17:49:17,DoorWindowporta-aberta:4.2_6_3,PlayerPlayer,00:00:00.3793975
+04/06/2024 17:49:21,wallWallRight:6_1_38_1,PlayerPlayer,00:00:00.4200588
+04/06/2024 17:49:24,wallWallLeft:6_5_25_5,PlayerPlayer,00:00:00.1001587
+04/06/2024 17:49:28,Utensilsplanta:2.3_15_4,PlayerPlayer,00:00:00.2809000
+04/06/2024 17:49:43,Utensilslavatorio:6.0_21_6,PlayerPlayer,00:00:01.3379781
+04/06/2024 17:49:48,Electronicsfogao:2.0_18_6,PlayerPlayer,00:00:02.5593371
+04/06/2024 17:49:54,Electronicsmicroondas:4.2_15_6,PlayerPlayer,00:00:10.8377460
+04/06/2024 17:50:03,wallWallRight:6_5_25_5,PlayerPlayer,00:00:00.4606820

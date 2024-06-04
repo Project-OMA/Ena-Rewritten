@@ -27,7 +27,7 @@ public class DoorScript : MonoBehaviour
 
     
     void Start(){
-        doorSound = GameObject.FindGameObjectWithTag("Door").GetComponent<AudioSource>();
+        doorSound = GameObject.FindGameObjectWithTag("DoorWindow").GetComponent<AudioSource>();
     }
     
     

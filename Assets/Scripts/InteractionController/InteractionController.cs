@@ -1,5 +1,6 @@
 using UnityEngine;
 using UI;
+using System.Linq;
 
 using System;
 
@@ -17,6 +18,8 @@ public class InteractionController : MonoBehaviour
     public GameObject cam;
     private Collider collider;
     private CharacterController controller;
+
+    private string[] tagPrefab = {"Furniture", "Utensils", "Electronics", "Goals"};
 
     private FeedbackController feedbackController;
 
@@ -98,7 +101,7 @@ public class InteractionController : MonoBehaviour
 
                 if (hit.collider != null)
                 {
-                    if(hit.collider.gameObject.name.Contains("Wall")) 
+                    if(hit.collider.gameObject.tag == "wall" || tagPrefab.Contains(hit.collider.gameObject.tag))
                     {
                         feedbackController.handleWallCollision(toggleHit);
                         toggleHit = true;
@@ -107,6 +110,7 @@ public class InteractionController : MonoBehaviour
                     }
                     else if(toggleHit) 
                     {
+                        
                         toggleHit = false;
                     }
                 }

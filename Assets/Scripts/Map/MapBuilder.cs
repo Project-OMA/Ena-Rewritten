@@ -282,8 +282,9 @@ public class MapBuilder : MonoBehaviour
             //wallPiece.transform.localScale = size;
             obj.transform.parent = wallObj.transform;
             //add mesh renderer and filter
-
+            obj.tag = "wall";
             AddComponentsToMaterial(obj);
+            
         }
 
         // rotate the wall pieces
@@ -398,6 +399,8 @@ public class MapBuilder : MonoBehaviour
 
         feedbackSettings = objectData.GetFeedbackSettings(propData.name);
 
+
+
         string name = prefab.name + ":" + type + "_" + pos[0] + "_" + pos[1];
 
         // Position
@@ -421,6 +424,11 @@ public class MapBuilder : MonoBehaviour
         obj.AddComponent<ObjectFeedbackSettings>();
         obj.GetComponent<ObjectFeedbackSettings>().settings = feedbackSettings;
 
+    
+
+        AddTagsToChildren(obj.transform, obj.tag);
+
+
         // Use this code to remove extra colliders in the prefab
         
         // var meshColliders = prefab.GetComponents<MeshCollider>();
@@ -433,11 +441,17 @@ public class MapBuilder : MonoBehaviour
         //     }
         // }
         
-        
-        
+    }
 
-
+    public void AddTagsToChildren(Transform parentTransform, string tag = "")
+    {
         
+        foreach (Transform child in parentTransform)
+        {
+           
+            child.gameObject.tag = tag;
+            AddTagsToChildren(child,tag);
+        }
     }
 
     void BuildMap(Map map)
@@ -485,6 +499,7 @@ public class MapBuilder : MonoBehaviour
             foreach (DoorAndWindow obj in door_and_windows)
             {
                 InstanceProp(obj, doorWindowObjectData, doorWindowParent, "DoorWindow");
+
             }
         }
 
