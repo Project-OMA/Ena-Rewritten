@@ -46,7 +46,7 @@ MonoBehaviour:
       offsetY: -0.5
     sound: {fileID: 8300000, guid: cbb8632a8740c7c418c98cd358026200, type: 3}
     feedbackTypes: 0100000002000000
-    hapticForce: 0
+    hapticForce: 0.25
   - name: "Viol\xE3o"
     prefab: {fileID: 614322503775666597, guid: 13352117950ad95c8911725b64b033e9, type: 3}
     variations:

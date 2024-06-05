@@ -11,7 +11,7 @@ public class FeedbackController : MonoBehaviour
     private static readonly Dictionary<string, CollisionEvent> Collisions = new Dictionary<string, CollisionEvent>();
     private static readonly Dictionary<string, CollisionEvent> FloorDetects = new Dictionary<string, CollisionEvent>();
 
-    private string[] tagPrefab = {"floor"};
+    private string[] tagPrefab = {"floor", "wall"};
 
     private readonly string fileName = $"{Directory.GetCurrentDirectory()}/PlayerLogs/feedback.csv";
 
@@ -63,7 +63,7 @@ public class FeedbackController : MonoBehaviour
 
     private void Update()
     {
-        //HandleCollisionFeedback();
+        HandleCollisionFeedback();
         //DetectFloor();
     }
 
@@ -374,7 +374,6 @@ public class FeedbackController : MonoBehaviour
         {   
             source = gameObject.AddComponent<AudioSource>();
             source.loop = false;
-            source.spatialBlend = 1;
             SoundSources.Add(collision.CollidedObject, source);
             
 
@@ -409,6 +408,7 @@ public class FeedbackController : MonoBehaviour
         {
             if (!HapticImpulse.isPlaying)
             {
+
                 HapticImpulse.Play(hapticForce);
             }
         }
