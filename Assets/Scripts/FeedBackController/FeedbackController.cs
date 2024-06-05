@@ -258,12 +258,25 @@ public class FeedbackController : MonoBehaviour
     
     private void DetectFloor()
     {
-        RaycastHit hit;
-        CollisionEvent collisionEvent=null;
-    
-        Debug.Log("RAYCAST");
+        float raylen = 0.5f;
+        Vector3 rayOffset = new Vector3(0,1,0);
+        Vector3 origin = transform.position + rayOffset;
+        Vector3 direction = transform.up;
 
-        if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 2))
+        RaycastHit hit;
+        
+
+    
+
+
+        CollisionEvent collisionEvent=null;
+        Debug.DrawRay(origin, -direction, Color.green, 2, true);
+
+
+
+        if (Physics.Raycast(origin, -direction, out hit, 2.0f))
+            
+            
             {
             if (hit.collider != null) {
                     if (hit.collider.gameObject.tag == "floor") {
@@ -277,6 +290,7 @@ public class FeedbackController : MonoBehaviour
 
                         if (FloorDetects.TryGetValue(collidedObjectTag + playerColliderTag, out var item))
                         {
+                            
                             collisionEvent = item;
                             collisionEvent.IsColliding = true;
                             HandleWalkFeedback(item);
@@ -284,6 +298,7 @@ public class FeedbackController : MonoBehaviour
                         }
                         else
                         {
+                            
                             collisionEvent = new CollisionEvent(
                                 collidedObject: collidedObjectTag,
                                 collisionLocationOnPlayer: playerColliderTag,
@@ -299,6 +314,7 @@ public class FeedbackController : MonoBehaviour
         } 
     }
     private void HandleWalkFeedback(CollisionEvent item) {
+        
         item.CanPlay = true;
         HandleFeedback(item);
     }
@@ -346,16 +362,19 @@ public class FeedbackController : MonoBehaviour
 
         string firstLine = lineSeparatorIndex >= 0 ? inputString.Substring(0, lineSeparatorIndex) : inputString;
 
-        var source = SoundSources.GetValueOrDefault(collision.CollidedObject);;
+        var source = SoundSources.GetValueOrDefault(collision.CollidedObject);
 
         if(firstLine == "floor"){
             source = SoundSources.GetValueOrDefault(firstLine);
+            source.spatialBlend = 1;
+            source.loop = false;
         }
         
         if (source is null)
         {   
             source = gameObject.AddComponent<AudioSource>();
             source.loop = false;
+            source.spatialBlend = 1;
             SoundSources.Add(collision.CollidedObject, source);
             
 
