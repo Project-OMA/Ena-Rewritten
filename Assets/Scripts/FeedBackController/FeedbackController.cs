@@ -275,6 +275,7 @@ public class FeedbackController : MonoBehaviour
         if (Physics.Raycast(origin, -direction, out hit, 2.0f))
             
             
+            
             {
             if (hit.collider != null) {
                     if (hit.collider.gameObject.tag == "floor") {
