@@ -69,12 +69,6 @@ public class InteractionController : MonoBehaviour
         feedbackController.handleStep();
     }
 
-    private void startMovement() {
-        feedbackController.handleMovementStart();
-    }
-    private void stopMovement() {
-        feedbackController.handleMovementStop();
-    }
 
     private void wallDetect(){
         float raylen = 0.01f;
@@ -138,12 +132,12 @@ public class InteractionController : MonoBehaviour
         if (x == 0 && y == 0) {
             // Stop moving
             nextStepTime = -1;
-            startMovement();
+            
         } else {
             // Do first step
             if (nextStepTime == -1) {
                 doStep();
-                stopMovement();
+                
             } else {
                 // Repeat for following steps
                 if (Time.time > nextStepTime) {
@@ -152,23 +146,6 @@ public class InteractionController : MonoBehaviour
             }
         }
 
-        
-
-        
-
-        
-
-
-        
-        
-        
-        //feedbackController.handleWallCollision(hit.gameObject, wallhit);
-        //feedbackController.handleWallCollision(hit.gameObject, wallhit);
-        //feedbackController.handleWallCollision(hit.gameObject, wallhit);
-
-        
-
-       
 
     }
 

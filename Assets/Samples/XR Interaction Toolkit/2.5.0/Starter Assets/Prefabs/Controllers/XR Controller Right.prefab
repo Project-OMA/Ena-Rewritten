@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 72774941846877320}
   - component: {fileID: 2303153613172249169}
   - component: {fileID: 2683751580983564419}
-  - component: {fileID: 3251912149195901873}
+  - component: {fileID: 2197262913197905758}
   m_Layer: 0
   m_Name: Cylinder
   m_TagString: Untagged
@@ -84,7 +84,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &3251912149195901873
+--- !u!136 &2197262913197905758
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -103,10 +103,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5000001
-  m_Height: 2
+  m_Radius: 0.50000024
+  m_Height: 1.9999999
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: 0, z: -0.00000008940697}
+  m_Center: {x: 0.000000059604645, y: -1.3010426e-18, z: -0.00000032782555}
 --- !u!1 &631318195828040478
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,7 +487,6 @@ GameObject:
   - component: {fileID: 8526267191679857314}
   - component: {fileID: 4154701381696822359}
   - component: {fileID: 631746341389646067}
-  - component: {fileID: 8704874145020159820}
   - component: {fileID: 3862015613845657819}
   m_Layer: 0
   m_Name: XR Controller Right
@@ -663,19 +662,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &8704874145020159820
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4283425761326543017}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4b13ea92881166346a0334ac51a611e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_MyAudioSource: {fileID: 3862015613845657819}
 --- !u!82 &3862015613845657819
 AudioSource:
   m_ObjectHideFlags: 0

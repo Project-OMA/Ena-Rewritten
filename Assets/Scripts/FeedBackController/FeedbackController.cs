@@ -8,10 +8,15 @@ public class FeedbackController : MonoBehaviour
 {
     #region Fields
 
+    private InputDevice leftHandDevice;
+    private InputDevice rightHandDevice;
+    private HapticFeedback HapticImpulseLeft;
+    private HapticFeedback HapticImpulseRight;
+
     private static readonly Dictionary<string, CollisionEvent> Collisions = new Dictionary<string, CollisionEvent>();
     private static readonly Dictionary<string, CollisionEvent> FloorDetects = new Dictionary<string, CollisionEvent>();
 
-    private string[] tagPrefab = {"floor", "wall"};
+    private string[] tagPrefab = {"floor", "wall", "Furniture", "Utensils", "Electronics", "Goals"};
 
     private readonly string fileName = $"{Directory.GetCurrentDirectory()}/PlayerLogs/feedback.csv";
 
@@ -63,7 +68,7 @@ public class FeedbackController : MonoBehaviour
 
     private void Update()
     {
-        HandleCollisionFeedback();
+        //HandleCollisionFeedback();
         //DetectFloor();
     }
 
@@ -88,16 +93,19 @@ public class FeedbackController : MonoBehaviour
 
     private void InitializeInputDevice()
     {
-        List<InputDevice> devices = new List<InputDevice>();
-        var isRightHand = gameObject.name.ToLower().Contains("right");
-        var isLeftHand = gameObject.name.ToLower().Contains("left");
-        InputDevices.GetDevicesAtXRNode(isRightHand ? XRNode.RightHand : XRNode.LeftHand, devices);
-        inputDevice = devices.Count > 0 ? devices[0] : default;
+        List<InputDevice> leftHandDevices = new List<InputDevice>();
+        List<InputDevice> rightHandDevices = new List<InputDevice>();
+        InputDevices.GetDevicesAtXRNode(XRNode.LeftHand, leftHandDevices);
+        InputDevices.GetDevicesAtXRNode(XRNode.RightHand, rightHandDevices);
+        leftHandDevice = leftHandDevices.Count > 0 ? leftHandDevices[0] : default;
+        rightHandDevice = rightHandDevices.Count > 0 ? rightHandDevices[0] : default;
+
     }
 
     private void InitializeFeedbackComponents()
     {
-        HapticImpulse = new HapticFeedback(inputDevice, this);
+        HapticImpulseLeft = new HapticFeedback(leftHandDevice, this);
+        HapticImpulseRight = new HapticFeedback(rightHandDevice, this);
         SoundSources = new Dictionary<string, AudioSource>();
     }
 
@@ -115,18 +123,6 @@ public class FeedbackController : MonoBehaviour
     #endregion
 
     #region Collision Handling
-
-    private void HandleCollisionFeedback()
-    {
-        
-        foreach (var item in Collisions.Values)
-        {
-            
-                HandleFeedback(item);
-            
-            
-        }
-    }
     
 
     public GameObject LocateCollidedObjectRoot(GameObject collidedObject) {
@@ -173,6 +169,7 @@ public class FeedbackController : MonoBehaviour
             if (Collisions.TryGetValue(collidedObjectTag + playerColliderTag, out var item))
             {
                 item.IsColliding = true;
+                HandleCollisionEnterFeedback(item);
             }
             else
             {
@@ -182,8 +179,13 @@ public class FeedbackController : MonoBehaviour
                 feedbackSettings: feedbackSettings);
             
                 Collisions.Add(collidedObjectTag + playerColliderTag, collisionEvent);
+                collisionEvent.IsColliding = true;
+                HandleCollisionEnterFeedback(collisionEvent);
+                
             }
         }
+
+        
         
         
     }
@@ -196,7 +198,15 @@ public class FeedbackController : MonoBehaviour
         Debug.Log(feedbackSettings.sound);
 
         CaneSource.clip = feedbackSettings.sound;
-        CaneSource.Play();
+        CaneSource.playOnAwake = true;
+        CaneSource.spatialBlend = 1.0f;
+        CaneSource.spatialize = true;
+        CaneSource.loop = false;
+
+        if(!CaneSource.isPlaying){
+            CaneSource.Play();
+        }
+        
 
         
 
@@ -208,20 +218,22 @@ public class FeedbackController : MonoBehaviour
 
         GameObject collidedObject = LocateCollidedObjectRoot(collision.gameObject);
 
-        if (collidedObject.tag == "floor"){
-            CaneSource.Stop();
+        if (collidedObject.tag != "floor"){
+
+            string collidedObjectTag = GetObjectName(collidedObject);
+            string playerColliderTag = GetObjectName(gameObject);
+
+            if (Collisions.TryGetValue(collidedObjectTag + playerColliderTag, out var itemToUpdate))
+            {
+                itemToUpdate.IsColliding = false;
+                HandleCollisionExitFeedback(itemToUpdate);
+            }
+
         }
 
         
 
-        string collidedObjectTag = GetObjectName(collidedObject);
-        string playerColliderTag = GetObjectName(gameObject);
-
-        if (Collisions.TryGetValue(collidedObjectTag + playerColliderTag, out var itemToUpdate))
-        {
-            itemToUpdate.IsColliding = false;
-            HandleFeedback(itemToUpdate);
-        }
+        
     }
 
     #endregion
@@ -240,20 +252,6 @@ public class FeedbackController : MonoBehaviour
     public void handleStep() {
         Debug.Log("Player did a step");
         DetectFloor();
-    }
-
-    public void handleMovementStart() {
-
-        //DetectFloor();
-
-        //HandleWalkFeedback();
-    }
-
-    public void handleMovementStop() {
-
-        //DetectFloor();
-
-        //HandleStopFeedback();
     }
     
     private void DetectFloor()
@@ -318,10 +316,23 @@ public class FeedbackController : MonoBehaviour
         item.CanPlay = true;
         HandleFeedback(item);
     }
-    private void HandleStopFeedback(CollisionEvent item) {
+
+    private void HandleCollisionEnterFeedback(CollisionEvent item)
+    {
+        
+        item.CanPlay = true;
+        HandleFeedback(item);
+            
+    }
+
+    private void HandleCollisionExitFeedback(CollisionEvent item)
+    {
+
         item.CanPlay = false;
         HandleFeedback(item);
+        
     }
+   
 
         
     
@@ -337,7 +348,7 @@ public class FeedbackController : MonoBehaviour
                     PlaySoundFeedback(collision.FeedbackSettings.sound, collision);
                     break;
                 case FeedbackTypeEnum.Haptic:
-                    PlayHapticFeedback(collision.FeedbackSettings.hapticForce, collision.IsColliding && collision.CanPlay);
+                    PlayHapticFeedback(collision.FeedbackSettings.hapticForce, collision);
                     break;
                 default:
                     break;
@@ -362,28 +373,45 @@ public class FeedbackController : MonoBehaviour
 
         string firstLine = lineSeparatorIndex >= 0 ? inputString.Substring(0, lineSeparatorIndex) : inputString;
 
-        var source = SoundSources.GetValueOrDefault(collision.CollidedObject);
+        var source = SoundSources.GetValueOrDefault(firstLine);
 
-        if(firstLine == "floor"){
-            source = SoundSources.GetValueOrDefault(firstLine);
-            source.spatialBlend = 1;
-            source.loop = false;
-        }
-        
-        if (source is null)
-        {   
-            source = gameObject.AddComponent<AudioSource>();
-            source.loop = false;
-            SoundSources.Add(collision.CollidedObject, source);
-            
+        Debug.Log(firstLine);
 
+        if(tagPrefab.Contains(firstLine)){
             
-            
-        } else{
+            if(firstLine == "floor"){
+                source.spatialBlend = 1.0f;
+                source.spatialize = true;
+            }
+
+
+            source.loop = false;
             source.clip = sound;
+
+        }else{
+            source = SoundSources.GetValueOrDefault(collision.CollidedObject);
+
+            if (source is null)
+
+                {   
+                    source = gameObject.AddComponent<AudioSource>();
+                    source.loop = false;
+                    SoundSources.Add(collision.CollidedObject, source);
+                    
+
+                    
+                    
+                } else{
+                    source.clip = sound;
+                }
+
         }
 
-        if (collision.CanPlay && collision.IsColliding)
+        
+        
+        
+        
+        if (collision.IsColliding)
         {
             // Debug.Log($"aaaaaaaaa: {collision.CanPlay}, {collision.CollidedObject}, {collision.IsColliding}, {!source.isPlaying}");
             if (!source.isPlaying)
@@ -393,6 +421,7 @@ public class FeedbackController : MonoBehaviour
                     source.clip = sound;
                 }
                 source.Play();
+                
             }
         }
         else
@@ -402,19 +431,20 @@ public class FeedbackController : MonoBehaviour
         }
     }
 
-    private void PlayHapticFeedback(float hapticForce, bool isToPlay)
+    private void PlayHapticFeedback(float hapticForce, CollisionEvent collision)
     {
-        if (isToPlay)
+        if (collision.CanPlay && collision.IsColliding)
         {
-            if (!HapticImpulse.isPlaying)
+            if (!HapticImpulseLeft.isPlaying && !HapticImpulseRight.isPlaying)
             {
-
-                HapticImpulse.Play(hapticForce);
+                HapticImpulseLeft.Play(hapticForce);
+                HapticImpulseRight.Play(hapticForce);
             }
         }
         else
         {
-            HapticImpulse.Stop();
+            HapticImpulseLeft.Stop();
+            HapticImpulseRight.Stop();
         }
     }
 
