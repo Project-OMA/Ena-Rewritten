@@ -29,3 +29,8 @@ Alternatively, you can click in `Build` and select a folder to save the build.
 
 ![image](https://github.com/Project-OMA/Ena-Rewritten/assets/15125899/5783f218-d29a-4e53-aab8-04fa276ff851)
 
+## APK and Demos
+
+We have two different APK files for you to test alongside two demo videos on this google drive:
+https://drive.google.com/drive/folders/1BCH9RTFXMm60NZ5T2F5F9g2AQFXBRLBu?usp=drive_link
+
