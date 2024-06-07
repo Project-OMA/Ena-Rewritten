@@ -90,7 +90,7 @@ MonoBehaviour:
       rotation: 90
       offsetX: 0
       offsetY: 0
-    sound: {fileID: 8300000, guid: 62352e16614dd6c47b20aeb24f5811f2, type: 3}
+    sound: {fileID: 8300000, guid: c1d19d39c73cb9c44bf727dff503edf5, type: 3}
     feedbackTypes: 0100000002000000
     hapticForce: 0.25
   - name: Janela de Madeira
@@ -104,6 +104,6 @@ MonoBehaviour:
       rotation: 90
       offsetX: 0
       offsetY: 0
-    sound: {fileID: 8300000, guid: 62352e16614dd6c47b20aeb24f5811f2, type: 3}
+    sound: {fileID: 8300000, guid: c1d19d39c73cb9c44bf727dff503edf5, type: 3}
     feedbackTypes: 0100000002000000
     hapticForce: 0.25

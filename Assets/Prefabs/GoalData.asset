@@ -160,7 +160,7 @@ MonoBehaviour:
       rotation: 0
       offsetX: 0.5
       offsetY: -0.5
-    sound: {fileID: 0}
+    sound: {fileID: 8300000, guid: 947b5f4ff3fdf2b4fa0313be4104473c, type: 3}
     feedbackTypes: 
     hapticForce: 0
   - name: Celular
@@ -190,7 +190,7 @@ MonoBehaviour:
       rotation: 0
       offsetX: 0.5
       offsetY: -0.5
-    sound: {fileID: 0}
+    sound: {fileID: 8300000, guid: 5577d1767af4f504495f725e914c5f7c, type: 3}
     feedbackTypes: 
     hapticForce: 0
   - name: Despertador
