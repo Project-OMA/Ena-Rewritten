@@ -44,19 +44,15 @@ public class MapPuller
         try
         {
             Debug.Log("Obtendo mapa a partir do servidor");
-            string apiUrl = "https://achernar.eic.cefet-rj.br/mapserverapi/pub/groups/next-map/";
+            string apiUrl = "https://cursa.eic.cefet-rj.br/ena-map/CasaFinal.json";
             using HttpClient httpClient = new HttpClient();
-            var response = httpClient.GetAsync(apiUrl + this.email).Result;
+            var response = httpClient.GetAsync(apiUrl).Result;
             response.EnsureSuccessStatusCode();
 
             string jsonString = response.Content.ReadAsStringAsync().Result;
             Debug.Log(jsonString);
-            var data = JsonUtility.FromJson<MapJson>(jsonString);
-            this.idMap = data.id_map;
-
-            var json = data.json;
-            Debug.Log(json);
-            return json;
+            return jsonString;
+            
         }
         catch (Exception ex)
         {
@@ -67,7 +63,7 @@ public class MapPuller
             m_Path = Application.dataPath;
             Debug.Log("dataPath : " + m_Path);
 
-            defaultMapPath = "Maps/CasaFinal";
+            defaultMapPath = "Maps/mapademo";
 
             Debug.Log("defaultMapPath : " + defaultMapPath);
             defaultMapFile = Resources.Load<TextAsset>(defaultMapPath);
