@@ -5,6 +5,9 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using UnityEngine;
 using JsonUtility = UnityEngine.JsonUtility;
+using HtmlAgilityPack;
+
+
 
 [Serializable]
 public class MapJson
@@ -32,6 +35,8 @@ public class MapPuller
 
     private TextAsset defaultMapFile;
 
+    List<string> mapList = new List<string>();
+
     private PullState pullState;
     
     public MapPuller(string email)
@@ -39,12 +44,64 @@ public class MapPuller
         this.email = email;
     }
 
+    public void getMapList(string url){
+
+        HtmlWeb web = new HtmlWeb();
+        HtmlDocument doc = web.Load(url);
+        
+
+        
+        var tableNodes = doc.DocumentNode.SelectNodes("//table");
+
+       
+
+        if (tableNodes != null && tableNodes.Count > 0)
+        {
+            // Assuming there is only one table on the page, you can adjust this loop accordingly
+            foreach (var table in tableNodes)
+            {
+                // Select all rows within the table
+                var rows = table.SelectNodes(".//tr");
+
+                if (rows != null)
+                {
+                    foreach (var row in rows)
+                    {
+                        // Select all cells within the row
+                        var cells = row.SelectNodes(".//td | .//th");
+                        
+                        if (cells != null)
+                        {
+                            foreach (var cell in cells)
+                            {
+                                // Output the text content of each cell
+                                Debug.Log(cell.InnerText.Trim() + "\t");
+
+                                if (cell.InnerText.Contains(".json")){
+                                    mapList.Add(cell.InnerText.Trim());
+                                }
+                            }
+                            
+                        }
+                    }
+                }
+            }
+        } 
+    }
+    
+
     public string GetNextMap()
     {
         try
         {
             Debug.Log("Obtendo mapa a partir do servidor");
-            string apiUrl = "https://cursa.eic.cefet-rj.br/ena-map/CasaFinal.json";
+            string apiUrl = "https://cursa.eic.cefet-rj.br/ena-map";
+            getMapList(apiUrl);
+
+            string map = mapList[0];
+
+
+            apiUrl = apiUrl + "/" + map;
             using HttpClient httpClient = new HttpClient();
             var response = httpClient.GetAsync(apiUrl).Result;
             response.EnsureSuccessStatusCode();
