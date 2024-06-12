@@ -376,7 +376,8 @@ public class FeedbackController : MonoBehaviour
 
         var source = SoundSources.GetValueOrDefault(firstLine);
 
-        Debug.Log(firstLine);
+        Debug.Log("Tag:" + firstLine);
+        Debug.Log("Name: " + inputString);
 
         if(tagPrefab.Contains(firstLine)){
             
