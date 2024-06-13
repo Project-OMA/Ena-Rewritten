@@ -17,4 +17,11 @@ public class ChangeScene : MonoBehaviour
         SceneManager.LoadScene(scene_name);  
       
     }
+
+    public void quit(){
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #endif
+        Application.Quit();
+    }
 }

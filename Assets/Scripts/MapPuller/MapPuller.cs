@@ -35,7 +35,7 @@ public class MapPuller
 
     private TextAsset defaultMapFile;
 
-    private ChangeScene changeScene;
+    
 
     
 

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class FlagScript : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class FlagScript : MonoBehaviour
     
 
     AudioSource m_MyAudioSource;
+
+    private ChangeScene changeScene;
 
     void Start()
     {
@@ -49,7 +52,14 @@ public class FlagScript : MonoBehaviour
 
 		if (targetTime <= 0.0f) {
 
-			        QuitGame();
+            string mapLoad = MapLoader.map;
+
+            if(mapLoad == "default"){
+                QuitGame();
+            }else{
+                SceneManager.LoadScene("MainMenu");
+            }
+			        
                     
 		        }
 
