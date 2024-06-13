@@ -7,7 +7,7 @@ using TMPro;
 
 
 
-public class DropdownCreator : MonoBehaviour
+public class MenuManager : MonoBehaviour
 {
 
     List<string> mapList = new List<string>();
@@ -19,6 +19,8 @@ public class DropdownCreator : MonoBehaviour
     public ChangeScene changeScene;
 
     private string map;
+
+    
 
    
     string cursaUrl = "https://cursa.eic.cefet-rj.br/ena-map";
@@ -56,7 +58,7 @@ public class DropdownCreator : MonoBehaviour
                                 // Output the text content of each cell
                                 Debug.Log(cell.InnerText.Trim() + "\t");
 
-                                if (cell.InnerText.Contains(".json")){
+                                if (cell.InnerText.Contains(".json") || cell.InnerText.Contains(".xml")){
                                     mapList.Add(cell.InnerText.Trim());
                                 }
                             }
@@ -85,24 +87,44 @@ public class DropdownCreator : MonoBehaviour
             changeScene.scene_changer("MainScene", map);
         
     }
-    void Start()
-    {
+    
+    public void ExitGame(){
+        #if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+        #endif
+        Application.Quit();
+    }
+    public void poupulateDropdown(){
+
         getMapList(cursaUrl);
 
-        Button btn = yourButton.GetComponent<Button>();
-        
-
-		btn.onClick.AddListener(TaskOnClick);
-
-        Debug.Log(dropdown);
-
         foreach(string map in mapList){
+
+            if(map.Contains(".json")){
+                Sprite imageSprite = Resources.Load<Sprite>("Images/" + "json");
+                dropdown.options.Add(item: new TMP_Dropdown.OptionData(text: map, image: imageSprite));
+            }else{
+                Sprite imageSprite = Resources.Load<Sprite>("Images/" + "xml");
+                dropdown.options.Add(item: new TMP_Dropdown.OptionData(text: map, image: imageSprite));
+            }
             
-            dropdown.options.Add(item: new TMP_Dropdown.OptionData(text: map, image: null));
+        }
 
-
-        }       
     }
+
+    private void Awake(){
+        poupulateDropdown();
+        dropdown.RefreshShownValue(); 
+        
+    }
+
+    private void Start(){
+        Button btn = yourButton.GetComponent<Button>();
+        btn.onClick.AddListener(TaskOnClick);
+    }
+
+    
+    
 
 }
 

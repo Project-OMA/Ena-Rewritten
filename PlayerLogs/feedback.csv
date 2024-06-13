@@ -1,2 +1,9 @@
 Start Colliding Time,Collided Object,Collision Location on Player,Current Time Colliding
-12/06/2024 21:06:54,wall%WallBack:0_0_0_14,Player%Player,00:00:11.6535698
+13/06/2024 15:54:57,Utensils%cone:2.0_3_1,Player%Player,00:00:02.4739526
+13/06/2024 15:54:57,wall%WallRight:0_0_39_0,Player%Player,00:00:00.0695342
+13/06/2024 15:55:11,DoorWindow%porta-aberta:4.2_6_3,Player%Player,00:00:00.1395767
+13/06/2024 15:55:13,wall%WallFront:6_1_6_2,Player%Player,00:00:00.2225666
+13/06/2024 15:55:33,DoorWindow%porta-fechada:2.2_10_19,Player%Player,00:00:00.1381162
+13/06/2024 15:55:33,wall%WallLeft:10_20_10_27,Player%Player,00:00:00.1821149
+13/06/2024 15:55:36,DoorWindow%porta-fechada:2.1_10_18,Player%Player,00:00:00.2631387
+13/06/2024 15:55:41,Goals%FinalObject:9.99_3_19,Player%Player,00:00:00.1241562
