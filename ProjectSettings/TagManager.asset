@@ -20,6 +20,7 @@ TagManager:
   - Cane
   - trigger1
   - trigger2
+  - Left
   layers:
   - Default
   - TransparentFX

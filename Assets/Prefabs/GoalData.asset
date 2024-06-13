@@ -161,7 +161,7 @@ MonoBehaviour:
       offsetX: 0.5
       offsetY: -0.5
     sound: {fileID: 8300000, guid: 947b5f4ff3fdf2b4fa0313be4104473c, type: 3}
-    feedbackTypes: 
+    feedbackTypes: 0200000001000000
     hapticForce: 0
   - name: Celular
     prefab: {fileID: 614322503775666597, guid: f2247b15ebea86d02b9805106bf05c5b, type: 3}
