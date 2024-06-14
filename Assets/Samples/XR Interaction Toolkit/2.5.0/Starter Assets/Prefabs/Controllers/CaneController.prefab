@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &72774941846877320
 Transform:
   m_ObjectHideFlags: 0
@@ -489,7 +489,7 @@ GameObject:
   - component: {fileID: 631746341389646067}
   - component: {fileID: 3862015613845657819}
   m_Layer: 0
-  m_Name: XR Controller Right
+  m_Name: CaneController
   m_TagString: Cane
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
