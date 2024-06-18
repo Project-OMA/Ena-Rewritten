@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 using HtmlAgilityPack;
 using TMPro;
+using System.Net.Http;
 
 
 
@@ -27,8 +30,13 @@ public class MenuManager : MonoBehaviour
 
     public void getMapList(string url){
 
+        try
+        {
+
         HtmlWeb web = new HtmlWeb();
         HtmlDocument doc = web.Load(url);
+
+        
         
 
         
@@ -68,6 +76,11 @@ public class MenuManager : MonoBehaviour
                 }
             }
         } 
+        }
+
+        catch (Exception ex){
+            Debug.Log("NOTLOADING");
+        }
     }
 
     public string GetDropdownValue(){
@@ -97,6 +110,10 @@ public class MenuManager : MonoBehaviour
     public void poupulateDropdown(){
 
         getMapList(cursaUrl);
+
+        if(!mapList.Any()){
+            dropdown.options.Add(item: new TMP_Dropdown.OptionData(text: MapLoader.map, image: null));
+        }
 
         foreach(string map in mapList){
 
