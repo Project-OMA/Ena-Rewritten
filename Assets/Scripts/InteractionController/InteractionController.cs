@@ -15,9 +15,10 @@ public class InteractionController : MonoBehaviour
 
     public float runSpeed = 30;
     public GameObject player;
+    public GameObject Offset;
     public GameObject cam;
     private Collider collider;
-    private CharacterController controller;
+    public CharacterController controller;
 
     private string[] tagPrefab = {"Furniture", "Utensils", "Electronics", "Goals"};
 
@@ -55,10 +56,10 @@ public class InteractionController : MonoBehaviour
         moveVector = getMoveVector();
         nextStepTime = Time.time + stepPeriod;
 
-        Vector3 previousPos = player.transform.position;
+        Vector3 previousPos = Offset.transform.position;
         controller.Move(moveVector);
 
-        Vector3 currentPos = player.transform.position;
+        Vector3 currentPos = Offset.transform.position;
 
         Vector3 desiredPos = moveVector+previousPos;
 
@@ -118,7 +119,6 @@ public class InteractionController : MonoBehaviour
         // Get capsule collider
         //player = GameObject.Find("Player");
         collider = GetComponent<CapsuleCollider>();
-        controller = GetComponent<CharacterController>();
         feedbackController = GetComponent<FeedbackController>();
         ttsManager = GameObject.FindObjectOfType<TTSManager>();
     }
@@ -146,6 +146,9 @@ public class InteractionController : MonoBehaviour
             }
         }
 
+
+
+        
 
     }
 

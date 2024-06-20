@@ -33,6 +33,8 @@ public class FeedbackController : MonoBehaviour
 
     private AudioSource WallStopSource;
     private AudioSource CaneSource;
+
+    public Transform cam;
     
 
     private InteractionController interactionController;
@@ -144,7 +146,7 @@ public class FeedbackController : MonoBehaviour
     {
         // Collisions with the Player game object are reported sometimes. This causes problems in the
         // LocateCollidedObjectRoot method, since the Player is located in the scene root (has no parent)
-        if (collision.gameObject.name == "Player") return;
+        if (collision.gameObject.name == "Camera Offset") return;
 
         // Since objects have their mesh colliders placed in the inner objects in the hierarchy,
         // we have to "move up" the object tree until we find the root object of the prop (which 
@@ -214,7 +216,7 @@ public class FeedbackController : MonoBehaviour
 
     private void HandleCollisionExit(Collision collision)
     {
-        if (collision.gameObject.name == "Player") return;
+        if (collision.gameObject.name == "Camera Offset") return;
 
         GameObject collidedObject = LocateCollidedObjectRoot(collision.gameObject);
 
@@ -257,8 +259,8 @@ public class FeedbackController : MonoBehaviour
     private void DetectFloor()
     {
         float raylen = 0.5f;
-        Vector3 rayOffset = new Vector3(0,1,0);
-        Vector3 origin = transform.position + rayOffset;
+        Vector3 rayOffset = new Vector3(0,-0.5f,0);
+        Vector3 origin = cam.transform.position + rayOffset;
         Vector3 direction = transform.up;
 
         RaycastHit hit;
