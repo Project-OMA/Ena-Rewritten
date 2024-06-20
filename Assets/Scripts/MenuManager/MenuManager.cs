@@ -23,6 +23,12 @@ public class MenuManager : MonoBehaviour
 
     private string map;
 
+    public GameObject connectIssue;
+
+    public GameObject exIssue;
+
+    public TextMeshProUGUI textMeshPro;
+
     
 
    
@@ -68,6 +74,7 @@ public class MenuManager : MonoBehaviour
 
                                 if (cell.InnerText.Contains(".json") || cell.InnerText.Contains(".xml")){
                                     mapList.Add(cell.InnerText.Trim());
+                                    
                                 }
                             }
                             
@@ -79,7 +86,10 @@ public class MenuManager : MonoBehaviour
         }
 
         catch (Exception ex){
-            Debug.Log("NOTLOADING");
+            Debug.Log(ex.Message);
+            connectIssue.SetActive(value: !connectIssue.activeSelf);
+            textMeshPro.text = ex.Message;
+            exIssue.SetActive(value: !exIssue.activeSelf);
         }
     }
 
