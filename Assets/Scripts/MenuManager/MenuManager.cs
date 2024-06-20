@@ -7,7 +7,7 @@ using UnityEngine.UI;
 using HtmlAgilityPack;
 using TMPro;
 using System.Net.Http;
-
+using UnityEngine.InputSystem;
 
 
 public class MenuManager : MonoBehaviour
@@ -19,6 +19,8 @@ public class MenuManager : MonoBehaviour
 
     [SerializeField] private TMP_Dropdown dropdown;
 
+    public GameObject menu;
+
     public ChangeScene changeScene;
 
     private string map;
@@ -28,6 +30,10 @@ public class MenuManager : MonoBehaviour
     public GameObject exIssue;
 
     public TextMeshProUGUI textMeshPro;
+
+    public Transform player;
+
+    public InputActionProperty showButton;
 
     
 
@@ -147,7 +153,18 @@ public class MenuManager : MonoBehaviour
 
     private void Start(){
         Button btn = yourButton.GetComponent<Button>();
+        
+
         btn.onClick.AddListener(TaskOnClick);
+    }
+
+    private void Update(){
+
+        if(showButton.action.WasPressedThisFrame()){
+            menu.transform.position = player.position+ new Vector3(x: player.forward.x, y: 0, z: player.forward.z).normalized*2;
+            menu.transform.LookAt(worldPosition: new Vector3(x: player.position.x, y: menu.transform.position.y, z: player.position.z) );
+            menu.transform.forward *=-1;
+        }
     }
 
     

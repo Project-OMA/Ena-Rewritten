@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &8071300 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6471502811858799881, guid: 1b051c34b64e5bd45af1156d6b7e2104, type: 3}
+  m_PrefabInstance: {fileID: 8667172569581879212}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &130958505
 GameObject:
   m_ObjectHideFlags: 0
@@ -750,6 +755,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6525729344186234309, guid: 1b051c34b64e5bd45af1156d6b7e2104, type: 3}
   m_PrefabInstance: {fileID: 8667172569581879212}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &463015037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8071300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ac3113867f1839f0ae997c89c5018fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseSensitivity: 1.5
 --- !u!1 &627856740
 GameObject:
   m_ObjectHideFlags: 0
@@ -1898,10 +1916,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   yourButton: {fileID: 1430055428}
   dropdown: {fileID: 1324584855}
+  menu: {fileID: 1553108433}
   changeScene: {fileID: 1239119838}
   connectIssue: {fileID: 627856740}
   exIssue: {fileID: 947204067}
   textMeshPro: {fileID: 947204069}
+  player: {fileID: 2057587328}
+  showButton:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Show Button
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 1c046891-f50f-4d50-bd78-33fb3b6c16e9
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -3303482906017995579, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!1 &1384476140
 GameObject:
   m_ObjectHideFlags: 0
@@ -2883,6 +2915,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1968834405}
   m_CullTransparentMesh: 1
+--- !u!4 &2057587328 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5392432792884501577, guid: 1b051c34b64e5bd45af1156d6b7e2104, type: 3}
+  m_PrefabInstance: {fileID: 8667172569581879212}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2128741512
 GameObject:
   m_ObjectHideFlags: 0
@@ -3045,7 +3082,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6471502811858799881, guid: 1b051c34b64e5bd45af1156d6b7e2104, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 463015037}
   m_SourcePrefab: {fileID: 100100000, guid: 1b051c34b64e5bd45af1156d6b7e2104, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
