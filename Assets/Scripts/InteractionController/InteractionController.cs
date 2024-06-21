@@ -121,6 +121,7 @@ public class InteractionController : MonoBehaviour
         collider = GetComponent<CapsuleCollider>();
         feedbackController = GetComponent<FeedbackController>();
         ttsManager = GameObject.FindObjectOfType<TTSManager>();
+        
     }
 
     void FixedUpdate()
@@ -147,7 +148,7 @@ public class InteractionController : MonoBehaviour
         }
 
 
-
+    
         
 
     }

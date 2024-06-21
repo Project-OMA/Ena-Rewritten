@@ -18,7 +18,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &72774941846877320
 Transform:
   m_ObjectHideFlags: 0
@@ -566,6 +566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cane: {fileID: 4283425761326543017}
+  cam: {fileID: 0}
 --- !u!82 &631746341389646067
 AudioSource:
   m_ObjectHideFlags: 0

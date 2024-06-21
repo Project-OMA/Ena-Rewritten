@@ -146,7 +146,7 @@ public class FeedbackController : MonoBehaviour
     {
         // Collisions with the Player game object are reported sometimes. This causes problems in the
         // LocateCollidedObjectRoot method, since the Player is located in the scene root (has no parent)
-        if (collision.gameObject.name == "Camera Offset") return;
+        if (collision.gameObject.tag == "Player") return;
 
         // Since objects have their mesh colliders placed in the inner objects in the hierarchy,
         // we have to "move up" the object tree until we find the root object of the prop (which 
@@ -216,7 +216,7 @@ public class FeedbackController : MonoBehaviour
 
     private void HandleCollisionExit(Collision collision)
     {
-        if (collision.gameObject.name == "Camera Offset") return;
+        if (collision.gameObject.tag == "Player") return;
 
         GameObject collidedObject = LocateCollidedObjectRoot(collision.gameObject);
 
