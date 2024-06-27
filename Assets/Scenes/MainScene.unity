@@ -523,6 +523,18 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: -3303482906017995579, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  transButton:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Trans Button
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 22e469e1-b8f8-44df-8a97-ff78be4f388e
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -7926116095452424093, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   menu: {fileID: 1018612156}
   player: {fileID: 2027156384}
   controllerLeft: {fileID: 983938409}
