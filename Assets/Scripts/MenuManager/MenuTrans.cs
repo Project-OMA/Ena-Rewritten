@@ -82,7 +82,22 @@ public class MenuTrans : MonoBehaviour
         }
         
         if(showButton.action.WasPressedThisFrame() && !hasMenu){
-            exit();
+           
+
+            if(MapLoader.mapselected<MapLoader.defaultMapList.Count){
+                Debug.Log("NUMBER"+MapLoader.mapselected);
+                Debug.Log("COUNT"+MapLoader.defaultMapList.Count);
+                Debug.Log("MAP"+MapLoader.defaultMapList[MapLoader.mapselected]);
+
+                MapLoader.mapdefault =  MapLoader.defaultMapList[MapLoader.mapselected];
+
+                changeScene.noMenu_change("MainScene", MapLoader.mapdefault);
+
+            }else{
+                exit();
+            }
+                
+            
         }
 
         menu.transform.LookAt(worldPosition: new Vector3(x: player.position.x, y: menu.transform.position.y, z: player.position.z) );

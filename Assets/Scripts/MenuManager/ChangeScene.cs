@@ -18,6 +18,16 @@ public class ChangeScene : MonoBehaviour
       
     }
 
+    public void noMenu_change(string scene_name, string mapChoice){
+
+        MapLoader.mapdefault = mapChoice;
+
+        MapLoader.mapselected +=1;
+     
+        SceneManager.LoadScene(scene_name); 
+
+    }
+
     public void quit(){
         #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;

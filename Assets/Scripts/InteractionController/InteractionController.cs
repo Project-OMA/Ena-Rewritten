@@ -154,7 +154,7 @@ public class InteractionController : MonoBehaviour
         
         Vector3 OffsetCam = new Vector3 ((xrOrigin.transform.position.x - cam.transform.position.x), xrOrigin.transform.position.y, (xrOrigin.transform.position.z-cam.transform.position.z));
         
-        Debug.Log(xrOrigin.transform.position + " " + cam.transform.position + " " + OffsetCam.magnitude);
+        //Debug.Log(xrOrigin.transform.position + " " + cam.transform.position + " " + OffsetCam.magnitude);
 
         if(OffsetCam.magnitude > 0.75 && !warn.activeSelf)
         {

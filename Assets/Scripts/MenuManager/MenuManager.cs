@@ -129,6 +129,7 @@ public class MenuManager : MonoBehaviour
 
         if(!mapList.Any()){
             dropdown.options.Add(item: new TMP_Dropdown.OptionData(text: MapLoader.map, image: null));
+
         }
 
         foreach(string map in mapList){
