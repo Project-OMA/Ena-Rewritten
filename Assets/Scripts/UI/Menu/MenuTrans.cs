@@ -9,6 +9,8 @@ public class MenuTrans : MonoBehaviour
     // Start is called before the first frame update
     bool hasMenu = false;
 
+    bool active = true;
+
     public ChangeScene changeScene;
 
     string mapLoad = MapLoader.map;
@@ -23,6 +25,8 @@ public class MenuTrans : MonoBehaviour
 
     public GameObject controllerLeft;
     public GameObject controllerRight;
+
+    public CharacterController controller;
 
     
     private XRInteractorLineVisual interactorLineVisualLeft;
@@ -67,6 +71,8 @@ public class MenuTrans : MonoBehaviour
 
             Debug.Log("hallo");
             menu.SetActive(value: !menu.activeSelf);
+
+            
             
             if(interactorLineVisualLeft.enabled && interactorLineVisualRight.enabled){
 
@@ -79,10 +85,16 @@ public class MenuTrans : MonoBehaviour
             }
             
 
-            menu.transform.position = player.position+ new Vector3(x: player.forward.x, y: 0, z: player.forward.z).normalized*2;
+            
+            
+
         
         }
-        
+
+        menu.transform.position = player.position+ new Vector3(x: player.forward.x, y: 0, z: player.forward.z).normalized*2;
+
+       
+
         if(showButton.action.WasPressedThisFrame() && !hasMenu){
             
             exit();

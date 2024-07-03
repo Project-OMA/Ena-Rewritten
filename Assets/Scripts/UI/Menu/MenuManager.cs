@@ -166,11 +166,11 @@ public class MenuManager : MonoBehaviour
 
     private void Update(){
 
-        if(showButton.action.WasPressedThisFrame()){
-            menu.transform.position = player.position+ new Vector3(x: player.forward.x, y: 0, z: player.forward.z).normalized*2;
+        
+            menu.transform.position = player.position+ new Vector3(x: player.forward.x, y: 1.0f, z: player.forward.z).normalized*1.5f;
             menu.transform.LookAt(worldPosition: new Vector3(x: player.position.x, y: menu.transform.position.y, z: player.position.z) );
             menu.transform.forward *=-1;
-        }
+        
     }
 
     

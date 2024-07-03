@@ -539,6 +539,7 @@ MonoBehaviour:
   player: {fileID: 2027156384}
   controllerLeft: {fileID: 983938409}
   controllerRight: {fileID: 942830614}
+  controller: {fileID: 0}
   bengala: {fileID: 0}
 --- !u!4 &321280788
 Transform:
