@@ -45,6 +45,7 @@ public class MapBuilder : MonoBehaviour
 
     [SerializeField] GameObject grassSprite;
 
+    public bool isTutorial;
     private Mesh floorMesh;
     private Mesh wallMesh;
     private Mesh objMesh;
@@ -57,6 +58,9 @@ public class MapBuilder : MonoBehaviour
     private GameObject utensilParent;
     private GameObject electronicParent;
     private GameObject goalParent;
+    private string mapData;
+    private string defaultMapPath;
+    private TextAsset defaultMapFile;
 
     private void InstanceFloorTile(Floor floor)
     {
@@ -608,7 +612,28 @@ public class MapBuilder : MonoBehaviour
         goalParent = new GameObject("Goals");
 
         MapPuller mapPuller = new MapPuller("joaoaluno@gmail.com");
-        string mapData = mapPuller.GetNextMap();
+    
+
+        if(isTutorial){
+
+            defaultMapPath = "Maps/casadepraia";
+
+            Debug.Log("defaultMapPath : " + defaultMapPath);
+            defaultMapFile = Resources.Load<TextAsset>(defaultMapPath);
+            Debug.Log(defaultMapFile);
+
+            mapData = defaultMapFile.text;
+
+        }else{
+
+            mapData = mapPuller.GetNextMap();
+
+        }
+
+
+
+
+
         if (mapFile == null)
         {
             Debug.LogError("No map file found");
@@ -642,6 +667,7 @@ public class MapBuilder : MonoBehaviour
         Map map = mapParser.ParseMap();
         // Build the map
         BuildMap(map);
+
     }
     // Start is called before the first frame update
     void Start()

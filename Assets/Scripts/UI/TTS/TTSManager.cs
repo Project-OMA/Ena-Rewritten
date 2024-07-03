@@ -45,6 +45,10 @@ using System.IO;
             tTSSpeaker.SpeakQueued(mapName);
         }
 
+        public void TTSTutorial(string enaTut){
+            tTSSpeaker.SpeakQueued(enaTut);
+        }
+
         #region Utility Methods
 
         private string[] ClearString(){

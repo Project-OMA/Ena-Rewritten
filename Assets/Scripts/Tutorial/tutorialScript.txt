@@ -1,0 +1,5 @@
+Hi, welcome to the ena tutorial
+Your first mission is to activate the cane, press the A button on the right controller
+Good job, now, try touching the floor or the nearest object
+Well done, now, I have activated your movement, try moving around
+That concludes the tutorial

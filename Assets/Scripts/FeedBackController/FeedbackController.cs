@@ -158,6 +158,8 @@ public class FeedbackController : MonoBehaviour
 
         var feedbackSettings = collidedObject.GetComponent<ObjectFeedbackSettings>()?.settings;
 
+        TutorialCheckpoints.playerHasInteracted = true;
+
         if (collidedObject.tag == "floor") {
 
             

@@ -56,6 +56,7 @@ public class InteractionController : MonoBehaviour
     }
 
     private void doStep() {
+
         Debug.Log("Doing step at " + nextStepTime);
         moveVector = getMoveVector();
         nextStepTime = Time.time + stepPeriod;
@@ -66,6 +67,8 @@ public class InteractionController : MonoBehaviour
         Vector3 currentPos = Offset.transform.position;
 
         Vector3 desiredPos = moveVector+previousPos;
+
+        TutorialCheckpoints.playerHasMoved = true;
 
         wallDetect();
 

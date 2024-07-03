@@ -43,6 +43,7 @@ public class caneActive : MonoBehaviour
             bengala.SetActive(isItemActive);
 
             if (isItemActive) {
+                TutorialCheckpoints.caneActive = true;
                 m_MyAudioSource.pitch = 1.0f;
             } else {
                 m_MyAudioSource.pitch = 0.5f;

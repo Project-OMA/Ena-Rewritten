@@ -3057,6 +3057,10 @@ PrefabInstance:
       propertyPath: m_ModelPrefab
       value: 
       objectReference: {fileID: 8270855663187062767, guid: 1392f805216c47742996d4742c80721c, type: 3}
+    - target: {fileID: 3946259066654633226, guid: 1b051c34b64e5bd45af1156d6b7e2104, type: 3}
+      propertyPath: m_AnimateModel
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4472528420228031797, guid: 1b051c34b64e5bd45af1156d6b7e2104, type: 3}
       propertyPath: m_InteractionManager
       value: 
