@@ -1,5 +1,5 @@
 using UnityEngine;
-using UI;
+using UnityEngine.UI;
 using System.Linq;
 
 using System;
@@ -38,7 +38,6 @@ public class InteractionController : MonoBehaviour
     private float runningInput()
 
     {
-        ttsManager?.Speak("Currently Running!");
         return Input.GetAxis("Fire2");
     }
 

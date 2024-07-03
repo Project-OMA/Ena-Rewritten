@@ -12,6 +12,8 @@ public class MapLoader : MonoBehaviour
 
     public static int mapselected = 0;
 
+    public static bool played = false;
+
     
 
 }

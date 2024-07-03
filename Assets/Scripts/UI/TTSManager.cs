@@ -1,56 +1,73 @@
-// TTSManager.cs
-using UnityEngine;
 
-namespace UI
-{
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Text;
+using UnityEngine;
+using UnityEngine.Serialization; 
+using UnityEngine.UI;     
+using Meta.WitAi.TTS.Utilities; 
+using System.IO;
+
+
+
     public class TTSManager : MonoBehaviour
     {
-        private AndroidJavaObject textToSpeech;
+        public TTSSpeaker tTSSpeaker;
+        public TextAsset file;
 
-        private void InitializeTTS()
-        {
-            AndroidJavaClass unityPlayer = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-            AndroidJavaObject currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
+        private string text;
 
-            textToSpeech = new AndroidJavaObject("android.speech.tts.TextToSpeech", currentActivity, new TTSListener());
+        
+
+
+
+        public void TTSMenu(bool hasMenu){
+
+            text = file.ToString();
+
+            string[] collection = ClearString();
+
+            if(hasMenu){
+
+
+                tTSSpeaker.Speak(collection[0]);
+
+            }else{
+              
+                tTSSpeaker.SpeakQueued(collection[1]);
+            }  
 
         }
 
-        public void Speak(string text)
-        {
-            if (textToSpeech != null)
-            {
-                textToSpeech.Call("speak", text);
+        public void MapLoaded(string mapName){
+
+            tTSSpeaker.SpeakQueued(mapName);
+        }
+
+        #region Utility Methods
+
+        private string[] ClearString(){
+
+            text = file.ToString();
+
+            string[] collection = text.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+
+            foreach (var sub in collection) {
+                Debug.Log(sub);
             }
+
+            return collection;
+
+        
+
+
+
         }
 
-        // Add any other TTS-related methods here
 
-        private void OnDestroy()
-        {
-            // Release any resources when the object is destroyed
-            if (textToSpeech != null)
-            {
-                textToSpeech.Dispose();
-            }
-        }
+        #endregion
+
+
+
     }
-
-    class TTSListener : AndroidJavaProxy
-{
-    public TTSListener() : base("android.speech.tts.TextToSpeech$OnInitListener") { }
-
-    // You can override other TextToSpeech listener methods here if needed
-    void onInit(int status)
-    {
-        if (status == 0) // SUCCESS constant
-        {
-            Debug.Log("TextToSpeech initialized successfully");
-        }
-        else
-        {
-            Debug.LogError("TextToSpeech initialization failed");
-        }
-    }
-}
-}

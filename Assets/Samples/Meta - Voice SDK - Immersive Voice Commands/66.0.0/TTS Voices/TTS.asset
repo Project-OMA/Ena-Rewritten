@@ -550,7 +550,7 @@ MonoBehaviour:
     _converse: 
   isDemoOnly: 0
   useConduit: 1
-  _manifestLocalPath: 
+  _manifestLocalPath: ConduitManifest-124278f2-5216-4a1e-9d7b-cd02601fb555.json
   excludedAssemblies:
   - Oculus.Voice.Demo, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   - Meta.WitAi.Samples, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null

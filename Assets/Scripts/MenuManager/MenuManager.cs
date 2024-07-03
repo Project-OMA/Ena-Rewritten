@@ -35,6 +35,8 @@ public class MenuManager : MonoBehaviour
 
     public InputActionProperty showButton;
 
+    public TTSManager tTSManager;
+
     
 
    
@@ -153,6 +155,9 @@ public class MenuManager : MonoBehaviour
     }
 
     private void Start(){
+
+        tTSManager.TTSMenu(true);
+
         Button btn = yourButton.GetComponent<Button>();
         
 
