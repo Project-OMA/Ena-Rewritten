@@ -23,9 +23,13 @@ public class ChangeScene : MonoBehaviour
 
     public void noMenu_change(string scene_name, string mapChoice){
 
-        MapLoader.mapdefault = mapChoice;
+        if(!TutorialCheckpoints.playerInTutorial){
+            MapLoader.mapselected +=1;
+        }
 
-        MapLoader.mapselected +=1;
+        TutorialCheckpoints.playerInTutorial = false;
+
+        MapLoader.mapdefault = mapChoice;
      
         SceneManager.LoadScene(scene_name); 
 

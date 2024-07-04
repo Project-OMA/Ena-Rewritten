@@ -625,7 +625,8 @@ public class MapBuilder : MonoBehaviour
             mapData = defaultMapFile.text;
 
         }else{
-
+            
+            Physics.IgnoreLayerCollision(0, 0, false);
             mapData = mapPuller.GetNextMap();
 
         }
@@ -668,9 +669,6 @@ public class MapBuilder : MonoBehaviour
         // Build the map
         BuildMap(map);
 
-        
-
-        Physics.IgnoreLayerCollision(0, 0, false);
         
     
 

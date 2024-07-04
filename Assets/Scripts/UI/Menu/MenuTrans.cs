@@ -19,6 +19,8 @@ public class MenuTrans : MonoBehaviour
 
     public InputActionProperty transButton;
 
+    public InputActionProperty tutButton;
+
     public GameObject menu;
 
     public Transform player;
@@ -85,48 +87,41 @@ public class MenuTrans : MonoBehaviour
 
        
 
-        if(showButton.action.WasPressedThisFrame() && !hasMenu){
+        if(showButton.action.WasPressedThisFrame() && !hasMenu && !TutorialCheckpoints.playerInTutorial){
             
             exit();
                 
             
         }
 
-        if(showButton.action.WasPressedThisFrame() && TutorialCheckpoints.playerInTutorial){
+        if(tutButton.action.WasPressedThisFrame() && !hasMenu && !TutorialCheckpoints.playerInTutorial){
 
-            if(!hasMenu){
+            TutorialCheckpoints.playerInTutorial = true;
+            changeScene.Tutorial("TutorialScene");
+
+        }
+
+        if(showButton.action.WasPressedThisFrame() && TutorialCheckpoints.playerInTutorial){
 
                 TutorialCheckpoints.playerHasMoved = false;
                 TutorialCheckpoints.playerHasInteracted = false;
                 TutorialCheckpoints.caneActive = false;
 
-                if(MapLoader.mapselected<MapLoader.defaultMapList.Count){
-                    Debug.Log("NUMBER"+MapLoader.mapselected);
-                    Debug.Log("COUNT"+MapLoader.defaultMapList.Count);
-                    Debug.Log("MAP"+MapLoader.defaultMapList[MapLoader.mapselected]);
+            if(hasMenu){
 
-                    MapLoader.mapdefault =  MapLoader.defaultMapList[MapLoader.mapselected];
-
-                    
-                    changeScene.noMenu_change("MainScene", MapLoader.mapdefault);
-
-                }else{
-                    exit();
-                }
+                changeScene.scene_changer("MainMenu", mapLoad);
 
             }else{
 
-                TutorialCheckpoints.playerHasMoved = false;
-                TutorialCheckpoints.playerHasInteracted = false;
-                TutorialCheckpoints.caneActive = false;
+                changeScene.noMenu_change("MainScene", MapLoader.mapdefault);
 
-                changeScene.scene_changer("MainMenu", mapLoad);
+                }
 
             }
 
             
 
-        }
+        
 
 
         if(transButton.action.WasPressedThisFrame() && !hasMenu  && !TutorialCheckpoints.playerInTutorial){

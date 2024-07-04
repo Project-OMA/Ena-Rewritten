@@ -166,6 +166,7 @@ public class InteractionController : MonoBehaviour
             
             warn.SetActive(true);
             sphere.SetActive(true);
+            ttsManager.warningS();
             controller.enabled=false;
             //float newPosX = cam.transform.position.x;
             //float newPosZ = cam.transform.position.z;
@@ -181,7 +182,6 @@ public class InteractionController : MonoBehaviour
         }else if(OffsetCam.magnitude < 0.6){
             warn.SetActive(false);
             sphere.SetActive(false);
-            ttsManager.warningS();
             controller.enabled=true;
             warningSource.Stop();
         }

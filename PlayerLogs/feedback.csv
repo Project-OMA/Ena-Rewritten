@@ -1,1 +1,6 @@
 Start Colliding Time,Collided Object,Collision Location on Player,Current Time Colliding
+04/07/2024 18:29:43,wall%WallRight:0_0_39_0,Player%XR Origin (XR Rig),00:00:02.0426124
+04/07/2024 18:29:43,wall%WallLeft:6_1_38_1,Player%XR Origin (XR Rig),00:00:00.0364856
+04/07/2024 18:29:43,wall%WallFront:6_1_38_1,Player%XR Origin (XR Rig),00:00:02.2178486
+04/07/2024 18:29:43,wall%WallFront:6_1_6_2,Player%XR Origin (XR Rig),00:00:02.6653358
+04/07/2024 18:29:49,DoorWindow%porta-aberta:4.2_6_3,Player%XR Origin (XR Rig),00:00:03.5249808
