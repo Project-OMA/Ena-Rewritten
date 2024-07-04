@@ -38,7 +38,9 @@ public class MenuManager : MonoBehaviour
     public TTSManager tTSManager;
 
     
+    private bool IsMenu = true;
 
+    
    
     string cursaUrl = "https://cursa.eic.cefet-rj.br/ena-map";
 
@@ -158,6 +160,7 @@ public class MenuManager : MonoBehaviour
     private void Awake(){
         poupulateDropdown();
         dropdown.RefreshShownValue(); 
+        MapLoader.hasMenu = IsMenu;
         
     }
 

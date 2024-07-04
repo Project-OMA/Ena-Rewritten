@@ -1076,6 +1076,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 28.723, y: -50.633, z: -31.947}
+--- !u!82 &1331051814 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8490326050912602169, guid: ee691d2fda70adb499790afd3cadf91c, type: 3}
+  m_PrefabInstance: {fileID: 1375518460}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1345653721
 GameObject:
   m_ObjectHideFlags: 0
@@ -1809,6 +1814,9 @@ MonoBehaviour:
   tTSManager: {fileID: 830880805}
   interactionController: {fileID: 1972909863}
   file: {fileID: 4900000, guid: bc357b18636379e4eb18c3fbb8c94880, type: 3}
+  leftHandDevice: {fileID: 1553774022}
+  rightHandDevice: {fileID: 896853332}
+  ttsSource: {fileID: 1331051814}
 --- !u!1 &1783927894
 GameObject:
   m_ObjectHideFlags: 0
@@ -1935,7 +1943,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7646583b91ca0c4993cf5e7703c1d19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeScene: {fileID: 0}
+  changeScene: {fileID: 1432198140}
   showButton:
     m_UseReference: 1
     m_Action:

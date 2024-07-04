@@ -668,6 +668,12 @@ public class MapBuilder : MonoBehaviour
         // Build the map
         BuildMap(map);
 
+        
+
+        Physics.IgnoreLayerCollision(0, 0, false);
+        
+    
+
     }
     // Start is called before the first frame update
     void Start()

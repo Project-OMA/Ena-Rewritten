@@ -46,7 +46,7 @@ using System.IO;
         }
 
         public void TTSTutorial(string enaTut){
-            tTSSpeaker.SpeakQueued(enaTut);
+            tTSSpeaker.Speak(enaTut);
         }
 
         #region Utility Methods

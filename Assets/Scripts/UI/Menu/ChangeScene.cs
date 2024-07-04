@@ -11,9 +11,8 @@ public class ChangeScene : MonoBehaviour
 
 
     public void scene_changer(string scene_name, string mapChoice){
-
+        TutorialCheckpoints.playerInTutorial = false;
         MapLoader.map = mapChoice;
-     
         SceneManager.LoadScene(scene_name);  
       
     }

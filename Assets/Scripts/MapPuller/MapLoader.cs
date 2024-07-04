@@ -14,6 +14,8 @@ public class MapLoader : MonoBehaviour
 
     public static bool played = false;
 
+    public static bool hasMenu = false;
+
 
     
 

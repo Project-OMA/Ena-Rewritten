@@ -49,13 +49,7 @@ public class MenuTrans : MonoBehaviour
     void Start()
     {
 
-            if(mapLoad == "default"){
-
-                hasMenu = false;
-
-            }else{
-                hasMenu = true;
-            }
+        hasMenu = MapLoader.hasMenu;
 
         
         interactorLineVisualLeft = controllerLeft.GetComponent<XRInteractorLineVisual>();
@@ -67,7 +61,7 @@ public class MenuTrans : MonoBehaviour
     void Update()
     {
         
-        if(showButton.action.WasPressedThisFrame() && hasMenu){
+        if(showButton.action.WasPressedThisFrame() && hasMenu && !TutorialCheckpoints.playerInTutorial){
 
             Debug.Log("hallo");
             menu.SetActive(value: !menu.activeSelf);
@@ -84,10 +78,6 @@ public class MenuTrans : MonoBehaviour
                 interactorLineVisualRight.enabled = true;
             }
             
-
-            
-            
-
         
         }
 
@@ -106,6 +96,10 @@ public class MenuTrans : MonoBehaviour
 
             if(!hasMenu){
 
+                TutorialCheckpoints.playerHasMoved = false;
+                TutorialCheckpoints.playerHasInteracted = false;
+                TutorialCheckpoints.caneActive = false;
+
                 if(MapLoader.mapselected<MapLoader.defaultMapList.Count){
                     Debug.Log("NUMBER"+MapLoader.mapselected);
                     Debug.Log("COUNT"+MapLoader.defaultMapList.Count);
@@ -113,7 +107,7 @@ public class MenuTrans : MonoBehaviour
 
                     MapLoader.mapdefault =  MapLoader.defaultMapList[MapLoader.mapselected];
 
-                    TutorialCheckpoints.playerInTutorial = false;
+                    
                     changeScene.noMenu_change("MainScene", MapLoader.mapdefault);
 
                 }else{
@@ -122,7 +116,10 @@ public class MenuTrans : MonoBehaviour
 
             }else{
 
-                TutorialCheckpoints.playerInTutorial = false;
+                TutorialCheckpoints.playerHasMoved = false;
+                TutorialCheckpoints.playerHasInteracted = false;
+                TutorialCheckpoints.caneActive = false;
+
                 changeScene.scene_changer("MainMenu", mapLoad);
 
             }
