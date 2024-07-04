@@ -125,6 +125,13 @@ public class MenuManager : MonoBehaviour
         #endif
         Application.Quit();
     }
+
+    public void GoToTutorial(){
+
+        TutorialCheckpoints.playerInTutorial = true;
+        changeScene.Tutorial("TutorialScene");
+
+    }
     public void poupulateDropdown(){
 
         getMapList(cursaUrl);

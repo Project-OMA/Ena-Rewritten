@@ -102,8 +102,37 @@ public class MenuTrans : MonoBehaviour
             
         }
 
+        if(showButton.action.WasPressedThisFrame() && TutorialCheckpoints.playerInTutorial){
 
-        if(transButton.action.WasPressedThisFrame() && !hasMenu){
+            if(!hasMenu){
+
+                if(MapLoader.mapselected<MapLoader.defaultMapList.Count){
+                    Debug.Log("NUMBER"+MapLoader.mapselected);
+                    Debug.Log("COUNT"+MapLoader.defaultMapList.Count);
+                    Debug.Log("MAP"+MapLoader.defaultMapList[MapLoader.mapselected]);
+
+                    MapLoader.mapdefault =  MapLoader.defaultMapList[MapLoader.mapselected];
+
+                    TutorialCheckpoints.playerInTutorial = false;
+                    changeScene.noMenu_change("MainScene", MapLoader.mapdefault);
+
+                }else{
+                    exit();
+                }
+
+            }else{
+
+                TutorialCheckpoints.playerInTutorial = false;
+                changeScene.scene_changer("MainMenu", mapLoad);
+
+            }
+
+            
+
+        }
+
+
+        if(transButton.action.WasPressedThisFrame() && !hasMenu  && !TutorialCheckpoints.playerInTutorial){
             
             if(MapLoader.mapselected<MapLoader.defaultMapList.Count){
                 Debug.Log("NUMBER"+MapLoader.mapselected);

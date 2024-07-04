@@ -18,6 +18,10 @@ public class ChangeScene : MonoBehaviour
       
     }
 
+    public void Tutorial(string scene_name){
+        SceneManager.LoadScene(scene_name);
+    }
+
     public void noMenu_change(string scene_name, string mapChoice){
 
         MapLoader.mapdefault = mapChoice;
