@@ -181,6 +181,7 @@ public class InteractionController : MonoBehaviour
         }else if(OffsetCam.magnitude < 0.6){
             warn.SetActive(false);
             sphere.SetActive(false);
+            ttsManager.warningS();
             controller.enabled=true;
             warningSource.Stop();
         }

@@ -49,6 +49,10 @@ using System.IO;
             tTSSpeaker.Speak(enaTut);
         }
 
+        public void warningS(){
+            tTSSpeaker.Speak("Warning, go back to position");
+        }
+
         #region Utility Methods
 
         private string[] ClearString(){

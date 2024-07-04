@@ -616,7 +616,7 @@ public class MapBuilder : MonoBehaviour
 
         if(isTutorial){
 
-            defaultMapPath = "Maps/casadepraia";
+            defaultMapPath = "Maps/tutorial";
 
             Debug.Log("defaultMapPath : " + defaultMapPath);
             defaultMapFile = Resources.Load<TextAsset>(defaultMapPath);
