@@ -96,8 +96,12 @@ public class MenuTrans : MonoBehaviour
 
         if(tutButton.action.WasPressedThisFrame() && !hasMenu && !TutorialCheckpoints.playerInTutorial){
 
-            TutorialCheckpoints.playerInTutorial = true;
-            changeScene.Tutorial("TutorialScene");
+            if(MapLoader.hasInternet){
+                TutorialCheckpoints.playerInTutorial = true;
+                changeScene.Tutorial("TutorialScene");
+            }
+
+            
 
         }
 

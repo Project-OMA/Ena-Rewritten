@@ -152,6 +152,8 @@ public class MapPuller
             Debug.LogWarning("Ocorreu um erro ao obter o próximo mapa: " + ex.Message);
             Debug.LogWarning("Utilizando mapa local de teste");
 
+            MapLoader.hasInternet = false;
+
             m_Path = Application.dataPath;
             Debug.Log("dataPath : " + m_Path);
 

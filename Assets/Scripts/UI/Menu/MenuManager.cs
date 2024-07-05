@@ -17,6 +17,9 @@ public class MenuManager : MonoBehaviour
 
     public Button yourButton;
 
+    public Button tutButton;
+    public GameObject noTut;
+
     [SerializeField] private TMP_Dropdown dropdown;
 
     public GameObject menu;
@@ -32,8 +35,6 @@ public class MenuManager : MonoBehaviour
     public TextMeshProUGUI textMeshPro;
 
     public Transform player;
-
-    public InputActionProperty showButton;
 
     public TTSManager tTSManager;
 
@@ -96,6 +97,7 @@ public class MenuManager : MonoBehaviour
         }
 
         catch (Exception ex){
+            MapLoader.hasInternet = false;
             Debug.Log(ex.Message);
             connectIssue.SetActive(value: !connectIssue.activeSelf);
             textMeshPro.text = ex.Message;
@@ -130,8 +132,19 @@ public class MenuManager : MonoBehaviour
 
     public void GoToTutorial(){
 
-        TutorialCheckpoints.playerInTutorial = true;
-        changeScene.Tutorial("TutorialScene");
+        if(MapLoader.hasInternet){
+
+            TutorialCheckpoints.playerInTutorial = true;
+            changeScene.Tutorial("TutorialScene");
+
+        }else{
+
+            noTut.SetActive(value: !noTut.activeSelf);
+            tutButton.enabled = false;
+            tutButton.gameObject.SetActive(false);
+
+        }
+        
 
     }
     public void poupulateDropdown(){

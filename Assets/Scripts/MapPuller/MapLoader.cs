@@ -16,6 +16,8 @@ public class MapLoader : MonoBehaviour
 
     public static bool hasMenu = false;
 
+    public static bool hasInternet = true;
+
 
     
 
