@@ -1,4 +1,5 @@
 using System;
+using UnityEngine;
 
 public class CollisionEvent
 {
@@ -12,10 +13,13 @@ public class CollisionEvent
 
     [CsvColumn("Collided Object")]
     public string CollidedObject { get; }
+    public GameObject GameObject { get; }
+
 
     [CsvColumn("Collision Location on Player")]
     public string CollisionLocationOnPlayer { get; }
     public FeedbackSettings FeedbackSettings { get; }
+    
     public bool IsColliding
     {
         get
@@ -42,6 +46,7 @@ public class CollisionEvent
     }
 
     public bool CanPlay { get; set; }
+    public bool IsPlaying { get; set; }
 
     [CsvColumn("Current Time Colliding")]
     public TimeSpan TimeColliding
@@ -49,14 +54,16 @@ public class CollisionEvent
         get { return IsColliding ? timeColliding + (DateTime.Now - lastColliding) : timeColliding; }
     }
 
-    public CollisionEvent(string collidedObject, string collisionLocationOnPlayer, FeedbackSettings feedbackSettings)
+    public CollisionEvent(string collidedObject, string collisionLocationOnPlayer, FeedbackSettings feedbackSettings, GameObject gameObject)
     {
         CollidedObject = collidedObject;
         CollisionLocationOnPlayer = collisionLocationOnPlayer;
         FeedbackSettings = feedbackSettings;
+        GameObject = gameObject;
         IsColliding = true;
         CanPlay = true;
         StartColliding = DateTime.Now;
         timeColliding = TimeSpan.Zero;
+        IsPlaying = false;
     }
 }

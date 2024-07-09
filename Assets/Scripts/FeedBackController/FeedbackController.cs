@@ -16,8 +16,6 @@ public class FeedbackController : MonoBehaviour
     private static readonly Dictionary<string, CollisionEvent> Collisions = new Dictionary<string, CollisionEvent>();
     private static readonly Dictionary<string, CollisionEvent> FloorDetects = new Dictionary<string, CollisionEvent>();
 
-    private string[] tagPrefab = {"floor", "wall", "Furniture", "Utensils", "Electronics", "Goals"};
-
     private readonly string fileName = $"{Directory.GetCurrentDirectory()}/PlayerLogs/feedback.csv";
 
     #endregion
@@ -33,6 +31,8 @@ public class FeedbackController : MonoBehaviour
 
     private AudioSource WallStopSource;
     private AudioSource CaneSource;
+
+    public AudioSource WalkSource;
 
     public Transform cam;
     
@@ -65,11 +65,12 @@ public class FeedbackController : MonoBehaviour
     {
         InitializeInputDevice();
         InitializeFeedbackComponents();
-        CreateDictSource();
+        
     }
 
     private void Update()
     {
+        AudioCleaner();
         //HandleCollisionFeedback();
         //DetectFloor();
     }
@@ -109,17 +110,6 @@ public class FeedbackController : MonoBehaviour
         HapticImpulseLeft = new HapticFeedback(leftHandDevice, this);
         HapticImpulseRight = new HapticFeedback(rightHandDevice, this);
         SoundSources = new Dictionary<string, AudioSource>();
-    }
-
-    private void CreateDictSource(){
-        AudioSource source;
-        foreach (string tag in tagPrefab){
-
-            source = gameObject.AddComponent<AudioSource>();
-            source.loop = false;
-            SoundSources.Add(tag, source);
-
-        }
     }
 
     #endregion
@@ -180,7 +170,8 @@ public class FeedbackController : MonoBehaviour
             var collisionEvent = new CollisionEvent(
                 collidedObject: collidedObjectTag,
                 collisionLocationOnPlayer: playerColliderTag,
-                feedbackSettings: feedbackSettings);
+                feedbackSettings: feedbackSettings,
+                gameObject: collidedObject);
             
                 Collisions.Add(collidedObjectTag + playerColliderTag, collisionEvent);
                 collisionEvent.IsColliding = true;
@@ -305,7 +296,8 @@ public class FeedbackController : MonoBehaviour
                             collisionEvent = new CollisionEvent(
                                 collidedObject: collidedObjectTag,
                                 collisionLocationOnPlayer: playerColliderTag,
-                                feedbackSettings: feedbackSettings);
+                                feedbackSettings: feedbackSettings,
+                                gameObject: collidedObject);
                             
                             collisionEvent.IsColliding = true;
                             FloorDetects.Add(collidedObjectTag + playerColliderTag, collisionEvent);
@@ -373,68 +365,54 @@ public class FeedbackController : MonoBehaviour
         
         string inputString = collision.CollidedObject;
 
+        Debug.Log(collision.GameObject);
+
         int lineSeparatorIndex = inputString.IndexOf("%");
 
 
         string firstLine = lineSeparatorIndex >= 0 ? inputString.Substring(0, lineSeparatorIndex) : inputString;
 
-        var source = SoundSources.GetValueOrDefault(firstLine);
+        
 
         Debug.Log("Tag:" + firstLine);
         Debug.Log("Name: " + inputString);
+        AudioSource source;
 
-        if(tagPrefab.Contains(firstLine)){
+        if(firstLine == "floor"){
             
-            if(firstLine == "floor"){
-                source.spatialBlend = 1.0f;
-                source.spatialize = true;
+            WalkSource.loop = false;
+            WalkSource.clip = sound;
+
+        if (collision.IsColliding)
+            {
+            // Debug.Log($"aaaaaaaaa: {collision.CanPlay}, {collision.CollidedObject}, {collision.IsColliding}, {!source.isPlaying}");
+                if (!WalkSource.isPlaying)
+                {
+                WalkSource.Play();
+                }
             }
 
-
-            source.loop = false;
-            source.clip = sound;
-
         }else{
-            source = SoundSources.GetValueOrDefault(collision.CollidedObject);
 
-            if (source is null)
+            
+            if(!collision.GameObject.gameObject.GetComponent<AudioSource>()){
+                source = collision.GameObject.gameObject.AddComponent<AudioSource>();
+                source.clip = sound;
 
-                {   
-                    source = gameObject.AddComponent<AudioSource>();
-                    source.loop = false;
-                    SoundSources.Add(collision.CollidedObject, source);
-                    
-
-                    
-                    
-                } else{
-                    source.clip = sound;
+                if(firstLine == "wall"){
+                   source.spatialBlend = 0.5f;
+                }else{
+                    source.spatialBlend = 1.0f;
                 }
-
-        }
-
-        
-        
-        
-        
-        if (collision.IsColliding)
-        {
-            // Debug.Log($"aaaaaaaaa: {collision.CanPlay}, {collision.CollidedObject}, {collision.IsColliding}, {!source.isPlaying}");
-            if (!source.isPlaying)
-            {
-                if (sound != null)
-                {
-                    source.clip = sound;
-                }
+                
                 source.Play();
                 
             }
+            
         }
-        else
-        {
-            // Debug.LogError($"aaaaaaaaa: {collision.CanPlay}, {collision.CollidedObject}, {collision.IsColliding}");
-            source.Stop();
-        }
+
+        
+    
     }
 
     private void PlayHapticFeedback(float hapticForce, CollisionEvent collision)
@@ -466,6 +444,23 @@ public class FeedbackController : MonoBehaviour
     private void SaveCollisionDataToCsv()
     {
         CsvWriter.WriteToCsv(fileName, Collisions.Values);
+    }
+
+    private void AudioCleaner(){
+
+        foreach(var col in Collisions){
+
+            CollisionEvent item = col.Value;
+            GameObject gameObjectitem = item.GameObject.gameObject;
+            AudioSource source = gameObjectitem.GetComponent<AudioSource>();
+            
+            if(!item.IsColliding){
+                if(source && !source.isPlaying){
+                  Destroy(gameObjectitem.GetComponent<AudioSource>());  
+                }
+                
+            }
+        }
     }
 
     private Vector3 checkpos(){
