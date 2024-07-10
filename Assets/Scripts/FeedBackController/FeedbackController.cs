@@ -138,6 +138,9 @@ public class FeedbackController : MonoBehaviour
         // LocateCollidedObjectRoot method, since the Player is located in the scene root (has no parent)
         if (collision.gameObject.tag == "Player") return;
 
+        ContactPoint contact = collision.contacts[0];
+        Debug.Log("Pos:" + contact.point);
+
         // Since objects have their mesh colliders placed in the inner objects in the hierarchy,
         // we have to "move up" the object tree until we find the root object of the prop (which 
         // contains the FeedbackSettings component)
@@ -150,62 +153,34 @@ public class FeedbackController : MonoBehaviour
 
         TutorialCheckpoints.playerHasInteracted = true;
 
-        if (collidedObject.tag == "floor") {
-
-            
-            Debug.Log("Caneeee");
-            
-            handleCaneCollision(collision);
-            
-            
-
-        }else{
-            if (Collisions.TryGetValue(collidedObjectTag + playerColliderTag, out var item))
-            {
-                item.IsColliding = true;
-                HandleCollisionEnterFeedback(item);
-            }
-            else
-            {
-            var collisionEvent = new CollisionEvent(
-                collidedObject: collidedObjectTag,
-                collisionLocationOnPlayer: playerColliderTag,
-                feedbackSettings: feedbackSettings,
-                gameObject: collidedObject);
-            
-                Collisions.Add(collidedObjectTag + playerColliderTag, collisionEvent);
-                collisionEvent.IsColliding = true;
-                HandleCollisionEnterFeedback(collisionEvent);
-                
-            }
+       
+        if (Collisions.TryGetValue(collidedObjectTag + playerColliderTag, out var item))
+        {
+            item.IsColliding = true;
+            item.Vector3 = contact.point;
+            HandleCollisionEnterFeedback(item);
         }
+        else
+        {
+        var collisionEvent = new CollisionEvent(
+            collidedObject: collidedObjectTag,
+            collisionLocationOnPlayer: playerColliderTag,
+            feedbackSettings: feedbackSettings,
+            gameObject: collidedObject,
+            vector3: contact.point);
+        
+            Collisions.Add(collidedObjectTag + playerColliderTag, collisionEvent);
+            collisionEvent.IsColliding = true;
+            HandleCollisionEnterFeedback(collisionEvent);
+            
+        }
+        
 
         
         
         
     }
-    public void handleCaneCollision(Collision collision){
-
-
-        GameObject collidedObject = LocateCollidedObjectRoot(collision.gameObject);
-        var feedbackSettings = collidedObject.GetComponent<ObjectFeedbackSettings>()?.settings;
-        
-        Debug.Log(feedbackSettings.sound);
-
-        CaneSource.clip = feedbackSettings.sound;
-        CaneSource.playOnAwake = true;
-        CaneSource.spatialBlend = 1.0f;
-        CaneSource.spatialize = true;
-        CaneSource.loop = false;
-
-        if(!CaneSource.isPlaying){
-            CaneSource.Play();
-        }
-        
-
-        
-
-    }
+    
 
     private void HandleCollisionExit(Collision collision)
     {
@@ -213,20 +188,14 @@ public class FeedbackController : MonoBehaviour
 
         GameObject collidedObject = LocateCollidedObjectRoot(collision.gameObject);
 
-        if (collidedObject.tag != "floor"){
+        string collidedObjectTag = GetObjectName(collidedObject);
+        string playerColliderTag = GetObjectName(gameObject);
 
-            string collidedObjectTag = GetObjectName(collidedObject);
-            string playerColliderTag = GetObjectName(gameObject);
-
-            if (Collisions.TryGetValue(collidedObjectTag + playerColliderTag, out var itemToUpdate))
-            {
-                itemToUpdate.IsColliding = false;
-                HandleCollisionExitFeedback(itemToUpdate);
-            }
-
+        if (Collisions.TryGetValue(collidedObjectTag + playerColliderTag, out var itemToUpdate))
+        {
+            itemToUpdate.IsColliding = false;
+            HandleCollisionExitFeedback(itemToUpdate);
         }
-
-        
 
         
     }
@@ -276,6 +245,7 @@ public class FeedbackController : MonoBehaviour
                     if (hit.collider.gameObject.tag == "floor") {
 
                         GameObject collidedObject = hit.collider.gameObject;
+                        
 
                         string collidedObjectTag = GetObjectName(collidedObject);
                         string playerColliderTag = GetObjectName(gameObject);
@@ -287,6 +257,7 @@ public class FeedbackController : MonoBehaviour
                             
                             collisionEvent = item;
                             collisionEvent.IsColliding = true;
+                            collisionEvent.Vector3 = hit.point;
                             HandleWalkFeedback(item);
                             
                         }
@@ -297,9 +268,11 @@ public class FeedbackController : MonoBehaviour
                                 collidedObject: collidedObjectTag,
                                 collisionLocationOnPlayer: playerColliderTag,
                                 feedbackSettings: feedbackSettings,
-                                gameObject: collidedObject);
+                                gameObject: collidedObject,
+                                vector3: hit.point);
                             
                             collisionEvent.IsColliding = true;
+                            collisionEvent.IsRay = true;
                             FloorDetects.Add(collidedObjectTag + playerColliderTag, collisionEvent);
                             HandleWalkFeedback(collisionEvent);
                             
@@ -376,38 +349,47 @@ public class FeedbackController : MonoBehaviour
 
         Debug.Log("Tag:" + firstLine);
         Debug.Log("Name: " + inputString);
-        AudioSource source;
+        
 
-        if(firstLine == "floor"){
-            
-            WalkSource.loop = false;
-            WalkSource.clip = sound;
+        
 
-        if (collision.IsColliding)
+        if (collision.IsColliding && collision.CanPlay)
             {
             // Debug.Log($"aaaaaaaaa: {collision.CanPlay}, {collision.CollidedObject}, {collision.IsColliding}, {!source.isPlaying}");
-                if (!WalkSource.isPlaying)
-                {
-                WalkSource.Play();
-                }
-            }
-
-        }else{
-
-            
-            if(!collision.GameObject.gameObject.GetComponent<AudioSource>()){
-                source = collision.GameObject.gameObject.AddComponent<AudioSource>();
-                source.clip = sound;
-
-                if(firstLine == "wall"){
-                   source.spatialBlend = 0.5f;
+                if (collision.IsRay){
+                    if(!WalkSource.isPlaying){
+                        WalkSource.clip = sound;
+                        WalkSource.Play();
+                    }
                 }else{
-                    source.spatialBlend = 1.0f;
+
+                    Transform parentObj = collision.GameObject.transform;
+                    Transform spSound = parentObj.Find("SpatialSound");
+
+                    if(spSound == null){
+
+                        
+                        GameObject audioObject = new GameObject("SpatialSound");
+                        audioObject.transform.position = collision.Vector3;
+                        audioObject.transform.parent = collision.GameObject.transform;
+
+                        Debug.Log("CHILD: "+ collision.GameObject.transform.childCount);
+                        AudioSource audioSource = audioObject.AddComponent<AudioSource>();
+                        audioSource.spatialBlend = 1.0f;
+                        
+
+                        if(!audioSource.isPlaying){
+                            audioSource.clip = sound;
+                            audioSource.Play();
+                        }
+                        
+                        Destroy(audioObject, sound.length);
+                        
+                        
+                        
+                    }
+
                 }
-                
-                source.Play();
-                
-            }
             
         }
 
