@@ -70,7 +70,6 @@ public class FeedbackController : MonoBehaviour
 
     private void Update()
     {
-        AudioCleaner();
         //HandleCollisionFeedback();
         //DetectFloor();
     }
@@ -426,23 +425,6 @@ public class FeedbackController : MonoBehaviour
     private void SaveCollisionDataToCsv()
     {
         CsvWriter.WriteToCsv(fileName, Collisions.Values);
-    }
-
-    private void AudioCleaner(){
-
-        foreach(var col in Collisions){
-
-            CollisionEvent item = col.Value;
-            GameObject gameObjectitem = item.GameObject.gameObject;
-            AudioSource source = gameObjectitem.GetComponent<AudioSource>();
-            
-            if(!item.IsColliding){
-                if(source && !source.isPlaying){
-                  Destroy(gameObjectitem.GetComponent<AudioSource>());  
-                }
-                
-            }
-        }
     }
 
     private Vector3 checkpos(){
