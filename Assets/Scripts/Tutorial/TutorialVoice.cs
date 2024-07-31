@@ -16,12 +16,17 @@ public class TutorialVoice : MonoBehaviour
     private string text;
     public GameObject leftHandDevice;
     public GameObject rightHandDevice;
+    public GameObject tutObj;
+
+    public GameObject doorObj;
 
     public AudioSource ttsSource;
 
     private bool checkPoint = false;
 
     private bool activated = false;
+
+
 
     int i = 0;
 
@@ -34,6 +39,8 @@ public class TutorialVoice : MonoBehaviour
     {
         rightHandDevice.SetActive(false);
         leftHandDevice.SetActive(false);
+        tutObj.SetActive(false);
+        doorObj.SetActive(false);
         Physics.IgnoreLayerCollision(0, 0, true);
         
     }
@@ -115,6 +122,50 @@ public class TutorialVoice : MonoBehaviour
                 }
 
                 break;
+
+            case 3:
+
+                if(!TutorialCheckpoints.playerOnTrigger && !activated){
+
+                    
+                    tutObj.SetActive(true);
+                    activated = true;
+         
+                }else if(TutorialCheckpoints.playerOnTrigger && activated){
+
+                    i++;
+                    checkPoint = false;
+
+                }
+
+                break;
+            
+            case 4:
+
+                tutObj.SetActive(false);
+                
+
+                i++;
+                checkPoint = false;
+
+                break;
+
+            case 5:
+
+                if(!TutorialCheckpoints.playerDoor && !activated){
+                        doorObj.SetActive(true);
+                        activated = true;
+            
+                    }else if(TutorialCheckpoints.playerDoor && activated){
+
+                        i++;
+                        checkPoint = false;
+
+                    }
+
+                break;
+
+
                 
 
             

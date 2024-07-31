@@ -1,4 +1,7 @@
 Hi, welcome to the ena tutorial, your first mission is to activate the cane, press the A button on the right controller
 Good job, now, try touching the floor or the nearest object
 Well done, now, I have activated your movement, try moving around
+To understand a few things regarding objectives, try reaching this one, don't worry, the sound will guide you
+I must introduce the doors, we have three types, open, closed and locked. Open doors are already opened, closed can be opened once you get close, and locked doors can't be opened. 
+Those doors can be differentiated by sound. Go there and interact, don't worry sound will guide you.
 That concludes the tutorial, you may press the start button to quit

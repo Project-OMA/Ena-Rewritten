@@ -110,6 +110,8 @@ public class MenuTrans : MonoBehaviour
                 TutorialCheckpoints.playerHasMoved = false;
                 TutorialCheckpoints.playerHasInteracted = false;
                 TutorialCheckpoints.caneActive = false;
+                TutorialCheckpoints.playerOnTrigger = false;
+                TutorialCheckpoints.playerDoor = false;
 
             if(hasMenu){
 

@@ -190,6 +190,11 @@ public class FeedbackController : MonoBehaviour
         string collidedObjectTag = GetObjectName(collidedObject);
         string playerColliderTag = GetObjectName(gameObject);
 
+        if (collision.gameObject.tag == "DoorWindow"){
+
+            TutorialCheckpoints.playerDoor = true;
+        }
+
         if (Collisions.TryGetValue(collidedObjectTag + playerColliderTag, out var itemToUpdate))
         {
             itemToUpdate.IsColliding = false;
