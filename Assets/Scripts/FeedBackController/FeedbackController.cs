@@ -30,14 +30,17 @@ public class FeedbackController : MonoBehaviour
     public GameObject cane;
 
     private AudioSource WallStopSource;
-    private AudioSource CaneSource;
-
+    public GameObject CaneSource;
     public AudioSource WalkSource;
 
     public Transform cam;
     
 
     private InteractionController interactionController;
+
+    public GameObject WallSource;
+
+
 
     
     
@@ -51,7 +54,6 @@ public class FeedbackController : MonoBehaviour
     {
         //Fetch the AudioSource from the GameObject
         WallStopSource = gameObject.AddComponent<AudioSource>();
-        CaneSource = gameObject.AddComponent<AudioSource>();
         interactionController = GetComponent<InteractionController>();
         
 
@@ -372,24 +374,46 @@ public class FeedbackController : MonoBehaviour
 
                     if(spSound == null){
 
-                        
-                        GameObject audioObject = new GameObject("SpatialSound");
-                        audioObject.transform.position = collision.Vector3;
-                        audioObject.transform.parent = collision.GameObject.transform;
+                        if (collision.GameObject.tag=="wall"){
 
-                        Debug.Log("CHILD: "+ collision.GameObject.transform.childCount);
-                        AudioSource audioSource = audioObject.AddComponent<AudioSource>();
-                        audioSource.spatialBlend = 1.0f;
-                        
 
-                        if(!audioSource.isPlaying){
-                            audioSource.clip = sound;
-                            audioSource.Play();
-                        }
-                        
-                        Destroy(audioObject, sound.length);
-                        
-                        
+                            WallSource.transform.position = collision.Vector3;
+                            AudioSource audioSource = WallSource.GetComponent<AudioSource>();
+
+                            if(!audioSource.isPlaying){
+                                audioSource.clip = sound;
+                                audioSource.Play();
+                            }
+
+                        }else if(collision.GameObject.tag=="floor"){
+
+                            CaneSource.transform.position = collision.Vector3;
+                            AudioSource audioSource = CaneSource.GetComponent<AudioSource>();
+
+                            if(!audioSource.isPlaying){
+                                audioSource.clip = sound;
+                                audioSource.Play();
+                            }
+
+                        }else{
+
+                            GameObject audioObject = new GameObject("SpatialSound");
+                            audioObject.transform.position = collision.Vector3;
+                            audioObject.transform.parent = collision.GameObject.transform;
+
+                            Debug.Log("CHILD: "+ collision.GameObject.transform.childCount);
+                            AudioSource audioSource = audioObject.AddComponent<AudioSource>();
+                            audioSource.spatialBlend = 1.0f;
+                            
+
+                            if(!audioSource.isPlaying){
+                                audioSource.clip = sound;
+                                audioSource.Play();
+                            }
+                            
+                            Destroy(audioObject, sound.length);
+
+                            }
                         
                     }
 
