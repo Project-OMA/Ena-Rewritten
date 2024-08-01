@@ -134,6 +134,13 @@ public class MenuManager : MonoBehaviour
 
         if(MapLoader.hasInternet){
 
+            
+            TutorialCheckpoints.playerHasMoved = false;
+            TutorialCheckpoints.playerHasInteracted = false;
+            TutorialCheckpoints.caneActive = false;
+            TutorialCheckpoints.playerOnTrigger = false;
+            TutorialCheckpoints.playerDoor = false;
+
             TutorialCheckpoints.playerInTutorial = true;
             changeScene.Tutorial("TutorialScene");
 

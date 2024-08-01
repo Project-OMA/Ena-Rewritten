@@ -97,6 +97,13 @@ public class MenuTrans : MonoBehaviour
         if(tutButton.action.WasPressedThisFrame() && !hasMenu && !TutorialCheckpoints.playerInTutorial){
 
             if(MapLoader.hasInternet){
+                
+                TutorialCheckpoints.playerHasMoved = false;
+                TutorialCheckpoints.playerHasInteracted = false;
+                TutorialCheckpoints.caneActive = false;
+                TutorialCheckpoints.playerOnTrigger = false;
+                TutorialCheckpoints.playerDoor = false;
+                
                 TutorialCheckpoints.playerInTutorial = true;
                 changeScene.Tutorial("TutorialScene");
             }
@@ -107,11 +114,6 @@ public class MenuTrans : MonoBehaviour
 
         if(showButton.action.WasPressedThisFrame() && TutorialCheckpoints.playerInTutorial){
 
-                TutorialCheckpoints.playerHasMoved = false;
-                TutorialCheckpoints.playerHasInteracted = false;
-                TutorialCheckpoints.caneActive = false;
-                TutorialCheckpoints.playerOnTrigger = false;
-                TutorialCheckpoints.playerDoor = false;
 
             if(hasMenu){
 
