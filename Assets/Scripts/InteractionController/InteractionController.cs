@@ -27,7 +27,7 @@ public class InteractionController : MonoBehaviour
 
     private string[] tagPrefab = {"Furniture", "Utensils", "Electronics", "Goals"};
 
-    private FeedbackController feedbackController;
+    public FeedbackController feedbackController;
 
     Vector3 moveVector;
 
