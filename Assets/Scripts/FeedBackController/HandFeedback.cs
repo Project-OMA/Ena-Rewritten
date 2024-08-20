@@ -253,6 +253,13 @@ public class HandFeedback : MonoBehaviour
 
         Debug.Log("Tag:" + firstLine);
         Debug.Log("Name: " + inputString);
+
+        // wip: continous sound
+        void RewindSound(AudioSource audioSource, AudioClip sound)
+        {
+            float newTime = audioSource.time - sound.length * 0.25f;
+            audioSource.time = Mathf.Max(newTime, 0);
+        }
         
 
         
@@ -276,6 +283,8 @@ public class HandFeedback : MonoBehaviour
                             if(!audioSource.isPlaying){
                                 audioSource.clip = sound;
                                 audioSource.Play();
+                            } else {
+                                RewindSound(audioSource, sound);
                             }
 
                         }else if(collision.GameObject.tag=="floor"){
@@ -286,6 +295,8 @@ public class HandFeedback : MonoBehaviour
                             if(!audioSource.isPlaying){
                                 audioSource.clip = sound;
                                 audioSource.Play();
+                            } else {
+                                RewindSound(audioSource, sound);
                             }
 
                         }else{
@@ -302,6 +313,8 @@ public class HandFeedback : MonoBehaviour
                             if(!audioSource.isPlaying){
                                 audioSource.clip = sound;
                                 audioSource.Play();
+                            } else {
+                                RewindSound(audioSource, sound);
                             }
                             
                             Destroy(audioObject, sound.length);
