@@ -32,7 +32,8 @@ public class ObjectData : ScriptableObject
         public string name;
         public GameObject prefab;
         public List<ObjectVariation> variations = new List<ObjectVariation>();
-        public AudioClip sound;
+        public AudioClip sound1;
+        public AudioClip sound2;
         public FeedbackTypeEnum[] feedbackTypes;
         public float hapticForce;
 
@@ -70,7 +71,8 @@ public class ObjectData : ScriptableObject
             return new FeedbackSettings
             {
                 feedbackTypes = objectEntry.feedbackTypes,
-                sound = objectEntry.sound,
+                sound1 = objectEntry.sound1,
+                sound2 = objectEntry.sound2,
                 hapticForce = objectEntry.hapticForce
             };
         }

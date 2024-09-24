@@ -23,7 +23,8 @@ public class MaterialData : ScriptableObject
 
         public Vector2 scale = Vector2.one; 
 
-        public AudioClip sound;
+        public AudioClip sound1;
+        public AudioClip sound2;
         public FeedbackTypeEnum[] feedbackTypes;
         public float hapticForce;
     }
@@ -44,7 +45,8 @@ public class MaterialData : ScriptableObject
             return new FeedbackSettings
             {
                 feedbackTypes = materialEntry.feedbackTypes,
-                sound = materialEntry.sound,
+                sound1 = materialEntry.sound1,
+                sound2 = materialEntry.sound2,
                 hapticForce = materialEntry.hapticForce
             };
         }

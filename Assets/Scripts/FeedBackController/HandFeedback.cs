@@ -13,6 +13,9 @@ public class HandFeedback : MonoBehaviour
     private HapticFeedback HapticImpulseLeft;
     private HapticFeedback HapticImpulseRight;
 
+    public TTSManager ttsManager;
+    public AudioSource ttsSource;
+
     private static readonly Dictionary<string, CollisionEvent> Collisions = new Dictionary<string, CollisionEvent>();
 
     private readonly string fileName = $"{Directory.GetCurrentDirectory()}/PlayerLogs/feedback.csv";
@@ -137,6 +140,7 @@ public class HandFeedback : MonoBehaviour
         {
             item.IsColliding = true;
             item.Vector3 = contact.point;
+            item.TotalCollisions += 1;
             HandleCollisionEnterFeedback(item);
         }
         else
@@ -146,7 +150,8 @@ public class HandFeedback : MonoBehaviour
             collisionLocationOnPlayer: playerColliderTag,
             feedbackSettings: feedbackSettings,
             gameObject: collidedObject,
-            vector3: contact.point);
+            vector3: contact.point,
+            totalCollisions: 1);
         
             Collisions.Add(collidedObjectTag + playerColliderTag, collisionEvent);
             collisionEvent.IsColliding = true;
@@ -216,19 +221,61 @@ public class HandFeedback : MonoBehaviour
     {
         foreach (var feedbackType in collision.FeedbackSettings?.feedbackTypes ?? new FeedbackTypeEnum[0])
         {
-            switch (feedbackType)
-            {
-                case FeedbackTypeEnum.Sound:
-                    PlaySoundFeedback(collision.FeedbackSettings.sound, collision);
-                    break;
-                case FeedbackTypeEnum.Haptic:
-                    PlayHapticFeedback(collision.FeedbackSettings.hapticForce, collision);
-                    break;
-                default:
-                    break;
+
+            if(collision.GameObject.tag!="floor"){
+                switch(collision.TotalCollisions){
+
+                    case 1:
+                        PlaySoundFeedback(collision.FeedbackSettings.sound1, collision);
+                        PlayHapticFeedback(collision.FeedbackSettings.hapticForce, collision);
+                        break;
+                    
+                    case 2:
+                        PlaySoundFeedback(collision.FeedbackSettings.sound2, collision);
+                        PlayHapticFeedback(collision.FeedbackSettings.hapticForce+0.1f, collision);
+                        break;
+                    
+                    case 3:
+                        string inputString = collision.CollidedObject;
+
+                        Debug.Log(collision.GameObject);
+
+                        int lineSeparatorIndex = inputString.IndexOf(" ");
+
+
+                        string firstLine = lineSeparatorIndex >= 0 ? inputString.Substring(0, lineSeparatorIndex) : inputString;
+
+                        lineSeparatorIndex = inputString.IndexOf(":");
+
+
+                        firstLine = lineSeparatorIndex >= 0 ? inputString.Substring(0, lineSeparatorIndex) : inputString;
+
+                    
+
+                        ttsManager.thirdCollision("Collision on object " +  firstLine);
+
+                        break;
+                    
+                    default:
+                        
+                        collision.TotalCollisions = 1;
+                        PlaySoundFeedback(collision.FeedbackSettings.sound1, collision);
+                        PlayHapticFeedback(collision.FeedbackSettings.hapticForce+0.3f, collision);
+
+                        break;
+
+                }
+
+                }else{
+                    PlaySoundFeedback(collision.FeedbackSettings.sound2, collision);
+                }
+
+
+                PlayHapticFeedback(collision.FeedbackSettings.hapticForce, collision);
+                    
             }
         }
-    }
+    
 
     #endregion
 
@@ -244,7 +291,7 @@ public class HandFeedback : MonoBehaviour
 
         Debug.Log(collision.GameObject);
 
-        int lineSeparatorIndex = inputString.IndexOf("%");
+        int lineSeparatorIndex = inputString.IndexOf(" ");
 
 
         string firstLine = lineSeparatorIndex >= 0 ? inputString.Substring(0, lineSeparatorIndex) : inputString;
@@ -276,6 +323,13 @@ public class HandFeedback : MonoBehaviour
                             if(!audioSource.isPlaying){
                                 audioSource.clip = sound;
                                 audioSource.Play();
+
+                            } else {
+                                
+                                audioSource.Stop();
+                                audioSource.clip = sound;
+                                audioSource.Play();
+
                             }
 
                         }else if(collision.GameObject.tag=="floor"){
@@ -286,6 +340,12 @@ public class HandFeedback : MonoBehaviour
                             if(!audioSource.isPlaying){
                                 audioSource.clip = sound;
                                 audioSource.Play();
+                            } else {
+                                
+                                audioSource.Stop();
+                                audioSource.clip = sound;
+                                audioSource.Play();
+
                             }
 
                         }else{
@@ -300,6 +360,10 @@ public class HandFeedback : MonoBehaviour
                             
 
                             if(!audioSource.isPlaying){
+                                audioSource.clip = sound;
+                                audioSource.Play();
+                            } else {
+                                audioSource.Stop();
                                 audioSource.clip = sound;
                                 audioSource.Play();
                             }
@@ -347,7 +411,7 @@ public class HandFeedback : MonoBehaviour
 
     public string GetObjectName(GameObject gameObject)
     {
-        return string.IsNullOrEmpty(gameObject.tag) ? gameObject.name : gameObject.tag + "%" + gameObject.name;
+        return string.IsNullOrEmpty(gameObject.tag) ? gameObject.name : gameObject.tag + " " + gameObject.name;
     }
 
     private void SaveCollisionDataToCsv()

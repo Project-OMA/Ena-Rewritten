@@ -2,5 +2,6 @@ public enum FeedbackTypeEnum
 {
     Alarm,
     Haptic,
-    Sound
+    Sound1,
+    Sound2
 }

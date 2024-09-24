@@ -32,8 +32,9 @@ MonoBehaviour:
       rotation: 180
       offsetX: 1
       offsetY: -0.5
-    sound: {fileID: 8300000, guid: 3e0c4e9ed7620a24883faa8b33fc4437, type: 3}
-    feedbackTypes: 0100000002000000
+    sound1: {fileID: 8300000, guid: 3e0c4e9ed7620a24883faa8b33fc4437, type: 3}
+    sound2: {fileID: 8300000, guid: 3e0c4e9ed7620a24883faa8b33fc4437, type: 3}
+    feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
   - name: Porta Fechada
     prefab: {fileID: 614322503775666597, guid: aa16baad5d33da606b9dfa843d9c5f2b, type: 3}
@@ -54,8 +55,9 @@ MonoBehaviour:
       rotation: 180
       offsetX: 1
       offsetY: -0.5
-    sound: {fileID: 8300000, guid: ad9feaf1cef2b1e4b8b358e5091cad8f, type: 3}
-    feedbackTypes: 0100000002000000
+    sound1: {fileID: 8300000, guid: d4d80d16756ca58429b965198cb19e1c, type: 3}
+    sound2: {fileID: 8300000, guid: d4d80d16756ca58429b965198cb19e1c, type: 3}
+    feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
   - name: Porta Aberta
     prefab: {fileID: 614322503775666597, guid: 5cb6e94b9bb5706e0962e7fb981fc2d9, type: 3}
@@ -76,8 +78,9 @@ MonoBehaviour:
       rotation: 258
       offsetX: 1
       offsetY: -0.5
-    sound: {fileID: 8300000, guid: ad9feaf1cef2b1e4b8b358e5091cad8f, type: 3}
-    feedbackTypes: 0100000002000000
+    sound1: {fileID: 8300000, guid: d4d80d16756ca58429b965198cb19e1c, type: 3}
+    sound2: {fileID: 8300000, guid: d4d80d16756ca58429b965198cb19e1c, type: 3}
+    feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
   - name: Janela de Vidro
     prefab: {fileID: 614322503775666597, guid: 6049c1975e0c7494fa5d307f02a9f153, type: 3}
@@ -90,8 +93,9 @@ MonoBehaviour:
       rotation: 90
       offsetX: 0
       offsetY: 0
-    sound: {fileID: 8300000, guid: c1d19d39c73cb9c44bf727dff503edf5, type: 3}
-    feedbackTypes: 0100000002000000
+    sound1: {fileID: 8300000, guid: c1d19d39c73cb9c44bf727dff503edf5, type: 3}
+    sound2: {fileID: 8300000, guid: c1d19d39c73cb9c44bf727dff503edf5, type: 3}
+    feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
   - name: Janela de Madeira
     prefab: {fileID: 614322503775666597, guid: a684b5d70f0bce55486ccc8d0af83aed, type: 3}
@@ -104,6 +108,7 @@ MonoBehaviour:
       rotation: 90
       offsetX: 0
       offsetY: 0
-    sound: {fileID: 8300000, guid: c1d19d39c73cb9c44bf727dff503edf5, type: 3}
-    feedbackTypes: 0100000002000000
+    sound1: {fileID: 8300000, guid: c1d19d39c73cb9c44bf727dff503edf5, type: 3}
+    sound2: {fileID: 8300000, guid: c1d19d39c73cb9c44bf727dff503edf5, type: 3}
+    feedbackTypes: 010000000200000003000000
     hapticForce: 0.25

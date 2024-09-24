@@ -7,7 +7,8 @@ public class ObjectFeedbackSettings : MonoBehaviour
 
 public class FeedbackSettings
 {
-    public AudioClip sound;
+    public AudioClip sound1;
+    public AudioClip sound2;
     public FeedbackTypeEnum[] feedbackTypes;
     public float hapticForce;
 }

@@ -467,6 +467,11 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!82 &272782713 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 8490326050912602169, guid: ee691d2fda70adb499790afd3cadf91c, type: 3}
+  m_PrefabInstance: {fileID: 2030439218}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &314730090
 GameObject:
   m_ObjectHideFlags: 0
@@ -1179,6 +1184,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de408637ce85a2f419de2a8c824eaa78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ttsManager: {fileID: 1628658990}
+  ttsSource: {fileID: 272782713}
   CaneSource: {fileID: 1560581348}
   WallSource: {fileID: 1532198116}
 --- !u!114 &942830631
@@ -1249,6 +1256,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de408637ce85a2f419de2a8c824eaa78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ttsManager: {fileID: 1628658990}
+  ttsSource: {fileID: 272782713}
   CaneSource: {fileID: 1560581348}
   WallSource: {fileID: 1532198116}
 --- !u!1 &1018612156

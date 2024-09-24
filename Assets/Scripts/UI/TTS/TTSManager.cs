@@ -53,6 +53,10 @@ using System.IO;
             tTSSpeaker.Speak("Warning, go back to position");
         }
 
+        public void thirdCollision(string material){
+            tTSSpeaker.Speak(material);
+        }
+
         #region Utility Methods
 
         private string[] ClearString(){

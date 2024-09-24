@@ -152,7 +152,8 @@ public class FeedbackController : MonoBehaviour
                                 collisionLocationOnPlayer: playerColliderTag,
                                 feedbackSettings: feedbackSettings,
                                 gameObject: collidedObject,
-                                vector3: hit.point);
+                                vector3: hit.point,
+                                totalCollisions:0);
                             
                             collisionEvent.IsColliding = true;
                             collisionEvent.IsRay = true;
@@ -177,8 +178,8 @@ public class FeedbackController : MonoBehaviour
         {
             switch (feedbackType)
             {
-                case FeedbackTypeEnum.Sound:
-                    PlaySoundFeedback(collision.FeedbackSettings.sound, collision);
+                case FeedbackTypeEnum.Sound1:
+                    PlaySoundFeedback(collision.FeedbackSettings.sound1, collision);
                     break;
                 default:
                     break;

@@ -32,7 +32,8 @@ MonoBehaviour:
       rotation: 180
       offsetX: 0.5
       offsetY: -0.5
-    sound: {fileID: 8300000, guid: 836bc266ff9f6f4549c94fa80c1b75fa, type: 3}
+    sound1: {fileID: 0}
+    sound2: {fileID: 0}
     feedbackTypes: 
     hapticForce: 0
   - name: Inseto
@@ -54,7 +55,8 @@ MonoBehaviour:
       rotation: 180
       offsetX: 0.5
       offsetY: -0.5
-    sound: {fileID: 0}
+    sound1: {fileID: 0}
+    sound2: {fileID: 0}
     feedbackTypes: 
     hapticForce: 0
   - name: "P\xE1ssaro"
@@ -76,7 +78,8 @@ MonoBehaviour:
       rotation: 180
       offsetX: 0.5
       offsetY: -0.5
-    sound: {fileID: 0}
+    sound1: {fileID: 0}
+    sound2: {fileID: 0}
     feedbackTypes: 
     hapticForce: 0
   - name: Gato
@@ -98,7 +101,8 @@ MonoBehaviour:
       rotation: 180
       offsetX: 0.5
       offsetY: -0.5
-    sound: {fileID: 0}
+    sound1: {fileID: 0}
+    sound2: {fileID: 0}
     feedbackTypes: 
     hapticForce: 0
   - name: Sapo
@@ -120,7 +124,8 @@ MonoBehaviour:
       rotation: 180
       offsetX: 0.5
       offsetY: -0.5
-    sound: {fileID: 0}
+    sound1: {fileID: 0}
+    sound2: {fileID: 0}
     feedbackTypes: 
     hapticForce: 0
   - name: Secador de Cabelo
@@ -130,7 +135,8 @@ MonoBehaviour:
       rotation: 0
       offsetX: 0.5
       offsetY: -0.5
-    sound: {fileID: 0}
+    sound1: {fileID: 0}
+    sound2: {fileID: 0}
     feedbackTypes: 
     hapticForce: 0
   - name: Liquidificador
@@ -140,7 +146,8 @@ MonoBehaviour:
       rotation: 0
       offsetX: 0.5
       offsetY: -0.5
-    sound: {fileID: 0}
+    sound1: {fileID: 0}
+    sound2: {fileID: 0}
     feedbackTypes: 
     hapticForce: 0
   - name: Chaleira
@@ -150,7 +157,8 @@ MonoBehaviour:
       rotation: 0
       offsetX: 0.5
       offsetY: -0.5
-    sound: {fileID: 0}
+    sound1: {fileID: 0}
+    sound2: {fileID: 0}
     feedbackTypes: 
     hapticForce: 0
   - name: Impressora
@@ -160,8 +168,9 @@ MonoBehaviour:
       rotation: 0
       offsetX: 0.5
       offsetY: -0.5
-    sound: {fileID: 8300000, guid: 947b5f4ff3fdf2b4fa0313be4104473c, type: 3}
-    feedbackTypes: 0200000001000000
+    sound1: {fileID: 8300000, guid: 947b5f4ff3fdf2b4fa0313be4104473c, type: 3}
+    sound2: {fileID: 8300000, guid: 947b5f4ff3fdf2b4fa0313be4104473c, type: 3}
+    feedbackTypes: 010000000200000003000000
     hapticForce: 0
   - name: Celular
     prefab: {fileID: 614322503775666597, guid: f2247b15ebea86d02b9805106bf05c5b, type: 3}
@@ -170,7 +179,8 @@ MonoBehaviour:
       rotation: 0
       offsetX: 0.5
       offsetY: -0.5
-    sound: {fileID: 0}
+    sound1: {fileID: 0}
+    sound2: {fileID: 0}
     feedbackTypes: 
     hapticForce: 0
   - name: "Crian\xE7a"
@@ -180,7 +190,8 @@ MonoBehaviour:
       rotation: 0
       offsetX: 0.5
       offsetY: -0.5
-    sound: {fileID: 0}
+    sound1: {fileID: 0}
+    sound2: {fileID: 0}
     feedbackTypes: 
     hapticForce: 0
   - name: "R\xE1dio"
@@ -190,8 +201,9 @@ MonoBehaviour:
       rotation: 0
       offsetX: 0.5
       offsetY: -0.5
-    sound: {fileID: 8300000, guid: 5577d1767af4f504495f725e914c5f7c, type: 3}
-    feedbackTypes: 
+    sound1: {fileID: 8300000, guid: 5577d1767af4f504495f725e914c5f7c, type: 3}
+    sound2: {fileID: 8300000, guid: 5577d1767af4f504495f725e914c5f7c, type: 3}
+    feedbackTypes: 010000000200000003000000
     hapticForce: 0
   - name: Despertador
     prefab: {fileID: 614322503775666597, guid: 971f5ac83d9c320cbb586e137f164041, type: 3}
@@ -200,7 +212,8 @@ MonoBehaviour:
       rotation: 0
       offsetX: 0.5
       offsetY: -0.5
-    sound: {fileID: 0}
+    sound1: {fileID: 0}
+    sound2: {fileID: 0}
     feedbackTypes: 
     hapticForce: 0
   - name: Batedeira
@@ -210,7 +223,8 @@ MonoBehaviour:
       rotation: 0
       offsetX: 0.5
       offsetY: -0.5
-    sound: {fileID: 0}
+    sound1: {fileID: 0}
+    sound2: {fileID: 0}
     feedbackTypes: 
     hapticForce: 0
   - name: Ventilador
@@ -220,7 +234,8 @@ MonoBehaviour:
       rotation: 0
       offsetX: 0.5
       offsetY: -0.5
-    sound: {fileID: 0}
+    sound1: {fileID: 0}
+    sound2: {fileID: 0}
     feedbackTypes: 
     hapticForce: 0
   - name: FinalObject
@@ -230,6 +245,7 @@ MonoBehaviour:
       rotation: 0
       offsetX: 0.5
       offsetY: -0.5
-    sound: {fileID: 0}
+    sound1: {fileID: 0}
+    sound2: {fileID: 0}
     feedbackTypes: 
     hapticForce: 0

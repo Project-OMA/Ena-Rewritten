@@ -17,6 +17,8 @@ public class CollisionEvent
 
     public Vector3 Vector3 { get; set; }
 
+    public int TotalCollisions { get; set; }
+
 
     [CsvColumn("Collision Location on Player")]
     public string CollisionLocationOnPlayer { get; }
@@ -58,7 +60,9 @@ public class CollisionEvent
         get { return IsColliding ? timeColliding + (DateTime.Now - lastColliding) : timeColliding; }
     }
 
-    public CollisionEvent(string collidedObject, string collisionLocationOnPlayer, FeedbackSettings feedbackSettings, GameObject gameObject, Vector3 vector3)
+    public CollisionEvent(string collidedObject, string collisionLocationOnPlayer, 
+                            FeedbackSettings feedbackSettings, GameObject gameObject, 
+                            Vector3 vector3, int totalCollisions)
     {
         CollidedObject = collidedObject;
         CollisionLocationOnPlayer = collisionLocationOnPlayer;
@@ -71,5 +75,6 @@ public class CollisionEvent
         StartColliding = DateTime.Now;
         timeColliding = TimeSpan.Zero;
         IsPlaying = false;
+        TotalCollisions = totalCollisions;
     }
 }
