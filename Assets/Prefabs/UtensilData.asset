@@ -91,8 +91,8 @@ MonoBehaviour:
       rotation: 90
       offsetX: 0.5
       offsetY: -0.5
-    sound1: {fileID: 0}
-    sound2: {fileID: 0}
+    sound1: {fileID: 8300000, guid: bd2ef3b16ed18d94b88158347f3b0ca8, type: 3}
+    sound2: {fileID: 8300000, guid: bd2ef3b16ed18d94b88158347f3b0ca8, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
   - name: "Lavat\xF3rio"
@@ -114,8 +114,8 @@ MonoBehaviour:
       rotation: 270
       offsetX: 0.5
       offsetY: -0.5
-    sound1: {fileID: 0}
-    sound2: {fileID: 0}
+    sound1: {fileID: 8300000, guid: 497979ad8b4ed3c489d3267f1e48cd50, type: 3}
+    sound2: {fileID: 8300000, guid: 497979ad8b4ed3c489d3267f1e48cd50, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
   - name: Planta
@@ -125,8 +125,8 @@ MonoBehaviour:
       rotation: 0
       offsetX: 0.5
       offsetY: -0.5
-    sound1: {fileID: 0}
-    sound2: {fileID: 0}
+    sound1: {fileID: 8300000, guid: 1997d98f34ae7c84aad60db64fc777dd, type: 3}
+    sound2: {fileID: 8300000, guid: 1997d98f34ae7c84aad60db64fc777dd, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0
   - name: Quadro de Pintura
@@ -148,7 +148,7 @@ MonoBehaviour:
       rotation: 90
       offsetX: 0
       offsetY: 0
-    sound1: {fileID: 0}
-    sound2: {fileID: 0}
+    sound1: {fileID: 8300000, guid: ad9feaf1cef2b1e4b8b358e5091cad8f, type: 3}
+    sound2: {fileID: 8300000, guid: ad9feaf1cef2b1e4b8b358e5091cad8f, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0.25

@@ -251,9 +251,9 @@ public class HandFeedback : MonoBehaviour
                         firstLine = lineSeparatorIndex >= 0 ? inputString.Substring(0, lineSeparatorIndex) : inputString;
 
                     
-
-                        ttsManager.thirdCollision("Collision on object " +  firstLine);
-
+                        if(!ttsSource.isPlaying){
+                            ttsManager.thirdCollision("Collision on object " +  firstLine);
+                        }
                         break;
                     
                     default:
@@ -324,13 +324,7 @@ public class HandFeedback : MonoBehaviour
                                 audioSource.clip = sound;
                                 audioSource.Play();
 
-                            } else {
-                                
-                                audioSource.Stop();
-                                audioSource.clip = sound;
-                                audioSource.Play();
-
-                            }
+                            } 
 
                         }else if(collision.GameObject.tag=="floor"){
 
@@ -340,13 +334,7 @@ public class HandFeedback : MonoBehaviour
                             if(!audioSource.isPlaying){
                                 audioSource.clip = sound;
                                 audioSource.Play();
-                            } else {
-                                
-                                audioSource.Stop();
-                                audioSource.clip = sound;
-                                audioSource.Play();
-
-                            }
+                            } 
 
                         }else{
 
@@ -362,11 +350,7 @@ public class HandFeedback : MonoBehaviour
                             if(!audioSource.isPlaying){
                                 audioSource.clip = sound;
                                 audioSource.Play();
-                            } else {
-                                audioSource.Stop();
-                                audioSource.clip = sound;
-                                audioSource.Play();
-                            }
+                            } 
                             
                             Destroy(audioObject, sound.length);
 
