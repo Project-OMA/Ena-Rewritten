@@ -33,7 +33,7 @@ MonoBehaviour:
       offsetX: 1
       offsetY: 0
     sound1: {fileID: 8300000, guid: 150d8fd856896234db3d8851ea79704a, type: 3}
-    sound2: {fileID: 8300000, guid: 150d8fd856896234db3d8851ea79704a, type: 3}
+    sound2: {fileID: 8300000, guid: a51f2ba40732df747b62a5213aa1bd23, type: 3}
     feedbackTypes: 0100000002000000
     hapticForce: 0.25
   - name: Cama de Solteiro
@@ -55,7 +55,7 @@ MonoBehaviour:
       rotation: 270
       offsetX: 0
       offsetY: -0.5
-    sound1: {fileID: 8300000, guid: 150d8fd856896234db3d8851ea79704a, type: 3}
+    sound1: {fileID: 8300000, guid: a51f2ba40732df747b62a5213aa1bd23, type: 3}
     sound2: {fileID: 8300000, guid: 150d8fd856896234db3d8851ea79704a, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
@@ -79,7 +79,7 @@ MonoBehaviour:
       offsetX: 0.5
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: 9ee9a123905c4924895884d6d19e1542, type: 3}
-    sound2: {fileID: 8300000, guid: 9ee9a123905c4924895884d6d19e1542, type: 3}
+    sound2: {fileID: 8300000, guid: 596b5f8b18d6b3640869424f96e2e62c, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
   - name: Cadeira
@@ -102,7 +102,7 @@ MonoBehaviour:
       offsetX: 0.5
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: ad9feaf1cef2b1e4b8b358e5091cad8f, type: 3}
-    sound2: {fileID: 8300000, guid: ad9feaf1cef2b1e4b8b358e5091cad8f, type: 3}
+    sound2: {fileID: 8300000, guid: 773bcdf2c6cf49d44a183a1520672360, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
   - name: Mesa de Jantar (c/ 4 cadeiras)
@@ -117,7 +117,7 @@ MonoBehaviour:
       offsetX: 0
       offsetY: 0
     sound1: {fileID: 8300000, guid: ad9feaf1cef2b1e4b8b358e5091cad8f, type: 3}
-    sound2: {fileID: 8300000, guid: ad9feaf1cef2b1e4b8b358e5091cad8f, type: 3}
+    sound2: {fileID: 8300000, guid: 773bcdf2c6cf49d44a183a1520672360, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
   - name: Guarda-Roupa
@@ -140,7 +140,7 @@ MonoBehaviour:
       offsetX: 0.5
       offsetY: 0
     sound1: {fileID: 8300000, guid: 5c91593d2fd42044296eaa1563c199bf, type: 3}
-    sound2: {fileID: 8300000, guid: 5c91593d2fd42044296eaa1563c199bf, type: 3}
+    sound2: {fileID: 8300000, guid: ad9feaf1cef2b1e4b8b358e5091cad8f, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
   - name: "Arm\xE1rio de Ferro"
@@ -163,7 +163,7 @@ MonoBehaviour:
       offsetX: -0.5
       offsetY: 0
     sound1: {fileID: 8300000, guid: 5c91593d2fd42044296eaa1563c199bf, type: 3}
-    sound2: {fileID: 8300000, guid: 5c91593d2fd42044296eaa1563c199bf, type: 3}
+    sound2: {fileID: 8300000, guid: 422c761fe57739340b9db704bce32163, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
   - name: "Sof\xE1"
@@ -186,7 +186,7 @@ MonoBehaviour:
       offsetX: 0
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: 9ee9a123905c4924895884d6d19e1542, type: 3}
-    sound2: {fileID: 8300000, guid: 9ee9a123905c4924895884d6d19e1542, type: 3}
+    sound2: {fileID: 8300000, guid: 596b5f8b18d6b3640869424f96e2e62c, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
   - name: "C\xF4moda"
@@ -208,7 +208,7 @@ MonoBehaviour:
       rotation: 90
       offsetX: 0.5
       offsetY: -0.5
-    sound1: {fileID: 8300000, guid: ad9feaf1cef2b1e4b8b358e5091cad8f, type: 3}
+    sound1: {fileID: 8300000, guid: 5c91593d2fd42044296eaa1563c199bf, type: 3}
     sound2: {fileID: 8300000, guid: ad9feaf1cef2b1e4b8b358e5091cad8f, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
@@ -232,7 +232,7 @@ MonoBehaviour:
       offsetX: 0.5
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: ad9feaf1cef2b1e4b8b358e5091cad8f, type: 3}
-    sound2: {fileID: 8300000, guid: ad9feaf1cef2b1e4b8b358e5091cad8f, type: 3}
+    sound2: {fileID: 8300000, guid: 773bcdf2c6cf49d44a183a1520672360, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
   - name: Mesa
@@ -246,7 +246,7 @@ MonoBehaviour:
       rotation: 0
       offsetX: 1
       offsetY: -0.5
-    sound1: {fileID: 8300000, guid: ad9feaf1cef2b1e4b8b358e5091cad8f, type: 3}
+    sound1: {fileID: 8300000, guid: 773bcdf2c6cf49d44a183a1520672360, type: 3}
     sound2: {fileID: 8300000, guid: ad9feaf1cef2b1e4b8b358e5091cad8f, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
@@ -270,6 +270,6 @@ MonoBehaviour:
       offsetX: 0.5
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: ad9feaf1cef2b1e4b8b358e5091cad8f, type: 3}
-    sound2: {fileID: 8300000, guid: ad9feaf1cef2b1e4b8b358e5091cad8f, type: 3}
+    sound2: {fileID: 8300000, guid: 5c91593d2fd42044296eaa1563c199bf, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0.25

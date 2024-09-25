@@ -54,7 +54,7 @@ using System.IO;
         }
 
         public void thirdCollision(string material){
-            tTSSpeaker.Speak(material);
+            tTSSpeaker.SpeakQueued(material);
         }
 
         #region Utility Methods

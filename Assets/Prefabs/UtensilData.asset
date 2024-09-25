@@ -36,7 +36,7 @@ MonoBehaviour:
       offsetX: 0.5
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: 33bfadc704c367248a1737ba99d8d97a, type: 3}
-    sound2: {fileID: 8300000, guid: 33bfadc704c367248a1737ba99d8d97a, type: 3}
+    sound2: {fileID: 8300000, guid: f245136e0eb7f064d9c9f978ff4ee9e1, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
   - name: "L\xE2mpada"
@@ -47,7 +47,7 @@ MonoBehaviour:
       offsetX: 0.5
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: cbb8632a8740c7c418c98cd358026200, type: 3}
-    sound2: {fileID: 8300000, guid: cbb8632a8740c7c418c98cd358026200, type: 3}
+    sound2: {fileID: 8300000, guid: 8173f00aecd7ec145a20ae178be8af7b, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
   - name: "Viol\xE3o"
@@ -58,7 +58,7 @@ MonoBehaviour:
       offsetX: 0.5
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: 9a15b2f40294415479dd3eaa84239cb7, type: 3}
-    sound2: {fileID: 8300000, guid: 9a15b2f40294415479dd3eaa84239cb7, type: 3}
+    sound2: {fileID: 8300000, guid: d4940600838a0f3478eeeed4db56ff31, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
   - name: Lixeira
@@ -69,7 +69,7 @@ MonoBehaviour:
       offsetX: 0.5
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: 23a3ccb1a81101143a1b504bff9f6135, type: 3}
-    sound2: {fileID: 8300000, guid: 23a3ccb1a81101143a1b504bff9f6135, type: 3}
+    sound2: {fileID: 8300000, guid: 56df53301488cbf40af604070458c7cc, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
   - name: "Vaso Sanit\xE1rio"
@@ -92,7 +92,7 @@ MonoBehaviour:
       offsetX: 0.5
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: bd2ef3b16ed18d94b88158347f3b0ca8, type: 3}
-    sound2: {fileID: 8300000, guid: bd2ef3b16ed18d94b88158347f3b0ca8, type: 3}
+    sound2: {fileID: 8300000, guid: 1dd794bed40c8eb4294707ecefe1ab43, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
   - name: "Lavat\xF3rio"
@@ -115,7 +115,7 @@ MonoBehaviour:
       offsetX: 0.5
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: 497979ad8b4ed3c489d3267f1e48cd50, type: 3}
-    sound2: {fileID: 8300000, guid: 497979ad8b4ed3c489d3267f1e48cd50, type: 3}
+    sound2: {fileID: 8300000, guid: 072a6f61833ad3f4e9579d3e9a781b17, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
   - name: Planta
@@ -126,7 +126,7 @@ MonoBehaviour:
       offsetX: 0.5
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: 1997d98f34ae7c84aad60db64fc777dd, type: 3}
-    sound2: {fileID: 8300000, guid: 1997d98f34ae7c84aad60db64fc777dd, type: 3}
+    sound2: {fileID: 8300000, guid: 181b271f286c07f4684fd44dda170627, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0
   - name: Quadro de Pintura
@@ -149,6 +149,6 @@ MonoBehaviour:
       offsetX: 0
       offsetY: 0
     sound1: {fileID: 8300000, guid: ad9feaf1cef2b1e4b8b358e5091cad8f, type: 3}
-    sound2: {fileID: 8300000, guid: ad9feaf1cef2b1e4b8b358e5091cad8f, type: 3}
+    sound2: {fileID: 8300000, guid: 773bcdf2c6cf49d44a183a1520672360, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0.25

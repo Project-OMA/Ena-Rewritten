@@ -250,20 +250,17 @@ public class HandFeedback : MonoBehaviour
 
                         firstLine = lineSeparatorIndex >= 0 ? inputString.Substring(0, lineSeparatorIndex) : inputString;
 
-                    
+                        PlaySoundFeedback(collision.FeedbackSettings.sound1, collision);
+                        PlayHapticFeedback(collision.FeedbackSettings.hapticForce+0.3f, collision);
+                        
                         if(!ttsSource.isPlaying){
                             ttsManager.thirdCollision("Collision on object " +  firstLine);
                         }
+
+                        collision.TotalCollisions = 0;
+                        
                         break;
                     
-                    default:
-                        
-                        collision.TotalCollisions = 1;
-                        PlaySoundFeedback(collision.FeedbackSettings.sound1, collision);
-                        PlayHapticFeedback(collision.FeedbackSettings.hapticForce+0.3f, collision);
-
-                        break;
-
                 }
 
                 }else{

@@ -19,7 +19,7 @@ MonoBehaviour:
     useGlobalUV: 0
     scale: {x: 1, y: 1}
     sound1: {fileID: 8300000, guid: 32b42fba467fe184a911a47499461faa, type: 3}
-    sound2: {fileID: 0}
+    sound2: {fileID: 8300000, guid: 395628f01dedac84b822e0074888ea2b, type: 3}
     feedbackTypes: 02000000
     hapticForce: 0
   - id: 0.1
@@ -28,7 +28,7 @@ MonoBehaviour:
     useGlobalUV: 0
     scale: {x: 1, y: 1}
     sound1: {fileID: 8300000, guid: 32b42fba467fe184a911a47499461faa, type: 3}
-    sound2: {fileID: 0}
+    sound2: {fileID: 8300000, guid: 395628f01dedac84b822e0074888ea2b, type: 3}
     feedbackTypes: 02000000
     hapticForce: 0
   - id: 1.0
@@ -37,7 +37,7 @@ MonoBehaviour:
     useGlobalUV: 0
     scale: {x: 0.5, y: 0.5}
     sound1: {fileID: 8300000, guid: 944c16b795af1e448a5c58d570ffc217, type: 3}
-    sound2: {fileID: 0}
+    sound2: {fileID: 8300000, guid: 53e6f3a8ce831e84e9d3c6464833a5d7, type: 3}
     feedbackTypes: 02000000
     hapticForce: 0
   - id: 1.1
@@ -46,7 +46,7 @@ MonoBehaviour:
     useGlobalUV: 0
     scale: {x: 0.5, y: 0.5}
     sound1: {fileID: 8300000, guid: 944c16b795af1e448a5c58d570ffc217, type: 3}
-    sound2: {fileID: 0}
+    sound2: {fileID: 8300000, guid: 422c761fe57739340b9db704bce32163, type: 3}
     feedbackTypes: 02000000
     hapticForce: 0
   - id: 2.0
@@ -55,7 +55,7 @@ MonoBehaviour:
     useGlobalUV: 1
     scale: {x: 1, y: 1}
     sound1: {fileID: 8300000, guid: bae8b1f9cd5af2745a6b625568e1d46e, type: 3}
-    sound2: {fileID: 0}
+    sound2: {fileID: 8300000, guid: 84392aade487ffd40b17db669f7c3858, type: 3}
     feedbackTypes: 02000000
     hapticForce: 0
   - id: 2.1
@@ -64,7 +64,7 @@ MonoBehaviour:
     useGlobalUV: 0
     scale: {x: 1, y: 1}
     sound1: {fileID: 8300000, guid: 2b534724b3a5f4b45b9d813e85113c73, type: 3}
-    sound2: {fileID: 0}
+    sound2: {fileID: 8300000, guid: a75cce7d3bc53ab47b32d3f99d4d3edb, type: 3}
     feedbackTypes: 02000000
     hapticForce: 0
   - id: 3.0
@@ -73,7 +73,7 @@ MonoBehaviour:
     useGlobalUV: 0
     scale: {x: 1, y: 1}
     sound1: {fileID: 8300000, guid: 32b42fba467fe184a911a47499461faa, type: 3}
-    sound2: {fileID: 0}
+    sound2: {fileID: 8300000, guid: 395628f01dedac84b822e0074888ea2b, type: 3}
     feedbackTypes: 02000000
     hapticForce: 0
   - id: 3.1
@@ -82,7 +82,7 @@ MonoBehaviour:
     useGlobalUV: 0
     scale: {x: 0.125, y: 0.125}
     sound1: {fileID: 8300000, guid: c82c96e33d751714faab517eb8848d5d, type: 3}
-    sound2: {fileID: 0}
+    sound2: {fileID: 8300000, guid: 2b534724b3a5f4b45b9d813e85113c73, type: 3}
     feedbackTypes: 02000000
     hapticForce: 0
   - id: 4.0
@@ -91,7 +91,7 @@ MonoBehaviour:
     useGlobalUV: 0
     scale: {x: 1, y: 1}
     sound1: {fileID: 8300000, guid: 4e402be1cd906c64cb99443f0f8933d6, type: 3}
-    sound2: {fileID: 0}
+    sound2: {fileID: 8300000, guid: 72bb573a33fd2a84195937fe6803bb23, type: 3}
     feedbackTypes: 02000000
     hapticForce: 0
   - id: 4.1
@@ -100,7 +100,7 @@ MonoBehaviour:
     useGlobalUV: 0
     scale: {x: 1, y: 1}
     sound1: {fileID: 8300000, guid: 944c16b795af1e448a5c58d570ffc217, type: 3}
-    sound2: {fileID: 0}
+    sound2: {fileID: 8300000, guid: e503fa13d6552b34599aa4e83b194877, type: 3}
     feedbackTypes: 02000000
     hapticForce: 0
   - id: 5.0
@@ -109,7 +109,7 @@ MonoBehaviour:
     useGlobalUV: 0
     scale: {x: 0.25, y: 0.25}
     sound1: {fileID: 8300000, guid: 944c16b795af1e448a5c58d570ffc217, type: 3}
-    sound2: {fileID: 0}
+    sound2: {fileID: 8300000, guid: e503fa13d6552b34599aa4e83b194877, type: 3}
     feedbackTypes: 02000000
     hapticForce: 0
   - id: 5.1
@@ -118,7 +118,7 @@ MonoBehaviour:
     useGlobalUV: 0
     scale: {x: 1, y: 1}
     sound1: {fileID: 8300000, guid: fc5df92d3c3284841bb5901d32b02a17, type: 3}
-    sound2: {fileID: 0}
+    sound2: {fileID: 8300000, guid: 53e6f3a8ce831e84e9d3c6464833a5d7, type: 3}
     feedbackTypes: 02000000
     hapticForce: 0
   - id: 6.0
@@ -126,8 +126,8 @@ MonoBehaviour:
     material: {fileID: 2100000, guid: 702e14e6bc1f0004a83548061a456a1f, type: 2}
     useGlobalUV: 0
     scale: {x: 0.5, y: 0.5}
-    sound1: {fileID: 0}
-    sound2: {fileID: 0}
+    sound1: {fileID: 8300000, guid: 944c16b795af1e448a5c58d570ffc217, type: 3}
+    sound2: {fileID: 8300000, guid: e503fa13d6552b34599aa4e83b194877, type: 3}
     feedbackTypes: 02000000
     hapticForce: 0
   - id: 6.1
@@ -136,7 +136,7 @@ MonoBehaviour:
     useGlobalUV: 0
     scale: {x: 1, y: 1}
     sound1: {fileID: 8300000, guid: 944c16b795af1e448a5c58d570ffc217, type: 3}
-    sound2: {fileID: 0}
+    sound2: {fileID: 8300000, guid: e503fa13d6552b34599aa4e83b194877, type: 3}
     feedbackTypes: 02000000
     hapticForce: 0
   - id: 7.0
@@ -145,7 +145,7 @@ MonoBehaviour:
     useGlobalUV: 0
     scale: {x: 0.25, y: 0.25}
     sound1: {fileID: 8300000, guid: 614466e5084beb74d9bc9bca4b5a1aa8, type: 3}
-    sound2: {fileID: 8300000, guid: 614466e5084beb74d9bc9bca4b5a1aa8, type: 3}
+    sound2: {fileID: 8300000, guid: a31a55f28b2bf4841924c596c9992fff, type: 3}
     feedbackTypes: 02000000
     hapticForce: 0
   - id: 7.1
@@ -154,6 +154,6 @@ MonoBehaviour:
     useGlobalUV: 0
     scale: {x: 1, y: 1}
     sound1: {fileID: 8300000, guid: 5abc0ac32b6e8534ebd7d3ed515ef640, type: 3}
-    sound2: {fileID: 0}
+    sound2: {fileID: 8300000, guid: e503fa13d6552b34599aa4e83b194877, type: 3}
     feedbackTypes: 02000000
     hapticForce: 0
