@@ -21,6 +21,7 @@ TagManager:
   - trigger1
   - trigger2
   - Left
+  - SoundTag
   layers:
   - Default
   - TransparentFX

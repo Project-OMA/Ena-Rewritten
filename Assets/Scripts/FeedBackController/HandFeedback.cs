@@ -28,7 +28,7 @@ public class HandFeedback : MonoBehaviour
     public GameObject CaneSource;
     public GameObject WallSource;
 
-
+    private Transform soundChild;
 
     
     
@@ -140,8 +140,41 @@ public class HandFeedback : MonoBehaviour
         {
             item.IsColliding = true;
             item.Vector3 = contact.point;
-            item.TotalCollisions += 1;
-            HandleCollisionEnterFeedback(item);
+            
+            
+
+            for (int i=0; i<item.GameObject.transform.childCount; i++)
+            {
+
+            if (item.GameObject.transform.GetChild(i).CompareTag("SoundTag")){
+
+                Debug.Log("hii");
+                soundChild = item.GameObject.transform.GetChild(i);
+                var audio = soundChild.gameObject.GetComponent<AudioSource>();
+
+                if(!audio.isPlaying){
+                    Debug.Log("AAAAA");
+                    item.TotalCollisions += 1;
+                    HandleCollisionEnterFeedback(item);
+                }
+                break;
+
+
+            }else{
+
+                soundChild = null;
+                
+            }
+
+            }
+                
+            if(soundChild == null){
+
+                item.TotalCollisions += 1;
+                HandleCollisionEnterFeedback(item);
+
+            }
+            
         }
         else
         {
@@ -315,6 +348,7 @@ public class HandFeedback : MonoBehaviour
 
 
                             WallSource.transform.position = collision.Vector3;
+                            WallSource.transform.parent = collision.GameObject.transform;
                             AudioSource audioSource = WallSource.GetComponent<AudioSource>();
 
                             if(!audioSource.isPlaying){
@@ -326,6 +360,7 @@ public class HandFeedback : MonoBehaviour
                         }else if(collision.GameObject.tag=="floor"){
 
                             CaneSource.transform.position = collision.Vector3;
+                            CaneSource.transform.parent = collision.GameObject.transform;
                             AudioSource audioSource = CaneSource.GetComponent<AudioSource>();
 
                             if(!audioSource.isPlaying){
@@ -336,6 +371,7 @@ public class HandFeedback : MonoBehaviour
                         }else{
 
                             GameObject audioObject = new GameObject("SpatialSound");
+                            audioObject.tag = "SoundTag";
                             audioObject.transform.position = collision.Vector3;
                             audioObject.transform.parent = collision.GameObject.transform;
 

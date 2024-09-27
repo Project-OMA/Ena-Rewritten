@@ -26,7 +26,7 @@ MonoBehaviour:
       offsetY: -1
     sound1: {fileID: 8300000, guid: 05a98090457e726428f0ff32061e76e3, type: 3}
     sound2: {fileID: 8300000, guid: c02bd7b62cfcd8743b5db28137ad8033, type: 3}
-    feedbackTypes: 020000000100000003000000
+    feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
   - name: Cone
     prefab: {fileID: 614322503775666597, guid: 631a7f0f66bc658a9a279a35bedede32, type: 3}
