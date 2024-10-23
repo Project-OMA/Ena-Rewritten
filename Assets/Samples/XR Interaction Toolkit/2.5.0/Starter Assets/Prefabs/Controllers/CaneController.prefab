@@ -104,10 +104,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.50000024
-  m_Height: 1.9999999
+  m_Radius: 0.65
+  m_Height: 2.03
   m_Direction: 1
-  m_Center: {x: 0.000000059604645, y: -1.3010426e-18, z: -0.00000032782555}
+  m_Center: {x: 0.000000059604645, y: -1.3010426e-18, z: 0}
 --- !u!1 &631318195828040478
 GameObject:
   m_ObjectHideFlags: 0
@@ -566,7 +566,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b9bf09e40811b2487ba616c9176d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cane: {fileID: 4283425761326543017}
   WalkSource: {fileID: 0}
   cam: {fileID: 0}
 --- !u!82 &631746341389646067

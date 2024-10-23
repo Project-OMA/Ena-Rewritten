@@ -9,11 +9,9 @@ using System.Linq;
 public class MapBuilder : MonoBehaviour
 {
 
-    [SerializeField] GameObject player;
     [SerializeField] bool disableWalls = false;
     [SerializeField] bool disableFloors = false;
     [SerializeField] bool disableCeilings = false;
-
     [SerializeField] bool disableDoorWindow = false;
     [SerializeField] bool disableFurniture = false;
     [SerializeField] bool disableUtensil = false;
@@ -32,6 +30,7 @@ public class MapBuilder : MonoBehaviour
     [SerializeField] private ObjectData utensilObjectData;
     [SerializeField] private ObjectData electronicObjectData;
     [SerializeField] private ObjectData goalObjectData;
+    [SerializeField] private PlayerData playerObjectData;
     [SerializeField] private Material defaultFloorMaterial;
     [SerializeField] private Material defaultWallMaterial;
     [SerializeField] private Material defaultCeilingMaterial;
@@ -58,6 +57,7 @@ public class MapBuilder : MonoBehaviour
     private GameObject utensilParent;
     private GameObject electronicParent;
     private GameObject goalParent;
+    private GameObject playerParent;
     private string mapData;
     private string defaultMapPath;
     private TextAsset defaultMapFile;
@@ -447,6 +447,47 @@ public class MapBuilder : MonoBehaviour
         
     }
 
+    public void instancePlayer(MapProp prop, PlayerData playerData, GameObject parent = null, string tag = ""){
+
+        string type = prop.getType();
+        int[] pos = prop.getPos();
+        ObjectPrefab playerpropData = null;
+        GameObject prefab = null;
+        
+
+        try
+        {
+            playerpropData = playerData.GetPlayer(type);
+            prefab = playerpropData.prefab;
+            
+        }
+        catch (System.Exception)
+        {
+            Debug.LogError("Prefab not found for type " + type + " in data file " + playerData);
+            return;
+        }
+
+
+
+
+        // Position
+        float posX = pos[0] + playerpropData.offsetX;
+        float posY = -pos[1] + playerpropData.offsetY;
+        Vector3 vecpos = new Vector3(posX, 0, posY);
+
+        // Rotation
+        Quaternion rot = Quaternion.Euler(0, playerpropData.rotation, 0);
+
+        // Create the object
+        GameObject player = Instantiate(prefab, vecpos, rot);
+        // Debug.LogWarning($"nome: {.name} quantidade: {player.GetComponents<MeshCollider>().Count()}");
+        // Debug.LogWarning($"nome: {player.name} quantidade: {prefab.GetComponents<MeshCollider>().Count()}");
+
+        player.transform.parent = parent.transform;
+        
+        
+    }
+
     public void AddTagsToChildren(Transform parentTransform, string tag = "")
     {
         
@@ -543,17 +584,8 @@ public class MapBuilder : MonoBehaviour
             }
         }
 
-
-        // move player to the map start position
-        float x = (float)persons[0].pos[0];
-        float y = (float)persons[0].pos[1];
-        var startPos = new Vector3(x, 0f, -y);
-
-        // if there is no player in the scene move the camera to the start position
-        if (player != null)
-        {
-            player.transform.position = startPos;
-        }
+        
+        instancePlayer(persons[0], playerObjectData, playerParent, "persons");
 
         // Set Map object as parent of all layers
         Transform mapTransform = GetComponent<Transform>();
@@ -610,6 +642,7 @@ public class MapBuilder : MonoBehaviour
         utensilParent = new GameObject("Utensils");
         electronicParent = new GameObject("Electronics");
         goalParent = new GameObject("Goals");
+        playerParent = new GameObject("Player");
 
         MapPuller mapPuller = new MapPuller("joaoaluno@gmail.com");
     

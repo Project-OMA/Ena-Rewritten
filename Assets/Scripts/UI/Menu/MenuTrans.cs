@@ -53,6 +53,8 @@ public class MenuTrans : MonoBehaviour
 
         hasMenu = MapLoader.hasMenu;
 
+        changeScene = GameObject.Find("SceneManager").GetComponent<ChangeScene>();
+
         
         interactorLineVisualLeft = controllerLeft.GetComponent<XRInteractorLineVisual>();
         interactorLineVisualRight = controllerRight.GetComponent<XRInteractorLineVisual>();

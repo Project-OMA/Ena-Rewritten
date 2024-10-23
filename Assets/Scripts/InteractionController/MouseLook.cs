@@ -3,13 +3,12 @@ using UnityEngine;
 public class MouseLook : MonoBehaviour
 {
     public float mouseSensitivity = 1.5f;
-    GameObject camera;
+    public GameObject camera;
     float xRotation = 0f;
     float yRotation = 0f;
 
     void Start()
     {
-        camera = GameObject.FindWithTag("camera");
         Cursor.lockState = CursorLockMode.Locked;
     }
 

@@ -30,6 +30,8 @@ public class HandFeedback : MonoBehaviour
 
     private Transform soundChild;
 
+    private bool noSoundChild = true;
+
     
     
 
@@ -92,6 +94,12 @@ public class HandFeedback : MonoBehaviour
         HapticImpulseLeft = new HapticFeedback(leftHandDevice, this);
         HapticImpulseRight = new HapticFeedback(rightHandDevice, this);
         SoundSources = new Dictionary<string, AudioSource>();
+
+        ttsManager = GameObject.Find("TTSManager").GetComponent<TTSManager>();
+        ttsSource = GameObject.Find("TTSSpeakerAudio").GetComponent<AudioSource>();
+        CaneSource = GameObject.Find("CaneSource");
+        WallSource = GameObject.Find("WallSource");
+        
     }
 
     #endregion
@@ -137,43 +145,39 @@ public class HandFeedback : MonoBehaviour
 
        
         if (Collisions.TryGetValue(collidedObjectTag + playerColliderTag, out var item))
-        {
-            item.IsColliding = true;
-            item.Vector3 = contact.point;
-            
-            
+        {            
+            if(!item.IsColliding && !item.CanPlay){
+                item.IsColliding = true;
+                item.Vector3 = contact.point;
+                noSoundChild = true;
 
-            for (int i=0; i<item.GameObject.transform.childCount; i++)
-            {
 
-            if (item.GameObject.transform.GetChild(i).CompareTag("SoundTag")){
+                for (int i = 0; i < item.GameObject.transform.childCount; i++) {
+                    var soundChild = item.GameObject.transform.GetChild(i);
+                    
+                    if (soundChild.CompareTag("SoundTag")) {
+                        Debug.Log("hii");
+                        
+                        var audio = soundChild.GetComponent<AudioSource>();
+                        if (!audio.isPlaying) {
+                            item.TotalCollisions += 1;
+                            noSoundChild = false;
+                            HandleCollisionEnterFeedback(item);
+                        }
+                        
+                        break; 
 
-                Debug.Log("hii");
-                soundChild = item.GameObject.transform.GetChild(i);
-                var audio = soundChild.gameObject.GetComponent<AudioSource>();
+                    } 
+                    
+                }
 
-                if(!audio.isPlaying){
-                    Debug.Log("AAAAA");
+                if(noSoundChild){
                     item.TotalCollisions += 1;
                     HandleCollisionEnterFeedback(item);
-                }
-                break;
-
-
-            }else{
-
-                soundChild = null;
+                }     
                 
             }
 
-            }
-                
-            if(soundChild == null){
-
-                item.TotalCollisions += 1;
-                HandleCollisionEnterFeedback(item);
-
-            }
             
         }
         else
@@ -240,8 +244,8 @@ public class HandFeedback : MonoBehaviour
 
     private void HandleCollisionExitFeedback(CollisionEvent item)
     {
+        Debug.Log("ColOver");
         item.CanPlay = false;
-        HandleFeedback(item);
         
     }
    
@@ -265,7 +269,7 @@ public class HandFeedback : MonoBehaviour
                     
                     case 2:
                         PlaySoundFeedback(collision.FeedbackSettings.sound2, collision);
-                        PlayHapticFeedback(collision.FeedbackSettings.hapticForce+0.1f, collision);
+                        PlayHapticFeedback(collision.FeedbackSettings.hapticForce+0.5f, collision);
                         break;
                     
                     case 3:
@@ -284,7 +288,7 @@ public class HandFeedback : MonoBehaviour
                         firstLine = lineSeparatorIndex >= 0 ? inputString.Substring(0, lineSeparatorIndex) : inputString;
 
                         PlaySoundFeedback(collision.FeedbackSettings.sound1, collision);
-                        PlayHapticFeedback(collision.FeedbackSettings.hapticForce+0.3f, collision);
+                        PlayHapticFeedback(collision.FeedbackSettings.hapticForce+1.0f, collision);
                         
                         if(!ttsSource.isPlaying){
                             ttsManager.thirdCollision("Collision on object " +  firstLine);

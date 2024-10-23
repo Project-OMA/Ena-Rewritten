@@ -149,7 +149,7 @@ namespace MapObjects
     }
 
     [Serializable]
-    public class Person
+    public class Person: MapProp
     {
         public int[] pos;
         public string type;
