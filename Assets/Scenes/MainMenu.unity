@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.6108052, g: 0.55431896, b: 0.6511422, a: 1}
+  m_IndirectSpecularColor: {r: 0.61075824, g: 0.55426985, b: 0.65113133, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -840,6 +840,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensitivity: 1.5
+  camera: {fileID: 2140731080}
 --- !u!1 &627856740
 GameObject:
   m_ObjectHideFlags: 0
@@ -3694,6 +3695,11 @@ MonoBehaviour:
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
   m_CancelButton: Cancel
+--- !u!1 &2140731080 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9122814740166217847, guid: 1b051c34b64e5bd45af1156d6b7e2104, type: 3}
+  m_PrefabInstance: {fileID: 8667172569581879212}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8667172569581879212
 PrefabInstance:
   m_ObjectHideFlags: 0

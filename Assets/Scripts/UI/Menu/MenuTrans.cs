@@ -23,18 +23,15 @@ public class MenuTrans : MonoBehaviour
 
     public GameObject menu;
 
-    public Transform player;
-
     public GameObject controllerLeft;
     public GameObject controllerRight;
 
-    public CharacterController controller;
+    public Camera camera;
+    public GameObject camPos;
 
     
     private XRInteractorLineVisual interactorLineVisualLeft;
     private XRInteractorLineVisual interactorLineVisualRight;
-
-    public GameObject bengala;
 
 
     public void exit(){
@@ -48,16 +45,26 @@ public class MenuTrans : MonoBehaviour
     }
 
 
-    void Start()
+    void Awake()
     {
 
         hasMenu = MapLoader.hasMenu;
 
         changeScene = GameObject.Find("SceneManager").GetComponent<ChangeScene>();
 
-        
+        controllerLeft = GameObject.Find("Left Controller");
+        controllerRight = GameObject.Find("Right Controller");
+
+
+        camera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        camPos = GameObject.Find("Main Camera");
+
         interactorLineVisualLeft = controllerLeft.GetComponent<XRInteractorLineVisual>();
         interactorLineVisualRight = controllerRight.GetComponent<XRInteractorLineVisual>();
+
+        Canvas canvas = menu.GetComponent<Canvas>();
+
+        canvas.worldCamera = camera;
 
     }
 
@@ -85,7 +92,6 @@ public class MenuTrans : MonoBehaviour
         
         }
 
-        menu.transform.position = player.position+ new Vector3(x: player.forward.x, y: 0, z: player.forward.z).normalized*2;
 
        
 
@@ -150,7 +156,8 @@ public class MenuTrans : MonoBehaviour
             }
         }
 
-        menu.transform.LookAt(worldPosition: new Vector3(x: player.position.x, y: menu.transform.position.y, z: player.position.z) );
+        menu.transform.position = camPos.transform.position+ new Vector3(x: camPos.transform.forward.x, y: 0, z: camPos.transform.forward.z).normalized;
+        menu.transform.LookAt(worldPosition: new Vector3(x: camPos.transform.position.x, y: menu.transform.position.y, z: camPos.transform.position.z) );
         menu.transform.forward *=-1;
             
         

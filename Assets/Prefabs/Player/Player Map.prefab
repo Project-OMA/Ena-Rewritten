@@ -11,7 +11,7 @@ PrefabInstance:
     - target: {fileID: 7886968323738021, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
       propertyPath: player
       value: 
-      objectReference: {fileID: 6895607415780474094}
+      objectReference: {fileID: 6696139816947270690}
     - target: {fileID: 93569333190484527, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
       propertyPath: m_Height
       value: 1.8
@@ -144,7 +144,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b9bf09e40811b2487ba616c9176d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cane: {fileID: 0}
+  WalkSource: {fileID: 0}
+  cam: {fileID: 0}
 --- !u!1 &1761980273700267624 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 372483254220825816, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
@@ -162,7 +163,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b9bf09e40811b2487ba616c9176d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cane: {fileID: 0}
+  WalkSource: {fileID: 0}
+  cam: {fileID: 0}
+--- !u!4 &6696139816947270690 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4734949644885722770, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
+  m_PrefabInstance: {fileID: 2114611767634772656}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6895607415780474094 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4821809682427395678, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
@@ -206,4 +213,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b9bf09e40811b2487ba616c9176d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cane: {fileID: 0}
+  WalkSource: {fileID: 0}
+  cam: {fileID: 0}
