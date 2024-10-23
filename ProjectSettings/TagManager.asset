@@ -22,6 +22,8 @@ TagManager:
   - trigger2
   - Left
   - SoundTag
+  - persons
+  - ttsSource
   layers:
   - Default
   - TransparentFX

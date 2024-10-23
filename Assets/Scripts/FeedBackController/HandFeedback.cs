@@ -246,6 +246,7 @@ public class HandFeedback : MonoBehaviour
     {
         Debug.Log("ColOver");
         item.CanPlay = false;
+        HandFeedback(item);
         
     }
    
