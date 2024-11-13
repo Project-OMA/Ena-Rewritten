@@ -7,6 +7,7 @@ using UnityEngine;
 using JsonUtility = UnityEngine.JsonUtility;
 using HtmlAgilityPack;
 using System.Linq;
+using System.IO;
 
 
 
@@ -96,7 +97,32 @@ public class MapPuller
         }
 
         catch (Exception ex){
-            Debug.Log(ex.Message);
+
+            try{
+
+                m_Path = Application.dataPath;
+                Debug.Log("dataPath : " + m_Path);
+
+                string[] files = Directory.GetFiles("Assets/Resources/MapsNoInternet");
+
+                foreach (string file in files){
+
+                    string fileName = Path.GetFileName(file);
+                    Debug.Log(fileName);
+                
+                
+                    if (!fileName.Contains(".meta")){
+                            
+                            mapList.Add(fileName);
+                                    
+                    }
+
+                }
+
+            }catch (Exception exp){
+            Debug.Log(exp.Message);
+            }
+
         }
     }
 
@@ -148,20 +174,38 @@ public class MapPuller
         }
         catch (Exception ex)
         {
-            // TODO: enviar erro para a camada de interface
-            Debug.LogWarning("Ocorreu um erro ao obter o próximo mapa: " + ex.Message);
-            Debug.LogWarning("Utilizando mapa local de teste");
+            string mapLoad = MapLoader.map;
 
-            MapLoader.hasInternet = false;
+            if(mapLoad == "default" && MapLoader.mapdefault == "default"){
+
+                Debug.Log("MAP"+mapList);
+                MapLoader.defaultMapList = mapList;
+
+                if(MapLoader.defaultMapList.Any()){
+
+                    
+                    Debug.Log("DEFAULT:"+MapLoader.defaultMapList);
+                    MapLoader.mapdefault = MapLoader.defaultMapList[MapLoader.mapselected];
+
+                    MapLoader.mapselected +=1;
+                    mapLoad = MapLoader.mapdefault;
+
+                }else{
+
+                    throw new Exception("No default Maps!");
+                }
+                
+            }else if(MapLoader.mapdefault != "default"){
+                mapLoad = MapLoader.mapdefault;
+            }
 
             m_Path = Application.dataPath;
             Debug.Log("dataPath : " + m_Path);
+            mapLoad = Path.GetFileNameWithoutExtension(mapLoad);
+            Debug.Log("MapLoad: "+ mapLoad);
 
-            defaultMapPath = "Maps/map_all_objects";
-
-            Debug.Log("defaultMapPath : " + defaultMapPath);
-            defaultMapFile = Resources.Load<TextAsset>(defaultMapPath);
-            Debug.Log(defaultMapFile);
+            defaultMapFile = Resources.Load<TextAsset>("MapsNoInternet/"+mapLoad);
+            Debug.Log("MAPFILE:" + defaultMapFile);
             return defaultMapFile.text;
         }
     }

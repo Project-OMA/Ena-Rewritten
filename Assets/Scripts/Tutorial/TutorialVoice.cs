@@ -37,11 +37,10 @@ public class TutorialVoice : MonoBehaviour
 
     private void Awake()
     {
-        rightHandDevice.SetActive(false);
-        leftHandDevice.SetActive(false);
-        tutObj.SetActive(false);
-        doorObj.SetActive(false);
-        Physics.IgnoreLayerCollision(0, 0, true);
+    
+        interactionController = GameObject.Find("XR Origin (XR Rig)").GetComponent<InteractionController>();
+        rightHandDevice = GameObject.Find("Right Controller");
+        leftHandDevice = GameObject.Find("Left Controller");
         
     }
     void Start()
@@ -49,6 +48,12 @@ public class TutorialVoice : MonoBehaviour
         text = file.ToString();
 
         collectionTutorial = ClearString();
+
+        rightHandDevice.SetActive(false);
+        leftHandDevice.SetActive(false);
+        tutObj.SetActive(false);
+        doorObj.SetActive(false);
+        Physics.IgnoreLayerCollision(0, 0, true);
 
         
         interactionController.enabled = false;

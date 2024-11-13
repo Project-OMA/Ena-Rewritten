@@ -9,27 +9,50 @@ public static class CsvWriter
 {
     public static void WriteToCsv<T>(string filePath, IEnumerable<T> data)
     {
-        using (var writer = new StreamWriter(filePath))
+        try
         {
+            
+            string csvContent = string.Empty;
+
+           
             var properties = typeof(T).GetProperties();
+
+            
             var header = properties
                 .Where(prop => Attribute.IsDefined(prop, typeof(CsvColumnAttribute)))
                 .Select(prop => GetCsvColumnName(prop));
 
-            writer.WriteLine(string.Join(",", header));
+            
+            bool fileExists = File.Exists(filePath);
 
-            Debug.Log($"Stopping: {data.Count()}");
+            
+            if (!fileExists)
+            {
+                
+                csvContent += string.Join(",", header) + Environment.NewLine;
+            }
+
+           
             foreach (var item in data)
             {
                 var fields = properties
                     .Where(prop => Attribute.IsDefined(prop, typeof(CsvColumnAttribute)))
                     .Select(prop => GetCsvFieldValue(prop, item));
 
-                writer.WriteLine(string.Join(",", fields));
+                csvContent += string.Join(",", fields) + Environment.NewLine;
             }
+
+            File.AppendAllText(filePath, csvContent);
+
+            Debug.Log("CSV File saved to: " + filePath);
+        }
+        catch (Exception ex)
+        {
+            Debug.LogError("Error while writing CSV: " + ex.Message);
         }
     }
 
+    
     private static string GetCsvColumnName(PropertyInfo property)
     {
         var attribute = (CsvColumnAttribute)Attribute.GetCustomAttribute(property, typeof(CsvColumnAttribute));
@@ -38,6 +61,7 @@ public static class CsvWriter
 
     private static string GetCsvFieldValue(PropertyInfo property, object item)
     {
-        return property.GetValue(item).ToString();
+        var value = property.GetValue(item);
+        return value != null ? value.ToString() : string.Empty; // Handle null values
     }
 }

@@ -8,7 +8,7 @@ using HtmlAgilityPack;
 using TMPro;
 using System.Net.Http;
 using UnityEngine.InputSystem;
-
+using System.IO;
 
 public class MenuManager : MonoBehaviour
 {
@@ -38,7 +38,8 @@ public class MenuManager : MonoBehaviour
 
     public TTSManager tTSManager;
 
-    
+    private string m_Path;
+
     private bool IsMenu = true;
 
     
@@ -97,11 +98,37 @@ public class MenuManager : MonoBehaviour
         }
 
         catch (Exception ex){
-            MapLoader.hasInternet = false;
-            Debug.Log(ex.Message);
-            connectIssue.SetActive(value: !connectIssue.activeSelf);
-            textMeshPro.text = ex.Message;
-            exIssue.SetActive(value: !exIssue.activeSelf);
+            try{
+                
+                MapLoader.hasInternet = false;
+                Debug.Log(ex.Message);
+                connectIssue.SetActive(value: !connectIssue.activeSelf);
+                textMeshPro.text = ex.Message;
+                exIssue.SetActive(value: !exIssue.activeSelf);
+
+                m_Path = Application.dataPath;
+                Debug.Log("dataPath : " + m_Path);
+
+                string[] files = Directory.GetFiles("Assets/Resources/MapsNoInternet");
+
+                foreach (string file in files){
+
+                    string fileName = Path.GetFileName(file);
+                    
+                
+                
+                    if (!fileName.Contains(".meta")){
+                            
+                            mapList.Add(fileName);
+                                    
+                    }
+
+                }
+
+            }catch (Exception exp){
+            Debug.Log(exp.Message);
+            }
+
         }
     }
 
