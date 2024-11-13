@@ -103,21 +103,17 @@ public class MapPuller
                 m_Path = Application.dataPath;
                 Debug.Log("dataPath : " + m_Path);
 
-                string[] files = Directory.GetFiles("Assets/Resources/MapsNoInternet");
+                TextAsset[] mapFiles = Resources.LoadAll<TextAsset>("MapsNoInternet");
 
-                foreach (string file in files){
+                foreach (TextAsset mapFile in mapFiles)
+                    {
+                        
+                        string fileName = mapFile.name;
+                        Debug.Log($"Loaded map file: {fileName}");
 
-                    string fileName = Path.GetFileName(file);
-                    Debug.Log(fileName);
-                
-                
-                    if (!fileName.Contains(".meta")){
-                            
-                            mapList.Add(fileName);
-                                    
+
+                        mapList.Add(fileName);
                     }
-
-                }
 
             }catch (Exception exp){
             Debug.Log(exp.Message);

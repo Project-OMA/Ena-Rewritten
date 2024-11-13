@@ -109,21 +109,18 @@ public class MenuManager : MonoBehaviour
                 m_Path = Application.dataPath;
                 Debug.Log("dataPath : " + m_Path);
 
-                string[] files = Directory.GetFiles("Assets/Resources/MapsNoInternet");
+                TextAsset[] mapFiles = Resources.LoadAll<TextAsset>("MapsNoInternet");
 
-                foreach (string file in files){
+                foreach (TextAsset mapFile in mapFiles)
+                    {
+                        
+                        string fileName = mapFile.name;
+                        Debug.Log($"Loaded map file: {fileName}");
 
-                    string fileName = Path.GetFileName(file);
-                    
-                
-                
-                    if (!fileName.Contains(".meta")){
-                            
-                            mapList.Add(fileName);
-                                    
+
+                        mapList.Add(fileName);
                     }
-
-                }
+                
 
             }catch (Exception exp){
             Debug.Log(exp.Message);
@@ -192,11 +189,11 @@ public class MenuManager : MonoBehaviour
 
         foreach(string map in mapList){
 
-            if(map.Contains(".json")){
-                Sprite imageSprite = Resources.Load<Sprite>("Images/" + "json");
+            if(map.Contains(".xml")){
+                Sprite imageSprite = Resources.Load<Sprite>("Images/" + "xml");
                 dropdown.options.Add(item: new TMP_Dropdown.OptionData(text: map, image: imageSprite));
             }else{
-                Sprite imageSprite = Resources.Load<Sprite>("Images/" + "xml");
+                Sprite imageSprite = Resources.Load<Sprite>("Images/" + "json");
                 dropdown.options.Add(item: new TMP_Dropdown.OptionData(text: map, image: imageSprite));
             }
             
