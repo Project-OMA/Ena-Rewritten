@@ -438,7 +438,11 @@ public class HandFeedback : MonoBehaviour
 
     private void SaveCollisionDataToCsv()
     {
-        CsvWriter.WriteToCsv(Collisions.Values, "/collisionlogs.csv");
+        string date = MapLoader.startdate.ToString();
+        date = date.Replace('/', '-');
+        date = date.Replace(':','-');
+
+        CsvWriter.WriteToCsv(Collisions.Values, "/collisionlogs" + date + ".csv");
     }
 
     #endregion

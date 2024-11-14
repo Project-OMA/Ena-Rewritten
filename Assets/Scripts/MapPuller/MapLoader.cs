@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class MapLoader : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class MapLoader : MonoBehaviour
     public static bool hasMenu = false;
 
     public static bool hasInternet = true;
+
+    public static DateTime startdate = DateTime.Now;
 
 
     

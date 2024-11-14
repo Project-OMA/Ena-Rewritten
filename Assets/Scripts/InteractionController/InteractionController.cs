@@ -236,7 +236,11 @@ public class InteractionController : MonoBehaviour
 
     private void SaveCollisionDataToCsv()
     {
-        CsvWriter.WriteToCsv(PlayerDetects.Values, "/playerlogs.csv");
+        string date = MapLoader.startdate.ToString();
+        date = date.Replace('/', '-');
+        date = date.Replace(':','-');
+
+        CsvWriter.WriteToCsv(PlayerDetects.Values, "/playerlogs" + date + ".csv");
     }
 
     
