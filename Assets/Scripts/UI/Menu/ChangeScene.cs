@@ -40,22 +40,6 @@ public class ChangeScene : MonoBehaviour
     }
 
     public void quit(){
-        string _path = Application.persistentDataPath + "/123.txt";
-
-        if(!File.Exists(_path))
-        {
-            string[] lines = File.ReadAllLines(fileName);
-
-
-        
-            foreach (string line in lines)
-            {
-                Debug.Log(line);
-                File.WriteAllText(_path, line);
-            }
-
-        }
-
         #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
         #endif
