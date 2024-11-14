@@ -1,11 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
-
+using System.Collections.Generic;
 using System;
 
 public class InteractionController : MonoBehaviour
 {
+
+    private static readonly Dictionary<int, PlayerEvent> PlayerDetects = new Dictionary<int, PlayerEvent>();
+
     public float walkDistance = 1.5f;
     
     float stepPeriod = 0.25f;
@@ -34,11 +37,17 @@ public class InteractionController : MonoBehaviour
     public TTSManager ttsManager;
 
     bool toggleHit = false;
+    private int nextUpdate=1;
 
     private float runningInput()
 
     {
         return Input.GetAxis("Fire2");
+    }
+
+    private void OnApplicationQuit()
+    {
+        SaveCollisionDataToCsv();
     }
 
     public Vector3 getMoveVector()
@@ -132,6 +141,36 @@ public class InteractionController : MonoBehaviour
         
     }
 
+    void Update(){
+        
+    	if(Time.time>=nextUpdate){
+    		Debug.Log(Time.time+">="+nextUpdate);
+    		
+    		nextUpdate=Mathf.FloorToInt(Time.time)+1;
+
+            if(MapLoader.hasMenu){
+                CheckPlayerEverySecond(player.position, MapLoader.map);
+            }else{
+                CheckPlayerEverySecond(player.position, MapLoader.mapdefault);
+            }
+    		
+    		
+    	}
+    }
+
+    void CheckPlayerEverySecond(Vector3 playerPos, string currentMap){
+
+    var playerEvent = new PlayerEvent(
+    
+    
+        vector3: playerPos,
+        currentMap: currentMap
+    );
+
+    PlayerDetects.Add(nextUpdate, playerEvent);
+
+    }
+
     void FixedUpdate()
     {
         // Get inputs
@@ -193,6 +232,11 @@ public class InteractionController : MonoBehaviour
     
         
 
+    }
+
+    private void SaveCollisionDataToCsv()
+    {
+        CsvWriter.WriteToCsv(PlayerDetects.Values, "/playerlogs.csv");
     }
 
     

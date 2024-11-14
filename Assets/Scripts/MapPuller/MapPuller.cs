@@ -100,6 +100,8 @@ public class MapPuller
 
             try{
 
+                MapLoader.hasInternet = false;
+
                 m_Path = Application.dataPath;
                 Debug.Log("dataPath : " + m_Path);
 

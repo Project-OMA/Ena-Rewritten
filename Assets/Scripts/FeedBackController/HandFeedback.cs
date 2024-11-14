@@ -184,7 +184,7 @@ public class HandFeedback : MonoBehaviour
         {
         var collisionEvent = new CollisionEvent(
             collidedObject: collidedObjectTag,
-            collisionLocationOnPlayer: playerColliderTag,
+            whatcollided: playerColliderTag,
             feedbackSettings: feedbackSettings,
             gameObject: collidedObject,
             vector3: contact.point,
@@ -438,7 +438,7 @@ public class HandFeedback : MonoBehaviour
 
     private void SaveCollisionDataToCsv()
     {
-        CsvWriter.WriteToCsv(fileName, Collisions.Values);
+        CsvWriter.WriteToCsv(Collisions.Values, "/collisionlogs.csv");
     }
 
     #endregion

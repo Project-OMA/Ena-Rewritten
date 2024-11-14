@@ -7,8 +7,10 @@ using UnityEngine;
 
 public static class CsvWriter
 {
-    public static void WriteToCsv<T>(string filePath, IEnumerable<T> data)
+    public static void WriteToCsv<T>(IEnumerable<T> data, string fileName)
     {
+        string filePath = Application.persistentDataPath + fileName;
+        
         try
         {
             
@@ -25,12 +27,25 @@ public static class CsvWriter
             
             bool fileExists = File.Exists(filePath);
 
-            
-            if (!fileExists)
-            {
+            if(fileName == "/playerlogs.csv"){
+
+                if(fileExists){
+                    File.Delete(filePath);
+                    csvContent += string.Join(";", header) + Environment.NewLine;  
+                }
+
                 
-                csvContent += string.Join(",", header) + Environment.NewLine;
+
+            }else{
+
+                if(!fileExists){
+                    csvContent += string.Join(";", header) + Environment.NewLine; 
+                }
+
+
             }
+
+        
 
            
             foreach (var item in data)
@@ -39,7 +54,7 @@ public static class CsvWriter
                     .Where(prop => Attribute.IsDefined(prop, typeof(CsvColumnAttribute)))
                     .Select(prop => GetCsvFieldValue(prop, item));
 
-                csvContent += string.Join(",", fields) + Environment.NewLine;
+                csvContent += string.Join(";", fields) + Environment.NewLine;
             }
 
             File.AppendAllText(filePath, csvContent);

@@ -149,7 +149,7 @@ public class FeedbackController : MonoBehaviour
                             
                             collisionEvent = new CollisionEvent(
                                 collidedObject: collidedObjectTag,
-                                collisionLocationOnPlayer: playerColliderTag,
+                                whatcollided: playerColliderTag,
                                 feedbackSettings: feedbackSettings,
                                 gameObject: collidedObject,
                                 vector3: hit.point,
