@@ -7,10 +7,13 @@ using UnityEngine;
 
 public static class CsvWriter
 {
-    public static void WriteToCsv<T>(IEnumerable<T> data, string fileName)
+    
+
+
+    public static int WriteToCsv<T>(IEnumerable<T> data, string fileName, int lastLogPos)
     {
         string filePath = Application.persistentDataPath + fileName;
-        
+        int current = 0;
         try
         {
             
@@ -27,34 +30,26 @@ public static class CsvWriter
             
             bool fileExists = File.Exists(filePath);
 
-            if(fileName == "/playerlogs.csv"){
+   
 
-                if(fileExists){
-                    File.Delete(filePath);
-                    csvContent += string.Join(";", header) + Environment.NewLine;  
-                }
-
-                
-
-            }else{
-
-                if(!fileExists){
-                    csvContent += string.Join(";", header) + Environment.NewLine; 
-                }
-
-
+            if(!fileExists){
+                csvContent += string.Join(";", header) + Environment.NewLine; 
             }
 
-        
-
-           
             foreach (var item in data)
             {
-                var fields = properties
+
+                current +=1;
+
+                if(current>lastLogPos){
+
+                    var fields = properties
                     .Where(prop => Attribute.IsDefined(prop, typeof(CsvColumnAttribute)))
                     .Select(prop => GetCsvFieldValue(prop, item));
 
-                csvContent += string.Join(";", fields) + Environment.NewLine;
+                    csvContent += string.Join(";", fields) + Environment.NewLine;
+    
+                }
             }
 
             File.AppendAllText(filePath, csvContent);
@@ -65,6 +60,8 @@ public static class CsvWriter
         {
             Debug.LogError("Error while writing CSV: " + ex.Message);
         }
+
+        return current;
     }
 
     
@@ -79,4 +76,6 @@ public static class CsvWriter
         var value = property.GetValue(item);
         return value != null ? value.ToString() : string.Empty; // Handle null values
     }
+
+    
 }

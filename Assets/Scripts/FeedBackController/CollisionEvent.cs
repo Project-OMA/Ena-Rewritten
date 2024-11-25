@@ -15,6 +15,10 @@ public class CollisionEvent
     public string CollidedObject { get; }
     public GameObject GameObject { get; }
 
+
+    [CsvColumn("CurrentMap")]
+    public string CurrentMap { get; }
+
     
 
     public int TotalCollisions { get; set; }
@@ -28,6 +32,8 @@ public class CollisionEvent
 
     [CsvColumn("Collision Position")]
     public Vector3 Vector3 { get; set; }
+
+    
 
 
     
@@ -68,9 +74,10 @@ public class CollisionEvent
         get { return IsColliding ? timeColliding + (DateTime.Now - lastColliding) : timeColliding; }
     }
 
+
     public CollisionEvent(string collidedObject, string whatcollided, 
                             FeedbackSettings feedbackSettings, GameObject gameObject, 
-                            Vector3 vector3, int totalCollisions)
+                            Vector3 vector3, int totalCollisions, string currentMap)
     {
         CollidedObject = collidedObject;
         Whatcollided = whatcollided;
@@ -84,5 +91,8 @@ public class CollisionEvent
         timeColliding = TimeSpan.Zero;
         IsPlaying = false;
         TotalCollisions = totalCollisions;
+        CurrentMap = currentMap;
+        
     }
+
 }

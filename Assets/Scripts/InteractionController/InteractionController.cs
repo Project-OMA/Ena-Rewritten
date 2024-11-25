@@ -7,7 +7,7 @@ using System;
 public class InteractionController : MonoBehaviour
 {
 
-    private static readonly Dictionary<int, PlayerEvent> PlayerDetects = new Dictionary<int, PlayerEvent>();
+    public static readonly Dictionary<int, PlayerEvent> PlayerDetects = new Dictionary<int, PlayerEvent>();
 
     public float walkDistance = 1.5f;
     
@@ -45,10 +45,6 @@ public class InteractionController : MonoBehaviour
         return Input.GetAxis("Fire2");
     }
 
-    private void OnApplicationQuit()
-    {
-        SaveCollisionDataToCsv();
-    }
 
     public Vector3 getMoveVector()
     {
@@ -144,7 +140,7 @@ public class InteractionController : MonoBehaviour
     void Update(){
         
     	if(Time.time>=nextUpdate){
-    		Debug.Log(Time.time+">="+nextUpdate);
+
     		
     		nextUpdate=Mathf.FloorToInt(Time.time)+1;
 
@@ -234,14 +230,7 @@ public class InteractionController : MonoBehaviour
 
     }
 
-    private void SaveCollisionDataToCsv()
-    {
-        string date = MapLoader.startdate.ToString();
-        date = date.Replace('/', '-');
-        date = date.Replace(':','-');
 
-        CsvWriter.WriteToCsv(PlayerDetects.Values, "/playerlogs" + date + ".csv");
-    }
 
     
 }

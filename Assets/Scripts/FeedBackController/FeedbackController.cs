@@ -22,6 +22,8 @@ public class FeedbackController : MonoBehaviour
 
     public Transform cam;
 
+    private string map;
+
 
     #endregion
 
@@ -146,6 +148,11 @@ public class FeedbackController : MonoBehaviour
                         }
                         else
                         {
+                            if(MapLoader.hasMenu){
+                                map = MapLoader.map;
+                            }else{
+                                map = MapLoader.mapdefault;
+                            }
                             
                             collisionEvent = new CollisionEvent(
                                 collidedObject: collidedObjectTag,
@@ -153,6 +160,7 @@ public class FeedbackController : MonoBehaviour
                                 feedbackSettings: feedbackSettings,
                                 gameObject: collidedObject,
                                 vector3: hit.point,
+                                currentMap: map,
                                 totalCollisions:0);
                             
                             collisionEvent.IsColliding = true;

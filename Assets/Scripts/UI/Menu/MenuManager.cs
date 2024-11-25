@@ -81,8 +81,7 @@ public class MenuManager : MonoBehaviour
                         {
                             foreach (var cell in cells)
                             {
-                                // Output the text content of each cell
-                                Debug.Log(cell.InnerText.Trim() + "\t");
+                            
 
                                 if (cell.InnerText.Contains(".json") || cell.InnerText.Contains(".xml")){
                                     mapList.Add(cell.InnerText.Trim());

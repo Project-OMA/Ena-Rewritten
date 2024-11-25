@@ -16,7 +16,7 @@ public class HandFeedback : MonoBehaviour
     public TTSManager ttsManager;
     public AudioSource ttsSource;
 
-    private static readonly Dictionary<string, CollisionEvent> Collisions = new Dictionary<string, CollisionEvent>();
+    public static readonly Dictionary<string, CollisionEvent> Collisions = new Dictionary<string, CollisionEvent>();
 
     private readonly string fileName = $"{Directory.GetCurrentDirectory()}/PlayerLogs/feedback.csv";
 
@@ -29,7 +29,7 @@ public class HandFeedback : MonoBehaviour
     public GameObject WallSource;
 
     private Transform soundChild;
-
+    private string map;
     private bool noSoundChild = true;
 
     
@@ -67,11 +67,6 @@ public class HandFeedback : MonoBehaviour
     private void OnCollisionExit(Collision collision)
     {
         HandleCollisionExit(collision);
-    }
-
-    private void OnApplicationQuit()
-    {
-        SaveCollisionDataToCsv();
     }
 
     #endregion
@@ -182,13 +177,21 @@ public class HandFeedback : MonoBehaviour
         }
         else
         {
+            if(MapLoader.hasMenu){
+                map = MapLoader.map;
+            }else{
+                map = MapLoader.mapdefault;
+            }
+
+
         var collisionEvent = new CollisionEvent(
             collidedObject: collidedObjectTag,
             whatcollided: playerColliderTag,
             feedbackSettings: feedbackSettings,
             gameObject: collidedObject,
             vector3: contact.point,
-            totalCollisions: 1);
+            totalCollisions: 1,
+            currentMap: map);
         
             Collisions.Add(collidedObjectTag + playerColliderTag, collisionEvent);
             collisionEvent.IsColliding = true;
@@ -434,15 +437,6 @@ public class HandFeedback : MonoBehaviour
     public string GetObjectName(GameObject gameObject)
     {
         return string.IsNullOrEmpty(gameObject.tag) ? gameObject.name : gameObject.tag + " " + gameObject.name;
-    }
-
-    private void SaveCollisionDataToCsv()
-    {
-        string date = MapLoader.startdate.ToString();
-        date = date.Replace('/', '-');
-        date = date.Replace(':','-');
-
-        CsvWriter.WriteToCsv(Collisions.Values, "/collisionlogs" + date + ".csv");
     }
 
     #endregion

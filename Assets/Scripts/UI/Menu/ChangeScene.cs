@@ -15,6 +15,7 @@ public class ChangeScene : MonoBehaviour
 
 
     public void scene_changer(string scene_name, string mapChoice){
+        collectLogs.SaveCollisionDataToCsv();
         TutorialCheckpoints.playerInTutorial = false;
         MapLoader.map = mapChoice;
         SceneManager.LoadScene(scene_name);  
@@ -22,6 +23,7 @@ public class ChangeScene : MonoBehaviour
     }
 
     public void Tutorial(string scene_name){
+        collectLogs.SaveCollisionDataToCsv();
         SceneManager.LoadScene(scene_name);
     }
 
