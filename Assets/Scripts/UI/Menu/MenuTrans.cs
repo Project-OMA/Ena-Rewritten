@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Rendering.Universal; 
 
 public class MenuTrans : MonoBehaviour
 {
@@ -21,6 +24,8 @@ public class MenuTrans : MonoBehaviour
 
     public InputActionProperty tutButton;
 
+    public InputActionProperty blindnessFilter;
+
     public GameObject menu;
 
     public GameObject controllerLeft;
@@ -29,9 +34,16 @@ public class MenuTrans : MonoBehaviour
     public Camera camera;
     public GameObject camPos;
 
+    public PostProcessVolume postProcessingVolume;
+    public ColorGrading colorGrading;
+
+    private bool hasFilter = false;
+
     
     private XRInteractorLineVisual interactorLineVisualLeft;
     private XRInteractorLineVisual interactorLineVisualRight;
+
+
 
 
     public void exit(){
@@ -68,7 +80,30 @@ public class MenuTrans : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+     void Start()
+    {
+        
+        postProcessingVolume = GameObject.Find("postVolume")?.GetComponent<PostProcessVolume>();
+
+        if (postProcessingVolume == null)
+        {
+
+            return;
+        }
+
+        
+        if (postProcessingVolume.profile.TryGetSettings(out colorGrading))
+        {
+            Debug.Log("Color Grading effect found: " + colorGrading);
+
+            colorGrading.active = false; 
+
+            hasFilter = true;
+        }
+        
+    }
+
+   
     void Update()
     {
         
@@ -90,6 +125,13 @@ public class MenuTrans : MonoBehaviour
             }
             
         
+        }
+
+        if(blindnessFilter.action.WasPressedThisFrame() && hasFilter){
+
+            bool newState = !colorGrading.active;
+            colorGrading.active = newState;
+
         }
 
 
