@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal; 
+using System.Linq;
 
 public class MenuTrans : MonoBehaviour
 {
@@ -21,6 +24,8 @@ public class MenuTrans : MonoBehaviour
 
     public InputActionProperty tutButton;
 
+    public InputActionProperty blindnessFilter;
+
     public GameObject menu;
 
     public GameObject controllerLeft;
@@ -29,9 +34,15 @@ public class MenuTrans : MonoBehaviour
     public Camera camera;
     public GameObject camPos;
 
+    public GameObject blindnessCanvas;
+
+    private bool hasFilter = false;
+
     
     private XRInteractorLineVisual interactorLineVisualLeft;
     private XRInteractorLineVisual interactorLineVisualRight;
+
+
 
 
     public void exit(){
@@ -68,7 +79,16 @@ public class MenuTrans : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+     void Start()
+    {
+        
+        blindnessCanvas = GameObject.Find("blindness");
+        blindnessCanvas.SetActive(value: !blindnessCanvas.activeSelf);
+        
+        
+    }
+
+   
     void Update()
     {
         
@@ -90,6 +110,12 @@ public class MenuTrans : MonoBehaviour
             }
             
         
+        }
+
+        if(blindnessFilter.action.WasPressedThisFrame()){
+
+            blindnessCanvas.SetActive(value: !blindnessCanvas.activeSelf);
+
         }
 
 
