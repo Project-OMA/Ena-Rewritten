@@ -559,13 +559,13 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: -4821719272730456767, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-  blindnessFilter:
+  blindnessButton:
     m_UseReference: 1
     m_Action:
-      m_Name: Blindness Filter
+      m_Name: Blindness Button
       m_Type: 0
       m_ExpectedControlType: 
-      m_Id: 453b3946-68cd-4925-aa57-218647a96240
+      m_Id: a7865d20-61cd-4d0c-8c40-003e967df9ac
       m_Processors: 
       m_Interactions: 
       m_SingletonActionBindings: []
@@ -576,7 +576,10 @@ MonoBehaviour:
   controllerRight: {fileID: 0}
   camera: {fileID: 0}
   camPos: {fileID: 0}
-  blindnessFilterSphere: {fileID: 0}
+  blindnessCanvas: {fileID: 0}
+  blindnessFilter: {fileID: 2100000, guid: df69ec7ce35639c4daeee4dc8cb07d1a, type: 2}
+  alphaValue: 0
+  blindnessColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &2380526273473061878
 GameObject:
   m_ObjectHideFlags: 0

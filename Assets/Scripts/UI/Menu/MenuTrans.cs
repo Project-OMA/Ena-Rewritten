@@ -6,6 +6,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal; 
 using System.Linq;
+using UnityEngine.UI;
 
 public class MenuTrans : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class MenuTrans : MonoBehaviour
 
     public InputActionProperty tutButton;
 
-    public InputActionProperty blindnessFilter;
+    public InputActionProperty blindnessButton;
 
     public GameObject menu;
 
@@ -42,7 +43,9 @@ public class MenuTrans : MonoBehaviour
     private XRInteractorLineVisual interactorLineVisualLeft;
     private XRInteractorLineVisual interactorLineVisualRight;
 
-
+    public Material blindnessFilter;
+    public float alphaValue = 0.0f;
+    public Color blindnessColor;
 
 
     public void exit(){
@@ -84,6 +87,8 @@ public class MenuTrans : MonoBehaviour
         
         blindnessCanvas = GameObject.Find("blindness");
         blindnessCanvas.SetActive(value: !blindnessCanvas.activeSelf);
+        blindnessColor = blindnessFilter.color;
+        
         
         
     }
@@ -91,6 +96,7 @@ public class MenuTrans : MonoBehaviour
    
     void Update()
     {
+        
         
         if(showButton.action.WasPressedThisFrame() && hasMenu && !TutorialCheckpoints.playerInTutorial){
 
@@ -112,9 +118,31 @@ public class MenuTrans : MonoBehaviour
         
         }
 
-        if(blindnessFilter.action.WasPressedThisFrame()){
+        if(blindnessButton.action.WasPressedThisFrame()){
 
-            blindnessCanvas.SetActive(value: !blindnessCanvas.activeSelf);
+
+
+            blindnessColor.a = alphaValue;
+            blindnessFilter.SetColor("_Color",blindnessColor);
+            blindnessCanvas.SetActive(value: true);
+
+
+            if(alphaValue>1.1f){
+
+                alphaValue = 0.0f;
+                blindnessCanvas.SetActive(value: false);
+
+            }else if(alphaValue == 0.9f){
+
+                alphaValue+=0.2f;
+
+
+            }else{
+                alphaValue += 0.45f;
+            }
+
+            
+
 
         }
 
