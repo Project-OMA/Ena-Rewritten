@@ -127,14 +127,14 @@ public class MenuTrans : MonoBehaviour
             blindnessCanvas.SetActive(value: true);
 
 
-            if(alphaValue>1.1f){
+            if(alphaValue>1.0f){
 
                 alphaValue = 0.0f;
                 blindnessCanvas.SetActive(value: false);
 
-            }else if(alphaValue == 0.9f){
+            }else if(alphaValue >= 0.9f){
 
-                alphaValue+=0.2f;
+                alphaValue+=0.05f;
 
 
             }else{
