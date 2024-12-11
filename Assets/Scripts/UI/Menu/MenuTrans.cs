@@ -55,7 +55,8 @@ public class MenuTrans : MonoBehaviour
     }
 
     public void mainMenu(){
-        changeScene.scene_changer("MainMenu", mapLoad);
+        MapLoader.played = false;
+        changeScene.scene_changer_menu("MainMenu", mapLoad);
     }
 
 
@@ -86,8 +87,15 @@ public class MenuTrans : MonoBehaviour
     {
         
         blindnessCanvas = GameObject.Find("blindness");
-        blindnessCanvas.SetActive(value: !blindnessCanvas.activeSelf);
-        blindnessColor = blindnessFilter.color;
+
+        if (blindnessCanvas != null)
+            {
+                blindnessCanvas.SetActive(value: !blindnessCanvas.activeSelf);
+                blindnessColor = blindnessFilter.color;
+            }
+            
+
+        
         
         
         
@@ -158,17 +166,18 @@ public class MenuTrans : MonoBehaviour
 
         if(tutButton.action.WasPressedThisFrame() && !hasMenu && !TutorialCheckpoints.playerInTutorial){
 
-            if(MapLoader.hasInternet){
+            
                 
-                TutorialCheckpoints.playerHasMoved = false;
-                TutorialCheckpoints.playerHasInteracted = false;
-                TutorialCheckpoints.caneActive = false;
-                TutorialCheckpoints.playerOnTrigger = false;
-                TutorialCheckpoints.playerDoor = false;
-                
-                TutorialCheckpoints.playerInTutorial = true;
-                changeScene.Tutorial("TutorialScene");
-            }
+            TutorialCheckpoints.playerHasMoved = false;
+            TutorialCheckpoints.playerHasInteracted = false;
+            TutorialCheckpoints.caneActive = false;
+            TutorialCheckpoints.playerOnTrigger = false;
+            TutorialCheckpoints.playerDoor = false;
+            MapLoader.played = false;
+            
+            TutorialCheckpoints.playerInTutorial = true;
+            changeScene.Tutorial("TutorialScene");
+            
 
             
 
@@ -178,11 +187,10 @@ public class MenuTrans : MonoBehaviour
 
 
             if(hasMenu){
-
-                changeScene.scene_changer("MainMenu", mapLoad);
+                changeScene.scene_changer_menu("MainMenu", mapLoad);
 
             }else{
-
+                
                 changeScene.noMenu_change("MainScene", MapLoader.mapdefault);
 
                 }
@@ -203,6 +211,7 @@ public class MenuTrans : MonoBehaviour
 
                 MapLoader.mapdefault =  MapLoader.defaultMapList[MapLoader.mapselected];
 
+                MapLoader.played = false;
                 changeScene.noMenu_change("MainScene", MapLoader.mapdefault);
 
             }else{

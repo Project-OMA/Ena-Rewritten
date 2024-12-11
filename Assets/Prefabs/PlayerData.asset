@@ -32,3 +32,10 @@ MonoBehaviour:
       rotation: 270
       offsetX: 0
       offsetY: 0
+  - name: PlayerTutorial
+    prefab: {fileID: 2034380779081966565, guid: 5b1f675086e002d4cb478e78897fd8a0, type: 3}
+    variations:
+    - id: 6.9
+      rotation: 0
+      offsetX: 0
+      offsetY: 0

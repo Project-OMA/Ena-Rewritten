@@ -134,6 +134,7 @@ public class InteractionController : MonoBehaviour
         collider = GetComponent<CapsuleCollider>();
         feedbackController = GetComponent<FeedbackController>();
         ttsManager = GameObject.FindObjectOfType<TTSManager>();
+        warningSource.clip = (AudioClip)Resources.Load("VoiceLines/Warnings/Position");
         
     }
 
@@ -201,7 +202,7 @@ public class InteractionController : MonoBehaviour
             
             warn.SetActive(true);
             sphere.SetActive(true);
-            ttsManager.warningS();
+            
             controller.enabled=false;
             //float newPosX = cam.transform.position.x;
             //float newPosZ = cam.transform.position.z;

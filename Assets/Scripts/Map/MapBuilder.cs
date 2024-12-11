@@ -5,6 +5,7 @@ using UnityEngine.Serialization;
 using MapObjects;
 using MapParser;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 public class MapBuilder : MonoBehaviour
 {
@@ -126,8 +127,11 @@ public class MapBuilder : MonoBehaviour
         // fix the mesh normals
         mesh.RecalculateNormals();
 
+        string materialname;
+        materialname = RemoveUnityEngineMaterial(material.ToString());
+
         // create the floor tile
-        var floorPiece = new GameObject("Floor:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
+        var floorPiece = new GameObject("Floor "+materialname+":" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
         floorPiece.transform.position = start + center;
         floorPiece.transform.rotation = Quaternion.identity;
         floorPiece.transform.localScale = size;
@@ -272,10 +276,15 @@ public class MapBuilder : MonoBehaviour
         {
             tag = "wall"
         };
-        var wallFront = new GameObject("WallFront:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
-        var wallBack = new GameObject("WallBack:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
-        var wallLeft = new GameObject("WallLeft:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
-        var wallRight = new GameObject("WallRight:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
+
+
+        string materialname;
+        materialname = RemoveUnityEngineMaterial(material.ToString());
+
+        var wallFront = new GameObject("Front "+materialname+":" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
+        var wallBack = new GameObject("Back "+materialname+":" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
+        var wallLeft = new GameObject("Left "+materialname+":" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
+        var wallRight = new GameObject("Right "+materialname+":" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
         var wallPieces = new[] { (wallFront, meshFront), (wallBack, meshBack), (wallLeft, meshLeft), (wallRight, meshRight) };
 
 
@@ -706,15 +715,14 @@ public class MapBuilder : MonoBehaviour
     
 
     }
-    // Start is called before the first frame update
-    void Start()
+    #region utils
+    public static string RemoveUnityEngineMaterial(string input)
     {
+        // Define the pattern to match "(UnityEngine.Material)"
+        string pattern = @"\s*\(UnityEngine\.Material\)";
 
+        // Use Regex to replace the pattern with an empty string
+        return Regex.Replace(input, pattern, string.Empty);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    #endregion
 }

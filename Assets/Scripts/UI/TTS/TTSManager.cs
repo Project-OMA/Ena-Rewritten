@@ -14,71 +14,14 @@ using System.IO;
     public class TTSManager : MonoBehaviour
     {
         public TTSSpeaker tTSSpeaker;
-        public TextAsset file;
 
-        private string text;
+        public AudioSource VoiceSpeaker; 
 
         
-
-
-
-        public void TTSMenu(bool hasMenu){
-
-            text = file.ToString();
-
-            string[] collection = ClearString();
-
-            if(hasMenu){
-
-
-                tTSSpeaker.Speak(collection[0]);
-
-            }else{
-              
-                tTSSpeaker.SpeakQueued(collection[1]);
-            }  
-
-        }
-
-        public void MapLoaded(string mapName){
-
-            tTSSpeaker.SpeakQueued(mapName);
-        }
-
-        public void TTSTutorial(string enaTut){
-            tTSSpeaker.Speak(enaTut);
-        }
-
-        public void warningS(){
-            tTSSpeaker.Speak("Warning, go back to position");
-        }
-
         public void thirdCollision(string material){
             tTSSpeaker.SpeakQueued(material);
         }
 
-        #region Utility Methods
-
-        private string[] ClearString(){
-
-            text = file.ToString();
-
-            string[] collection = text.Split('\n', StringSplitOptions.RemoveEmptyEntries);
-
-            foreach (var sub in collection) {
-                Debug.Log(sub);
-            }
-
-            return collection;
-
-        
-
-
-
-        }
-
-
-        #endregion
 
 
 

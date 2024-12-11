@@ -15,6 +15,16 @@ public class ChangeScene : MonoBehaviour
 
 
     public void scene_changer(string scene_name, string mapChoice){
+        MapLoader.isInMenu = false;
+        collectLogs.SaveCollisionDataToCsv();
+        TutorialCheckpoints.playerInTutorial = false;
+        MapLoader.map = mapChoice;
+        SceneManager.LoadScene(scene_name);  
+      
+    }
+
+    public void scene_changer_menu(string scene_name, string mapChoice){
+        MapLoader.isInMenu = true;
         collectLogs.SaveCollisionDataToCsv();
         TutorialCheckpoints.playerInTutorial = false;
         MapLoader.map = mapChoice;
@@ -24,6 +34,12 @@ public class ChangeScene : MonoBehaviour
 
     public void Tutorial(string scene_name){
         collectLogs.SaveCollisionDataToCsv();
+        TutorialCheckpoints.playerHasMoved = false;
+        TutorialCheckpoints.playerHasInteracted = false;
+        TutorialCheckpoints.caneActive = false;
+        TutorialCheckpoints.playerOnTrigger = false;
+        TutorialCheckpoints.playerDoor = false;
+        MapLoader.played = false;
         SceneManager.LoadScene(scene_name);
     }
 
@@ -32,6 +48,8 @@ public class ChangeScene : MonoBehaviour
         if(!TutorialCheckpoints.playerInTutorial){
             MapLoader.mapselected +=1;
         }
+
+        collectLogs.SaveCollisionDataToCsv();
 
         TutorialCheckpoints.playerInTutorial = false;
 

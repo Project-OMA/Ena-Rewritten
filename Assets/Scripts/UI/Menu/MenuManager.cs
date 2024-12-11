@@ -17,9 +17,6 @@ public class MenuManager : MonoBehaviour
 
     public Button yourButton;
 
-    public Button tutButton;
-    public GameObject noTut;
-
     [SerializeField] private TMP_Dropdown dropdown;
 
     public GameObject menu;
@@ -155,25 +152,19 @@ public class MenuManager : MonoBehaviour
 
     public void GoToTutorial(){
 
-        if(MapLoader.hasInternet){
+        
 
             
-            TutorialCheckpoints.playerHasMoved = false;
-            TutorialCheckpoints.playerHasInteracted = false;
-            TutorialCheckpoints.caneActive = false;
-            TutorialCheckpoints.playerOnTrigger = false;
-            TutorialCheckpoints.playerDoor = false;
+        TutorialCheckpoints.playerHasMoved = false;
+        TutorialCheckpoints.playerHasInteracted = false;
+        TutorialCheckpoints.caneActive = false;
+        TutorialCheckpoints.playerOnTrigger = false;
+        TutorialCheckpoints.playerDoor = false;
 
-            TutorialCheckpoints.playerInTutorial = true;
-            changeScene.Tutorial("TutorialScene");
+        TutorialCheckpoints.playerInTutorial = true;
+        changeScene.Tutorial("TutorialScene");
 
-        }else{
-
-            noTut.SetActive(value: !noTut.activeSelf);
-            tutButton.enabled = false;
-            tutButton.gameObject.SetActive(false);
-
-        }
+        
         
 
     }
@@ -208,8 +199,6 @@ public class MenuManager : MonoBehaviour
     }
 
     private void Start(){
-
-        tTSManager.TTSMenu(true);
 
         Button btn = yourButton.GetComponent<Button>();
         

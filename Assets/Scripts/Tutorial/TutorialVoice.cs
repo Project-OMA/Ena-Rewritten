@@ -10,7 +10,6 @@ using System.IO;
 using UnityEngine.XR;
 public class TutorialVoice : MonoBehaviour
 {
-    public TTSManager tTSManager;
     public InteractionController interactionController;
     public TextAsset file;
     private string text;
@@ -20,34 +19,24 @@ public class TutorialVoice : MonoBehaviour
 
     public GameObject doorObj;
 
-    public AudioSource ttsSource;
+    public AudioSource tutorialSource;
 
     private bool checkPoint = false;
 
     private bool activated = false;
 
-
-
     int i = 0;
 
+    public object[] collectionTutorial;
 
-
-
-    string[] collectionTutorial;
-
-    private void Awake()
-    {
-    
-        interactionController = GameObject.Find("XR Origin (XR Rig)").GetComponent<InteractionController>();
-        rightHandDevice = GameObject.Find("Right Controller");
-        leftHandDevice = GameObject.Find("Left Controller");
-        
-    }
     void Start()
     {
-        text = file.ToString();
+    
+        collectionTutorial = Resources.LoadAll("VoiceLines/TutorialLines", typeof(AudioClip));
 
-        collectionTutorial = ClearString();
+        tutObj = GameObject.Find("FinalObject");
+        doorObj = GameObject.Find("DoorGuide");
+
 
         rightHandDevice.SetActive(false);
         leftHandDevice.SetActive(false);
@@ -57,6 +46,7 @@ public class TutorialVoice : MonoBehaviour
 
         
         interactionController.enabled = false;
+        tutorialSource.clip = (AudioClip)(collectionTutorial[i]);
 
         
         
@@ -67,14 +57,18 @@ public class TutorialVoice : MonoBehaviour
 
         if(!checkPoint){
 
-            if(!ttsSource.isPlaying){
+            Debug.Log("memebigBoy");
+
+            if(!tutorialSource.isPlaying){
                 Debug.Log("AAAAAAAAAAAAA");
-                tTSManager.TTSTutorial(collectionTutorial[i]);
+                tutorialSource.clip = (AudioClip)(collectionTutorial[i]);
+                tutorialSource.Play();
                 activated = false;
             }else{
+                Debug.Log("huh");
                 checkPoint = true;
             }
-        }else if(!ttsSource.isPlaying){
+        }else if(!tutorialSource.isPlaying){
             tutorialManager();
         }
 
@@ -140,22 +134,14 @@ public class TutorialVoice : MonoBehaviour
 
                     i++;
                     checkPoint = false;
+                    tutObj.SetActive(false);
 
                 }
 
                 break;
             
+
             case 4:
-
-                tutObj.SetActive(false);
-                
-
-                i++;
-                checkPoint = false;
-
-                break;
-
-            case 5:
 
                 if(!TutorialCheckpoints.playerDoor && !activated){
                         doorObj.SetActive(true);
@@ -164,6 +150,7 @@ public class TutorialVoice : MonoBehaviour
                     }else if(TutorialCheckpoints.playerDoor && activated){
 
                         i++;
+                        doorObj.SetActive(false);
                         checkPoint = false;
 
                     }
@@ -179,27 +166,5 @@ public class TutorialVoice : MonoBehaviour
         
     }
 
-    #region Utility Methods
 
-        private string[] ClearString(){
-
-            text = file.ToString();
-
-            string[] collection = text.Split('\n', StringSplitOptions.RemoveEmptyEntries);
-
-            foreach (var sub in collection) {
-                Debug.Log(sub);
-            }
-
-            return collection;
-
-        }
-
-
-   
-
-    
-
-
-        #endregion
 }

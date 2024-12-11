@@ -21,6 +21,12 @@ public class MapLoader : MonoBehaviour
 
     public static DateTime startdate = DateTime.Now;
 
+    public static bool hasPlayedIntro;
+
+    public static int lineCount=0; 
+
+    public static bool isInMenu = false; 
+
 
     
 
