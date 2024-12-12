@@ -20,6 +20,7 @@ MonoBehaviour:
     scale: {x: 2, y: 3}
     sound1: {fileID: 8300000, guid: b152f09b022d3e3439c0521f1c95cdd1, type: 3}
     sound2: {fileID: 8300000, guid: 773bcdf2c6cf49d44a183a1520672360, type: 3}
+    sound3: {fileID: 8300000, guid: 534cd12d5b601584ca610f6d0af821ef, type: 3}
     feedbackTypes: 020000000100000003000000
     hapticForce: 0.25
   - id: 1.0
@@ -29,7 +30,8 @@ MonoBehaviour:
     scale: {x: 1, y: 1}
     sound1: {fileID: 8300000, guid: b555e2dbefaf3b54a8356bd94018b24e, type: 3}
     sound2: {fileID: 8300000, guid: 395628f01dedac84b822e0074888ea2b, type: 3}
-    feedbackTypes: 010000000200000003000000
+    sound3: {fileID: 8300000, guid: 2705e4f89eec1354ea76119a273b0b7e, type: 3}
+    feedbackTypes: 01000000020000000300000004000000
     hapticForce: 0.25
   - id: 3.0
     name: 'Parede de Tijolo '
@@ -38,7 +40,8 @@ MonoBehaviour:
     scale: {x: 2, y: 2}
     sound1: {fileID: 8300000, guid: fc7235775fed30e459def0997c28da91, type: 3}
     sound2: {fileID: 8300000, guid: e503fa13d6552b34599aa4e83b194877, type: 3}
-    feedbackTypes: 0200000001000000
+    sound3: {fileID: 8300000, guid: a199819a9279f1645a87d5770d999074, type: 3}
+    feedbackTypes: 01000000020000000300000004000000
     hapticForce: 0.25
   - id: 4.0
     name: Parede de Vidro
@@ -47,7 +50,8 @@ MonoBehaviour:
     scale: {x: 1, y: 1}
     sound1: {fileID: 8300000, guid: c1d19d39c73cb9c44bf727dff503edf5, type: 3}
     sound2: {fileID: 8300000, guid: c1d19d39c73cb9c44bf727dff503edf5, type: 3}
-    feedbackTypes: 010000000200000003000000
+    sound3: {fileID: 8300000, guid: 0213fa434ba51c847b7fb48f56a0c57d, type: 3}
+    feedbackTypes: 01000000020000000300000004000000
     hapticForce: 0.25
   - id: 5.0
     name: "Parede de Pl\xE1stico "
@@ -56,7 +60,8 @@ MonoBehaviour:
     scale: {x: 1, y: 1}
     sound1: {fileID: 8300000, guid: 96de1bc9e8946b44d84b934c681aabbb, type: 3}
     sound2: {fileID: 8300000, guid: f245136e0eb7f064d9c9f978ff4ee9e1, type: 3}
-    feedbackTypes: 010000000200000003000000
+    sound3: {fileID: 8300000, guid: 546d3f4160281074681801867938e4cc, type: 3}
+    feedbackTypes: 01000000020000000300000004000000
     hapticForce: 0.25
   - id: 6.0
     name: 'Parede de Gesso '
@@ -65,7 +70,8 @@ MonoBehaviour:
     scale: {x: 3, y: 3}
     sound1: {fileID: 8300000, guid: e9c3adf70bb24484aa8c2458a8c83124, type: 3}
     sound2: {fileID: 8300000, guid: e9c3adf70bb24484aa8c2458a8c83124, type: 3}
-    feedbackTypes: 010000000200000003000000
+    sound3: {fileID: 8300000, guid: 8975ef5152d09254ba2f99444266a0e7, type: 3}
+    feedbackTypes: 01000000020000000300000004000000
     hapticForce: 0.25
   - id: 7.0
     name: Parede de Madeira 2
@@ -74,5 +80,6 @@ MonoBehaviour:
     scale: {x: 1, y: 1}
     sound1: {fileID: 8300000, guid: b152f09b022d3e3439c0521f1c95cdd1, type: 3}
     sound2: {fileID: 8300000, guid: 773bcdf2c6cf49d44a183a1520672360, type: 3}
-    feedbackTypes: 010000000200000003000000
+    sound3: {fileID: 8300000, guid: 534cd12d5b601584ca610f6d0af821ef, type: 3}
+    feedbackTypes: 01000000020000000300000004000000
     hapticForce: 0.25

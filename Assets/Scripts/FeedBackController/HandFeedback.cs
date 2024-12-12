@@ -13,8 +13,7 @@ public class HandFeedback : MonoBehaviour
     private HapticFeedback HapticImpulseLeft;
     private HapticFeedback HapticImpulseRight;
 
-    public TTSManager ttsManager;
-    public AudioSource ttsSource;
+    
 
     public static readonly Dictionary<string, CollisionEvent> Collisions = new Dictionary<string, CollisionEvent>();
 
@@ -32,6 +31,8 @@ public class HandFeedback : MonoBehaviour
     private string map;
     private bool noSoundChild = true;
 
+    public AudioSource audioTrail;
+
     
     
 
@@ -42,7 +43,10 @@ public class HandFeedback : MonoBehaviour
 
     void Start()
     {
-        //Fetch the AudioSource from the GameObject
+        
+        audioTrail = GameObject.Find("AudioTrailSource").GetComponent<AudioSource>();
+
+
         
         
     }
@@ -90,8 +94,7 @@ public class HandFeedback : MonoBehaviour
         HapticImpulseRight = new HapticFeedback(rightHandDevice, this);
         SoundSources = new Dictionary<string, AudioSource>();
 
-        ttsManager = GameObject.Find("TTSManager").GetComponent<TTSManager>();
-        ttsSource = GameObject.Find("TTSSpeakerAudio").GetComponent<AudioSource>();
+        
         CaneSource = GameObject.Find("CaneSource");
         WallSource = GameObject.Find("WallSource");
         
@@ -277,26 +280,15 @@ public class HandFeedback : MonoBehaviour
                         break;
                     
                     case 3:
-                        string inputString = collision.CollidedObject;
-
-                        Debug.Log(collision.GameObject);
-
-                        int lineSeparatorIndex = inputString.IndexOf(" ");
-
-
-                        string firstLine = lineSeparatorIndex >= 0 ? inputString.Substring(0, lineSeparatorIndex) : inputString;
-
-                        lineSeparatorIndex = inputString.IndexOf(":");
-
-
-                        firstLine = lineSeparatorIndex >= 0 ? inputString.Substring(0, lineSeparatorIndex) : inputString;
 
                         PlaySoundFeedback(collision.FeedbackSettings.sound1, collision);
                         PlayHapticFeedback(collision.FeedbackSettings.hapticForce+1.0f, collision);
+
+
+                        audioTrail.clip = collision.FeedbackSettings.sound3;
+                        audioTrail.Play();
                         
-                        if(!ttsSource.isPlaying){
-                            ttsManager.thirdCollision("Collision on object " +  firstLine);
-                        }
+                        
 
                         collision.TotalCollisions = 0;
                         

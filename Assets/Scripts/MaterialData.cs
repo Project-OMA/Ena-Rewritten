@@ -25,6 +25,8 @@ public class MaterialData : ScriptableObject
 
         public AudioClip sound1;
         public AudioClip sound2;
+
+        public AudioClip sound3;
         public FeedbackTypeEnum[] feedbackTypes;
         public float hapticForce;
     }
@@ -47,6 +49,7 @@ public class MaterialData : ScriptableObject
                 feedbackTypes = materialEntry.feedbackTypes,
                 sound1 = materialEntry.sound1,
                 sound2 = materialEntry.sound2,
+                sound3 = materialEntry.sound3,
                 hapticForce = materialEntry.hapticForce
             };
         }

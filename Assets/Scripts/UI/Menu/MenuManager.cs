@@ -33,8 +33,6 @@ public class MenuManager : MonoBehaviour
 
     public Transform player;
 
-    public TTSManager tTSManager;
-
     private string m_Path;
 
     private bool IsMenu = true;

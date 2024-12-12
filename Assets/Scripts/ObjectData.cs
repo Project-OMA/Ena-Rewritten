@@ -34,6 +34,8 @@ public class ObjectData : ScriptableObject
         public List<ObjectVariation> variations = new List<ObjectVariation>();
         public AudioClip sound1;
         public AudioClip sound2;
+
+        public AudioClip sound3;
         public FeedbackTypeEnum[] feedbackTypes;
         public float hapticForce;
 
@@ -73,6 +75,7 @@ public class ObjectData : ScriptableObject
                 feedbackTypes = objectEntry.feedbackTypes,
                 sound1 = objectEntry.sound1,
                 sound2 = objectEntry.sound2,
+                sound3 = objectEntry.sound3,
                 hapticForce = objectEntry.hapticForce
             };
         }

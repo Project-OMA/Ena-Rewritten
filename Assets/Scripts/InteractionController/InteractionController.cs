@@ -34,8 +34,6 @@ public class InteractionController : MonoBehaviour
 
     Vector3 moveVector;
 
-    public TTSManager ttsManager;
-
     bool toggleHit = false;
     private int nextUpdate=1;
 
@@ -133,7 +131,6 @@ public class InteractionController : MonoBehaviour
         //player = GameObject.Find("Player");
         collider = GetComponent<CapsuleCollider>();
         feedbackController = GetComponent<FeedbackController>();
-        ttsManager = GameObject.FindObjectOfType<TTSManager>();
         warningSource.clip = (AudioClip)Resources.Load("VoiceLines/Warnings/Position");
         
     }

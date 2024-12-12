@@ -34,6 +34,7 @@ MonoBehaviour:
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: 1421b55069765a1498c16cf57d1acaec, type: 3}
     sound2: {fileID: 8300000, guid: 422c761fe57739340b9db704bce32163, type: 3}
+    sound3: {fileID: 8300000, guid: 475b26f1cf534764eb316803a8df51e4, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
   - name: "Fog\xE3o"
@@ -57,6 +58,7 @@ MonoBehaviour:
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: 95de55b6442d52a488d27ff029e7537a, type: 3}
     sound2: {fileID: 8300000, guid: ecc7ebc1cc669204d901f99f364e0013, type: 3}
+    sound3: {fileID: 8300000, guid: a0b8cb87d0038354795274b4b6bc7b79, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
   - name: Computador
@@ -80,6 +82,7 @@ MonoBehaviour:
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: 16690be59499430409601a3f93c77e03, type: 3}
     sound2: {fileID: 8300000, guid: 2aef1c75689fb8f40b401f36571f4940, type: 3}
+    sound3: {fileID: 8300000, guid: cda87f9bbdcf2f7488b84c7e49c277fe, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
   - name: "M\xE1quina de Lavar"
@@ -103,6 +106,7 @@ MonoBehaviour:
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: a612d12cb719ab843b589d3339fe2695, type: 3}
     sound2: {fileID: 8300000, guid: 422c761fe57739340b9db704bce32163, type: 3}
+    sound3: {fileID: 8300000, guid: 5377c022778c10642ace29ade731560f, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
   - name: TV
@@ -126,7 +130,8 @@ MonoBehaviour:
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: 9095faaef704c8340a8aed303a0402e1, type: 3}
     sound2: {fileID: 8300000, guid: 8c4300fdda055864baa08bf9ac98af05, type: 3}
-    feedbackTypes: 010000000200000003000000
+    sound3: {fileID: 8300000, guid: 709ae8c3987327e4bb000541c0170a51, type: 3}
+    feedbackTypes: 01000000020000000300000004000000
     hapticForce: 0.25
   - name: Microondas
     prefab: {fileID: 614322503775666597, guid: 46dd676781f97da44b061e74133e32c4, type: 3}
@@ -149,7 +154,8 @@ MonoBehaviour:
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: c48f37d305521654083192e13e39e1fa, type: 3}
     sound2: {fileID: 8300000, guid: 422c761fe57739340b9db704bce32163, type: 3}
-    feedbackTypes: 010000000200000003000000
+    sound3: {fileID: 8300000, guid: 38efd2ddfc844a249bd6b45e2881fd3c, type: 3}
+    feedbackTypes: 01000000020000000300000004000000
     hapticForce: 0.25
   - name: Copiadora
     prefab: {fileID: 614322503775666597, guid: a4934ab6ba736e65ba18fe56c1d6bfea, type: 3}
@@ -160,5 +166,6 @@ MonoBehaviour:
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: 947b5f4ff3fdf2b4fa0313be4104473c, type: 3}
     sound2: {fileID: 8300000, guid: 31543f019e5deba48a2a16fc7e39b56a, type: 3}
-    feedbackTypes: 010000000200000003000000
+    sound3: {fileID: 8300000, guid: ea541716721356f4797524813e5dfb2f, type: 3}
+    feedbackTypes: 01000000020000000300000004000000
     hapticForce: 0.25
