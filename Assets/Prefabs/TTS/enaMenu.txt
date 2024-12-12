@@ -1,2 +1,0 @@
-Welcome to Ena, select a map please, if you want to change maps, just click on the pause button on the left controller
-Welcome to Ena, if you want to change maps please just click on the lower big button on the left controller if there are other maps to load, otherwise, you will exit the application, if you want to access the tutorial press Y
