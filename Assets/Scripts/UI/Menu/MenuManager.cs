@@ -166,6 +166,13 @@ public class MenuManager : MonoBehaviour
         
 
     }
+
+    public void GoToTraffic(){
+
+        changeScene.Traffic("TrafficTest");
+
+    }
+    
     public void poupulateDropdown(){
 
         getMapList(cursaUrl);

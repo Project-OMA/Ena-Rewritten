@@ -46,6 +46,7 @@ public class MapBuilder : MonoBehaviour
     [SerializeField] GameObject grassSprite;
 
     public bool isTutorial;
+    public bool isTraffic;
     private Mesh floorMesh;
     private Mesh wallMesh;
     private Mesh objMesh;
@@ -665,6 +666,18 @@ public class MapBuilder : MonoBehaviour
             Debug.Log(defaultMapFile);
 
             mapData = defaultMapFile.text;
+
+        }
+        if(isTraffic){
+
+            defaultMapPath = "Maps/traffic";
+
+            Debug.Log("defaultMapPath : " + defaultMapPath);
+            defaultMapFile = Resources.Load<TextAsset>(defaultMapPath);
+            Debug.Log(defaultMapFile);
+
+            mapData = defaultMapFile.text;
+
 
         }else{
             

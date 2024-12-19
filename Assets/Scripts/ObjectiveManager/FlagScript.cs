@@ -54,6 +54,8 @@ public class FlagScript : MonoBehaviour
 
             string mapLoad = MapLoader.map;
 
+            Debug.Log(mapLoad);
+
             if(mapLoad == "default"){
                 QuitGame();
             }else{

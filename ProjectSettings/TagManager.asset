@@ -24,6 +24,7 @@ TagManager:
   - SoundTag
   - persons
   - ttsSource
+  - car
   layers:
   - Default
   - TransparentFX
