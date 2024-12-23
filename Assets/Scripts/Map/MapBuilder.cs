@@ -674,11 +674,14 @@ public class MapBuilder : MonoBehaviour
 
             if(MapLoader.hasMenu){
 
-                MapLoader.beforeMap = MapLoader.defaultMapList[MapLoader.mapselected];
                 MapLoader.mapMenu = "tutorial";
 
             }else{
-                MapLoader.beforeMap = MapLoader.defaultMapList[MapLoader.mapselected];
+
+                if(MapLoader.mapselected!=0){
+                    MapLoader.beforeMap = MapLoader.defaultMapList[MapLoader.mapselected];
+                }
+
                 MapLoader.mapNoMenu = "tutorial";
 
             }
@@ -698,12 +701,13 @@ public class MapBuilder : MonoBehaviour
 
             if(MapLoader.hasMenu){
 
-                MapLoader.beforeMap = MapLoader.defaultMapList[MapLoader.mapselected];
                 MapLoader.mapMenu = "traffictest";
 
             }else{
 
-                MapLoader.beforeMap = MapLoader.defaultMapList[MapLoader.mapselected];
+                if(MapLoader.mapselected!=0){
+                    MapLoader.beforeMap = MapLoader.defaultMapList[MapLoader.mapselected];
+                }
                 MapLoader.mapNoMenu = "traffictest";
 
             }
