@@ -218,7 +218,9 @@ public class MenuTrans : MonoBehaviour
         
 
 
-        if(transButton.action.WasPressedThisFrame() && !hasMenu  && !TutorialCheckpoints.playerInTutorial){
+        if(transButton.action.WasPressedThisFrame() && !hasMenu  && MapLoader.playerInMain){
+
+            MapLoader.mapselected +=1;
             
             if(MapLoader.mapselected<MapLoader.defaultMapList.Count){
                 Debug.Log("NUMBER"+MapLoader.mapselected);

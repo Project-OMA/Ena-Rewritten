@@ -53,10 +53,6 @@ public class ChangeScene : MonoBehaviour
 
     public void noMenu_change(string scene_name, string mapChoice){
 
-        if(!TutorialCheckpoints.playerInTutorial){
-            MapLoader.mapselected +=1;
-        }
-
         collectLogs.SaveCollisionDataToCsv();
 
         TutorialCheckpoints.playerInTutorial = false;

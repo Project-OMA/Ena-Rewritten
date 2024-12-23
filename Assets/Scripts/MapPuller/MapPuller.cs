@@ -148,7 +148,6 @@ public class MapPuller
                     Debug.Log("DEFAULT:"+MapLoader.defaultMapList);
                     MapLoader.mapNoMenu = MapLoader.defaultMapList[MapLoader.mapselected];
 
-                    MapLoader.mapselected +=1;
                     mapLoad = MapLoader.mapNoMenu;
 
                 }else{
@@ -186,8 +185,6 @@ public class MapPuller
                     
                     Debug.Log("DEFAULT:"+MapLoader.defaultMapList);
                     MapLoader.mapNoMenu = MapLoader.defaultMapList[MapLoader.mapselected];
-
-                    MapLoader.mapselected +=1;
                     mapLoad = MapLoader.mapNoMenu;
 
                 }else{
