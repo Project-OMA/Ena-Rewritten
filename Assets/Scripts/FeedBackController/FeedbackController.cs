@@ -149,9 +149,9 @@ public class FeedbackController : MonoBehaviour
                         else
                         {
                             if(MapLoader.hasMenu){
-                                map = MapLoader.map;
+                                map = MapLoader.mapMenu;
                             }else{
-                                map = MapLoader.mapdefault;
+                                map = MapLoader.mapNoMenu;
                             }
                             
                             collisionEvent = new CollisionEvent(

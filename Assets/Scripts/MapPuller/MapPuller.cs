@@ -134,9 +134,9 @@ public class MapPuller
             string apiUrl = "https://cursa.eic.cefet-rj.br/ena-map";
             
 
-            string mapLoad = MapLoader.map;
+            string mapLoad = MapLoader.mapMenu;
 
-            if(mapLoad == "default" && MapLoader.mapdefault == "default"){
+            if(mapLoad == "default" && MapLoader.mapNoMenu == "default"){
 
                 getDefaultMapList(cursaUrl);
                 Debug.Log("MAP"+mapList);
@@ -146,18 +146,20 @@ public class MapPuller
 
                     
                     Debug.Log("DEFAULT:"+MapLoader.defaultMapList);
-                    MapLoader.mapdefault = MapLoader.defaultMapList[MapLoader.mapselected];
+                    MapLoader.mapNoMenu = MapLoader.defaultMapList[MapLoader.mapselected];
 
                     MapLoader.mapselected +=1;
-                    mapLoad = MapLoader.mapdefault;
+                    mapLoad = MapLoader.mapNoMenu;
 
                 }else{
 
                     throw new Exception("Faulty connection");
                 }
                 
-            }else if(MapLoader.mapdefault != "default"){
-                mapLoad = MapLoader.mapdefault;
+            }else if(MapLoader.mapNoMenu != "default"){
+
+                    mapLoad = MapLoader.mapNoMenu;
+                
             }
 
             apiUrl = apiUrl + "/" + mapLoad;
@@ -172,9 +174,9 @@ public class MapPuller
         }
         catch (Exception ex)
         {
-            string mapLoad = MapLoader.map;
+            string mapLoad = MapLoader.mapMenu;
 
-            if(mapLoad == "default" && MapLoader.mapdefault == "default"){
+            if(mapLoad == "default" && MapLoader.mapNoMenu == "default"){
 
                 Debug.Log("MAP"+mapList);
                 MapLoader.defaultMapList = mapList;
@@ -183,18 +185,20 @@ public class MapPuller
 
                     
                     Debug.Log("DEFAULT:"+MapLoader.defaultMapList);
-                    MapLoader.mapdefault = MapLoader.defaultMapList[MapLoader.mapselected];
+                    MapLoader.mapNoMenu = MapLoader.defaultMapList[MapLoader.mapselected];
 
                     MapLoader.mapselected +=1;
-                    mapLoad = MapLoader.mapdefault;
+                    mapLoad = MapLoader.mapNoMenu;
 
                 }else{
 
                     throw new Exception("No default Maps!");
                 }
                 
-            }else if(MapLoader.mapdefault != "default"){
-                mapLoad = MapLoader.mapdefault;
+            }else if(MapLoader.mapNoMenu != "default"){
+               
+                    mapLoad = MapLoader.mapNoMenu;
+                
             }
 
             m_Path = Application.dataPath;

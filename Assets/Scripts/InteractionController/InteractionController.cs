@@ -143,9 +143,9 @@ public class InteractionController : MonoBehaviour
     		nextUpdate=Mathf.FloorToInt(Time.time)+1;
 
             if(MapLoader.hasMenu){
-                CheckPlayerEverySecond(player.position, MapLoader.map);
+                CheckPlayerEverySecond(player.position, MapLoader.mapMenu);
             }else{
-                CheckPlayerEverySecond(player.position, MapLoader.mapdefault);
+                CheckPlayerEverySecond(player.position, MapLoader.mapNoMenu);
             }
     		
     		

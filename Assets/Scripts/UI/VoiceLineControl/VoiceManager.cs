@@ -35,19 +35,19 @@ public class VoiceManager : MonoBehaviour
 
         loadedmap = "default";
 
-        if(MapLoader.map == "default" && MapLoader.mapdefault !="default"){
+        if(MapLoader.mapMenu == "default" && MapLoader.mapNoMenu !="default"){
 
-            Debug.Log("_________"+MapLoader.mapdefault);
+            Debug.Log("_________"+MapLoader.mapNoMenu);
 
-            loadedmap = MapLoader.mapdefault;
+            loadedmap = MapLoader.mapNoMenu;
 
             
         }
-        if(MapLoader.map != "default" && MapLoader.mapdefault =="default"){
+        if(MapLoader.mapMenu != "default" && MapLoader.mapNoMenu =="default"){
 
-            Debug.Log("_________"+MapLoader.map);
+            Debug.Log("_________"+MapLoader.mapMenu);
 
-            loadedmap = MapLoader.map;
+            loadedmap = MapLoader.mapMenu;
                 
         }
 

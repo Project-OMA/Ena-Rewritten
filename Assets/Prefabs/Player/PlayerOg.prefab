@@ -571,6 +571,18 @@ MonoBehaviour:
       m_SingletonActionBindings: []
       m_Flags: 0
     m_Reference: {fileID: 6002076685757126145, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  trafficButton:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Traffic Button
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 0c694f23-33cc-4203-b88a-982d6b11ba20
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 6518618158896190960, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   menu: {fileID: 8368251549774659713}
   controllerLeft: {fileID: 0}
   controllerRight: {fileID: 0}
@@ -2012,7 +2024,6 @@ MonoBehaviour:
   warningSource: {fileID: 1152575266948345934}
   xrOrigin: {fileID: 9021602701237009669}
   feedbackController: {fileID: 6420725213728639212}
-  ttsManager: {fileID: 0}
 --- !u!143 &6456788739964584828
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2146,10 +2157,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de408637ce85a2f419de2a8c824eaa78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ttsManager: {fileID: 0}
-  ttsSource: {fileID: 0}
   CaneSource: {fileID: 0}
   WallSource: {fileID: 0}
+  audioTrail: {fileID: 0}
 --- !u!1 &4282440168370552475 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7786912384716273495, guid: 0329f04dbf5b30441ac4a444193ac58a, type: 3}
@@ -2211,10 +2221,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de408637ce85a2f419de2a8c824eaa78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ttsManager: {fileID: 0}
-  ttsSource: {fileID: 0}
   CaneSource: {fileID: 0}
   WallSource: {fileID: 0}
+  audioTrail: {fileID: 0}
 --- !u!4 &9021602701237009669 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3048313464044057801, guid: 0329f04dbf5b30441ac4a444193ac58a, type: 3}

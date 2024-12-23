@@ -178,7 +178,7 @@ public class MenuManager : MonoBehaviour
         getMapList(cursaUrl);
 
         if(!mapList.Any()){
-            dropdown.options.Add(item: new TMP_Dropdown.OptionData(text: MapLoader.map, image: null));
+            dropdown.options.Add(item: new TMP_Dropdown.OptionData(text: MapLoader.mapMenu, image: null));
 
         }
 

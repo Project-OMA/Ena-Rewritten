@@ -17,7 +17,7 @@ public class MenuTrans : MonoBehaviour
 
     public ChangeScene changeScene;
 
-    string mapLoad = MapLoader.map;
+    string mapLoad = MapLoader.mapMenu;
 
     public InputActionProperty showButton;
 
@@ -26,6 +26,8 @@ public class MenuTrans : MonoBehaviour
     public InputActionProperty tutButton;
 
     public InputActionProperty blindnessButton;
+
+    public InputActionProperty trafficButton;
 
     public GameObject menu;
 
@@ -154,10 +156,16 @@ public class MenuTrans : MonoBehaviour
 
         }
 
+        if(trafficButton.action.WasPressedThisFrame() && !hasMenu && !MapLoader.playerInTraffic){
+
+            changeScene.Traffic("TrafficTest");
+
+        }
+
 
        
 
-        if(showButton.action.WasPressedThisFrame() && !hasMenu && !TutorialCheckpoints.playerInTutorial){
+        if(showButton.action.WasPressedThisFrame() && !hasMenu && MapLoader.playerInMain){
             
             exit();
                 
@@ -190,12 +198,20 @@ public class MenuTrans : MonoBehaviour
                 changeScene.scene_changer_menu("MainMenu", mapLoad);
 
             }else{
-                
-                changeScene.noMenu_change("MainScene", MapLoader.mapdefault);
+
+                changeScene.noMenu_change("MainScene", MapLoader.beforeMap);
 
                 }
 
             }
+
+        if(showButton.action.WasPressedThisFrame() && MapLoader.playerInTraffic && !hasMenu){
+
+            MapLoader.playerInTraffic = false;
+
+            changeScene.noMenu_change("MainScene", MapLoader.beforeMap);
+
+        }
 
             
 
@@ -209,10 +225,10 @@ public class MenuTrans : MonoBehaviour
                 Debug.Log("COUNT"+MapLoader.defaultMapList.Count);
                 Debug.Log("MAP"+MapLoader.defaultMapList[MapLoader.mapselected]);
 
-                MapLoader.mapdefault =  MapLoader.defaultMapList[MapLoader.mapselected];
+                MapLoader.mapNoMenu =  MapLoader.defaultMapList[MapLoader.mapselected];
 
                 MapLoader.played = false;
-                changeScene.noMenu_change("MainScene", MapLoader.mapdefault);
+                changeScene.noMenu_change("MainScene", MapLoader.mapNoMenu);
 
             }else{
                 exit();

@@ -47,6 +47,7 @@ public class MapBuilder : MonoBehaviour
 
     public bool isTutorial;
     public bool isTraffic;
+    public bool mainScene;
     private Mesh floorMesh;
     private Mesh wallMesh;
     private Mesh objMesh;
@@ -659,6 +660,8 @@ public class MapBuilder : MonoBehaviour
 
         if(isTutorial){
 
+            MapLoader.playerInMain = false;
+
             defaultMapPath = "Maps/tutorial";
 
             Debug.Log("defaultMapPath : " + defaultMapPath);
@@ -667,29 +670,51 @@ public class MapBuilder : MonoBehaviour
 
             mapData = defaultMapFile.text;
 
+            
+
+            if(MapLoader.hasMenu){
+
+                MapLoader.beforeMap = MapLoader.defaultMapList[MapLoader.mapselected];
+                MapLoader.mapMenu = "tutorial";
+
+            }else{
+                MapLoader.beforeMap = MapLoader.defaultMapList[MapLoader.mapselected];
+                MapLoader.mapNoMenu = "tutorial";
+
+            }
+
         }
         if(isTraffic){
+
+            MapLoader.playerInMain = false;
+            Physics.IgnoreLayerCollision(0, 0, false);
 
             defaultMapPath = "Maps/traffic";
 
             Debug.Log("defaultMapPath : " + defaultMapPath);
             defaultMapFile = Resources.Load<TextAsset>(defaultMapPath);
             Debug.Log(defaultMapFile);
+            
 
             if(MapLoader.hasMenu){
 
-                MapLoader.map = "traffictest";
+                MapLoader.beforeMap = MapLoader.defaultMapList[MapLoader.mapselected];
+                MapLoader.mapMenu = "traffictest";
 
             }else{
 
-                MapLoader.mapdefault = "traffictest";
+                MapLoader.beforeMap = MapLoader.defaultMapList[MapLoader.mapselected];
+                MapLoader.mapNoMenu = "traffictest";
 
             }
 
             mapData = defaultMapFile.text;
 
 
-        }else{
+        }
+        if(mainScene){
+
+            MapLoader.playerInMain = true;
             
             Physics.IgnoreLayerCollision(0, 0, false);
             mapData = mapPuller.GetNextMap();

@@ -52,7 +52,7 @@ public class FlagScript : MonoBehaviour
 
 		if (targetTime <= 0.0f) {
 
-            string mapLoad = MapLoader.map;
+            string mapLoad = MapLoader.mapMenu;
 
             Debug.Log(mapLoad);
 
