@@ -20,7 +20,9 @@ public class PlayerData : ScriptableObject
     public class PlayerVariation
     {
         public string id;
+        public int rotationx;
         public int rotation;
+        public int rotationz;
         public float offsetX;
         public float offsetY;
 
@@ -46,7 +48,9 @@ public class PlayerData : ScriptableObject
                 {
                     name = Players[i].name,
                     prefab = Players[i].prefab,
+                    rotationx = variation.rotationx,
                     rotation = variation.rotation,
+                    rotationz = variation.rotationz,
                     offsetX = variation.offsetX,
                     offsetY = variation.offsetY
                 };

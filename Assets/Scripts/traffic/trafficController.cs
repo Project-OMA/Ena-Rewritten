@@ -14,18 +14,13 @@ public class trafficController : MonoBehaviour
 
     public GameObject trigger;
 
-    public AudioSource trafficSounds;
-
     private AudioClip clip;
 
     void Start(){
         trigger.SetActive(false);
 
-        trafficSounds = GameObject.Find("TrafficSounds").GetComponent<AudioSource>();
-
-        clip = Resources.Load<AudioClip>("sounds/traffic");
-        trafficSounds.clip = clip;
-        trafficSounds.Play();
+        
+    
     }
 
     void Update(){
@@ -46,9 +41,5 @@ public class trafficController : MonoBehaviour
     {
         canMove = true; 
         trigger.SetActive(false);
-        Debug.Log("Car movement restarted.");
-        trafficSounds.Stop();
-        trafficSounds.clip = clip;
-        trafficSounds.Play();
     }
 }

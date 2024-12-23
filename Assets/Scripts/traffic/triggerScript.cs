@@ -4,17 +4,8 @@ using UnityEngine;
 
 public class triggerScript : MonoBehaviour
 {
-    public AudioSource trafficSounds;
+    
 
-    private AudioClip clip;
-
-    void Start(){
-
-      trafficSounds = GameObject.Find("TrafficSounds").GetComponent<AudioSource>();
-
-      clip = Resources.Load<AudioClip>("Sounds/idle");
-
-    }
 
     
     void OnTriggerEnter(Collider collider)
@@ -26,9 +17,7 @@ public class triggerScript : MonoBehaviour
 
             trafficController.canMove = false;
 
-            trafficSounds.Stop();
-            trafficSounds.clip = clip;
-            trafficSounds.Play();
+            
 
         }
     }

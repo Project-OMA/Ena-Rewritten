@@ -423,7 +423,7 @@ public class MapBuilder : MonoBehaviour
         Vector3 vecpos = new Vector3(posX, 0, posY);
 
         // Rotation
-        Quaternion rot = Quaternion.Euler(0, propData.rotation, 0);
+        Quaternion rot = Quaternion.Euler(propData.rotationx, propData.rotation, propData.rotationz);
 
         // Create the object
         GameObject obj = Instantiate(prefab, vecpos, rot);
@@ -486,7 +486,7 @@ public class MapBuilder : MonoBehaviour
         Vector3 vecpos = new Vector3(posX, 0, posY);
 
         // Rotation
-        Quaternion rot = Quaternion.Euler(0, playerpropData.rotation, 0);
+        Quaternion rot = Quaternion.Euler(playerpropData.rotationx, playerpropData.rotation, playerpropData.rotationz);
 
         // Create the object
         GameObject player = Instantiate(prefab, vecpos, rot);
@@ -675,6 +675,16 @@ public class MapBuilder : MonoBehaviour
             Debug.Log("defaultMapPath : " + defaultMapPath);
             defaultMapFile = Resources.Load<TextAsset>(defaultMapPath);
             Debug.Log(defaultMapFile);
+
+            if(MapLoader.hasMenu){
+
+                MapLoader.map = "traffictest";
+
+            }else{
+
+                MapLoader.mapdefault = "traffictest";
+
+            }
 
             mapData = defaultMapFile.text;
 

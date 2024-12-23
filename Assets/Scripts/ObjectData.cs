@@ -20,7 +20,9 @@ public class ObjectData : ScriptableObject
     public class ObjectVariation
     {
         public string id;
+        public int rotationx;
         public int rotation;
+        public int rotationz;
         public float offsetX;
         public float offsetY;
 
@@ -34,7 +36,6 @@ public class ObjectData : ScriptableObject
         public List<ObjectVariation> variations = new List<ObjectVariation>();
         public AudioClip sound1;
         public AudioClip sound2;
-
         public AudioClip sound3;
         public FeedbackTypeEnum[] feedbackTypes;
         public float hapticForce;
@@ -53,7 +54,9 @@ public class ObjectData : ScriptableObject
                 {
                     name = Objects[i].name,
                     prefab = Objects[i].prefab,
+                    rotationx = variation.rotationx,
                     rotation = variation.rotation,
+                    rotationz = variation.rotationz,
                     offsetX = variation.offsetX,
                     offsetY = variation.offsetY
                 };
