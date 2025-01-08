@@ -21,10 +21,6 @@ public class InteractionController : MonoBehaviour
     public GameObject Offset;
     public GameObject cam;
     private Collider collider;
-    public CharacterController controller;
-    public GameObject warn;
-    public GameObject sphere;
-    public AudioSource warningSource;
 
     public Transform xrOrigin;
 
@@ -46,16 +42,27 @@ public class InteractionController : MonoBehaviour
 
     public Vector3 getMoveVector()
     {
-        float x = Input.GetAxis("Vertical");
-        float y = Input.GetAxis("Horizontal");
-        var control = new Vector3(y, x, 0);
+            float vertical = Input.GetAxis("Vertical");   // Forward/Backward
+            float horizontal = Input.GetAxis("Horizontal"); // Left/Right
 
-        Vector3 right = cam.transform.right;
-        Vector3 forward = cam.transform.forward;
-        Vector3 moveVector = forward * control.y + right * control.x;
-        moveVector.y = 0;
+            // Combine input into a direction vector
+            Vector3 inputDirection = new Vector3(vertical, 0, -horizontal);
 
-        return moveVector.normalized * walkDistance * stepPeriod;
+            Debug.Log(player.position);
+
+            // Get camera directions
+            Vector3 right = cam.transform.right;
+            Vector3 forward = cam.transform.forward;
+
+            // Ignore vertical component of the camera's forward vector
+            forward.y = 0;
+            forward.Normalize();
+
+            // Calculate movement vector relative to the camera
+            Vector3 moveVector = forward * inputDirection.z + right * inputDirection.x;
+
+            // Scale movement vector by walkDistance and stepPeriod
+            return moveVector.normalized * walkDistance * stepPeriod;
     }
 
     private void doStep() {
@@ -65,7 +72,7 @@ public class InteractionController : MonoBehaviour
         nextStepTime = Time.time + stepPeriod;
 
         Vector3 previousPos = Offset.transform.position;
-        controller.Move(moveVector);
+        player.Translate(moveVector);
 
         Vector3 currentPos = Offset.transform.position;
 
@@ -131,7 +138,6 @@ public class InteractionController : MonoBehaviour
         //player = GameObject.Find("Player");
         collider = GetComponent<CapsuleCollider>();
         feedbackController = GetComponent<FeedbackController>();
-        warningSource.clip = (AudioClip)Resources.Load("VoiceLines/Warnings/Position");
         
     }
 
@@ -188,40 +194,8 @@ public class InteractionController : MonoBehaviour
             }
         }
         
-        Vector3 OffsetCam = new Vector3 ((xrOrigin.transform.position.x - cam.transform.position.x), xrOrigin.transform.position.y, (xrOrigin.transform.position.z-cam.transform.position.z));
         
         //Debug.Log(xrOrigin.transform.position + " " + cam.transform.position + " " + OffsetCam.magnitude);
-
-        if(OffsetCam.magnitude > 0.75 && !warn.activeSelf)
-        {
-            Debug.Log("Resetting camera position");
-
-            
-            warn.SetActive(true);
-            sphere.SetActive(true);
-            
-            controller.enabled=false;
-            //float newPosX = cam.transform.position.x;
-            //float newPosZ = cam.transform.position.z;
-
-            //controller.Move(new Vector3(OffsetCam.x, 0, OffsetCam.z));
-
-            //xrOrigin.transform.position = new Vector3(newPosX, xrOrigin.transform.position.y, newPosZ);
-
-            //cam.transform.localPosition = new Vector3(0, cam.transform.position.y, 0);
-            warningSource.Play();
-        
-
-        }else if(OffsetCam.magnitude < 0.6){
-            warn.SetActive(false);
-            sphere.SetActive(false);
-            controller.enabled=true;
-            warningSource.Stop();
-        }
-
-        warn.transform.position = cam.transform.position+ new Vector3(x: cam.transform.forward.x, y: 0, z: cam.transform.forward.z).normalized;
-        warn.transform.LookAt(worldPosition: new Vector3(x: cam.transform.position.x, y: warn.transform.position.y, z: cam.transform.position.z) );
-        warn.transform.forward *=-1;
         
     
         
