@@ -14,10 +14,6 @@ public class LeftHand : MonoBehaviour
         HandCheck.LeftHand = true;
     }
 
-    private void OnCollisionExit(Collision collision){
-        HandCheck.LeftHand = false;
-    }
-
     
 
 

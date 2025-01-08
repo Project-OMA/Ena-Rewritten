@@ -82,20 +82,44 @@ public class InteractionController : MonoBehaviour
             Debug.DrawRay(rayPos.position, moveVector.normalized, Color.red, 2, true);
             RaycastHit hit;
             // Raycast in the movement direction
-            if (!Physics.SphereCast(rayPos.position, 0.3f, moveVector, out hit, maxDistance:0.4f))
+            if (Physics.SphereCast(rayPos.position, 0.3f, moveVector, out hit, maxDistance:0.4f))
             {
                 // Move the object if no obstacle is detected
+
+                if (hit.collider != null) {
+
+                    Debug.Log(hit.collider.gameObject.tag);
+                    if (hit.collider.gameObject.tag == "floor" || hit.collider.gameObject.tag == "Player") {
+
+                        Debug.Log("AAAAAAAAAAAAAAAAAAA");
+
+                        moveVector = new Vector3(moveVector.z, 0, -moveVector.x);
+                        player.Translate(moveVector);
+                        TutorialCheckpoints.playerHasMoved = true;
+        
+
+                        feedbackController.handleStep();
+
+                
+                }else{
+                    Debug.Log("Obstacle detected! Movement blocked.");
+                }
+                
+            }
+            
+        }else
+            {
+
                 moveVector = new Vector3(moveVector.z, 0, -moveVector.x);
                 player.Translate(moveVector);
                 TutorialCheckpoints.playerHasMoved = true;
         
 
                 feedbackController.handleStep();
+
+                
             }
-            else
-            {
-                Debug.Log("Obstacle detected! Movement blocked.");
-            }
+
         }
 
         

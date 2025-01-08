@@ -11,9 +11,5 @@ public class RightHand : MonoBehaviour
         HandCheck.RightHand = true;
     }
 
-    private void OnCollisionExit(Collision collision){
-        HandCheck.RightHand = false;
-    }
-
     
 }

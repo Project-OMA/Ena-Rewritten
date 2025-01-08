@@ -13,6 +13,10 @@ public class HandFeedback : MonoBehaviour
     private HapticFeedback HapticImpulseLeft;
     private HapticFeedback HapticImpulseRight;
 
+    public Transform rightController;
+    public Transform leftController;
+
+
     
 
     public static readonly Dictionary<string, CollisionEvent> Collisions = new Dictionary<string, CollisionEvent>();
@@ -32,6 +36,14 @@ public class HandFeedback : MonoBehaviour
     private bool noSoundChild = true;
 
     public AudioSource audioTrail;
+
+    private bool innerFeedbackLeft = false;
+    private bool innerFeedbackRight = false;
+    private Transform currentController;
+
+    public Transform rayPos;
+
+    private int nextUpdate=0;
 
     
     
@@ -59,8 +71,36 @@ public class HandFeedback : MonoBehaviour
 
     private void Update()
     {
-        //HandleCollisionFeedback();
-        //DetectFloor();
+
+        if(Time.time>=nextUpdate){
+
+            if(innerFeedbackLeft){
+
+                Debug.Log("HALLO :D");
+                
+                Debug.Log(leftController.position);
+                DetectController(leftController, "Left");
+                nextUpdate=Mathf.FloorToInt(Time.time)+1;
+                
+            }
+
+            if(innerFeedbackRight){
+
+                Debug.Log("HALLO :D");
+
+                Debug.Log(rightController.position);
+                DetectController(rightController, "Cane");
+                nextUpdate=Mathf.FloorToInt(Time.time)+1;
+
+                
+
+            }
+
+            
+
+        }
+
+       
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -70,8 +110,19 @@ public class HandFeedback : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
+        
+       
+
         HandleCollisionExit(collision);
-    }
+        
+        
+        
+    }  
+            
+            
+        
+
+        
 
     #endregion
 
@@ -213,6 +264,16 @@ public class HandFeedback : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Cane" || collision.gameObject.tag == "Left") return;
 
+        if(HandCheck.LeftHand){
+            
+            innerFeedbackLeft = true;
+        }
+
+        if(HandCheck.RightHand){
+            
+            innerFeedbackRight = true;
+        }
+
         GameObject collidedObject = LocateCollidedObjectRoot(collision.gameObject);
 
 
@@ -229,6 +290,9 @@ public class HandFeedback : MonoBehaviour
             itemToUpdate.IsColliding = false;
             HandleCollisionExitFeedback(itemToUpdate);
         }
+        Debug.Log("mekme ");
+
+        
 
         
     }
@@ -400,25 +464,20 @@ public class HandFeedback : MonoBehaviour
 
     private void PlayHapticFeedback(float hapticForce, CollisionEvent collision)
     {
-        if (collision.CanPlay && collision.IsColliding)
+        if (collision.IsColliding)
         {
 
                 if(HandCheck.LeftHand){
                     HapticImpulseLeft.Play(hapticForce);
+                   
                 }
 
                 if(HandCheck.RightHand){
                     HapticImpulseRight.Play(hapticForce);   
+                    
                 }
                 
                 
-        }
-        else
-        {
-            HandCheck.LeftHand = false;
-            HandCheck.RightHand = false;
-            HapticImpulseLeft.Stop();
-            HapticImpulseRight.Stop();
         }
     }
 
@@ -430,6 +489,40 @@ public class HandFeedback : MonoBehaviour
     {
         return string.IsNullOrEmpty(gameObject.tag) ? gameObject.name : gameObject.tag + " " + gameObject.name;
     }
+
+    public void DetectController(Transform currentController, string tag)
+{
+    RaycastHit hit;
+    Vector3 direction = (currentController.position - rayPos.position).normalized;
+
+    
+    Debug.DrawRay(rayPos.position, direction * 5, Color.red, 5, true);
+
+    if (Physics.Raycast(rayPos.position, direction, out hit, 5))
+    {
+        if (hit.collider != null && hit.collider.gameObject.tag == tag)
+        {
+            Debug.Log("Detected object with tag: " + tag);
+
+            if (tag == "Left")
+            {
+                Debug.Log("Found");
+                HandCheck.LeftHand = false;
+                innerFeedbackLeft = false;
+                HapticImpulseLeft.Stop();
+            }
+            else if (tag == "Cane")
+            {
+                Debug.Log("Found");
+                HandCheck.RightHand = false;
+                innerFeedbackRight = false;
+                HapticImpulseRight.Stop();
+            }
+        }
+        
+    }
+}
+
 
     #endregion
 }
