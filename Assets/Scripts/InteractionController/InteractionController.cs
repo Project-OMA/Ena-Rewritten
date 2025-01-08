@@ -21,10 +21,7 @@ public class InteractionController : MonoBehaviour
     public GameObject Offset;
     public GameObject cam;
     private Collider collider;
-    public CharacterController controller;
-    public GameObject warn;
-    public GameObject sphere;
-    public AudioSource warningSource;
+    public Transform rayPos;
 
     public Transform xrOrigin;
 
@@ -46,84 +43,63 @@ public class InteractionController : MonoBehaviour
 
     public Vector3 getMoveVector()
     {
-        float x = Input.GetAxis("Vertical");
-        float y = Input.GetAxis("Horizontal");
-        var control = new Vector3(y, x, 0);
+        // Get player input
+        float vertical = Input.GetAxis("Vertical");   // Forward/Backward
+        float horizontal = Input.GetAxis("Horizontal"); // Left/Right
 
+        // Combine input into a direction vector
+        Vector3 inputDirection = new Vector3(horizontal, 0, vertical); // X = Left/Right, Z = Forward/Backward
+
+        // Get camera directions
         Vector3 right = cam.transform.right;
         Vector3 forward = cam.transform.forward;
-        Vector3 moveVector = forward * control.y + right * control.x;
-        moveVector.y = 0;
 
+        // Ignore vertical component of the camera's forward vector
+        forward.y = 0;
+        forward.Normalize();
+        right.y = 0; // Ensure the right vector is horizontal as well
+        right.Normalize();
+
+        // Calculate movement vector relative to the camera
+        Vector3 moveVector = forward * inputDirection.z + right * inputDirection.x;
+
+        // Scale movement vector by walkDistance and stepPeriod
         return moveVector.normalized * walkDistance * stepPeriod;
     }
+
 
     private void doStep() {
 
         Debug.Log("Doing step at " + nextStepTime);
         moveVector = getMoveVector();
+        
         nextStepTime = Time.time + stepPeriod;
 
         Vector3 previousPos = Offset.transform.position;
-        controller.Move(moveVector);
-
-        Vector3 currentPos = Offset.transform.position;
-
-        Vector3 desiredPos = moveVector+previousPos;
-
-        TutorialCheckpoints.playerHasMoved = true;
-
-        wallDetect();
-
+    
+        if (moveVector != Vector3.zero)
+        {
+            Debug.DrawRay(rayPos.position, moveVector.normalized, Color.red, 2, true);
+            RaycastHit hit;
+            // Raycast in the movement direction
+            if (!Physics.SphereCast(rayPos.position, 0.3f, moveVector, out hit, maxDistance:0.4f))
+            {
+                // Move the object if no obstacle is detected
+                moveVector = new Vector3(moveVector.z, 0, -moveVector.x);
+                player.Translate(moveVector);
+                TutorialCheckpoints.playerHasMoved = true;
         
 
-        feedbackController.handleStep();
-    }
-
-
-    private void wallDetect(){
-        float raylen = 0.01f;
-        Vector3 rayOffset = new Vector3(0,1,0);
-
-        Vector3[] directions = new Vector3[] {
-            transform.TransformDirection(Vector3.left),
-            transform.TransformDirection(Vector3.right),
-            transform.TransformDirection(Vector3.forward),
-            transform.TransformDirection(Vector3.back)
-        };
-
-        Vector3 origin = transform.position + rayOffset;
-        float radius = 0.15f; // Set the radius of your sphere cast
-
-        foreach (var direction in directions)
-        {
-            Ray ray = new Ray(origin + direction, direction * raylen);
-            RaycastHit hit;
-
-            if (Physics.SphereCast(origin, radius, direction, out hit, maxDistance:0.15f))
+                feedbackController.handleStep();
+            }
+            else
             {
-                Debug.DrawRay(origin, ray.direction, Color.yellow);
-
-                if (hit.collider != null)
-                {
-                    if(hit.collider.gameObject.tag == "wall" || tagPrefab.Contains(hit.collider.gameObject.tag))
-                    {
-                        feedbackController.handleWallCollision(toggleHit);
-                        toggleHit = true;
-                        Debug.Log("PAREDE");
-                        break;
-                    }
-                    else if(toggleHit) 
-                    {
-                        
-                        toggleHit = false;
-                    }
-                }
+                Debug.Log("Obstacle detected! Movement blocked.");
             }
         }
-                }
-    
 
+        
+    }
 
     void Start()
     {
@@ -131,7 +107,7 @@ public class InteractionController : MonoBehaviour
         //player = GameObject.Find("Player");
         collider = GetComponent<CapsuleCollider>();
         feedbackController = GetComponent<FeedbackController>();
-        warningSource.clip = (AudioClip)Resources.Load("VoiceLines/Warnings/Position");
+
         
     }
 
@@ -187,41 +163,8 @@ public class InteractionController : MonoBehaviour
                 }
             }
         }
+
         
-        Vector3 OffsetCam = new Vector3 ((xrOrigin.transform.position.x - cam.transform.position.x), xrOrigin.transform.position.y, (xrOrigin.transform.position.z-cam.transform.position.z));
-        
-        //Debug.Log(xrOrigin.transform.position + " " + cam.transform.position + " " + OffsetCam.magnitude);
-
-        if(OffsetCam.magnitude > 0.75 && !warn.activeSelf)
-        {
-            Debug.Log("Resetting camera position");
-
-            
-            warn.SetActive(true);
-            sphere.SetActive(true);
-            
-            controller.enabled=false;
-            //float newPosX = cam.transform.position.x;
-            //float newPosZ = cam.transform.position.z;
-
-            //controller.Move(new Vector3(OffsetCam.x, 0, OffsetCam.z));
-
-            //xrOrigin.transform.position = new Vector3(newPosX, xrOrigin.transform.position.y, newPosZ);
-
-            //cam.transform.localPosition = new Vector3(0, cam.transform.position.y, 0);
-            warningSource.Play();
-        
-
-        }else if(OffsetCam.magnitude < 0.6){
-            warn.SetActive(false);
-            sphere.SetActive(false);
-            controller.enabled=true;
-            warningSource.Stop();
-        }
-
-        warn.transform.position = cam.transform.position+ new Vector3(x: cam.transform.forward.x, y: 0, z: cam.transform.forward.z).normalized;
-        warn.transform.LookAt(worldPosition: new Vector3(x: cam.transform.position.x, y: warn.transform.position.y, z: cam.transform.position.z) );
-        warn.transform.forward *=-1;
         
     
         

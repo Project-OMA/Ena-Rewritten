@@ -17,19 +17,27 @@ MonoBehaviour:
     prefab: {fileID: 614322503775666597, guid: 61842d33226ee8c5ca4e8da65f30f767, type: 3}
     variations:
     - id: 0.0
+      rotationx: 0
       rotation: 0
+      rotationz: 0
       offsetX: 0
       offsetY: -0.5
     - id: 0.1
+      rotationx: 0
       rotation: 90
+      rotationz: 0
       offsetX: 0.5
       offsetY: 0
     - id: 0.2
+      rotationx: 0
       rotation: 270
+      rotationz: 0
       offsetX: 0.5
       offsetY: -1
     - id: 1.0
+      rotationx: 0
       rotation: 180
+      rotationz: 0
       offsetX: 1
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: 3e0c4e9ed7620a24883faa8b33fc4437, type: 3}
@@ -41,19 +49,27 @@ MonoBehaviour:
     prefab: {fileID: 614322503775666597, guid: aa16baad5d33da606b9dfa843d9c5f2b, type: 3}
     variations:
     - id: 2.0
+      rotationx: 0
       rotation: 0
+      rotationz: 0
       offsetX: 0
       offsetY: -0.5
     - id: 2.1
+      rotationx: 0
       rotation: 90
+      rotationz: 0
       offsetX: 0.5
       offsetY: 0
     - id: 2.2
+      rotationx: 0
       rotation: 270
+      rotationz: 0
       offsetX: 0.5
       offsetY: -1
     - id: 3.0
+      rotationx: 0
       rotation: 180
+      rotationz: 0
       offsetX: 1
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: d4d80d16756ca58429b965198cb19e1c, type: 3}
@@ -65,19 +81,27 @@ MonoBehaviour:
     prefab: {fileID: 614322503775666597, guid: 5cb6e94b9bb5706e0962e7fb981fc2d9, type: 3}
     variations:
     - id: 4.0
+      rotationx: 0
       rotation: -78
+      rotationz: 0
       offsetX: 0
       offsetY: -0.5
     - id: 4.2
+      rotationx: 0
       rotation: 192
+      rotationz: 0
       offsetX: 0.5
       offsetY: -1
     - id: 4.1
-      rotation: 168
+      rotationx: 0
+      rotation: -168
+      rotationz: 0
       offsetX: 0.5
       offsetY: 0
     - id: 5.0
+      rotationx: 0
       rotation: 258
+      rotationz: 0
       offsetX: 1
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: d4d80d16756ca58429b965198cb19e1c, type: 3}
@@ -89,11 +113,15 @@ MonoBehaviour:
     prefab: {fileID: 614322503775666597, guid: 6049c1975e0c7494fa5d307f02a9f153, type: 3}
     variations:
     - id: 6.0
+      rotationx: 0
       rotation: 0
+      rotationz: 0
       offsetX: 0
       offsetY: -1
     - id: 6.1
+      rotationx: 0
       rotation: 90
+      rotationz: 0
       offsetX: 0
       offsetY: 0
     sound1: {fileID: 8300000, guid: c1d19d39c73cb9c44bf727dff503edf5, type: 3}
@@ -105,11 +133,15 @@ MonoBehaviour:
     prefab: {fileID: 614322503775666597, guid: a684b5d70f0bce55486ccc8d0af83aed, type: 3}
     variations:
     - id: 7.0
+      rotationx: 0
       rotation: 0
+      rotationz: 0
       offsetX: 0
       offsetY: -1
     - id: 7.1
+      rotationx: 0
       rotation: 90
+      rotationz: 0
       offsetX: 0
       offsetY: 0
     sound1: {fileID: 8300000, guid: c1d19d39c73cb9c44bf727dff503edf5, type: 3}
