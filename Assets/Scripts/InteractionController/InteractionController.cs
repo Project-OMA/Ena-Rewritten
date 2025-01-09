@@ -44,26 +44,16 @@ public class InteractionController : MonoBehaviour
     public Vector3 getMoveVector()
     {
         // Get player input
-        float vertical = Input.GetAxis("Vertical");   // Forward/Backward
-        float horizontal = Input.GetAxis("Horizontal"); // Left/Right
+        float x = Input.GetAxis("Vertical");
+        float y = Input.GetAxis("Horizontal");
+        var control = new Vector3(y, x, 0);
 
-        // Combine input into a direction vector
-        Vector3 inputDirection = new Vector3(horizontal, 0, vertical); // X = Left/Right, Z = Forward/Backward
-
-        // Get camera directions
         Vector3 right = cam.transform.right;
         Vector3 forward = cam.transform.forward;
+        Vector3 moveVector = forward * control.y + right * control.x;
+        moveVector.y = 0;
 
-        // Ignore vertical component of the camera's forward vector
-        forward.y = 0;
-        forward.Normalize();
-        right.y = 0; // Ensure the right vector is horizontal as well
-        right.Normalize();
-
-        // Calculate movement vector relative to the camera
-        Vector3 moveVector = forward * inputDirection.z + right * inputDirection.x;
-
-        // Scale movement vector by walkDistance and stepPeriod
+        
         return moveVector.normalized * walkDistance * stepPeriod;
     }
 
@@ -87,8 +77,8 @@ public class InteractionController : MonoBehaviour
                 if (!Physics.SphereCast(rayPos.position, 0.4f, moveVector.normalized, out hit, maxDistance:0.3f))
                 {
                 
-                    moveVector = new Vector3(moveVector.z, 0, -moveVector.x);
-                    player.Translate(moveVector);
+                    
+                    player.Translate(moveVector, Space.World);
                     TutorialCheckpoints.playerHasMoved = true;
     
 

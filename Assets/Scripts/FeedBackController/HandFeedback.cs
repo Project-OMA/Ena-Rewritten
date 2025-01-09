@@ -72,32 +72,29 @@ public class HandFeedback : MonoBehaviour
     private void Update()
     {
 
-        if(Time.time>=nextUpdate){
-
-            if(innerFeedbackLeft){
-
+        if (innerFeedbackLeft || innerFeedbackRight)
+    {
+        
+        if (Time.time >= nextUpdate)
+        {
+            if (innerFeedbackLeft)
+            {
                 Debug.Log("HALLO :D");
-                
                 Debug.Log(leftController.position);
                 DetectController(leftController, "Left");
-                
             }
 
-            if(innerFeedbackRight){
-
+            if (innerFeedbackRight)
+            {
                 Debug.Log("HALLO :D");
-
                 Debug.Log(rightController.position);
                 DetectController(rightController, "Cane");
-
-                
-
             }
-            nextUpdate=Mathf.FloorToInt(Time.time)+0.2f;
 
             
-
+            nextUpdate = Time.time + 0.2f;
         }
+    }
 
        
     }
@@ -258,7 +255,7 @@ public class HandFeedback : MonoBehaviour
 
     private void HandleCollisionExit(Collision collision)
     {
-        if (collision.gameObject.tag == "Player") return;
+        if (collision.gameObject.tag == "Player"|| collision.gameObject.tag == "Cane" || collision.gameObject.tag == "Left") return;
 
         
 
