@@ -82,25 +82,25 @@ MonoBehaviour:
     variations:
     - id: 4.0
       rotationx: 0
-      rotation: -78
+      rotation: 0
       rotationz: 0
       offsetX: 0
       offsetY: -0.5
     - id: 4.2
       rotationx: 0
-      rotation: 192
+      rotation: 270
       rotationz: 0
       offsetX: 0.5
       offsetY: -1
     - id: 4.1
       rotationx: 0
-      rotation: -168
+      rotation: 168
       rotationz: 0
       offsetX: 0.5
       offsetY: 0
     - id: 5.0
       rotationx: 0
-      rotation: 258
+      rotation: 180
       rotationz: 0
       offsetX: 1
       offsetY: -0.5

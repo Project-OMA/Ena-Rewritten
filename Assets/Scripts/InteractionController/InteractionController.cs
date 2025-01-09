@@ -82,43 +82,33 @@ public class InteractionController : MonoBehaviour
             Debug.DrawRay(rayPos.position, moveVector.normalized, Color.red, 2, true);
             RaycastHit hit;
             // Raycast in the movement direction
-            if (Physics.SphereCast(rayPos.position, 0.3f, moveVector, out hit, maxDistance:0.4f))
-            {
-                // Move the object if no obstacle is detected
+            if (!Physics.Raycast(rayPos.position, moveVector.normalized, out hit, 0.7f)){
 
-                if (hit.collider != null) {
-
-                    Debug.Log(hit.collider.gameObject.tag);
-                    if (hit.collider.gameObject.tag == "floor" || hit.collider.gameObject.tag == "Player") {
-
-                        Debug.Log("AAAAAAAAAAAAAAAAAAA");
-
-                        moveVector = new Vector3(moveVector.z, 0, -moveVector.x);
-                        player.Translate(moveVector);
-                        TutorialCheckpoints.playerHasMoved = true;
-        
-
-                        feedbackController.handleStep();
-
+                if (!Physics.SphereCast(rayPos.position, 0.4f, moveVector.normalized, out hit, maxDistance:0.3f))
+                {
                 
+                    moveVector = new Vector3(moveVector.z, 0, -moveVector.x);
+                    player.Translate(moveVector);
+                    TutorialCheckpoints.playerHasMoved = true;
+    
+
+                    feedbackController.handleStep();
+
+                    
+                    
+                    
                 }else{
-                    Debug.Log("Obstacle detected! Movement blocked.");
+
+                    
+                        Debug.Log("Obstacle detected! Movement blocked.");
                 }
-                
-            }
-            
-        }else
-            {
 
-                moveVector = new Vector3(moveVector.z, 0, -moveVector.x);
-                player.Translate(moveVector);
-                TutorialCheckpoints.playerHasMoved = true;
+            }else{
+
+                Debug.Log("Obstacle detected! Movement blocked.");
+
+            }
         
-
-                feedbackController.handleStep();
-
-                
-            }
 
         }
 

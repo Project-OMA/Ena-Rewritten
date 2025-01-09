@@ -43,7 +43,7 @@ public class HandFeedback : MonoBehaviour
 
     public Transform rayPos;
 
-    private int nextUpdate=0;
+    private float nextUpdate=0.2f;
 
     
     
@@ -80,7 +80,6 @@ public class HandFeedback : MonoBehaviour
                 
                 Debug.Log(leftController.position);
                 DetectController(leftController, "Left");
-                nextUpdate=Mathf.FloorToInt(Time.time)+1;
                 
             }
 
@@ -90,11 +89,11 @@ public class HandFeedback : MonoBehaviour
 
                 Debug.Log(rightController.position);
                 DetectController(rightController, "Cane");
-                nextUpdate=Mathf.FloorToInt(Time.time)+1;
 
                 
 
             }
+            nextUpdate=Mathf.FloorToInt(Time.time)+0.2f;
 
             
 
@@ -110,11 +109,8 @@ public class HandFeedback : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        
-       
 
         HandleCollisionExit(collision);
-        
         
         
     }  
@@ -262,17 +258,11 @@ public class HandFeedback : MonoBehaviour
 
     private void HandleCollisionExit(Collision collision)
     {
-        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Cane" || collision.gameObject.tag == "Left") return;
+        if (collision.gameObject.tag == "Player") return;
 
-        if(HandCheck.LeftHand){
-            
-            innerFeedbackLeft = true;
-        }
+        
 
-        if(HandCheck.RightHand){
-            
-            innerFeedbackRight = true;
-        }
+        
 
         GameObject collidedObject = LocateCollidedObjectRoot(collision.gameObject);
 
@@ -287,6 +277,21 @@ public class HandFeedback : MonoBehaviour
 
         if (Collisions.TryGetValue(collidedObjectTag + playerColliderTag, out var itemToUpdate))
         {
+
+            if(itemToUpdate.Whatcollided== "Cane Right Controller" || itemToUpdate.Whatcollided == "Left Left Controller"){
+
+
+                if(HandCheck.LeftHand){
+            
+                    innerFeedbackLeft = true;
+                }
+
+                if(HandCheck.RightHand){
+            
+                    innerFeedbackRight = true;
+                }
+
+            }
             itemToUpdate.IsColliding = false;
             HandleCollisionExitFeedback(itemToUpdate);
         }
