@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4855256719578693978}
   m_Layer: 0
   m_Name: porta-aberta
-  m_TagString: Untagged
+  m_TagString: DoorWindow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -135,6 +135,10 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a1ffc5fcbfa1c10edacb98641ec896d0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -7507259136935493001, guid: a1ffc5fcbfa1c10edacb98641ec896d0, type: 3}
+      propertyPath: m_TagString
+      value: DoorWindow
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a1ffc5fcbfa1c10edacb98641ec896d0, type: 3}
       propertyPath: m_Name

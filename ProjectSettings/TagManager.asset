@@ -25,6 +25,7 @@ TagManager:
   - persons
   - ttsSource
   - car
+  - Final
   layers:
   - Default
   - TransparentFX

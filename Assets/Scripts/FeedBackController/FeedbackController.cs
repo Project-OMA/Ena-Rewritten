@@ -10,6 +10,7 @@ public class FeedbackController : MonoBehaviour
 
  
     private static readonly Dictionary<string, CollisionEvent> FloorDetects = new Dictionary<string, CollisionEvent>();
+    private static readonly Dictionary<string, CollisionEvent> ObjDetects = new Dictionary<string, CollisionEvent>();
 
     #endregion
 
@@ -17,8 +18,9 @@ public class FeedbackController : MonoBehaviour
 
     public Dictionary<string, AudioSource> SoundSources { get; private set; }
 
-    private AudioSource WallStopSource;
     public AudioSource WalkSource;
+
+    public GameObject ObjSource;
 
     public Transform cam;
 
@@ -29,18 +31,6 @@ public class FeedbackController : MonoBehaviour
 
     #region Unity Callbacks
 
-    void Start()
-    {
-        //Fetch the AudioSource from the GameObject
-        WallStopSource = gameObject.AddComponent<AudioSource>();
-        
-
-        AudioClip audioClip = Resources.Load<AudioClip>("Sounds/alarme");
-        
-        WallStopSource.clip = audioClip;
-        
-        
-    }
     private void Awake()
     {
         InitializeFeedbackComponents();
@@ -51,6 +41,14 @@ public class FeedbackController : MonoBehaviour
     {
         //HandleCollisionFeedback();
         //DetectFloor();
+    }
+
+    private void Start(){
+
+
+        ObjSource = GameObject.Find("ObjSource");
+
+
     }
 
     #endregion
@@ -89,19 +87,66 @@ public class FeedbackController : MonoBehaviour
 
     #region Feedback Handling
 
-    public void handleWallCollision(bool toggle) {
 
-        if(!toggle){
-            WallStopSource.Play();
-        }
-       
-
-    }
 
     public void handleStep() {
         Debug.Log("Player did a step");
         DetectFloor();
     }
+
+
+    public void ObjectDectetorForCollision(GameObject collidedObject, Vector3 point){
+        
+
+        if (collidedObject.tag == "Player" || collidedObject.tag == "Cane" || collidedObject.tag == "Left" || collidedObject.tag == "car") return;
+        
+        Debug.Log("AAAAAAAAAAAAAA"+collidedObject);
+
+        collidedObject = LocateCollidedObjectRoot(collidedObject);
+
+        string collidedObjectTag = GetObjectName(collidedObject);
+        string playerColliderTag = GetObjectName(gameObject);
+
+        CollisionEvent collisionEvent=null;
+
+        var feedbackSettings = collidedObject.GetComponent<ObjectFeedbackSettings>()?.settings;
+
+            if (ObjDetects.TryGetValue(collidedObjectTag + playerColliderTag, out var item))
+            {
+                
+                collisionEvent = item;
+                collisionEvent.IsColliding = true;
+                collisionEvent.Vector3 = point;
+                HandleFeedback(item);
+                
+            }
+            else
+            {
+                if(MapLoader.hasMenu){
+                    map = MapLoader.mapMenu;
+                }else{
+                    map = MapLoader.mapNoMenu;
+                }
+                
+                collisionEvent = new CollisionEvent(
+                    collidedObject: collidedObjectTag,
+                    whatcollided: playerColliderTag,
+                    feedbackSettings: feedbackSettings,
+                    gameObject: collidedObject,
+                    vector3: point,
+                    currentMap: map,
+                    totalCollisions:0);
+                
+                collisionEvent.IsColliding = true;
+                collisionEvent.IsRay = true;
+                ObjDetects.Add(collidedObjectTag + playerColliderTag, collisionEvent);
+                HandleFeedback(collisionEvent);
+                
+            }
+        
+
+    }
+
     
     private void DetectFloor()
     {
@@ -225,15 +270,25 @@ public class FeedbackController : MonoBehaviour
         if (collision.IsColliding && collision.CanPlay)
             {
             // Debug.Log($"aaaaaaaaa: {collision.CanPlay}, {collision.CollidedObject}, {collision.IsColliding}, {!source.isPlaying}");
-                if (collision.IsRay){
+                if (collision.GameObject.tag=="floor"){
                     if(!WalkSource.isPlaying){
                         WalkSource.clip = sound;
                         WalkSource.Play();
                     }
+                }else{
+                    ObjSource.transform.position = collision.Vector3;
+                    ObjSource.transform.parent = collision.GameObject.transform;
+                    AudioSource audioSource = ObjSource.GetComponent<AudioSource>();
+
+                    if(!audioSource.isPlaying){
+                        audioSource.clip = sound;
+                        audioSource.Play();
                 }
                 }
             
         }
+
+    }
 
     #endregion
 

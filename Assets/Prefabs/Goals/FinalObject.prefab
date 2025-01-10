@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3479896126642799341}
   m_Layer: 0
   m_Name: FinalObject
-  m_TagString: Untagged
+  m_TagString: Final
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 3507130280689632827}
   m_Layer: 0
   m_Name: Trigger
-  m_TagString: Untagged
+  m_TagString: Final
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -262,8 +262,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 3, z: 1}
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!114 &8217646786975006910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -384,6 +384,10 @@ PrefabInstance:
     - target: {fileID: 100002, guid: 95729a44bf0e690418d79334c34a4481, type: 3}
       propertyPath: m_Name
       value: Flag_Pole
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 95729a44bf0e690418d79334c34a4481, type: 3}
+      propertyPath: m_TagString
+      value: Final
       objectReference: {fileID: 0}
     - target: {fileID: 400002, guid: 95729a44bf0e690418d79334c34a4481, type: 3}
       propertyPath: m_LocalScale.x

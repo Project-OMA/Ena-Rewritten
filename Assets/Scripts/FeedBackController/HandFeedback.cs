@@ -3,6 +3,7 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.XR;
 using System.Linq;
+using System.Collections;
 
 public class HandFeedback : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class HandFeedback : MonoBehaviour
     
 
     public static readonly Dictionary<string, CollisionEvent> Collisions = new Dictionary<string, CollisionEvent>();
+    
 
     private readonly string fileName = $"{Directory.GetCurrentDirectory()}/PlayerLogs/feedback.csv";
 
@@ -72,29 +74,7 @@ public class HandFeedback : MonoBehaviour
     private void Update()
     {
 
-        if (innerFeedbackLeft || innerFeedbackRight)
-    {
-        
-        if (Time.time >= nextUpdate)
-        {
-            if (innerFeedbackLeft)
-            {
-                Debug.Log("HALLO :D");
-                Debug.Log(leftController.position);
-                DetectController(leftController, "Left");
-            }
-
-            if (innerFeedbackRight)
-            {
-                Debug.Log("HALLO :D");
-                Debug.Log(rightController.position);
-                DetectController(rightController, "Cane");
-            }
-
-            
-            nextUpdate = Time.time + 0.2f;
-        }
-    }
+        //meme big boy
 
        
     }
@@ -106,6 +86,10 @@ public class HandFeedback : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
+        if(collision.gameObject.tag != "floor"){
+            StartCoroutine(FeedbackRoutine());
+        }
+        
 
         HandleCollisionExit(collision);
         
@@ -168,7 +152,7 @@ public class HandFeedback : MonoBehaviour
     {
         // Collisions with the Player game object are reported sometimes. This causes problems in the
         // LocateCollidedObjectRoot method, since the Player is located in the scene root (has no parent)
-        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Cane" || collision.gameObject.tag == "Left") return;
+        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Cane" || collision.gameObject.tag == "Left" || collision.gameObject.tag == "car") return;
 
         ContactPoint contact = collision.contacts[0];
         Debug.Log("Pos:" + contact.point);
@@ -246,9 +230,6 @@ public class HandFeedback : MonoBehaviour
             
         }
         
-
-        
-        
         
     }
     
@@ -321,6 +302,11 @@ public class HandFeedback : MonoBehaviour
         HandleFeedback(item);
         
     }
+
+
+    
+
+   
    
 
         
@@ -331,7 +317,7 @@ public class HandFeedback : MonoBehaviour
     {
         foreach (var feedbackType in collision.FeedbackSettings?.feedbackTypes ?? new FeedbackTypeEnum[0])
         {
-
+            
             if(collision.GameObject.tag!="floor"){
                 switch(collision.TotalCollisions){
 
@@ -367,7 +353,7 @@ public class HandFeedback : MonoBehaviour
                 }
 
 
-                PlayHapticFeedback(collision.FeedbackSettings.hapticForce, collision);
+                
                     
             }
         }
@@ -521,6 +507,31 @@ public class HandFeedback : MonoBehaviour
                 HapticImpulseRight.Stop();
             }
         }
+        
+    }
+}
+
+private IEnumerator FeedbackRoutine()
+{
+    while (innerFeedbackLeft || innerFeedbackRight)
+    {
+        yield return new WaitForSeconds(0.2f);
+
+
+        if (innerFeedbackLeft)
+        {
+            Debug.Log("HALLO :D");
+            Debug.Log(leftController.position);
+            DetectController(leftController, "Left");
+        }
+
+        if (innerFeedbackRight)
+        {
+            Debug.Log("HALLO :D");
+            Debug.Log(rightController.position);
+            DetectController(rightController, "Cane");
+        }
+
         
     }
 }

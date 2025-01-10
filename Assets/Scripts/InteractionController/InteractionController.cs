@@ -21,7 +21,8 @@ public class InteractionController : MonoBehaviour
     public GameObject Offset;
     public GameObject cam;
     private Collider collider;
-    public Transform rayPos;
+    public Transform upperRayPos;
+    public Transform lowerRayPos;
 
     public Transform xrOrigin;
 
@@ -67,14 +68,15 @@ public class InteractionController : MonoBehaviour
 
         Vector3 previousPos = Offset.transform.position;
     
-        if (moveVector != Vector3.zero)
+        if (moveVector != Vector3.zero && !headCollider.headcolliding)
         {
-            Debug.DrawRay(rayPos.position, moveVector.normalized, Color.red, 2, true);
+
+            Debug.DrawRay(lowerRayPos.position, moveVector.normalized, Color.red, 2, true);
             RaycastHit hit;
             // Raycast in the movement direction
-            if (!Physics.Raycast(rayPos.position, moveVector.normalized, out hit, 0.7f)){
+            if (!Physics.Raycast(lowerRayPos.position, moveVector.normalized, out hit, 0.7f)){
 
-                if (!Physics.SphereCast(rayPos.position, 0.4f, moveVector.normalized, out hit, maxDistance:0.3f))
+                if (!Physics.SphereCast(upperRayPos.position, 0.4f, moveVector.normalized, out hit, maxDistance:0.3f))
                 {
                 
                     
@@ -89,11 +91,38 @@ public class InteractionController : MonoBehaviour
                     
                 }else{
 
-                    
-                        Debug.Log("Obstacle detected! Movement blocked.");
+                    Debug.Log(hit.collider.gameObject.tag);
+
+                    if(hit.collider.gameObject.tag == "Final" || hit.collider.gameObject.tag == "floor"|| hit.collider.gameObject.tag == "DoorWindow"){
+
+                        player.Translate(moveVector, Space.World);
+                        TutorialCheckpoints.playerHasMoved = true;
+    
+
+                        feedbackController.handleStep();
+
+                    }
+
+                    feedbackController.ObjectDectetorForCollision(hit.collider.gameObject, hit.point);
+
+                    Debug.Log("Obstacle detected! Movement blocked.");
                 }
 
             }else{
+
+                Debug.Log(hit.collider.gameObject.tag);
+
+                if(hit.collider.gameObject.tag == "Final" || hit.collider.gameObject.tag == "floor" || hit.collider.gameObject.tag == "DoorWindow"){
+
+                        player.Translate(moveVector, Space.World);
+                        TutorialCheckpoints.playerHasMoved = true;
+    
+
+                        feedbackController.handleStep();
+
+                    }
+
+                feedbackController.ObjectDectetorForCollision(hit.collider.gameObject, hit.point);
 
                 Debug.Log("Obstacle detected! Movement blocked.");
 

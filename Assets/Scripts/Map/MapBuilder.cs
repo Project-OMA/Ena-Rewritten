@@ -434,14 +434,20 @@ public class MapBuilder : MonoBehaviour
         obj.name = name;
 
         obj.transform.parent = parent.transform;
-        obj.tag = tag;
 
+        if(prefab.tag != "Final"){
+          obj.tag = tag;  
+        }
+
+        
         obj.AddComponent<ObjectFeedbackSettings>();
         obj.GetComponent<ObjectFeedbackSettings>().settings = feedbackSettings;
 
-    
 
-        AddTagsToChildren(obj.transform, obj.tag);
+        if(obj.tag != "Final"){
+           AddTagsToChildren(obj.transform, obj.tag); 
+        }
+        
 
 
         // Use this code to remove extra colliders in the prefab
