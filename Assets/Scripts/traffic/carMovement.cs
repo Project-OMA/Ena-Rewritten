@@ -12,7 +12,7 @@ public class carmovement : MonoBehaviour
     void Update()
     {
 
-        if(trafficController.canMove){
+        if(trafficController.canMove && !playerOnTrafficSign.playerCrossing){
           transform.Translate(Vector3.right * speed * Time.deltaTime);  
         }
         

@@ -98,7 +98,7 @@ public class FeedbackController : MonoBehaviour
     public void ObjectDectetorForCollision(GameObject collidedObject, Vector3 point){
         
 
-        if (collidedObject.tag == "Player" || collidedObject.tag == "Cane" || collidedObject.tag == "Left" || collidedObject.tag == "car") return;
+        if (collidedObject.tag == "Player" || collidedObject.tag == "Cane" || collidedObject.tag == "Left" || collidedObject.tag == "car" || collidedObject.tag == "Final") return;
         
         Debug.Log("AAAAAAAAAAAAAA"+collidedObject);
 
@@ -113,10 +113,12 @@ public class FeedbackController : MonoBehaviour
 
             if (ObjDetects.TryGetValue(collidedObjectTag + playerColliderTag, out var item))
             {
+                Debug.Log("BBBBBBBBBBBBBBBB"+ item);
                 
                 collisionEvent = item;
                 collisionEvent.IsColliding = true;
                 collisionEvent.Vector3 = point;
+                collisionEvent.GameObject = collidedObject;
                 HandleFeedback(item);
                 
             }
@@ -188,6 +190,7 @@ public class FeedbackController : MonoBehaviour
                             collisionEvent = item;
                             collisionEvent.IsColliding = true;
                             collisionEvent.Vector3 = hit.point;
+                            collisionEvent.GameObject = collidedObject;
                             HandleWalkFeedback(item);
                             
                         }
@@ -252,7 +255,7 @@ public class FeedbackController : MonoBehaviour
         
         string inputString = collision.CollidedObject;
 
-        Debug.Log(collision.GameObject);
+        Debug.Log("AAAAAAAAAAAAAAAAAA"+collision.GameObject);
 
         int lineSeparatorIndex = inputString.IndexOf("%");
 

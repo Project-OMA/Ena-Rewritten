@@ -17,25 +17,44 @@ MonoBehaviour:
     prefab: {fileID: 2034380779081966565, guid: 67608bb98bf2a94498d08dab24dd73b3, type: 3}
     variations:
     - id: 0.0
+      rotationx: 0
       rotation: 0
+      rotationz: 0
       offsetX: 0
       offsetY: 0
     - id: 1.0
+      rotationx: 0
       rotation: 90
+      rotationz: 0
       offsetX: 0
       offsetY: 0
     - id: 2.0
+      rotationx: 0
       rotation: 180
+      rotationz: 0
       offsetX: 0
       offsetY: 0
     - id: 3.0
+      rotationx: 0
       rotation: 270
+      rotationz: 0
       offsetX: 0
       offsetY: 0
   - name: PlayerTutorial
     prefab: {fileID: 2034380779081966565, guid: 5b1f675086e002d4cb478e78897fd8a0, type: 3}
     variations:
     - id: 6.9
+      rotationx: 0
       rotation: 0
+      rotationz: 0
+      offsetX: 0
+      offsetY: 0
+  - name: Player Traffic
+    prefab: {fileID: 2034380779081966565, guid: 4c647f4fd30bd434f847275ac9aa218a, type: 3}
+    variations:
+    - id: 1.9
+      rotationx: 0
+      rotation: 0
+      rotationz: 0
       offsetX: 0
       offsetY: 0

@@ -16,6 +16,10 @@ public class trafficController : MonoBehaviour
 
     private AudioClip clip;
 
+    private bool CheckPlayer;
+
+    private bool canInvoke = false; 
+
     void Start(){
         trigger.SetActive(false);
 
@@ -31,10 +35,16 @@ public class trafficController : MonoBehaviour
     		nextUpdate=Mathf.FloorToInt(Time.time)+20;
 
             trigger.SetActive(true);
-            Invoke(nameof(RestartCar), restartDelay);
+
+            canMove = false;
 
     		
-    	}
+    	}else{
+
+            if(!playerOnTrafficSign.playerCrossing && canMove){
+                RestartCar();
+            }
+        }
     }
 
     private void RestartCar()

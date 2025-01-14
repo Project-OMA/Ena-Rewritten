@@ -175,6 +175,7 @@ public class HandFeedback : MonoBehaviour
             if(!item.IsColliding && !item.CanPlay){
                 item.IsColliding = true;
                 item.Vector3 = contact.point;
+                item.GameObject = collidedObject;
                 noSoundChild = true;
 
 
@@ -467,6 +468,24 @@ public class HandFeedback : MonoBehaviour
                 
                 
         }
+    }
+
+    public void TrafficHaptic(){
+
+        
+        HapticImpulseLeft.Play(0.5f);
+            
+        HapticImpulseRight.Play(0.5f);   
+                      
+
+    }
+
+    public void stopHaptic(){
+
+        HapticImpulseLeft.Stop();
+            
+        HapticImpulseRight.Stop(); 
+
     }
 
     #endregion

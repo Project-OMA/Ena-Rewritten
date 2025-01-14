@@ -13,7 +13,7 @@ public class CollisionEvent
 
     [CsvColumn("Collided Object")]
     public string CollidedObject { get; }
-    public GameObject GameObject { get; }
+    public GameObject GameObject { get; set;}
 
 
     [CsvColumn("CurrentMap")]

@@ -172,7 +172,7 @@ public class MenuTrans : MonoBehaviour
             
         }
 
-        if(tutButton.action.WasPressedThisFrame() && !hasMenu && !TutorialCheckpoints.playerInTutorial){
+        if((tutButton.action.WasPressedThisFrame() || Input.GetKeyDown(KeyCode.G)) && !hasMenu && !TutorialCheckpoints.playerInTutorial){
 
             
                 
@@ -191,7 +191,7 @@ public class MenuTrans : MonoBehaviour
 
         }
 
-        if(showButton.action.WasPressedThisFrame() && TutorialCheckpoints.playerInTutorial){
+        if((showButton.action.WasPressedThisFrame()|| Input.GetKeyDown(KeyCode.Y)) && TutorialCheckpoints.playerInTutorial){
 
 
             if(hasMenu){

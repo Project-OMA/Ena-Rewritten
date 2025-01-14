@@ -323,6 +323,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5875056428662241230}
   - component: {fileID: 5811438234839923407}
+  - component: {fileID: 3139049422051835159}
   m_Layer: 0
   m_Name: WalkSource
   m_TagString: Untagged
@@ -339,11 +340,11 @@ Transform:
   m_GameObject: {fileID: 716635873355475633}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.85, z: 0}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
   m_LocalScale: {x: 5.975, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 9021602701237009669}
+  m_Father: {fileID: 5447439605283604104}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!82 &5811438234839923407
 AudioSource:
@@ -477,6 +478,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3139049422051835159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 716635873355475633}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f079e358e57e0d47aad283301aae11c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camOffset: {fileID: 1090207565412135589}
+  collider: {fileID: 5875056428662241230}
+  realPostion: {x: 0, y: 0, z: 0}
 --- !u!1 &1541968084725081838
 GameObject:
   m_ObjectHideFlags: 0
@@ -1363,7 +1379,7 @@ Transform:
   m_GameObject: {fileID: 7142854633766255244}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1383,7 +1399,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camOffset: {fileID: 1090207565412135589}
   collider: {fileID: 8879146408668595340}
-  currentcam: {x: 0, y: 0, z: 0, w: 0}
   realPostion: {x: 0, y: 0, z: 0}
 --- !u!1 &8029400319374813340
 GameObject:
@@ -1431,7 +1446,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camOffset: {fileID: 1090207565412135589}
   collider: {fileID: 7082499631365977786}
-  currentcam: {x: 0, y: 0, z: 0, w: 0}
   realPostion: {x: 0, y: 0, z: 0}
 --- !u!1 &8368251549774659713
 GameObject:
@@ -1828,7 +1842,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3048313464044057801, guid: 0329f04dbf5b30441ac4a444193ac58a, type: 3}
       insertIndex: 1
       addedObject: {fileID: 8879146408668595340}
-    - targetCorrespondingSourceObject: {fileID: 3048313464044057801, guid: 0329f04dbf5b30441ac4a444193ac58a, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 2082864661432078148, guid: 0329f04dbf5b30441ac4a444193ac58a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5875056428662241230}
     - targetCorrespondingSourceObject: {fileID: 6368038382758017897, guid: 0329f04dbf5b30441ac4a444193ac58a, type: 3}
@@ -2008,6 +2022,11 @@ MonoBehaviour:
 --- !u!1 &4282440168370552475 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7786912384716273495, guid: 0329f04dbf5b30441ac4a444193ac58a, type: 3}
+  m_PrefabInstance: {fileID: 6304726299295173068}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5447439605283604104 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2082864661432078148, guid: 0329f04dbf5b30441ac4a444193ac58a, type: 3}
   m_PrefabInstance: {fileID: 6304726299295173068}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &5456405218347643516 stripped

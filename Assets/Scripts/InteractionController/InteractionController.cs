@@ -74,9 +74,9 @@ public class InteractionController : MonoBehaviour
             Debug.DrawRay(lowerRayPos.position, moveVector.normalized, Color.red, 2, true);
             RaycastHit hit;
             // Raycast in the movement direction
-            if (!Physics.Raycast(lowerRayPos.position, moveVector.normalized, out hit, 0.7f)){
+            if (!Physics.Raycast(lowerRayPos.position, moveVector.normalized, out hit, 0.6f)){
 
-                if (!Physics.SphereCast(upperRayPos.position, 0.4f, moveVector.normalized, out hit, maxDistance:0.3f))
+                if (!Physics.SphereCast(upperRayPos.position, 0.4f, moveVector.normalized, out hit, maxDistance:0.2f))
                 {
                 
                     
