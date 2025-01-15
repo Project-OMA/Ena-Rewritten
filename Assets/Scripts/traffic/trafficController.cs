@@ -36,15 +36,14 @@ public class trafficController : MonoBehaviour
 
             trigger.SetActive(true);
 
-            canMove = false;
+            Invoke(nameof(RestartCar), restartDelay);
+
+            canInvoke = true;
 
     		
-    	}else{
+    	}
 
-            if(!playerOnTrafficSign.playerCrossing && canMove){
-                RestartCar();
-            }
-        }
+        
     }
 
     private void RestartCar()

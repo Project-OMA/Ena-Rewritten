@@ -1948,7 +1948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59b9bf09e40811b2487ba616c9176d5c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  WalkSource: {fileID: 0}
+  WalkSource: {fileID: 4490317936669943305}
   ObjSource: {fileID: 0}
   cam: {fileID: 1090207565412135589}
 --- !u!4 &1090207565412135589 stripped

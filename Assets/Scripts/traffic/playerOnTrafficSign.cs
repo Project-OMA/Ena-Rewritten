@@ -6,12 +6,12 @@ public class playerOnTrafficSign : MonoBehaviour
 {
 
     public static bool playerCrossing = false;
+
+
     // Start is called before the first frame update
     void OnTriggerEnter(Collider collision){
 
         if(collision.gameObject.tag == "Player"){
-
-            
 
             playerCrossing = true;
         }

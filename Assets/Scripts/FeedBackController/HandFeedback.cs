@@ -329,13 +329,13 @@ public class HandFeedback : MonoBehaviour
                     
                     case 2:
                         PlaySoundFeedback(collision.FeedbackSettings.sound2, collision);
-                        PlayHapticFeedback(collision.FeedbackSettings.hapticForce+0.5f, collision);
+                        PlayHapticFeedback(collision.FeedbackSettings.hapticForce, collision);
                         break;
                     
                     case 3:
 
                         PlaySoundFeedback(collision.FeedbackSettings.sound1, collision);
-                        PlayHapticFeedback(collision.FeedbackSettings.hapticForce+1.0f, collision);
+                        PlayHapticFeedback(collision.FeedbackSettings.hapticForce, collision);
 
 
                         audioTrail.clip = collision.FeedbackSettings.sound3;

@@ -39,7 +39,10 @@ public class HapticFeedback
                         xrController.SendHapticImpulse(channel, amplitude);
                         yield return null;
                     }
-                    yield return null;
+                    else {
+                        xrController.StopHaptics();
+                        yield break;
+                    }
                 }
             }
         }

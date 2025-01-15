@@ -76,7 +76,7 @@ public class InteractionController : MonoBehaviour
             // Raycast in the movement direction
             if (!Physics.Raycast(lowerRayPos.position, moveVector.normalized, out hit, 0.6f)){
 
-                if (!Physics.SphereCast(upperRayPos.position, 0.4f, moveVector.normalized, out hit, maxDistance:0.2f))
+                if (!Physics.SphereCast(upperRayPos.position, 0.3f, moveVector.normalized, out hit, maxDistance:0.3f))
                 {
                 
                     
