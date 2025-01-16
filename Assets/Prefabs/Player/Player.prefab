@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7881354942847668096}
   - component: {fileID: 369056823817487587}
   - component: {fileID: 4692195604468368003}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sphere
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 7649814925302121980}
   - component: {fileID: 6634033463078527052}
   - component: {fileID: 2019835334778122576}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Left Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -735,6 +735,8 @@ MonoBehaviour:
   m_StopLineAtSelection: 0
   m_SnapEndpointIfAvailable: 1
   m_LineBendRatio: 0.5
+  m_BendingEnabledInteractionLayers:
+    m_Bits: 4294967295
   m_OverrideInteractorLineOrigin: 1
   m_LineOriginTransform: {fileID: 0}
   m_LineOriginOffset: 0
@@ -764,7 +766,7 @@ GameObject:
   - component: {fileID: 5015750670474748726}
   - component: {fileID: 7476704293103265212}
   - component: {fileID: 6933743504043118424}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Right Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1391,6 +1393,8 @@ MonoBehaviour:
   m_StopLineAtSelection: 0
   m_SnapEndpointIfAvailable: 1
   m_LineBendRatio: 0.5
+  m_BendingEnabledInteractionLayers:
+    m_Bits: 4294967295
   m_OverrideInteractorLineOrigin: 1
   m_LineOriginTransform: {fileID: 0}
   m_LineOriginOffset: 0
@@ -1515,12 +1519,24 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4821809682427395678, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4821809682427395678, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4925819201175004966, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5961454215542747314, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6574937890472683209, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6667308961424678325, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
       propertyPath: m_Enabled
@@ -1531,8 +1547,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 7331675978371474208, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7331675978371474208, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
       propertyPath: m_TagString
       value: camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 7401402643215338769, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7481338633285274076, guid: a29087f5bd0c79a43bf93646d51cd6fd, type: 3}
       propertyPath: m_Enabled

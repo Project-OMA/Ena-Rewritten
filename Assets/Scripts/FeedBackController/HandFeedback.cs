@@ -153,7 +153,7 @@ public class HandFeedback : MonoBehaviour
     {
         // Collisions with the Player game object are reported sometimes. This causes problems in the
         // LocateCollidedObjectRoot method, since the Player is located in the scene root (has no parent)
-        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Cane" || collision.gameObject.tag == "Left" || collision.gameObject.tag == "car") return;
+        if (collision.gameObject.tag == "car") return;
 
         ContactPoint contact = collision.contacts[0];
         Debug.Log("Pos:" + contact.point);
@@ -170,9 +170,26 @@ public class HandFeedback : MonoBehaviour
 
         TutorialCheckpoints.playerHasInteracted = true;
 
+        
+
        
         if (Collisions.TryGetValue(collidedObjectTag + playerColliderTag, out var item))
-        {            
+        {   
+            if(item.Whatcollided== "Cane Right Controller" || item.Whatcollided == "Left Left Controller"){
+
+
+                if(HandCheck.LeftHand){
+            
+                    innerFeedbackLeft = true;
+                }
+
+                if(HandCheck.RightHand){
+            
+                    innerFeedbackRight = true;
+                }
+
+            }   
+
             if(!item.IsColliding && !item.CanPlay){
                 item.IsColliding = true;
                 item.Vector3 = contact.point;
@@ -228,6 +245,22 @@ public class HandFeedback : MonoBehaviour
         
             Collisions.Add(collidedObjectTag + playerColliderTag, collisionEvent);
             collisionEvent.IsColliding = true;
+
+            if(collisionEvent.Whatcollided== "Cane Right Controller" || collisionEvent.Whatcollided == "Left Left Controller"){
+
+
+                if(HandCheck.LeftHand){
+            
+                    innerFeedbackLeft = true;
+                }
+
+                if(HandCheck.RightHand){
+            
+                    innerFeedbackRight = true;
+                }
+
+            }  
+            
             HandleCollisionEnterFeedback(collisionEvent);
             
         }
@@ -238,10 +271,9 @@ public class HandFeedback : MonoBehaviour
 
     private void HandleCollisionExit(Collision collision)
     {
-        if (collision.gameObject.tag == "Player"|| collision.gameObject.tag == "Cane" || collision.gameObject.tag == "Left") return;
 
+        Debug.Log("amberlamps"+ collision.gameObject.tag);
         
-
         
 
         GameObject collidedObject = LocateCollidedObjectRoot(collision.gameObject);
@@ -258,20 +290,7 @@ public class HandFeedback : MonoBehaviour
         if (Collisions.TryGetValue(collidedObjectTag + playerColliderTag, out var itemToUpdate))
         {
 
-            if(itemToUpdate.Whatcollided== "Cane Right Controller" || itemToUpdate.Whatcollided == "Left Left Controller"){
-
-
-                if(HandCheck.LeftHand){
             
-                    innerFeedbackLeft = true;
-                }
-
-                if(HandCheck.RightHand){
-            
-                    innerFeedbackRight = true;
-                }
-
-            }
             itemToUpdate.IsColliding = false;
             HandleCollisionExitFeedback(itemToUpdate);
         }
@@ -502,7 +521,7 @@ public class HandFeedback : MonoBehaviour
     {
         RaycastHit hit;
         Vector3 direction = (currentController.position - rayPos.position).normalized;
-
+        Debug.Log("memebigboy");
         
         Debug.DrawRay(rayPos.position, direction * 5, Color.red, 5, true);
 
@@ -533,6 +552,8 @@ public class HandFeedback : MonoBehaviour
 
 private IEnumerator FeedbackRoutine()
 {
+
+
     while (innerFeedbackLeft || innerFeedbackRight)
     {
         yield return new WaitForSeconds(0.15f);

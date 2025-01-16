@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7719217461193035141}
   - component: {fileID: 3948495021522208145}
   - component: {fileID: 6581167756232844618}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: TouchPad
   m_TagString: Left
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 5488926764375732961}
   - component: {fileID: 5546920259920998435}
   - component: {fileID: 3591102075257121437}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Button_B
   m_TagString: Left
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 5551125943416818270}
   - component: {fileID: 1311942897710075639}
   - component: {fileID: 804292978268976271}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ThumbStick
   m_TagString: Left
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 7656785331879846650}
   - component: {fileID: 3629011562858007340}
   - component: {fileID: 8505742608970525457}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Trigger
   m_TagString: Left
   m_Icon: {fileID: 0}
@@ -343,7 +343,7 @@ GameObject:
   - component: {fileID: 4409659463910318501}
   - component: {fileID: 6190287511479189489}
   - component: {fileID: 2953040850335233957}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ThumbStick_Base
   m_TagString: Left
   m_Icon: {fileID: 0}
@@ -424,7 +424,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8173916776436821938}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: XRController_LT_Thumbstick_Buttons
   m_TagString: Left
   m_Icon: {fileID: 0}
@@ -461,7 +461,7 @@ GameObject:
   - component: {fileID: 8937122768819410266}
   - component: {fileID: 6989809552187391942}
   - component: {fileID: 2850486098467457892}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Button_Home
   m_TagString: Left
   m_Icon: {fileID: 0}
@@ -544,7 +544,7 @@ GameObject:
   - component: {fileID: 7951258207224713824}
   - component: {fileID: 2046265684884497959}
   - component: {fileID: 2101229328401842903}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Button_A
   m_TagString: Left
   m_Icon: {fileID: 0}
@@ -627,7 +627,7 @@ GameObject:
   - component: {fileID: 5729059251352797873}
   - component: {fileID: 7013576290909491880}
   - component: {fileID: 2937204069651033959}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Controller_Base
   m_TagString: Left
   m_Icon: {fileID: 0}
@@ -710,7 +710,7 @@ GameObject:
   - component: {fileID: 8402887055810999798}
   - component: {fileID: 7720275433028147840}
   - component: {fileID: 5436389215136348666}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bumper
   m_TagString: Left
   m_Icon: {fileID: 0}
@@ -793,8 +793,7 @@ GameObject:
   - component: {fileID: 8270855663187062767}
   - component: {fileID: 195445055339462722}
   - component: {fileID: 7515025645555319734}
-  - component: {fileID: 5363082242000862748}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: XR Controller Left
   m_TagString: Left
   m_Icon: {fileID: 0}
@@ -856,24 +855,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.035, y: 0.01, z: 0.03014765}
   m_Center: {x: 0, y: -0.0055, z: -0.00491}
---- !u!65 &5363082242000862748
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8758423527188247893}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.015, y: 0.0185568, z: 0.02}
-  m_Center: {x: 0, y: -0.01975, z: -0.0076}
