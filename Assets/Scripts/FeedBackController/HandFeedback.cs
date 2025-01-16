@@ -59,6 +59,7 @@ public class HandFeedback : MonoBehaviour
     {
         
         audioTrail = GameObject.Find("AudioTrailSource").GetComponent<AudioSource>();
+        
 
 
         
@@ -498,43 +499,43 @@ public class HandFeedback : MonoBehaviour
     }
 
     public void DetectController(Transform currentController, string tag)
-{
-    RaycastHit hit;
-    Vector3 direction = (currentController.position - rayPos.position).normalized;
-
-    
-    Debug.DrawRay(rayPos.position, direction * 5, Color.red, 5, true);
-
-    if (Physics.Raycast(rayPos.position, direction, out hit, 5))
     {
-        if (hit.collider != null && hit.collider.gameObject.tag == tag)
-        {
-            Debug.Log("Detected object with tag: " + tag);
+        RaycastHit hit;
+        Vector3 direction = (currentController.position - rayPos.position).normalized;
 
-            if (tag == "Left")
-            {
-                Debug.Log("Found");
-                HandCheck.LeftHand = false;
-                innerFeedbackLeft = false;
-                HapticImpulseLeft.Stop();
-            }
-            else if (tag == "Cane")
-            {
-                Debug.Log("Found");
-                HandCheck.RightHand = false;
-                innerFeedbackRight = false;
-                HapticImpulseRight.Stop();
-            }
-        }
         
-    }
+        Debug.DrawRay(rayPos.position, direction * 5, Color.red, 5, true);
+
+        if (Physics.Raycast(rayPos.position, direction, out hit, 5))
+        {
+            if (hit.collider != null && hit.collider.gameObject.tag == tag)
+            {
+                Debug.Log("Detected object with tag: " + tag);
+
+                if (tag == "Left")
+                {
+                    Debug.Log("Found");
+                    HandCheck.LeftHand = false;
+                    innerFeedbackLeft = false;
+                    HapticImpulseLeft.Stop();
+                }
+                else if (tag == "Cane")
+                {
+                    Debug.Log("Found");
+                    HandCheck.RightHand = false;
+                    innerFeedbackRight = false;
+                    HapticImpulseRight.Stop();
+                }
+            }
+            
+        }
 }
 
 private IEnumerator FeedbackRoutine()
 {
     while (innerFeedbackLeft || innerFeedbackRight)
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.15f);
 
 
         if (innerFeedbackLeft)
@@ -547,7 +548,8 @@ private IEnumerator FeedbackRoutine()
         if (innerFeedbackRight)
         {
             Debug.Log("HALLO :D");
-            Debug.Log(rightController.position);
+            rightController = GameObject.Find("collisionRight").transform;
+            Debug.Log("HEYYY"+rightController.position);
             DetectController(rightController, "Cane");
         }
 

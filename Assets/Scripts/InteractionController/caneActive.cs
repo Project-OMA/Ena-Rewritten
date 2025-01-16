@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.InputSystem;
 
 
 
@@ -11,12 +12,11 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class caneActive : MonoBehaviour
 {
     public GameObject bengala;
-    public XRBaseController controller;
 
     bool isItemActive = false;
     bool lastPrimaryButtonState = false;
 
-    InputDevice xrInputDevice;
+    public InputActionProperty caneButton;
 
     public AudioSource m_MyAudioSource;
 
@@ -27,18 +27,11 @@ public class caneActive : MonoBehaviour
         
     }
 
-    
-
-
-
-
     // Start is called before the first frame update
     void Update()
     {
-        bool primaryButtonValue = GetPrimaryButtonValue();
-
-        if (primaryButtonValue && !lastPrimaryButtonState)
-        {
+        
+        if(caneButton.action.WasPressedThisFrame()){
             isItemActive = !isItemActive;
             bengala.SetActive(isItemActive);
 
@@ -50,20 +43,9 @@ public class caneActive : MonoBehaviour
             }
             m_MyAudioSource.Play();
         }
-
-        lastPrimaryButtonState = primaryButtonValue;
+            
+        
     }
 
-    // Update is called once per frame
-    bool GetPrimaryButtonValue()
-    {
-        var xrInputDevices = new List<InputDevice>();
-        InputDevices.GetDevicesAtXRNode(XRNode.RightHand, xrInputDevices);
-        xrInputDevice = xrInputDevices.FirstOrDefault();
-
-        var isFeatureAvalible = xrInputDevice.TryGetFeatureValue(CommonUsages.primaryButton, out var buttonValue);
-
-
-        return isFeatureAvalible && buttonValue;
-    }
+    
 }

@@ -14,7 +14,7 @@ public class HapticFeedback
         this.self = self;
     }
 
-    public void Play(float amplitude = 0.4f)
+    public void Play(float amplitude)
     {
         // Debug.Log($"isHapticFeedbackPlaying: {isHapticFeedbackPlaying}");
         if (!isHapticFeedbackPlaying)
