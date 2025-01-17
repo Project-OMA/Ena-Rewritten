@@ -10,9 +10,18 @@ public class adjustrotation : MonoBehaviour
 
     public Vector3 realPostion; 
 
+    public Quaternion currentcam;
+
     
     void Update()
     {
+        if (camOffset.rotation != currentcam){
+
+            currentcam = camOffset.rotation;
+
+            collider.rotation = Quaternion.Euler(camOffset.rotation.x, -camOffset.rotation.y, camOffset.rotation.z);
+
+        }
 
         realPostion = collider.position;
 

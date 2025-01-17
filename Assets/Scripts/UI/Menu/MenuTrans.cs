@@ -218,7 +218,7 @@ public class MenuTrans : MonoBehaviour
         
 
 
-        if(transButton.action.WasPressedThisFrame() && !hasMenu  && MapLoader.playerInMain){
+        if((transButton.action.WasPressedThisFrame() || Input.GetKeyDown(KeyCode.M)) && !hasMenu  && MapLoader.playerInMain){
 
             MapLoader.mapselected +=1;
             
