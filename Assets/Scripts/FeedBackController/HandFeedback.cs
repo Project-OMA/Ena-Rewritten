@@ -151,6 +151,7 @@ public class HandFeedback : MonoBehaviour
 
     private void HandleCollisionEnter(Collision collision)
     {
+        
         // Collisions with the Player game object are reported sometimes. This causes problems in the
         // LocateCollidedObjectRoot method, since the Player is located in the scene root (has no parent)
         if (collision.gameObject.tag == "car") return;

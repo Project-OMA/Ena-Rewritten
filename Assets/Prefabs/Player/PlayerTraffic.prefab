@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3587521098854622267}
   - component: {fileID: 7811183181619495396}
   - component: {fileID: 2677169426053352651}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 4832052849059395250}
   - component: {fileID: 7762837355751759203}
   - component: {fileID: 3043938140073845391}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 1408860446911211408}
   - component: {fileID: 6406169856661596832}
   - component: {fileID: 7812965523476251013}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: WarningStray
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -323,7 +323,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6227912207848657302}
   - component: {fileID: 6719147702176663587}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: MenuPai
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -439,7 +439,7 @@ GameObject:
   - component: {fileID: 8437097701581308744}
   - component: {fileID: 416147098236921801}
   - component: {fileID: 9066533442854084176}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -571,7 +571,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1543652694960871975}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -605,7 +605,7 @@ GameObject:
   - component: {fileID: 6246925618338171834}
   - component: {fileID: 8732046559234503284}
   - component: {fileID: 1692611934463593624}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: WarningPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -739,7 +739,7 @@ GameObject:
   - component: {fileID: 7190078357753454904}
   - component: {fileID: 5785689017857878373}
   - component: {fileID: 2554845102478786786}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -873,7 +873,7 @@ GameObject:
   - component: {fileID: 2935923770268400031}
   - component: {fileID: 753588640679702826}
   - component: {fileID: 1830265678410293149}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1008,7 +1008,7 @@ GameObject:
   - component: {fileID: 6187208456085032308}
   - component: {fileID: 4086013475227048802}
   - component: {fileID: 6104585864095984112}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: blindness
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1109,7 +1109,7 @@ GameObject:
   - component: {fileID: 3375011904685513517}
   - component: {fileID: 8351788409672490127}
   - component: {fileID: 617117011106342250}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1183,7 +1183,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8879146408668595340}
   - component: {fileID: 721849578349603339}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Upper WallDetect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1220,6 +1220,7 @@ MonoBehaviour:
   camOffset: {fileID: 1090207565412135589}
   collider: {fileID: 8879146408668595340}
   realPostion: {x: 0, y: 0, z: 0}
+  currentcam: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &8029400319374813340
 GameObject:
   m_ObjectHideFlags: 0
@@ -1230,7 +1231,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7082499631365977786}
   - component: {fileID: 7204507121914567358}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Lower WallDetect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1267,6 +1268,7 @@ MonoBehaviour:
   camOffset: {fileID: 1090207565412135589}
   collider: {fileID: 7082499631365977786}
   realPostion: {x: 0, y: 0, z: 0}
+  currentcam: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &8239321654635331314
 GameObject:
   m_ObjectHideFlags: 0
@@ -1278,7 +1280,7 @@ GameObject:
   - component: {fileID: 1809874481457512834}
   - component: {fileID: 4490317936669943305}
   - component: {fileID: 1231657836891026487}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: WalkSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1447,6 +1449,7 @@ MonoBehaviour:
   camOffset: {fileID: 1090207565412135589}
   collider: {fileID: 1809874481457512834}
   realPostion: {x: 0, y: 0, z: 0}
+  currentcam: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &8368251549774659713
 GameObject:
   m_ObjectHideFlags: 0
@@ -1460,7 +1463,7 @@ GameObject:
   - component: {fileID: 6231978294274518430}
   - component: {fileID: 2304617409732419301}
   - component: {fileID: 6302928513740326650}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1581,7 +1584,7 @@ GameObject:
   - component: {fileID: 2053167539748094678}
   - component: {fileID: 533220614302957472}
   - component: {fileID: 4063993135679789841}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Main Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1985,7 +1988,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -2062,7 +2065,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
