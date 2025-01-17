@@ -169,8 +169,10 @@ public class InteractionController : MonoBehaviour
         vector3: playerPos,
         currentMap: currentMap
     );
-
-    PlayerDetects.Add(nextUpdate, playerEvent);
+    if (!PlayerDetects.TryGetValue(nextUpdate, out var item)){
+        PlayerDetects.Add(nextUpdate, playerEvent);
+    }
+    
 
     }
 
