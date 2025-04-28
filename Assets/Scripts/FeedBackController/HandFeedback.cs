@@ -143,6 +143,7 @@ public class HandFeedback : MonoBehaviour
             Debug.Log(collidedObject.name);
             // Get parent of the object we're looking at
             currentObject = currentObject.transform.parent.gameObject;
+            Debug.Log("error object" + currentObject.name);
             feedbackSettings = currentObject.GetComponent<ObjectFeedbackSettings>();
         }
 
@@ -154,7 +155,7 @@ public class HandFeedback : MonoBehaviour
         
         // Collisions with the Player game object are reported sometimes. This causes problems in the
         // LocateCollidedObjectRoot method, since the Player is located in the scene root (has no parent)
-        if (collision.gameObject.tag == "car") return;
+        if (collision.gameObject.tag == "car" && collision.gameObject.tag == "Player") return;
 
         ContactPoint contact = collision.contacts[0];
         Debug.Log("Pos:" + contact.point);

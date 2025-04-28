@@ -156,7 +156,7 @@ public class MenuTrans : MonoBehaviour
 
         }
 
-        if(trafficButton.action.WasPressedThisFrame() && !hasMenu && !MapLoader.playerInTraffic){
+        if((trafficButton.action.WasPressedThisFrame() || Input.GetKeyDown(KeyCode.T)) && !hasMenu && !MapLoader.playerInTraffic){
 
             changeScene.Traffic("TrafficTest");
 
@@ -191,8 +191,10 @@ public class MenuTrans : MonoBehaviour
 
         }
 
-        if((showButton.action.WasPressedThisFrame()|| Input.GetKeyDown(KeyCode.Y)) && TutorialCheckpoints.playerInTutorial){
+        if((showButton.action.WasPressedThisFrame()|| Input.GetKeyDown(KeyCode.Y)) && (TutorialCheckpoints.playerInTutorial || MapLoader.playerInTraffic)){
 
+            MapLoader.playerInTraffic = false;
+            TutorialCheckpoints.playerInTutorial = false;
 
             if(hasMenu){
                 changeScene.scene_changer_menu("MainMenu", mapLoad);
@@ -204,14 +206,6 @@ public class MenuTrans : MonoBehaviour
                 }
 
             }
-
-        if(showButton.action.WasPressedThisFrame() && MapLoader.playerInTraffic && !hasMenu){
-
-            MapLoader.playerInTraffic = false;
-
-            changeScene.noMenu_change("MainScene", MapLoader.beforeMap);
-
-        }
 
             
 

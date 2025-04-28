@@ -1733,6 +1733,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Left
       objectReference: {fileID: 0}
+    - target: {fileID: 4692195604468368003, guid: 0329f04dbf5b30441ac4a444193ac58a, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5015750670474748726, guid: 0329f04dbf5b30441ac4a444193ac58a, type: 3}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.size
       value: 2

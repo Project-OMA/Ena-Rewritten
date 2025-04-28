@@ -493,6 +493,7 @@ MonoBehaviour:
   camOffset: {fileID: 1090207565412135589}
   collider: {fileID: 5875056428662241230}
   realPostion: {x: 0, y: 0, z: 0}
+  currentcam: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1541968084725081838
 GameObject:
   m_ObjectHideFlags: 0
@@ -937,6 +938,7 @@ MonoBehaviour:
   camOffset: {fileID: 1090207565412135589}
   collider: {fileID: 3177566677140850947}
   realPostion: {x: 0, y: 0, z: 0}
+  currentcam: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &4700009677015804979
 GameObject:
   m_ObjectHideFlags: 0
@@ -1150,6 +1152,7 @@ MonoBehaviour:
   camOffset: {fileID: 1090207565412135589}
   collider: {fileID: 4162313006299326716}
   realPostion: {x: 0, y: 0, z: 0}
+  currentcam: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &6246066015906783980
 GameObject:
   m_ObjectHideFlags: 0
@@ -1878,6 +1881,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Left
       objectReference: {fileID: 0}
+    - target: {fileID: 4692195604468368003, guid: 0329f04dbf5b30441ac4a444193ac58a, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5015750670474748726, guid: 0329f04dbf5b30441ac4a444193ac58a, type: 3}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.size
       value: 2
@@ -1969,6 +1976,14 @@ PrefabInstance:
     - target: {fileID: 7649814925302121980, guid: 0329f04dbf5b30441ac4a444193ac58a, type: 3}
       propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[0].outWeight
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7881354942847668096, guid: 0329f04dbf5b30441ac4a444193ac58a, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7881354942847668096, guid: 0329f04dbf5b30441ac4a444193ac58a, type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8562060514289532565, guid: 0329f04dbf5b30441ac4a444193ac58a, type: 3}
@@ -2132,7 +2147,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -2209,7 +2224,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
