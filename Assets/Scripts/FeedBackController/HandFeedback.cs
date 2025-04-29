@@ -17,6 +17,8 @@ public class HandFeedback : MonoBehaviour
     public Transform rightController;
     public Transform leftController;
 
+    public static bool playerColliding = false;
+
 
     
 
@@ -186,7 +188,9 @@ public class HandFeedback : MonoBehaviour
                 }
 
                 if(HandCheck.RightHand){
-            
+
+
+                    playerColliding = true;
                     innerFeedbackRight = true;
                 }
 
@@ -257,7 +261,7 @@ public class HandFeedback : MonoBehaviour
                 }
 
                 if(HandCheck.RightHand){
-            
+                    playerColliding = true;
                     innerFeedbackRight = true;
                 }
 
@@ -475,6 +479,8 @@ public class HandFeedback : MonoBehaviour
 
     private void PlayHapticFeedback(float hapticForce, CollisionEvent collision)
     {
+
+        Debug.Log("JAAHAHAHAHAHA");
         if (collision.IsColliding)
         {
 
@@ -542,7 +548,8 @@ public class HandFeedback : MonoBehaviour
                 }
                 else if (tag == "Cane")
                 {
-                    Debug.Log("Found");
+                    playerColliding = false;
+                    Debug.Log("Found" + rayPos.position);
                     HandCheck.RightHand = false;
                     innerFeedbackRight = false;
                     HapticImpulseRight.Stop();
@@ -558,6 +565,8 @@ private IEnumerator FeedbackRoutine()
 
     while (innerFeedbackLeft || innerFeedbackRight)
     {
+
+        Debug.Log("TESTME");
         yield return new WaitForSeconds(0.15f);
 
 

@@ -493,6 +493,7 @@ MonoBehaviour:
   camOffset: {fileID: 1090207565412135589}
   collider: {fileID: 5875056428662241230}
   realPostion: {x: 0, y: 0, z: 0}
+  currentcam: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &1541968084725081838
 GameObject:
   m_ObjectHideFlags: 0
@@ -1400,6 +1401,7 @@ MonoBehaviour:
   camOffset: {fileID: 1090207565412135589}
   collider: {fileID: 8879146408668595340}
   realPostion: {x: 0, y: 0, z: 0}
+  currentcam: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &8029400319374813340
 GameObject:
   m_ObjectHideFlags: 0
@@ -1447,6 +1449,7 @@ MonoBehaviour:
   camOffset: {fileID: 1090207565412135589}
   collider: {fileID: 7082499631365977786}
   realPostion: {x: 0, y: 0, z: 0}
+  currentcam: {x: 0, y: 0, z: 0, w: 0}
 --- !u!1 &8368251549774659713
 GameObject:
   m_ObjectHideFlags: 0

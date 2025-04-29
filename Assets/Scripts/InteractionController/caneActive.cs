@@ -31,7 +31,7 @@ public class caneActive : MonoBehaviour
     void Update()
     {
         
-        if(caneButton.action.WasPressedThisFrame() || Input.GetKeyDown(KeyCode.B)){
+        if((caneButton.action.WasPressedThisFrame() || Input.GetKeyDown(KeyCode.B)) && !HandFeedback.playerColliding){
             isItemActive = !isItemActive;
             bengala.SetActive(isItemActive);
 
