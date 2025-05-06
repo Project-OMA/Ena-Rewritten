@@ -128,7 +128,7 @@ public class MenuTrans : MonoBehaviour
         
         }
 
-        if(blindnessButton.action.WasPressedThisFrame()){
+        if(blindnessButton.action.WasPressedThisFrame() || Input.GetKeyDown(KeyCode.Z)){
 
 
 
