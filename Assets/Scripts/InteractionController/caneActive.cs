@@ -13,6 +13,8 @@ public class caneActive : MonoBehaviour
 {
     public GameObject bengala;
 
+    public GameObject camera;
+
     bool isItemActive = false;
     bool lastPrimaryButtonState = false;
 
@@ -28,8 +30,12 @@ public class caneActive : MonoBehaviour
     {
         //Fetch the AudioSource from the GameObject
         m_MyAudioSource = GetComponent<AudioSource>();
-        original_size = bengala.transform.localScale.y;
         original_position = bengala.transform.localPosition.z;
+        camera = GameObject.Find("Camera Offset");
+
+        bengala.transform.localScale = new Vector3 (bengala.transform.localScale.x ,(camera.transform.localPosition.y/2), bengala.transform.localScale.z);
+        original_size = bengala.transform.localScale.y;
+        
         
     }
 
@@ -41,15 +47,19 @@ public class caneActive : MonoBehaviour
             
 
             if (isItemActive && caneExpansion <3) {
+
                 caneExpansion +=1;
+                
 
-                if(caneExpansion>1){
+                if(caneExpansion>0){
 
-                    bengala.transform.localScale = new Vector3 (bengala.transform.localScale.x ,bengala.transform.localScale.y + 0.05f, bengala.transform.localScale.z);
-                    bengala.transform.localPosition = new Vector3(0.0f, -0.019f, bengala.transform.localPosition.z -0.05f);
+                    bengala.transform.localScale = new Vector3 (bengala.transform.localScale.x ,bengala.transform.localScale.y + 0.025f, bengala.transform.localScale.z);
+                    bengala.transform.localPosition = new Vector3(0.0f, -0.019f, bengala.transform.localPosition.z -0.025f);
 
 
                 }
+
+                
 
                 
                 TutorialCheckpoints.caneActive = true;
