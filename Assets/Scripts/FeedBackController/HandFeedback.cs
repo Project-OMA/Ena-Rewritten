@@ -19,6 +19,16 @@ public class HandFeedback : MonoBehaviour
 
     public static bool playerColliding = false;
 
+    public int LeftAdder;
+    public float HapticLeft;
+
+    public int RightAdder;
+    public float HapticRight;
+
+    public float ForceCutLeft;
+
+    public float ForceCutRight;
+
 
     
 
@@ -59,7 +69,7 @@ public class HandFeedback : MonoBehaviour
 
     void Start()
     {
-        
+  
         audioTrail = GameObject.Find("AudioTrailSource").GetComponent<AudioSource>();
         
 
@@ -256,7 +266,7 @@ public class HandFeedback : MonoBehaviour
 
 
                 if(HandCheck.LeftHand){
-            
+                    
                     innerFeedbackLeft = true;
                 }
 
@@ -295,13 +305,15 @@ public class HandFeedback : MonoBehaviour
 
         if (Collisions.TryGetValue(collidedObjectTag + playerColliderTag, out var itemToUpdate))
         {
+            if(collision.gameObject.tag == "floor"){
 
+                playerColliding = false;
+            }
             
             itemToUpdate.IsColliding = false;
             HandleCollisionExitFeedback(itemToUpdate);
         }
-        Debug.Log("mekme ");
-
+       
         
 
         
@@ -485,11 +497,21 @@ public class HandFeedback : MonoBehaviour
         {
 
                 if(HandCheck.LeftHand){
+
+                    
+                    
+                    ForceCutLeft = hapticForce;
+                    
                     HapticImpulseLeft.Play(hapticForce);
                    
                 }
 
                 if(HandCheck.RightHand){
+
+                    
+
+                    ForceCutRight = hapticForce;
+
                     HapticImpulseRight.Play(hapticForce);   
                     
                 }
@@ -541,6 +563,8 @@ public class HandFeedback : MonoBehaviour
 
                 if (tag == "Left")
                 {
+                    LeftAdder = 0;
+                    HapticLeft = 0.0f;
                     Debug.Log("Found");
                     HandCheck.LeftHand = false;
                     innerFeedbackLeft = false;
@@ -548,6 +572,8 @@ public class HandFeedback : MonoBehaviour
                 }
                 else if (tag == "Cane")
                 {
+                    RightAdder = 0;
+                    HapticRight = 0.0f;
                     playerColliding = false;
                     Debug.Log("Found" + rayPos.position);
                     HandCheck.RightHand = false;
@@ -555,7 +581,6 @@ public class HandFeedback : MonoBehaviour
                     HapticImpulseRight.Stop();
                 }
             }
-            
         }
 }
 
@@ -570,8 +595,19 @@ private IEnumerator FeedbackRoutine()
         yield return new WaitForSeconds(0.15f);
 
 
+
         if (innerFeedbackLeft)
         {
+
+            LeftAdder+=1;
+
+            if(LeftAdder%10==0 && HapticLeft<1.0f - ForceCutLeft){
+                
+                HapticLeft+=0.125f;
+                HapticImpulseLeft.Adder(HapticLeft);
+
+            }
+
             Debug.Log("HALLO :D");
             Debug.Log(leftController.position);
             DetectController(leftController, "Left");
@@ -579,12 +615,24 @@ private IEnumerator FeedbackRoutine()
 
         if (innerFeedbackRight)
         {
+
+            RightAdder+=1;
+
+            if(RightAdder%10==0 && HapticRight<1.0f - ForceCutRight){
+                
+                HapticRight+=0.125f;
+                HapticImpulseRight.Adder(HapticRight);
+
+            }
+
             Debug.Log("HALLO :D");
             rightController = GameObject.Find("collisionRight").transform;
             Debug.Log("HEYYY"+rightController.position);
             DetectController(rightController, "Cane");
         }
 
+        
+        
         
     }
 }

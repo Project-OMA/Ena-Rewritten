@@ -26,14 +26,23 @@ public class caneActive : MonoBehaviour
     float original_position = 0.0f;
     int caneExpansion = 0;
 
+    float difference;
+
     void Start()
     {
         //Fetch the AudioSource from the GameObject
-        m_MyAudioSource = GetComponent<AudioSource>();
-        original_position = bengala.transform.localPosition.z;
         camera = GameObject.Find("Camera Offset");
 
+
+        m_MyAudioSource = GetComponent<AudioSource>();
+
+
+        difference = bengala.transform.localScale.y - camera.transform.localPosition.y/2;
+        Debug.Log("AAAAAAAAAAAA" + difference);
+        original_position = bengala.transform.localPosition.z + difference;
+
         bengala.transform.localScale = new Vector3 (bengala.transform.localScale.x ,(camera.transform.localPosition.y/2), bengala.transform.localScale.z);
+        bengala.transform.localPosition = new Vector3(0.0f, -0.019f, original_position);
         original_size = bengala.transform.localScale.y;
         
         

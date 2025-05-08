@@ -582,6 +582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bengala: {fileID: 613428835707328605}
+  camera: {fileID: 0}
   caneButton:
     m_UseReference: 1
     m_Action:
