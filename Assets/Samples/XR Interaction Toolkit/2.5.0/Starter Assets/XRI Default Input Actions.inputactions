@@ -777,6 +777,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "TransferLeft",
+                    "type": "Button",
+                    "id": "fff0a062-4534-491a-98a0-d6e5d13305c9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -986,6 +995,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Traffic",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8a87cc1f-f3e4-4520-826e-9bc9329249fb",
+                    "path": "<XRController>{LeftHand}/gripButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TransferLeft",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -1595,6 +1615,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "TransferRight",
+                    "type": "Button",
+                    "id": "76113922-d74c-4ead-9471-6a419716b64f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1782,6 +1811,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Cane",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cae515c5-494a-49b5-ae1e-178fb4a34adb",
+                    "path": "<XRController>{RightHand}/gripButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TransferRight",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

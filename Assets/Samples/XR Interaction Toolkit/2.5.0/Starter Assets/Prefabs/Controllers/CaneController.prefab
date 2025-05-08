@@ -582,6 +582,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bengala: {fileID: 613428835707328605}
+  leftHand: {fileID: 0}
+  rightHand: {fileID: 4283425761326543017}
   camera: {fileID: 0}
   caneButton:
     m_UseReference: 1
@@ -596,6 +598,31 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 5865211697615257846, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_MyAudioSource: {fileID: 631746341389646067}
+  transfered: 0
+  caneTransferRight:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Cane Transfer Right
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 218e2110-1ed0-4bbd-ae9d-6a025dba6a16
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: 6022393313897694763, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  caneTransferLeft:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Cane Transfer Left
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 061cf951-4077-45e6-a07c-f5acf146dc06
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -5496642336401977807, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!82 &631746341389646067
 AudioSource:
   m_ObjectHideFlags: 0

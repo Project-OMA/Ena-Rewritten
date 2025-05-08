@@ -192,6 +192,9 @@ public class HandFeedback : MonoBehaviour
             if(item.Whatcollided== "Cane Right Controller" || item.Whatcollided == "Left Left Controller"){
 
 
+                playerColliding = true;
+
+
                 if(HandCheck.LeftHand){
             
                     innerFeedbackLeft = true;
@@ -199,8 +202,6 @@ public class HandFeedback : MonoBehaviour
 
                 if(HandCheck.RightHand){
 
-
-                    playerColliding = true;
                     innerFeedbackRight = true;
                 }
 
@@ -497,8 +498,6 @@ public class HandFeedback : MonoBehaviour
         {
 
                 if(HandCheck.LeftHand){
-
-                    
                     
                     ForceCutLeft = hapticForce;
                     
@@ -566,6 +565,7 @@ public class HandFeedback : MonoBehaviour
                     LeftAdder = 0;
                     HapticLeft = 0.0f;
                     Debug.Log("Found");
+                    playerColliding = false;
                     HandCheck.LeftHand = false;
                     innerFeedbackLeft = false;
                     HapticImpulseLeft.Stop();

@@ -13,6 +13,10 @@ public class caneActive : MonoBehaviour
 {
     public GameObject bengala;
 
+    public GameObject leftHand;
+
+    public GameObject rightHand;
+
     public GameObject camera;
 
     bool isItemActive = false;
@@ -21,6 +25,12 @@ public class caneActive : MonoBehaviour
     public InputActionProperty caneButton;
 
     public AudioSource m_MyAudioSource;
+
+    public bool transfered = false;
+
+    public InputActionProperty caneTransferRight;
+
+    public InputActionProperty caneTransferLeft;
 
     float original_size = 0.0f;
     float original_position = 0.0f;
@@ -32,6 +42,8 @@ public class caneActive : MonoBehaviour
     {
         //Fetch the AudioSource from the GameObject
         camera = GameObject.Find("Camera Offset");
+
+        leftHand = GameObject.Find("XR Controller Left(Clone)");
 
 
         m_MyAudioSource = GetComponent<AudioSource>();
@@ -53,6 +65,7 @@ public class caneActive : MonoBehaviour
     {
         
         if((caneButton.action.WasPressedThisFrame() || Input.GetKeyDown(KeyCode.B)) && !HandFeedback.playerColliding){
+
             
 
             if (isItemActive && caneExpansion <3) {
@@ -84,6 +97,32 @@ public class caneActive : MonoBehaviour
             }
             m_MyAudioSource.Play();
         }
+
+        if((caneTransferLeft.action.WasPressedThisFrame() || Input.GetKeyDown(KeyCode.L)) && !HandFeedback.playerColliding && isItemActive){
+
+            if (!transfered)
+            {
+                bengala.tag = "Left";
+                bengala.transform.SetParent(leftHand.transform, false);
+                bengala.transform.localPosition = new Vector3(0.0f, -0.019f, original_position);
+                transfered = true;
+            }
+        }
+
+        if((caneTransferRight.action.WasPressedThisFrame() || Input.GetKeyDown(KeyCode.R)) && !HandFeedback.playerColliding && isItemActive){
+
+            if (transfered)
+            {
+                bengala.tag = "Cane";
+                bengala.transform.SetParent(rightHand.transform, false);
+                bengala.transform.localPosition = new Vector3(0.0f, -0.019f, original_position);
+                transfered = false;
+            }
+        }
+
+       
+
+    
             
         
     }
