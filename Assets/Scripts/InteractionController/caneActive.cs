@@ -49,11 +49,11 @@ public class caneActive : MonoBehaviour
         m_MyAudioSource = GetComponent<AudioSource>();
 
 
-        difference = bengala.transform.localScale.y - camera.transform.localPosition.y/2;
+        difference = bengala.transform.localScale.y - camera.transform.localPosition.y/3;
         Debug.Log("AAAAAAAAAAAA" + difference);
         original_position = bengala.transform.localPosition.z + difference;
 
-        bengala.transform.localScale = new Vector3 (bengala.transform.localScale.x ,(camera.transform.localPosition.y/2), bengala.transform.localScale.z);
+        bengala.transform.localScale = new Vector3 (bengala.transform.localScale.x ,(camera.transform.localPosition.y/3), bengala.transform.localScale.z);
         bengala.transform.localPosition = new Vector3(0.0f, -0.019f, original_position);
         original_size = bengala.transform.localScale.y;
         

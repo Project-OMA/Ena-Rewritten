@@ -11,5 +11,14 @@ public class RightHand : MonoBehaviour
         HandCheck.RightHand = true;
     }
 
+
+    private void OnCollisionExit(Collision collision){
+
+        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Cane" || collision.gameObject.tag == "Left") return;
+        Debug.Log("RIGHT");
+        HandCheck.RightHand = false;
+
+    }
+
     
 }

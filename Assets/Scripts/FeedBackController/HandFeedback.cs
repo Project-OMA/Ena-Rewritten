@@ -99,9 +99,9 @@ public class HandFeedback : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if(collision.gameObject.tag != "floor"){
-            StartCoroutine(FeedbackRoutine());
-        }
+        
+        StartCoroutine(FeedbackRoutine());
+        
         
 
         HandleCollisionExit(collision);
@@ -265,6 +265,8 @@ public class HandFeedback : MonoBehaviour
 
             if(collisionEvent.Whatcollided== "Cane Right Controller" || collisionEvent.Whatcollided == "Left Left Controller"){
 
+                playerColliding = true;
+
 
                 if(HandCheck.LeftHand){
                     
@@ -272,7 +274,6 @@ public class HandFeedback : MonoBehaviour
                 }
 
                 if(HandCheck.RightHand){
-                    playerColliding = true;
                     innerFeedbackRight = true;
                 }
 
@@ -339,7 +340,6 @@ public class HandFeedback : MonoBehaviour
     {
         Debug.Log("ColOver");
         item.CanPlay = false;
-        HandleFeedback(item);
         
     }
 
@@ -389,7 +389,7 @@ public class HandFeedback : MonoBehaviour
                 }
 
                 }else{
-                    PlaySoundFeedback(collision.FeedbackSettings.sound2, collision);
+                    FloorFeedback(collision);
                 }
 
 
@@ -397,6 +397,42 @@ public class HandFeedback : MonoBehaviour
                     
             }
         }
+
+     private void FloorFeedback(CollisionEvent collision)
+    {
+
+        float floorhaptic = 0.0f;
+
+        switch(collision.FeedbackSettings.materialtype){
+
+            case "Hard":
+
+                floorhaptic = 0.5f;
+
+                break;
+
+            case "Soft":
+
+                floorhaptic = 0.15f;
+
+                break;
+
+            case "Wet":
+
+                floorhaptic = 0.3f;
+
+                break;
+
+        }
+
+        
+        
+        PlaySoundFeedback(collision.FeedbackSettings.sound2, collision);
+        PlayHapticFeedback(floorhaptic, collision);
+
+
+
+    }
     
 
     #endregion
@@ -560,23 +596,21 @@ public class HandFeedback : MonoBehaviour
             {
                 Debug.Log("Detected object with tag: " + tag);
 
-                if (tag == "Left")
+                if (tag == "Left" && !HandCheck.LeftHand)
                 {
                     LeftAdder = 0;
                     HapticLeft = 0.0f;
                     Debug.Log("Found");
                     playerColliding = false;
-                    HandCheck.LeftHand = false;
                     innerFeedbackLeft = false;
                     HapticImpulseLeft.Stop();
                 }
-                else if (tag == "Cane")
+                else if (tag == "Cane" && !HandCheck.RightHand)
                 {
                     RightAdder = 0;
                     HapticRight = 0.0f;
                     playerColliding = false;
                     Debug.Log("Found" + rayPos.position);
-                    HandCheck.RightHand = false;
                     innerFeedbackRight = false;
                     HapticImpulseRight.Stop();
                 }
@@ -588,7 +622,7 @@ private IEnumerator FeedbackRoutine()
 {
 
 
-    while (innerFeedbackLeft || innerFeedbackRight)
+    while ((innerFeedbackLeft || innerFeedbackRight))
     {
 
         Debug.Log("TESTME");

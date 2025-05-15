@@ -167,6 +167,8 @@ public class MapBuilder : MonoBehaviour
         obj.GetComponent<ObjectFeedbackSettings>().settings = feedbackSettings;
         obj.GetComponent<MeshFilter>().mesh = mesh;
         obj.GetComponent<MeshCollider>().sharedMesh = mesh;
+        MeshCollider meshCollider = obj.GetComponent<MeshCollider>();
+        meshCollider.convex = true;
     }
 
     

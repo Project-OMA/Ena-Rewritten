@@ -29,6 +29,8 @@ public class MaterialData : ScriptableObject
         public AudioClip sound3;
         public FeedbackTypeEnum[] feedbackTypes;
         public float hapticForce;
+
+        public string materialtype;
     }
 
     public Material GetMaterial(string id)
@@ -50,7 +52,8 @@ public class MaterialData : ScriptableObject
                 sound1 = materialEntry.sound1,
                 sound2 = materialEntry.sound2,
                 sound3 = materialEntry.sound3,
-                hapticForce = materialEntry.hapticForce
+                hapticForce = materialEntry.hapticForce,
+                materialtype = materialEntry.materialtype
             };
         }
         throw new ArgumentException($"Material {id} not found");
@@ -90,7 +93,7 @@ public class MaterialData : ScriptableObject
             throw new InvalidOperationException($"Material {id} already registered");
         }
         materialMap[id] = material;
-        Materials.Add(new MaterialEntry { id = id, name = name, material = material });
+        Materials.Add(new MaterialEntry { id = id, name = name, material = material});
         return material;
     }
 

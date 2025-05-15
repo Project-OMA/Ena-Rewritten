@@ -12,4 +12,6 @@ public class FeedbackSettings
     public AudioClip sound3;
     public FeedbackTypeEnum[] feedbackTypes;
     public float hapticForce;
+
+    public string materialtype;
 }
