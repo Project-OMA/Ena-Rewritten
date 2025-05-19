@@ -22,8 +22,11 @@ public class HandFeedback : MonoBehaviour
     public int LeftAdder;
     public float HapticLeft;
 
+    public List<float> hapticListLeft;
+
     public int RightAdder;
     public float HapticRight;
+    public List<float> hapticListRight;
 
     public float ForceCutLeft;
 
@@ -196,11 +199,16 @@ public class HandFeedback : MonoBehaviour
 
 
                 if(HandCheck.LeftHand){
+
+                    hapticListLeft = feedbackSettings.hapticValues;
             
                     innerFeedbackLeft = true;
                 }
 
                 if(HandCheck.RightHand){
+                    
+
+                    hapticListRight = feedbackSettings.hapticValues;
 
                     innerFeedbackRight = true;
                 }
@@ -343,15 +351,6 @@ public class HandFeedback : MonoBehaviour
         
     }
 
-
-    
-
-   
-   
-
-        
-    
-    
 
     private void HandleFeedback(CollisionEvent collision)
     {
@@ -545,7 +544,7 @@ public class HandFeedback : MonoBehaviour
 
                     
 
-                    ForceCutRight = hapticForce;
+                    HapticRight = hapticForce;
 
                     HapticImpulseRight.Play(hapticForce);   
                     
@@ -631,16 +630,25 @@ private IEnumerator FeedbackRoutine()
 
 
         if (innerFeedbackLeft)
-        {
+        {     
 
-            LeftAdder+=1;
+            if (LeftAdder % 10 == 0 && HapticLeft < 1.0f - ForceCutLeft && hapticListLeft.Count != 0)
+                {
 
-            if(LeftAdder%10==0 && HapticLeft<1.0f - ForceCutLeft){
-                
-                HapticLeft+=0.125f;
-                HapticImpulseLeft.Adder(HapticLeft);
+                    if (hapticListLeft.Count == LeftAdder / 10)
+                    {
+                        LeftAdder = 0;
+                    }
 
-            }
+
+                    float DifferenceLeft = hapticListLeft[LeftAdder / 10] - HapticLeft;
+
+                    Debug.Log("memebughaptic" + HapticLeft);
+                    LeftAdder += 1;
+                    Debug.Log("memeRR" + (HapticLeft + DifferenceLeft) + ":" + DifferenceLeft);
+                    HapticImpulseLeft.Adder(HapticLeft);
+
+                }
 
             Debug.Log("HALLO :D");
             Debug.Log(leftController.position);
@@ -650,14 +658,28 @@ private IEnumerator FeedbackRoutine()
         if (innerFeedbackRight)
         {
 
-            RightAdder+=1;
 
-            if(RightAdder%10==0 && HapticRight<1.0f - ForceCutRight){
-                
-                HapticRight+=0.125f;
-                HapticImpulseRight.Adder(HapticRight);
 
-            }
+                if (RightAdder % 10 == 0 && HapticRight < 1.0f && hapticListRight.Count != 0)
+                {
+
+
+                    if (hapticListRight.Count == RightAdder / 10)
+                    {
+                        RightAdder = 0;
+                    }
+                    
+
+                    float DifferenceRight = hapticListRight[RightAdder / 10] - HapticRight;
+                    Debug.Log("memeRR" + (HapticRight + DifferenceRight) + ":" + DifferenceRight);
+                    HapticImpulseRight.Adder(DifferenceRight);
+                        
+
+
+
+
+                }
+            RightAdder += 1;
 
             Debug.Log("HALLO :D");
             rightController = GameObject.Find("collisionRight").transform;

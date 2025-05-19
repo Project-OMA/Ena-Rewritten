@@ -40,6 +40,8 @@ public class ObjectData : ScriptableObject
         public FeedbackTypeEnum[] feedbackTypes;
         public float hapticForce;
 
+        public List<float> hapticValues;
+
 
     }
 
@@ -79,7 +81,8 @@ public class ObjectData : ScriptableObject
                 sound1 = objectEntry.sound1,
                 sound2 = objectEntry.sound2,
                 sound3 = objectEntry.sound3,
-                hapticForce = objectEntry.hapticForce
+                hapticForce = objectEntry.hapticForce,
+                hapticValues = objectEntry.hapticValues
             };
         }
         throw new ArgumentException($"Object {name} not found");

@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class ObjectFeedbackSettings : MonoBehaviour
 {
@@ -14,4 +15,6 @@ public class FeedbackSettings
     public float hapticForce;
 
     public string materialtype;
+
+    public List<float> hapticValues;
 }

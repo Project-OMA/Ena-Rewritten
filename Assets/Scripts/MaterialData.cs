@@ -21,7 +21,7 @@ public class MaterialData : ScriptableObject
 
         public bool useGlobalUV = false;
 
-        public Vector2 scale = Vector2.one; 
+        public Vector2 scale = Vector2.one;
 
         public AudioClip sound1;
         public AudioClip sound2;
@@ -31,6 +31,8 @@ public class MaterialData : ScriptableObject
         public float hapticForce;
 
         public string materialtype;
+        
+        public List<float> hapticValues;
     }
 
     public Material GetMaterial(string id)
@@ -53,7 +55,9 @@ public class MaterialData : ScriptableObject
                 sound2 = materialEntry.sound2,
                 sound3 = materialEntry.sound3,
                 hapticForce = materialEntry.hapticForce,
-                materialtype = materialEntry.materialtype
+                materialtype = materialEntry.materialtype,
+                hapticValues = materialEntry.hapticValues
+
             };
         }
         throw new ArgumentException($"Material {id} not found");

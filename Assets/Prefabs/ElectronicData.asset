@@ -17,19 +17,27 @@ MonoBehaviour:
     prefab: {fileID: 614322503775666597, guid: 38735c0fb88d2096aa8f6a010f2cfcc2, type: 3}
     variations:
     - id: 0.1
+      rotationx: 0
       rotation: 0
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     - id: 0.3
+      rotationx: 0
       rotation: 90
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     - id: 1.1
+      rotationx: 0
       rotation: 180
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     - id: 1.2
+      rotationx: 0
       rotation: 270
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: 1421b55069765a1498c16cf57d1acaec, type: 3}
@@ -37,23 +45,32 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: 475b26f1cf534764eb316803a8df51e4, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
+    hapticValues: []
   - name: "Fog\xE3o"
     prefab: {fileID: 614322503775666597, guid: 0ef7fd4efb753e381b87c1a93e57affe, type: 3}
     variations:
     - id: 2.0
+      rotationx: 0
       rotation: 0
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     - id: 2.1
+      rotationx: 0
       rotation: 180
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     - id: 3.0
+      rotationx: 0
       rotation: 90
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     - id: 3.1
+      rotationx: 0
       rotation: 270
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: 95de55b6442d52a488d27ff029e7537a, type: 3}
@@ -61,23 +78,32 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: a0b8cb87d0038354795274b4b6bc7b79, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
+    hapticValues: []
   - name: Computador
     prefab: {fileID: 614322503775666597, guid: 4d76c47d9e438dcfa965c8155b7926fd, type: 3}
     variations:
     - id: 4.0
+      rotationx: 0
       rotation: 180
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     - id: 4.1
+      rotationx: 0
       rotation: 0
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     - id: 5.0
+      rotationx: 0
       rotation: 90
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     - id: 5.1
+      rotationx: 0
       rotation: 270
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: 16690be59499430409601a3f93c77e03, type: 3}
@@ -85,23 +111,36 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: cda87f9bbdcf2f7488b84c7e49c277fe, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
+    hapticValues:
+    - 0.3
+    - 0.7
+    - 0.3
+    - 0.5
   - name: "M\xE1quina de Lavar"
     prefab: {fileID: 614322503775666597, guid: 5c19f65f369c6da8bb5149dabfa9e1ff, type: 3}
     variations:
     - id: 6.0
+      rotationx: 0
       rotation: 0
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     - id: 6.1
+      rotationx: 0
       rotation: 180
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     - id: 7.0
+      rotationx: 0
       rotation: 270
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     - id: 7.1
+      rotationx: 0
       rotation: 90
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: a612d12cb719ab843b589d3339fe2695, type: 3}
@@ -109,23 +148,32 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: 5377c022778c10642ace29ade731560f, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
+    hapticValues: []
   - name: TV
     prefab: {fileID: 614322503775666597, guid: c2a8e7c84ebe7aa7486c9063f9190656, type: 3}
     variations:
     - id: 2.2
+      rotationx: 0
       rotation: 0
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     - id: 2.3
+      rotationx: 0
       rotation: 180
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     - id: 3.2
+      rotationx: 0
       rotation: 270
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     - id: 3.3
+      rotationx: 0
       rotation: 90
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: 9095faaef704c8340a8aed303a0402e1, type: 3}
@@ -133,23 +181,32 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: 709ae8c3987327e4bb000541c0170a51, type: 3}
     feedbackTypes: 01000000020000000300000004000000
     hapticForce: 0.25
+    hapticValues: []
   - name: Microondas
     prefab: {fileID: 614322503775666597, guid: 46dd676781f97da44b061e74133e32c4, type: 3}
     variations:
     - id: 4.2
+      rotationx: 0
       rotation: 0
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     - id: 4.3
+      rotationx: 0
       rotation: 180
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     - id: 5.2
+      rotationx: 0
       rotation: 90
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     - id: 5.3
+      rotationx: 0
       rotation: 270
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: c48f37d305521654083192e13e39e1fa, type: 3}
@@ -157,11 +214,14 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: 38efd2ddfc844a249bd6b45e2881fd3c, type: 3}
     feedbackTypes: 01000000020000000300000004000000
     hapticForce: 0.25
+    hapticValues: []
   - name: Copiadora
     prefab: {fileID: 614322503775666597, guid: a4934ab6ba736e65ba18fe56c1d6bfea, type: 3}
     variations:
     - id: 6.3
+      rotationx: 0
       rotation: 0
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: 947b5f4ff3fdf2b4fa0313be4104473c, type: 3}
@@ -169,3 +229,4 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: ea541716721356f4797524813e5dfb2f, type: 3}
     feedbackTypes: 01000000020000000300000004000000
     hapticForce: 0.25
+    hapticValues: []
