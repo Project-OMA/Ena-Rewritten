@@ -45,6 +45,7 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: 41cff52acfb749a40be51bee93b9b77b, type: 3}
     feedbackTypes: 
     hapticForce: 0
+    hapticValues: []
   - name: Inseto
     prefab: {fileID: 614322503775666597, guid: 4972c8d9e25de3be9b200f6dc692a25f, type: 3}
     variations:
@@ -77,6 +78,7 @@ MonoBehaviour:
     sound3: {fileID: 0}
     feedbackTypes: 
     hapticForce: 0
+    hapticValues: []
   - name: "P\xE1ssaro"
     prefab: {fileID: 614322503775666597, guid: 46091cfda3723caa5bd02d00644a8872, type: 3}
     variations:
@@ -109,6 +111,7 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: e13388b3395f32645af7400e3fb1bdeb, type: 3}
     feedbackTypes: 
     hapticForce: 0
+    hapticValues: []
   - name: Gato
     prefab: {fileID: 614322503775666597, guid: 7347987b44e5a396587c6fc65781acb5, type: 3}
     variations:
@@ -141,6 +144,7 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: 25786ab9dc778fa429d0405a023b9246, type: 3}
     feedbackTypes: 
     hapticForce: 0
+    hapticValues: []
   - name: Sapo
     prefab: {fileID: 614322503775666597, guid: 5f5a70b8194cb9e4ab3e75349d0e15d6, type: 3}
     variations:
@@ -173,6 +177,7 @@ MonoBehaviour:
     sound3: {fileID: 0}
     feedbackTypes: 
     hapticForce: 0
+    hapticValues: []
   - name: Secador de Cabelo
     prefab: {fileID: 614322503775666597, guid: b88cfcbdf2020eb4a925457b18b31e55, type: 3}
     variations:
@@ -187,6 +192,7 @@ MonoBehaviour:
     sound3: {fileID: 0}
     feedbackTypes: 
     hapticForce: 0
+    hapticValues: []
   - name: Liquidificador
     prefab: {fileID: 614322503775666597, guid: 1f028d41ddb049cec800631451d8fa95, type: 3}
     variations:
@@ -201,6 +207,7 @@ MonoBehaviour:
     sound3: {fileID: 0}
     feedbackTypes: 
     hapticForce: 0
+    hapticValues: []
   - name: Chaleira
     prefab: {fileID: 614322503775666597, guid: b15888e5a2dcdd61a99c7439b7cd26e0, type: 3}
     variations:
@@ -215,6 +222,7 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: 8851e4c966125714f8e527e2180d9dd1, type: 3}
     feedbackTypes: 
     hapticForce: 0
+    hapticValues: []
   - name: Impressora
     prefab: {fileID: 614322503775666597, guid: 7f7fe17ae255d6c19817f76c380dd7dc, type: 3}
     variations:
@@ -228,7 +236,11 @@ MonoBehaviour:
     sound2: {fileID: 8300000, guid: 947b5f4ff3fdf2b4fa0313be4104473c, type: 3}
     sound3: {fileID: 8300000, guid: 2c4681a2cc4e90340afa2578549407d1, type: 3}
     feedbackTypes: 01000000020000000300000004000000
-    hapticForce: 0
+    hapticForce: 0.25
+    hapticValues:
+    - 0.3
+    - 0.9
+    - 0.2
   - name: Celular
     prefab: {fileID: 614322503775666597, guid: f2247b15ebea86d02b9805106bf05c5b, type: 3}
     variations:
@@ -243,6 +255,7 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: 820243059bbb56047b5aed2fac7e6378, type: 3}
     feedbackTypes: 
     hapticForce: 0
+    hapticValues: []
   - name: "Crian\xE7a"
     prefab: {fileID: 614322503775666597, guid: 1f028d41ddb049cec800631451d8fa95, type: 3}
     variations:
@@ -257,6 +270,7 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: ef62425a098bd4f4ab9ef6e683cdd359, type: 3}
     feedbackTypes: 
     hapticForce: 0
+    hapticValues: []
   - name: "R\xE1dio"
     prefab: {fileID: 614322503775666597, guid: 3625914fd21405747975b77da6373b5b, type: 3}
     variations:
@@ -271,6 +285,7 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: a0d7584474821c344bdac18233b9babb, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0
+    hapticValues: []
   - name: Despertador
     prefab: {fileID: 614322503775666597, guid: 971f5ac83d9c320cbb586e137f164041, type: 3}
     variations:
@@ -285,6 +300,7 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: c549f54503fe7b5488f29ee1c489f52a, type: 3}
     feedbackTypes: 
     hapticForce: 0
+    hapticValues: []
   - name: Batedeira
     prefab: {fileID: 614322503775666597, guid: 0318b3c8594f40e2480bbea7630b6ee6, type: 3}
     variations:
@@ -299,6 +315,7 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: 3cee383eec50ce04991e72261163f57b, type: 3}
     feedbackTypes: 
     hapticForce: 0
+    hapticValues: []
   - name: Ventilador
     prefab: {fileID: 614322503775666597, guid: 62a2fc0f84d846abc98d1bfa853c0d3f, type: 3}
     variations:
@@ -313,6 +330,7 @@ MonoBehaviour:
     sound3: {fileID: 0}
     feedbackTypes: 
     hapticForce: 0
+    hapticValues: []
   - name: Sinal de Pedestre
     prefab: {fileID: 972977333193761287, guid: 06dea9931529b6144917db6efcb73740, type: 3}
     variations:
@@ -326,7 +344,10 @@ MonoBehaviour:
     sound2: {fileID: 0}
     sound3: {fileID: 0}
     feedbackTypes: 
-    hapticForce: 0
+    hapticForce: 0.25
+    hapticValues:
+    - 0.5
+    - 0.25
   - name: Sinal de Transito
     prefab: {fileID: 1385262537875652972, guid: 36d3b851b05da2649afa70c18ec34fe0, type: 3}
     variations:
@@ -340,7 +361,9 @@ MonoBehaviour:
     sound2: {fileID: 0}
     sound3: {fileID: 0}
     feedbackTypes: 
-    hapticForce: 0
+    hapticForce: 0.25
+    hapticValues:
+    - 0.5
   - name: building1
     prefab: {fileID: 7305801533171724809, guid: af51cb9913a6a194aa459a4885cca2aa, type: 3}
     variations:
@@ -355,6 +378,10 @@ MonoBehaviour:
     sound3: {fileID: 0}
     feedbackTypes: 
     hapticForce: 0.25
+    hapticValues:
+    - 0.3
+    - 0.7
+    - 1
   - name: builfing2
     prefab: {fileID: 8214986411570885292, guid: 5caf0026b44c4414e89cd9fe8900ac37, type: 3}
     variations:
@@ -369,6 +396,11 @@ MonoBehaviour:
     sound3: {fileID: 0}
     feedbackTypes: 
     hapticForce: 0.25
+    hapticValues:
+    - 1
+    - 0.5
+    - 1
+    - 0.5
   - name: Tunnel
     prefab: {fileID: 5557376116293148689, guid: f8d41b64ba748014da0bf5f02fa30856, type: 3}
     variations:
@@ -389,6 +421,9 @@ MonoBehaviour:
     sound3: {fileID: 0}
     feedbackTypes: 
     hapticForce: 0.25
+    hapticValues:
+    - 0.3
+    - 0.7
   - name: FinalObject
     prefab: {fileID: 8160157643549910973, guid: bfff5e67767c3f444a6065f6391b1b78, type: 3}
     variations:
@@ -402,4 +437,5 @@ MonoBehaviour:
     sound2: {fileID: 0}
     sound3: {fileID: 0}
     feedbackTypes: 
-    hapticForce: 0
+    hapticForce: 0.25
+    hapticValues: []

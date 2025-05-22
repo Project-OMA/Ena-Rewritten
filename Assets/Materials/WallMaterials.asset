@@ -23,6 +23,10 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: 534cd12d5b601584ca610f6d0af821ef, type: 3}
     feedbackTypes: 020000000100000003000000
     hapticForce: 0.25
+    materialtype: 
+    hapticValues:
+    - 0.3
+    - 0.7
   - id: 1.0
     name: 'Parede de Azulejo '
     material: {fileID: 2100000, guid: 66395c95e2382f379a574d954af451a6, type: 2}
@@ -33,6 +37,12 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: 2705e4f89eec1354ea76119a273b0b7e, type: 3}
     feedbackTypes: 01000000020000000300000004000000
     hapticForce: 0.25
+    materialtype: 
+    hapticValues:
+    - 0.1
+    - 0.8
+    - 0.2
+    - 0.5
   - id: 3.0
     name: 'Parede de Tijolo '
     material: {fileID: 2100000, guid: a423847a25616a94e9497b5b5525491c, type: 2}
@@ -43,6 +53,9 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: a199819a9279f1645a87d5770d999074, type: 3}
     feedbackTypes: 01000000020000000300000004000000
     hapticForce: 0.25
+    materialtype: 
+    hapticValues:
+    - 0.6
   - id: 4.0
     name: Parede de Vidro
     material: {fileID: 2100000, guid: b18899030e782da57a423c2f4e125a66, type: 2}
@@ -53,6 +66,10 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: 0213fa434ba51c847b7fb48f56a0c57d, type: 3}
     feedbackTypes: 01000000020000000300000004000000
     hapticForce: 0.25
+    materialtype: 
+    hapticValues:
+    - 0.7
+    - 0.5
   - id: 5.0
     name: "Parede de Pl\xE1stico "
     material: {fileID: 2100000, guid: ca0a2faa615310b75ac86abdeabcf1a7, type: 2}
@@ -63,6 +80,10 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: 546d3f4160281074681801867938e4cc, type: 3}
     feedbackTypes: 01000000020000000300000004000000
     hapticForce: 0.25
+    materialtype: 
+    hapticValues:
+    - 0.1
+    - 0.5
   - id: 6.0
     name: 'Parede de Gesso '
     material: {fileID: 2100000, guid: 6f0bf68d5dd298ffb9df49a0a9fffd38, type: 2}
@@ -73,6 +94,12 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: 8975ef5152d09254ba2f99444266a0e7, type: 3}
     feedbackTypes: 01000000020000000300000004000000
     hapticForce: 0.25
+    materialtype: 
+    hapticValues:
+    - 0.1
+    - 0.2
+    - 0.3
+    - 0.4
   - id: 7.0
     name: Parede de Madeira 2
     material: {fileID: 2100000, guid: 6fa4952d991f82bcfbb21a85a1e9a62d, type: 2}
@@ -83,3 +110,7 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: 534cd12d5b601584ca610f6d0af821ef, type: 3}
     feedbackTypes: 01000000020000000300000004000000
     hapticForce: 0.25
+    materialtype: 
+    hapticValues:
+    - 0.5
+    - 0.2

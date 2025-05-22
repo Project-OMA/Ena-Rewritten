@@ -45,7 +45,10 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: 475b26f1cf534764eb316803a8df51e4, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
-    hapticValues: []
+    hapticValues:
+    - 0.1
+    - 0.3
+    - 0.5
   - name: "Fog\xE3o"
     prefab: {fileID: 614322503775666597, guid: 0ef7fd4efb753e381b87c1a93e57affe, type: 3}
     variations:
@@ -78,7 +81,10 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: a0b8cb87d0038354795274b4b6bc7b79, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
-    hapticValues: []
+    hapticValues:
+    - 0.5
+    - 0.2
+    - 0.3
   - name: Computador
     prefab: {fileID: 614322503775666597, guid: 4d76c47d9e438dcfa965c8155b7926fd, type: 3}
     variations:
@@ -148,7 +154,10 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: 5377c022778c10642ace29ade731560f, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
-    hapticValues: []
+    hapticValues:
+    - 0.1
+    - 0.7
+    - 0.3
   - name: TV
     prefab: {fileID: 614322503775666597, guid: c2a8e7c84ebe7aa7486c9063f9190656, type: 3}
     variations:
@@ -181,7 +190,8 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: 709ae8c3987327e4bb000541c0170a51, type: 3}
     feedbackTypes: 01000000020000000300000004000000
     hapticForce: 0.25
-    hapticValues: []
+    hapticValues:
+    - 0.8
   - name: Microondas
     prefab: {fileID: 614322503775666597, guid: 46dd676781f97da44b061e74133e32c4, type: 3}
     variations:
@@ -214,7 +224,8 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: 38efd2ddfc844a249bd6b45e2881fd3c, type: 3}
     feedbackTypes: 01000000020000000300000004000000
     hapticForce: 0.25
-    hapticValues: []
+    hapticValues:
+    - 0.5
   - name: Copiadora
     prefab: {fileID: 614322503775666597, guid: a4934ab6ba736e65ba18fe56c1d6bfea, type: 3}
     variations:
@@ -229,4 +240,7 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: ea541716721356f4797524813e5dfb2f, type: 3}
     feedbackTypes: 01000000020000000300000004000000
     hapticForce: 0.25
-    hapticValues: []
+    hapticValues:
+    - 0.1
+    - 0.3
+    - 0.5

@@ -17,19 +17,27 @@ MonoBehaviour:
     prefab: {fileID: 123268, guid: 3e591163ff2f0484cb2fb25db71af76a, type: 3}
     variations:
     - id: 1.1
+      rotationx: 0
       rotation: 0
+      rotationz: 0
       offsetX: 0
       offsetY: 0
     - id: 2.0
+      rotationx: 0
       rotation: 180
+      rotationz: 0
       offsetX: 1
       offsetY: -1
     - id: 5.0
+      rotationx: 0
       rotation: 270
+      rotationz: 0
       offsetX: 0
       offsetY: -1
     - id: 6.1
+      rotationx: 0
       rotation: 90
+      rotationz: 0
       offsetX: 1
       offsetY: 0
     sound1: {fileID: 8300000, guid: 150d8fd856896234db3d8851ea79704a, type: 3}
@@ -37,23 +45,34 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: a37e95ee5e6ba144f9161904df7db4fc, type: 3}
     feedbackTypes: 01000000020000000300000004000000
     hapticForce: 0.25
+    hapticValues:
+    - 0.5
+    - 0.1
   - name: Cama de Solteiro
     prefab: {fileID: 614322503775666597, guid: 1a55b4da90675122f82605c789f59e6f, type: 3}
     variations:
     - id: 0.3
+      rotationx: 0
       rotation: 0
+      rotationz: 0
       offsetX: 0.5
       offsetY: 0
     - id: 1.2
+      rotationx: 0
       rotation: 180
+      rotationz: 0
       offsetX: 0.5
       offsetY: -1
     - id: 2.3
+      rotationx: 0
       rotation: 90
+      rotationz: 0
       offsetX: 1
       offsetY: -0.5
     - id: 3.2
+      rotationx: 0
       rotation: 270
+      rotationz: 0
       offsetX: 0
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: a51f2ba40732df747b62a5213aa1bd23, type: 3}
@@ -61,23 +80,34 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: c5d5b56893055aa42b2904b11671fce4, type: 3}
     feedbackTypes: 01000000020000000300000004000000
     hapticForce: 0.25
+    hapticValues:
+    - 0.1
+    - 0.5
   - name: Poltrona
     prefab: {fileID: 614322503775666597, guid: bece06783f54df663b92a7bdabd8a473, type: 3}
     variations:
     - id: 4.2
+      rotationx: 0
       rotation: 0
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     - id: 4.3
+      rotationx: 0
       rotation: 180
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     - id: 5.2
+      rotationx: 0
       rotation: 270
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     - id: 5.3
+      rotationx: 0
       rotation: 90
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: 9ee9a123905c4924895884d6d19e1542, type: 3}
@@ -85,23 +115,35 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: 97e2d59994435a548b845690c46b22d0, type: 3}
     feedbackTypes: 01000000020000000300000004000000
     hapticForce: 0.25
+    hapticValues:
+    - 0.5
+    - 0.1
+    - 1
   - name: Cadeira
     prefab: {fileID: 614322503775666597, guid: d453116eb7863ddea8e918097cc1c50e, type: 3}
     variations:
     - id: 6.2
+      rotationx: 0
       rotation: 0
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     - id: 6.3
+      rotationx: 0
       rotation: 270
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     - id: 7.2
+      rotationx: 0
       rotation: 180
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     - id: 7.3
+      rotationx: 0
       rotation: 90
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: ad9feaf1cef2b1e4b8b358e5091cad8f, type: 3}
@@ -109,15 +151,23 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: cf21bc355ecac574b880be153a6c7432, type: 3}
     feedbackTypes: 01000000020000000300000004000000
     hapticForce: 0.25
+    hapticValues:
+    - 0.1
+    - 0.2
+    - 0.5
   - name: Mesa de Jantar (c/ 4 cadeiras)
     prefab: {fileID: 614322503775666597, guid: 778c2bb3df58be96e98f8f24d0078b3d, type: 3}
     variations:
     - id: 0.4
+      rotationx: 0
       rotation: 0
+      rotationz: 0
       offsetX: 1
       offsetY: -1
     - id: 3.5
+      rotationx: 0
       rotation: 90
+      rotationz: 0
       offsetX: 0
       offsetY: 0
     sound1: {fileID: 8300000, guid: ad9feaf1cef2b1e4b8b358e5091cad8f, type: 3}
@@ -125,23 +175,33 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: 29f29c07484ef4d45a34c518e6f206ea, type: 3}
     feedbackTypes: 01000000020000000300000004000000
     hapticForce: 0.25
+    hapticValues:
+    - 0.5
   - name: Guarda-Roupa
     prefab: {fileID: 614322503775666597, guid: faeff082db9a6476698fafcfdd9bf1c6, type: 3}
     variations:
     - id: 4.5
+      rotationx: 0
       rotation: 0
+      rotationz: 0
       offsetX: 1
       offsetY: -0.5
     - id: 5.6
+      rotationx: 0
       rotation: 180
+      rotationz: 0
       offsetX: 0
       offsetY: -0.5
     - id: 6.4
+      rotationx: 0
       rotation: 90
+      rotationz: 0
       offsetX: 0.5
       offsetY: -1
     - id: 6.7
+      rotationx: 0
       rotation: 270
+      rotationz: 0
       offsetX: 0.5
       offsetY: 0
     sound1: {fileID: 8300000, guid: 5c91593d2fd42044296eaa1563c199bf, type: 3}
@@ -149,23 +209,34 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: 0ebcf5a66c878864697a7a2ae8e9e8ae, type: 3}
     feedbackTypes: 01000000020000000300000004000000
     hapticForce: 0.25
+    hapticValues:
+    - 0.2
+    - 0.4
   - name: "Arm\xE1rio de Ferro"
     prefab: {fileID: 614322503775666597, guid: 5f8573d1c786a885f8cbbc0206d36414, type: 3}
     variations:
     - id: 0.7
+      rotationx: 0
       rotation: 0
+      rotationz: 0
       offsetX: 1
       offsetY: -0.5
     - id: 0.8
+      rotationx: 0
       rotation: 180
+      rotationz: 0
       offsetX: 1
       offsetY: -1.5
     - id: 3.6
+      rotationx: 0
       rotation: 90
+      rotationz: 0
       offsetX: -0.5
       offsetY: -1
     - id: 3.9
+      rotationx: 0
       rotation: 270
+      rotationz: 0
       offsetX: -0.5
       offsetY: 0
     sound1: {fileID: 8300000, guid: 5c91593d2fd42044296eaa1563c199bf, type: 3}
@@ -173,23 +244,34 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: ad78645de2eb091459b243424bf1dd3c, type: 3}
     feedbackTypes: 01000000020000000300000004000000
     hapticForce: 0.25
+    hapticValues:
+    - 0.3
+    - 0.6
   - name: "Sof\xE1"
     prefab: {fileID: 614322503775666597, guid: c083dc7bbd1239b3ba2aca1393ed8e25, type: 3}
     variations:
     - id: 4.9
+      rotationx: 0
       rotation: 270
+      rotationz: 0
       offsetX: 0.5
       offsetY: 0
     - id: 4.10
+      rotationx: 0
       rotation: 0
+      rotationz: 0
       offsetX: 1
       offsetY: -0.5
     - id: 5.8
+      rotationx: 0
       rotation: 90
+      rotationz: 0
       offsetX: 0.5
       offsetY: -1
     - id: 5.11
+      rotationx: 0
       rotation: 180
+      rotationz: 0
       offsetX: 0
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: 9ee9a123905c4924895884d6d19e1542, type: 3}
@@ -197,23 +279,34 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: 9a4afd0858bd62a498d1f38d680c0bbb, type: 3}
     feedbackTypes: 01000000020000000300000004000000
     hapticForce: 0.25
+    hapticValues:
+    - 0.1
+    - 0.6
   - name: "C\xF4moda"
     prefab: {fileID: 101770, guid: 495cf5d926377ea419ee768070f0da65, type: 3}
     variations:
     - id: 0.10
+      rotationx: 0
       rotation: 0
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     - id: 0.11
+      rotationx: 0
       rotation: 180
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     - id: 1.10
+      rotationx: 0
       rotation: 270
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     - id: 1.11
+      rotationx: 0
       rotation: 90
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: 5c91593d2fd42044296eaa1563c199bf, type: 3}
@@ -221,23 +314,36 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: 39b63acd25019744cbe7eee743aa93e8, type: 3}
     feedbackTypes: 01000000020000000300000004000000
     hapticForce: 0.25
+    hapticValues:
+    - 0.2
+    - 0.1
+    - 0.7
+    - 0.5
   - name: Estante
     prefab: {fileID: 108630, guid: 6f62946bac32ba444b7e5b41b4315b88, type: 3}
     variations:
     - id: 6.11
+      rotationx: 0
       rotation: 0
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     - id: 7.10
+      rotationx: 0
       rotation: 180
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     - id: 7.12
+      rotationx: 0
       rotation: 270
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     - id: 6.13
+      rotationx: 0
       rotation: 90
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: ad9feaf1cef2b1e4b8b358e5091cad8f, type: 3}
@@ -245,15 +351,23 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: 219386091fcfad649a507515ca467ca4, type: 3}
     feedbackTypes: 01000000020000000300000004000000
     hapticForce: 0.25
+    hapticValues:
+    - 0.1
+    - 0.6
+    - 0.3
   - name: Mesa
     prefab: {fileID: 614322503775666597, guid: d7be4ee713d451b45827eaec54b468ed, type: 3}
     variations:
     - id: 0.12
+      rotationx: 0
       rotation: 90
+      rotationz: 0
       offsetX: 0.5
       offsetY: -1
     - id: 1.12
+      rotationx: 0
       rotation: 0
+      rotationz: 0
       offsetX: 1
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: 773bcdf2c6cf49d44a183a1520672360, type: 3}
@@ -261,23 +375,35 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: fe5ea8cf54709664285c478b916c257d, type: 3}
     feedbackTypes: 010000000200000003000000
     hapticForce: 0.25
+    hapticValues:
+    - 0.7
+    - 0.2
+    - 0.5
   - name: Criado Mudo
     prefab: {fileID: 150400, guid: 66de27a6b14213941920ef82d72c11b6, type: 3}
     variations:
     - id: 6.8
+      rotationx: 0
       rotation: 0
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     - id: 6.9
+      rotationx: 0
       rotation: 180
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     - id: 7.8
+      rotationx: 0
       rotation: 90
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     - id: 7.9
+      rotationx: 0
       rotation: 270
+      rotationz: 0
       offsetX: 0.5
       offsetY: -0.5
     sound1: {fileID: 8300000, guid: ad9feaf1cef2b1e4b8b358e5091cad8f, type: 3}
@@ -285,3 +411,6 @@ MonoBehaviour:
     sound3: {fileID: 8300000, guid: 6710ebd6e5bd8c84ead2718e6c076a4d, type: 3}
     feedbackTypes: 01000000020000000300000004000000
     hapticForce: 0.25
+    hapticValues:
+    - 0.3
+    - 0.8
