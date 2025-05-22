@@ -343,8 +343,6 @@ public class HandFeedback : MonoBehaviour
         }
 
 
-
-
     }
 
     #endregion
@@ -567,7 +565,7 @@ public class HandFeedback : MonoBehaviour
             if (HandCheck.LeftHand)
             {
 
-                ForceCutLeft = hapticForce;
+                HapticLeft = hapticForce;
 
                 HapticImpulseLeft.Play(hapticForce);
 
@@ -699,6 +697,8 @@ public class HandFeedback : MonoBehaviour
                 if (RightAdder % 10 == 0 && HapticRight < 1.0f && hapticListRight.Count != 0)
                 {
 
+                    Debug.Log("MEMEAA" + RightAdder + ":" + hapticListRight.Count);
+
 
                     if (hapticListRight.Count == RightAdder / 10)
                     {
@@ -718,7 +718,6 @@ public class HandFeedback : MonoBehaviour
                 RightAdder += 1;
 
                 Debug.Log("HALLO :D");
-                rightController = GameObject.Find("collisionRight").transform;
                 Debug.Log("HEYYY" + rightController.position);
                 DetectController(rightController, "Cane");
             }

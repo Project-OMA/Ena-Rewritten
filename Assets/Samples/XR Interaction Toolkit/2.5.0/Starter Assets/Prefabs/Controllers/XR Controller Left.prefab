@@ -792,7 +792,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8270855663187062767}
   - component: {fileID: 195445055339462722}
-  - component: {fileID: 7515025645555319734}
+  - component: {fileID: 919427214646374837}
   m_Layer: 3
   m_Name: XR Controller Left
   m_TagString: Left
@@ -834,8 +834,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_FallbackIfEyeTrackingUnavailable: 1
---- !u!65 &7515025645555319734
-BoxCollider:
+--- !u!135 &919427214646374837
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -853,5 +853,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.035, y: 0.01, z: 0.03014765}
-  m_Center: {x: 0, y: -0.0055, z: -0.00491}
+  m_Radius: 0.023
+  m_Center: {x: 0, y: -0.01, z: -0.005}
