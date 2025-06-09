@@ -2018,6 +2018,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightController: {fileID: 5456405218347643516}
   leftController: {fileID: 314797159170071624}
+  LeftAdder: 0
+  HapticLeft: 0
+  hapticListLeft: []
+  RightAdder: 0
+  HapticRight: 0
+  hapticListRight: []
+  ForceCutLeft: 0
+  ForceCutRight: 0
   CaneSource: {fileID: 0}
   WallSource: {fileID: 0}
   audioTrail: {fileID: 0}
@@ -2095,6 +2103,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightController: {fileID: 5456405218347643516}
   leftController: {fileID: 314797159170071624}
+  LeftAdder: 0
+  HapticLeft: 0
+  hapticListLeft: []
+  RightAdder: 0
+  HapticRight: 0
+  hapticListRight: []
+  ForceCutLeft: 0
+  ForceCutRight: 0
   CaneSource: {fileID: 0}
   WallSource: {fileID: 0}
   audioTrail: {fileID: 0}

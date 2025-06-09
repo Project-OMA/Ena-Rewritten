@@ -93,16 +93,23 @@ public class HandFeedback : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+
+
         HandleCollisionEnter(collision);
 
-        StartCoroutine(VibrationVariation(collision));
+
+        if (collision.gameObject.tag != "floor")
+        {
+            StartCoroutine(VibrationVariation(collision));
+        }
+        
 
         
     }
 
     private void OnCollisionExit(Collision collision)
     {
-
+       
         HandleCollisionExit(collision);
 
         StartCoroutine(FeedbackRoutine());
@@ -197,7 +204,6 @@ public class HandFeedback : MonoBehaviour
             if (item.Whatcollided == "Cane Right Controller" || item.Whatcollided == "Left Left Controller")
             {
 
-
                 playerColliding = true;
 
 
@@ -220,9 +226,13 @@ public class HandFeedback : MonoBehaviour
 
             }
 
-            if (!item.IsColliding && !item.CanPlay)
+            Debug.Log("BRUHV" + item.IsColliding);
+            Debug.Log("BRUHV" + item.CanPlay);
+
+            if (!item.CanPlay)
             {
-                item.IsColliding = true;
+
+
                 item.Vector3 = contact.point;
                 item.GameObject = collidedObject;
                 noSoundChild = true;
@@ -239,7 +249,6 @@ public class HandFeedback : MonoBehaviour
                         var audio = soundChild.GetComponent<AudioSource>();
                         if (!audio.isPlaying)
                         {
-                            item.TotalCollisions += 1;
                             noSoundChild = false;
                             HandleCollisionEnterFeedback(item);
                         }
@@ -252,6 +261,7 @@ public class HandFeedback : MonoBehaviour
 
                 if (noSoundChild)
                 {
+                    Debug.Log("MEMEBIGBOY");
                     item.TotalCollisions += 1;
                     HandleCollisionEnterFeedback(item);
                 }
@@ -262,6 +272,7 @@ public class HandFeedback : MonoBehaviour
         }
         else
         {
+
             if (MapLoader.hasMenu)
             {
                 map = MapLoader.mapMenu;
@@ -282,7 +293,7 @@ public class HandFeedback : MonoBehaviour
                 currentMap: map);
 
             Collisions.Add(collidedObjectTag + playerColliderTag, collisionEvent);
-            collisionEvent.IsColliding = true;
+
 
             if (collisionEvent.Whatcollided == "Cane Right Controller" || collisionEvent.Whatcollided == "Left Left Controller")
             {
@@ -332,13 +343,16 @@ public class HandFeedback : MonoBehaviour
 
         if (Collisions.TryGetValue(collidedObjectTag + playerColliderTag, out var itemToUpdate))
         {
+
+            
+
+            Debug.Log("BRUHP" + itemToUpdate.IsColliding);
             if (collision.gameObject.tag == "floor")
             {
 
                 playerColliding = false;
             }
 
-            itemToUpdate.IsColliding = false;
             HandleCollisionExitFeedback(itemToUpdate);
         }
 
@@ -355,6 +369,7 @@ public class HandFeedback : MonoBehaviour
     private void HandleCollisionEnterFeedback(CollisionEvent item)
     {
 
+        item.IsColliding = true;
         item.CanPlay = true;
         HandleFeedback(item);
 
@@ -363,6 +378,7 @@ public class HandFeedback : MonoBehaviour
     private void HandleCollisionExitFeedback(CollisionEvent item)
     {
         Debug.Log("ColOver");
+        item.IsColliding = false;
         item.CanPlay = false;
 
     }
@@ -482,9 +498,8 @@ public class HandFeedback : MonoBehaviour
 
 
 
-        if (collision.IsColliding && collision.CanPlay)
+        if (collision.CanPlay)
         {
-            // Debug.Log($"aaaaaaaaa: {collision.CanPlay}, {collision.CollidedObject}, {collision.IsColliding}, {!source.isPlaying}");
 
 
             Transform parentObj = collision.GameObject.transform;
@@ -512,12 +527,20 @@ public class HandFeedback : MonoBehaviour
                 else if (collision.GameObject.tag == "floor")
                 {
 
+                    
+
                     CaneSource.transform.position = collision.Vector3;
                     CaneSource.transform.parent = collision.GameObject.transform;
                     AudioSource audioSource = CaneSource.GetComponent<AudioSource>();
 
                     if (!audioSource.isPlaying)
                     {
+                        audioSource.clip = sound;
+                        audioSource.Play();
+                    }
+                    else
+                    {
+                        audioSource.Stop();
                         audioSource.clip = sound;
                         audioSource.Play();
                     }
@@ -573,8 +596,6 @@ public class HandFeedback : MonoBehaviour
 
             if (HandCheck.RightHand)
             {
-
-
 
                 HapticRight = hapticForce;
 

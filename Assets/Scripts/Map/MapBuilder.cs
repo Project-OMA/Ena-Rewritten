@@ -139,9 +139,9 @@ public class MapBuilder : MonoBehaviour
         floorPiece.transform.localScale = size;
         floorPiece.transform.parent = floorParent.transform;
         //add mesh renderer and filter
+        floorPiece.tag = "floor";
         AddComponentsToMaterial(floorPiece);
 
-        floorPiece.tag = "floor";
         MaterialConfigComponents(material, feedbackSettings, mesh, floorPiece);
 
         if (code == grassID && useGrass)
@@ -166,9 +166,29 @@ public class MapBuilder : MonoBehaviour
         obj.GetComponent<MeshRenderer>().material = material;
         obj.GetComponent<ObjectFeedbackSettings>().settings = feedbackSettings;
         obj.GetComponent<MeshFilter>().mesh = mesh;
-        obj.GetComponent<MeshCollider>().sharedMesh = mesh;
-        MeshCollider meshCollider = obj.GetComponent<MeshCollider>();
-        meshCollider.convex = true;
+
+        if (obj.tag == "wall")
+        {
+            Vector3 newCenter = new Vector3(-0.45f, 0.5f, 0);
+            Vector3 newSize = new Vector3(0.1f, 1, 1);
+            BoxCollider WallBox = obj.GetComponent<BoxCollider>();
+            WallBox.center = newCenter;
+            WallBox.size = newSize;
+
+        }
+        else
+        {
+            Vector3 newCenter = new Vector3(0, -0.025f, 0);
+            Vector3 newSize = new Vector3(1, 0.05f, 1);
+            BoxCollider floorBox = obj.GetComponent<BoxCollider>();
+            floorBox.center = newCenter;
+            floorBox.size = newSize;
+
+
+        }
+
+        
+        
     }
 
     
@@ -327,7 +347,11 @@ public class MapBuilder : MonoBehaviour
         obj.AddComponent<MeshRenderer>();
         obj.AddComponent<ObjectFeedbackSettings>();
         obj.AddComponent<MeshFilter>();
-        obj.AddComponent<MeshCollider>();
+
+        
+        obj.AddComponent<BoxCollider>();
+
+        
     }
 
     private void InstanceCeilingTile(Ceiling ceiling)
