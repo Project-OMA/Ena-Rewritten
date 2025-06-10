@@ -156,7 +156,7 @@ public class MenuTrans : MonoBehaviour
 
         }
 
-        if((trafficButton.action.WasPressedThisFrame() || Input.GetKeyDown(KeyCode.T)) && !hasMenu && !MapLoader.playerInTraffic){
+        if((trafficButton.action.WasPressedThisFrame() || Input.GetKeyDown(KeyCode.T)) && !hasMenu && !MapLoader.playerInTraffic && !MapLoader.HasOneMap){
 
             changeScene.Traffic("TrafficTest");
 
@@ -172,7 +172,7 @@ public class MenuTrans : MonoBehaviour
             
         }
 
-        if((tutButton.action.WasPressedThisFrame() || Input.GetKeyDown(KeyCode.G)) && !hasMenu && !TutorialCheckpoints.playerInTutorial){
+        if((tutButton.action.WasPressedThisFrame() || Input.GetKeyDown(KeyCode.G)) && !hasMenu && !TutorialCheckpoints.playerInTutorial && !MapLoader.HasOneMap){
 
             
                 

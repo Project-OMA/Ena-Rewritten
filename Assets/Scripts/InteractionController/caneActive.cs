@@ -64,7 +64,7 @@ public class caneActive : MonoBehaviour
     void Update()
     {
         
-        if((caneButton.action.WasPressedThisFrame() || Input.GetKeyDown(KeyCode.B)) && !HandFeedback.playerColliding){
+        if((caneButton.action.WasPressedThisFrame() || Input.GetKeyDown(KeyCode.B)) && !HandFeedback.playerColliding && !MapLoader.HasOneMap){
 
             
 

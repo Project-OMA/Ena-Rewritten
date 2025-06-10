@@ -1624,6 +1624,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "DetectVibration",
+                    "type": "Button",
+                    "id": "48cec0cd-e0e6-46cf-a020-ed50d9102f17",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1822,6 +1831,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "TransferRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "335cd20a-b726-44f5-8016-0c5ff2a8f13b",
+                    "path": "<XRController>{RightHand}/triggerButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DetectVibration",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

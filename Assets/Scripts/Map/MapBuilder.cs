@@ -753,6 +753,7 @@ public class MapBuilder : MonoBehaviour
             MapLoader.playerInMain = true;
             
             Physics.IgnoreLayerCollision(0, 0, false);
+
             mapData = mapPuller.GetNextMap();
 
         }
@@ -763,8 +764,14 @@ public class MapBuilder : MonoBehaviour
 
         if (mapFile == null)
         {
-            Debug.LogError("No map file found");
-            return;
+            Debug.Log("No map file found, using server/local files");
+            
+        }
+        else
+        {
+            MapLoader.HasOneMap = true;
+            mapData = mapFile.text;
+
         }
 
         IMapParser mapParser = null;

@@ -25,13 +25,15 @@ public class MapLoader : MonoBehaviour
 
     public static bool hasPlayedIntro;
 
-    public static int lineCount=0; 
+    public static int lineCount = 0;
 
-    public static bool isInMenu = false; 
+    public static bool isInMenu = false;
 
     public static bool playerInTraffic = false;
 
     public static bool playerInMain = false;
+
+    public static bool HasOneMap = false;
 
 
     
