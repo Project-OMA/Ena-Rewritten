@@ -35,6 +35,8 @@ public class MapLoader : MonoBehaviour
 
     public static bool HasOneMap = false;
 
+    public static bool basicTest = false;
+
 
     
 

@@ -20,26 +20,26 @@ MonoBehaviour:
       rotationx: 0
       rotation: 0
       rotationz: 0
-      offsetX: 0
-      offsetY: 0
+      offsetX: 0.5
+      offsetY: -0.5
     - id: 1.0
       rotationx: 0
       rotation: 90
       rotationz: 0
-      offsetX: 0
-      offsetY: 0
+      offsetX: 0.5
+      offsetY: -0.5
     - id: 2.0
       rotationx: 0
       rotation: 180
       rotationz: 0
-      offsetX: 0
-      offsetY: 0
+      offsetX: 0.5
+      offsetY: -0.5
     - id: 3.0
       rotationx: 0
       rotation: 270
       rotationz: 0
-      offsetX: 0
-      offsetY: 0
+      offsetX: 0.5
+      offsetY: -0.5
   - name: PlayerTutorial
     prefab: {fileID: 2034380779081966565, guid: 5b1f675086e002d4cb478e78897fd8a0, type: 3}
     variations:

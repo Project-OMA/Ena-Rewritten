@@ -48,6 +48,8 @@ public class MapBuilder : MonoBehaviour
     public bool isTutorial;
     public bool isTraffic;
     public bool mainScene;
+
+    public bool basicTest;
     private Mesh floorMesh;
     private Mesh wallMesh;
     private Mesh objMesh;
@@ -758,6 +760,12 @@ public class MapBuilder : MonoBehaviour
 
         }
 
+        if (basicTest)
+        {
+
+            MapLoader.basicTest = true;
+        }
+
 
 
 
@@ -765,7 +773,7 @@ public class MapBuilder : MonoBehaviour
         if (mapFile == null)
         {
             Debug.Log("No map file found, using server/local files");
-            
+
         }
         else
         {

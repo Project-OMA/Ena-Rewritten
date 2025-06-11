@@ -21,15 +21,24 @@ public class VoiceManager : MonoBehaviour
     void Start()
     {
 
-        if(MapLoader.hasMenu){
-        
-            VoiceLines = Resources.LoadAll("VoiceLines/MenuLines",typeof(AudioClip));
-            
+        if (MapLoader.hasMenu)
+        {
 
-        }else{
+            VoiceLines = Resources.LoadAll("VoiceLines/MenuLines", typeof(AudioClip));
 
-            VoiceLines = Resources.LoadAll("VoiceLines/NoMenuMapLines",typeof(AudioClip));
+
+        }
+        else if (MapLoader.basicTest)
+        {
             
+            VoiceLines = Resources.LoadAll("VoiceLines/BasicTestLine", typeof(AudioClip));
+
+        }
+        else
+        {
+
+            VoiceLines = Resources.LoadAll("VoiceLines/NoMenuMapLines", typeof(AudioClip));
+
 
         }
 

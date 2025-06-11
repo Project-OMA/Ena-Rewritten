@@ -787,7 +787,11 @@ PrefabInstance:
     - target: {fileID: 1593772612312908788, guid: 99f6036f07791e557b820a2bb8e7068c, type: 3}
       propertyPath: mapFile
       value: 
-      objectReference: {fileID: 4900000, guid: c5abf8568b233364399fd2ba90a3bc14, type: 3}
+      objectReference: {fileID: 4900000, guid: d6538054086f7564f8abc15c45aea855, type: 3}
+    - target: {fileID: 1593772612312908788, guid: 99f6036f07791e557b820a2bb8e7068c, type: 3}
+      propertyPath: basicTest
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1593772612312908788, guid: 99f6036f07791e557b820a2bb8e7068c, type: 3}
       propertyPath: isTraffic
       value: 0
