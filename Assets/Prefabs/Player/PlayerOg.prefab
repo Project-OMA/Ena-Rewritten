@@ -1861,24 +1861,21 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6563051966089192645, guid: 0329f04dbf5b30441ac4a444193ac58a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6420725213728639212}
+    - targetCorrespondingSourceObject: {fileID: 6563051966089192645, guid: 0329f04dbf5b30441ac4a444193ac58a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8627677152417231897}
     - targetCorrespondingSourceObject: {fileID: 3444123190086535676, guid: 0329f04dbf5b30441ac4a444193ac58a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7198811129350648286}
     - targetCorrespondingSourceObject: {fileID: 3444123190086535676, guid: 0329f04dbf5b30441ac4a444193ac58a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5366314160211881912}
-    - targetCorrespondingSourceObject: {fileID: 3444123190086535676, guid: 0329f04dbf5b30441ac4a444193ac58a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2425579614964869668}
     - targetCorrespondingSourceObject: {fileID: 5252160083219937620, guid: 0329f04dbf5b30441ac4a444193ac58a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 408174960269936626}
     - targetCorrespondingSourceObject: {fileID: 5252160083219937620, guid: 0329f04dbf5b30441ac4a444193ac58a, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7898976340068560272}
-    - targetCorrespondingSourceObject: {fileID: 5252160083219937620, guid: 0329f04dbf5b30441ac4a444193ac58a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2556177715584351068}
   m_SourcePrefab: {fileID: 100100000, guid: 0329f04dbf5b30441ac4a444193ac58a, type: 3}
 --- !u!4 &314797159170071624 stripped
 Transform:
@@ -1950,6 +1947,32 @@ MonoBehaviour:
   WalkSource: {fileID: 5811438234839923407}
   ObjSource: {fileID: 0}
   cam: {fileID: 1090207565412135589}
+--- !u!114 &8627677152417231897
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894606468129598729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de408637ce85a2f419de2a8c824eaa78, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rightController: {fileID: 5456405218347643516}
+  leftController: {fileID: 314797159170071624}
+  LeftAdder: 0
+  HapticLeft: 0
+  hapticListLeft: []
+  RightAdder: 0
+  HapticRight: 0
+  hapticListRight: []
+  ForceCutLeft: 0
+  ForceCutRight: 0
+  CaneSource: {fileID: 0}
+  WallSource: {fileID: 0}
+  audioTrail: {fileID: 0}
+  rayPos: {fileID: 1090207565412135589}
 --- !u!4 &1090207565412135589 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6368038382758017897, guid: 0329f04dbf5b30441ac4a444193ac58a, type: 3}
@@ -2004,32 +2027,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f473cc5dfa5517f4fa160cc8bd88127b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2556177715584351068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2278127546266693784}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de408637ce85a2f419de2a8c824eaa78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rightController: {fileID: 5456405218347643516}
-  leftController: {fileID: 314797159170071624}
-  LeftAdder: 0
-  HapticLeft: 0
-  hapticListLeft: []
-  RightAdder: 0
-  HapticRight: 0
-  hapticListRight: []
-  ForceCutLeft: 0
-  ForceCutRight: 0
-  CaneSource: {fileID: 0}
-  WallSource: {fileID: 0}
-  audioTrail: {fileID: 0}
-  rayPos: {fileID: 1090207565412135589}
+  handFeedback: {fileID: 8627677152417231897}
+  controllerDetector: {fileID: 0}
 --- !u!1 &4282440168370552475 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7786912384716273495, guid: 0329f04dbf5b30441ac4a444193ac58a, type: 3}
@@ -2089,32 +2088,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73c1e1165ffae2044a44db99c2d54480, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &2425579614964869668
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8697885612000559152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de408637ce85a2f419de2a8c824eaa78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rightController: {fileID: 5456405218347643516}
-  leftController: {fileID: 314797159170071624}
-  LeftAdder: 0
-  HapticLeft: 0
-  hapticListLeft: []
-  RightAdder: 0
-  HapticRight: 0
-  hapticListRight: []
-  ForceCutLeft: 0
-  ForceCutRight: 0
-  CaneSource: {fileID: 0}
-  WallSource: {fileID: 0}
-  audioTrail: {fileID: 0}
-  rayPos: {fileID: 1090207565412135589}
+  handFeedback: {fileID: 8627677152417231897}
+  controllerDetector: {fileID: 0}
 --- !u!4 &9021602701237009669 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3048313464044057801, guid: 0329f04dbf5b30441ac4a444193ac58a, type: 3}

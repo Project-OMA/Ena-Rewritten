@@ -25,8 +25,8 @@ MonoBehaviour:
     hapticForce: 0.25
     materialtype: 
     hapticValues:
-    - 0.3
-    - 0.7
+    - 0.4
+    - 0.1
   - id: 1.0
     name: 'Parede de Azulejo '
     material: {fileID: 2100000, guid: 66395c95e2382f379a574d954af451a6, type: 2}
@@ -55,7 +55,10 @@ MonoBehaviour:
     hapticForce: 0.25
     materialtype: 
     hapticValues:
+    - 0.1
     - 0.6
+    - 0.1
+    - 0.8
   - id: 4.0
     name: Parede de Vidro
     material: {fileID: 2100000, guid: b18899030e782da57a423c2f4e125a66, type: 2}

@@ -4,19 +4,41 @@ using UnityEngine;
 
 public class RightHand : MonoBehaviour
 {
-    private void OnCollisionEnter(Collision collision)
+
+    
+    public HandFeedback handFeedback;
+    public ControllerDetector controllerDetector;
+
+    void Start()
     {
-        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Cane" || collision.gameObject.tag == "Left") return;
-        Debug.Log("RIGHT");
-        HandCheck.RightHand = true;
+
+        controllerDetector = GameObject.Find("ControllerDetector").GetComponent<ControllerDetector>();
+        
+        
     }
 
 
-    private void OnCollisionExit(Collision collision){
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!HandCheck.RightHand)
+        {
+            HandCheck.RightHand = true;
+            handFeedback.HandleCollisionEnter(collision); 
+        }
+        
+    }
 
-        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Cane" || collision.gameObject.tag == "Left") return;
+    private void OnCollisionStay(Collision collision)
+    {
+        controllerDetector.HandVariation();
+    }
+
+
+    private void OnCollisionExit(Collision collision)
+    {
+
         Debug.Log("RIGHT");
-        HandCheck.RightHand = false;
+        handFeedback.HandleCollisionExit(collision);
 
     }
 

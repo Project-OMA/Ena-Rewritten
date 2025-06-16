@@ -6,19 +6,41 @@ using System.Linq;
 
 public class LeftHand : MonoBehaviour
 {
+
+    public HandFeedback handFeedback;
+    
+    public ControllerDetector controllerDetector;
+
+    void Start()
+    {
+
+        controllerDetector = GameObject.Find("ControllerDetector").GetComponent<ControllerDetector>();
+        
+        
+    }
     
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Cane" || collision.gameObject.tag == "Left") return;
-        Debug.Log("LEFT");
-        HandCheck.LeftHand = true;
+        if (!HandCheck.LeftHand)
+        {
+           HandCheck.LeftHand = true;
+            handFeedback.HandleCollisionEnter(collision); 
+        }
+        
+
+    }
+    
+    private void OnCollisionStay(Collision collision)
+    {
+
+        controllerDetector.HandVariation();
     }
 
-    private void OnCollisionExit(Collision collision){
+    private void OnCollisionExit(Collision collision)
+    {
 
-        if (collision.gameObject.tag == "Player" || collision.gameObject.tag == "Cane" || collision.gameObject.tag == "Left") return;
         Debug.Log("LEFT");
-        HandCheck.LeftHand = false;
+        handFeedback.HandleCollisionExit(collision);
 
     }
 

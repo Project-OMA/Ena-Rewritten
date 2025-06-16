@@ -54,9 +54,14 @@ public class HandFeedback : MonoBehaviour
 
     public AudioSource audioTrail;
 
-    private bool innerFeedbackLeft = false;
-    private bool innerFeedbackRight = false;
+    public static bool innerFeedbackLeft = false;
+    public static bool innerFeedbackRight = false;
     private Transform currentController;
+
+
+    private Coroutine vibrationVariationCoroutine; 
+    private Coroutine feedbackCoroutine;
+
 
     public Transform rayPos;
 
@@ -82,46 +87,6 @@ public class HandFeedback : MonoBehaviour
         InitializeFeedbackComponents();
 
     }
-
-    private void Update()
-    {
-
-        //meme big boy
-
-
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-
-
-        HandleCollisionEnter(collision);
-
-
-        if (collision.gameObject.tag != "floor")
-        {
-            StartCoroutine(VibrationVariation(collision));
-        }
-        
-
-        
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-       
-        HandleCollisionExit(collision);
-
-        StartCoroutine(FeedbackRoutine());
-
-
-    }
-
-
-
-
-
-
 
 
     #endregion
@@ -174,7 +139,7 @@ public class HandFeedback : MonoBehaviour
         return currentObject;
     }
 
-    private void HandleCollisionEnter(Collision collision)
+    public void HandleCollisionEnter(Collision collision)
     {
 
         // Collisions with the Player game object are reported sometimes. This causes problems in the
@@ -201,30 +166,28 @@ public class HandFeedback : MonoBehaviour
 
         if (Collisions.TryGetValue(collidedObjectTag + playerColliderTag, out var item))
         {
-            if (item.Whatcollided == "Cane Right Controller" || item.Whatcollided == "Left Left Controller")
+            
+
+            playerColliding = true;
+
+            if (HandCheck.LeftHand)
             {
 
-                playerColliding = true;
+                hapticListLeft = feedbackSettings.hapticValues;
 
-
-                if (HandCheck.LeftHand)
-                {
-
-                    hapticListLeft = feedbackSettings.hapticValues;
-
-                    innerFeedbackLeft = true;
-                }
-
-                if (HandCheck.RightHand)
-                {
-
-
-                    hapticListRight = feedbackSettings.hapticValues;
-
-                    innerFeedbackRight = true;
-                }
-
+                innerFeedbackLeft = true;
             }
+
+            if (HandCheck.RightHand)
+            {
+
+
+                hapticListRight = feedbackSettings.hapticValues;
+
+                innerFeedbackRight = true;
+            }
+
+            
 
             Debug.Log("BRUHV" + item.IsColliding);
             Debug.Log("BRUHV" + item.CanPlay);
@@ -293,26 +256,27 @@ public class HandFeedback : MonoBehaviour
                 currentMap: map);
 
             Collisions.Add(collidedObjectTag + playerColliderTag, collisionEvent);
+            
 
 
-            if (collisionEvent.Whatcollided == "Cane Right Controller" || collisionEvent.Whatcollided == "Left Left Controller")
-            {
-
+            
                 playerColliding = true;
 
 
-                if (HandCheck.LeftHand)
-                {
-
-                    innerFeedbackLeft = true;
-                }
-
-                if (HandCheck.RightHand)
-                {
-                    innerFeedbackRight = true;
-                }
-
+            if (HandCheck.LeftHand)
+            {
+                Debug.Log("Hewo" + collisionEvent.Whatcollided);
+                innerFeedbackLeft = true;
+                hapticListLeft = feedbackSettings.hapticValues;
             }
+
+            if (HandCheck.RightHand)
+            {
+                innerFeedbackRight = true;
+                hapticListRight = feedbackSettings.hapticValues;
+            }
+
+            
 
             HandleCollisionEnterFeedback(collisionEvent);
 
@@ -322,7 +286,7 @@ public class HandFeedback : MonoBehaviour
     }
 
 
-    private void HandleCollisionExit(Collision collision)
+    public void HandleCollisionExit(Collision collision)
     {
 
         Debug.Log("amberlamps" + collision.gameObject.tag);
@@ -344,7 +308,7 @@ public class HandFeedback : MonoBehaviour
         if (Collisions.TryGetValue(collidedObjectTag + playerColliderTag, out var itemToUpdate))
         {
 
-            
+
 
             Debug.Log("BRUHP" + itemToUpdate.IsColliding);
             if (collision.gameObject.tag == "floor")
@@ -377,9 +341,18 @@ public class HandFeedback : MonoBehaviour
 
     private void HandleCollisionExitFeedback(CollisionEvent item)
     {
-        Debug.Log("ColOver");
+        
         item.IsColliding = false;
         item.CanPlay = false;
+        HandCheck.LeftHand = false;
+
+        if (feedbackCoroutine == null)
+        {
+
+            Debug.Log("ColOver");
+
+            feedbackCoroutine = StartCoroutine(FeedbackRoutine());
+        }
 
     }
 
@@ -527,7 +500,7 @@ public class HandFeedback : MonoBehaviour
                 else if (collision.GameObject.tag == "floor")
                 {
 
-                    
+
 
                     CaneSource.transform.position = collision.Vector3;
                     CaneSource.transform.parent = collision.GameObject.transform;
@@ -636,7 +609,7 @@ public class HandFeedback : MonoBehaviour
         return string.IsNullOrEmpty(gameObject.tag) ? gameObject.name : gameObject.tag + " " + gameObject.name;
     }
 
-    public void DetectController(Transform currentController, string tag)
+    public void DetectControllerRight(Transform currentController)
     {
         RaycastHit hit;
         Vector3 direction = (currentController.position - rayPos.position).normalized;
@@ -646,185 +619,149 @@ public class HandFeedback : MonoBehaviour
 
         if (Physics.Raycast(rayPos.position, direction, out hit, 5))
         {
-            if (hit.collider != null && hit.collider.gameObject.tag == tag)
+            if (hit.collider != null && hit.collider.gameObject.tag == "Cane")
             {
-                Debug.Log("Detected object with tag: " + tag);
+                Debug.Log("Detected object with tag: " + hit.collider.gameObject.tag );
 
-                if (tag == "Left" && !HandCheck.LeftHand)
-                {
-                    LeftAdder = 0;
-                    HapticLeft = 0.0f;
-                    Debug.Log("Found");
-                    playerColliding = false;
-                    innerFeedbackLeft = false;
-                    HapticImpulseLeft.Stop();
-                }
-                else if (tag == "Cane" && !HandCheck.RightHand)
-                {
-                    RightAdder = 0;
-                    HapticRight = 0.0f;
-                    playerColliding = false;
-                    Debug.Log("Found" + rayPos.position);
-                    innerFeedbackRight = false;
-                    HapticImpulseRight.Stop();
-                }
+                HapticImpulseRight.Stop();
+                HandCheck.RightHand = false;
+                RightAdder = 0;
+                HapticRight = 0.0f;
+                playerColliding = false;
+                Debug.Log("Found" + rayPos.position);
+                innerFeedbackRight = false;
+                    
+                
+            }
+        }
+    }
+
+    public void DetectControllerLeft(Transform currentController)
+    {
+        RaycastHit hit;
+        Vector3 direction = (currentController.position - rayPos.position).normalized;
+        Debug.Log("memebigboy");
+
+        Debug.DrawRay(rayPos.position, direction * 5, Color.red, 5, true);
+
+        if (Physics.Raycast(rayPos.position, direction, out hit, 5))
+        {
+            if (hit.collider != null && hit.collider.gameObject.tag == "Left")
+            {
+                Debug.Log("Detected object with tag: " + hit.collider.gameObject.tag);
+                HapticImpulseLeft.Stop();
+
+            
+                HandCheck.LeftHand = false;
+                LeftAdder = 0;
+                HapticLeft = 0.0f;
+                Debug.Log("Found");
+                playerColliding = false;
+                innerFeedbackLeft = false;
+                
+
             }
         }
     }
 
     private IEnumerator FeedbackRoutine()
     {
+        float incrementStep = 0.05f;
 
-
-        while ((innerFeedbackLeft || innerFeedbackRight))
-        {
-
-            Debug.Log("TESTME");
-            yield return new WaitForSeconds(0.15f);
-
-
-
-            if (innerFeedbackLeft)
-            {
-
-                if (LeftAdder % 10 == 0 && HapticLeft < 1.0f - ForceCutLeft && hapticListLeft.Count != 0)
-                {
-
-                    if (hapticListLeft.Count == LeftAdder / 10)
-                    {
-                        LeftAdder = 0;
-                    }
-
-
-                    float DifferenceLeft = hapticListLeft[LeftAdder / 10] - HapticLeft;
-
-                    Debug.Log("memebughaptic" + HapticLeft);
-                    LeftAdder += 1;
-                    Debug.Log("memeRR" + (HapticLeft + DifferenceLeft) + ":" + DifferenceLeft);
-                    HapticImpulseLeft.Adder(HapticLeft);
-
-                }
-
-                Debug.Log("HALLO :D");
-                Debug.Log(leftController.position);
-                DetectController(leftController, "Left");
-            }
-
-            if (innerFeedbackRight)
-            {
-
-
-
-                if (RightAdder % 10 == 0 && HapticRight < 1.0f && hapticListRight.Count != 0)
-                {
-
-                    Debug.Log("MEMEAA" + RightAdder + ":" + hapticListRight.Count);
-
-
-                    if (hapticListRight.Count == RightAdder / 10)
-                    {
-                        RightAdder = 0;
-                    }
-
-
-                    float DifferenceRight = hapticListRight[RightAdder / 10] - HapticRight;
-                    Debug.Log("memeRR" + (HapticRight + DifferenceRight) + ":" + DifferenceRight);
-                    HapticImpulseRight.Adder(DifferenceRight);
-
-
-
-
-
-                }
-                RightAdder += 1;
-
-                Debug.Log("HALLO :D");
-                Debug.Log("HEYYY" + rightController.position);
-                DetectController(rightController, "Cane");
-            }
-
-
-
-
-        }
-    }
-
-    private IEnumerator VibrationVariation(Collision collision)
-    {
-        GameObject collidedObject = LocateCollidedObjectRoot(collision.gameObject);
-
-
-        string collidedObjectTag = GetObjectName(collidedObject);
-        string playerColliderTag = GetObjectName(gameObject);
-
-
-        if (Collisions.TryGetValue(collidedObjectTag + playerColliderTag, out var itemToUpdate))
-        {
-            if (collision.gameObject.tag == "floor")
-            {
-
-                itemToUpdate.IsColliding = false;
-
-            }
-        }
-
-        while (itemToUpdate.IsColliding)
-        {
-            yield return new WaitForSeconds(0.15f);
-
-            if (innerFeedbackLeft)
-            {
-
-                if (LeftAdder % 10 == 0 && HapticLeft < 1.0f - ForceCutLeft && hapticListLeft.Count != 0)
-                {
-
-                    if (hapticListLeft.Count == LeftAdder / 10)
-                    {
-                        LeftAdder = 0;
-                    }
-                    float DifferenceLeft = hapticListLeft[LeftAdder / 10] - HapticLeft;
-
-                    Debug.Log("memebughaptic" + HapticLeft);
-                    LeftAdder += 1;
-                    Debug.Log("memeRR" + (HapticLeft + DifferenceLeft) + ":" + DifferenceLeft);
-                    HapticImpulseLeft.Adder(HapticLeft);
-
-                }
-            }
-
-            if (innerFeedbackRight)
-            {
-
-
-
-                if (RightAdder % 10 == 0 && HapticRight < 1.0f && hapticListRight.Count != 0)
-                {
-
-
-                    if (hapticListRight.Count == RightAdder / 10)
-                    {
-                        RightAdder = 0;
-                    }
-
-
-                    float DifferenceRight = hapticListRight[RightAdder / 10] - HapticRight;
-                    Debug.Log("memeRR" + (HapticRight + DifferenceRight) + ":" + DifferenceRight);
-                    HapticImpulseRight.Adder(DifferenceRight);
-
-
-
-
-
-                }
-                RightAdder += 1;
-            }
-
-        }
-
+        Debug.Log("Jhan:" + innerFeedbackLeft);
         
+        while (innerFeedbackLeft || innerFeedbackRight)
+        {
 
+            yield return new WaitForSeconds(0.15f);
+
+            Debug.Log("MEMEMEMEEME");
+
+            if (innerFeedbackLeft)
+            {
+                if (HapticLeft < 1.0f - ForceCutLeft)
+                {
+                    HapticLeft += incrementStep;
+
+                    if (HapticLeft > 1.0f)
+                    {
+                        HapticLeft = 1.0f;
+                    }
+
+                    float differenceLeft = 1.0f - HapticLeft;
+                    Debug.Log("Updated HapticLeft: " + HapticLeft);
+                    HapticImpulseLeft.Adder(differenceLeft);
+                }
+
+                DetectControllerLeft(leftController);
+            }
+
+            if (innerFeedbackRight)
+            {
+                if (HapticRight < 1.0f)
+                {
+                    HapticRight += incrementStep;
+
+                    if (HapticRight > 1.0f)
+                    {
+                        HapticRight = 0.0f;
+                    }
+                        
+                    float differenceRight = 1.0f - HapticRight;
+                    Debug.Log("Updated HapticRight: " + HapticRight);
+                    HapticImpulseRight.Adder(differenceRight);
+                }
+
+                DetectControllerRight(rightController);
+            }
+        }
+
+        feedbackCoroutine = null;
     }
+
+    public void VibrationVariation()
+    {
+        if (innerFeedbackLeft && ControllerDetector.canAlternateLeft)
+        {
+            if (HapticLeft < 1.0f - ForceCutLeft && hapticListLeft.Count > 0)
+            {
+                
+                if (LeftAdder >= hapticListLeft.Count)
+                {
+                    LeftAdder = 0;
+                    
+                }
+
+                float differenceLeft = hapticListLeft[LeftAdder] - HapticLeft;
+                Debug.Log("Left Δ: " + differenceLeft);
+                HapticImpulseLeft.Adder(differenceLeft);
+            }
+            LeftAdder++;
+        }
+
+        if (innerFeedbackRight && ControllerDetector.canAlternateRight)
+        {
+            if (HapticRight < 1.0f && hapticListRight.Count > 0)
+            {
+                
+                if (RightAdder >= hapticListRight.Count)
+                {
+                    RightAdder = 0;
+                    
+                }
+
+                float differenceRight = hapticListRight[RightAdder] - HapticRight;
+                Debug.Log("Right Δ: " + differenceRight);
+                HapticImpulseRight.Adder(differenceRight);
+            }
+            RightAdder++;
+        }
+    }
+
+
+
+    
 
 
     #endregion
-}
+    }
