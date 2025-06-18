@@ -169,7 +169,31 @@ public class MapBuilder : MonoBehaviour
         obj.GetComponent<ObjectFeedbackSettings>().settings = feedbackSettings;
         obj.GetComponent<MeshFilter>().mesh = mesh;
 
-        if (obj.tag == "wall")
+       
+        
+        Vector3 newCenter = new Vector3(0, -0.025f, 0);
+        Vector3 newSize = new Vector3(1, 0.05f, 1);
+        BoxCollider floorBox = obj.GetComponent<BoxCollider>();
+        floorBox.center = newCenter;
+        floorBox.size = newSize;
+
+
+        
+
+        
+        
+    }
+    
+    private static void MaterialConfigComponentsWall(Material material, FeedbackSettings feedbackSettings, Mesh mesh, GameObject obj, string wallPos)
+    {
+        obj.GetComponent<MeshRenderer>().material = material;
+        obj.GetComponent<ObjectFeedbackSettings>().settings = feedbackSettings;
+        obj.GetComponent<MeshFilter>().mesh = mesh;
+
+          
+            
+
+        if (wallPos == "horizontal" && !(obj.name.Contains("Front") || (obj.name.Contains("Back"))))
         {
             Vector3 newCenter = new Vector3(-0.45f, 0.5f, 0);
             Vector3 newSize = new Vector3(0.1f, 1, 1);
@@ -177,21 +201,29 @@ public class MapBuilder : MonoBehaviour
             WallBox.center = newCenter;
             WallBox.size = newSize;
 
+
         }
-        else
+
+        if (wallPos == "vertical" && !(obj.name.Contains("Left") || (obj.name.Contains("Right"))))
         {
-            Vector3 newCenter = new Vector3(0, -0.025f, 0);
-            Vector3 newSize = new Vector3(1, 0.05f, 1);
-            BoxCollider floorBox = obj.GetComponent<BoxCollider>();
-            floorBox.center = newCenter;
-            floorBox.size = newSize;
+            Vector3 newCenter = new Vector3(-0.45f, 0.5f, 0);
+            Vector3 newSize = new Vector3(0.1f, 1, 1);
+            BoxCollider WallBox = obj.GetComponent<BoxCollider>();
+            WallBox.center = newCenter;
+            WallBox.size = newSize;
+
 
 
         }
+
+            
+
+       
 
         
         
     }
+
 
     
 
@@ -199,6 +231,7 @@ public class MapBuilder : MonoBehaviour
 
     private void InstanceWallTile(Wall wall)
     {
+        string wallPos = "";
         string code = wall.type;
         int[] startArr = wall.start;
         int[] endArr = wall.end;
@@ -211,6 +244,19 @@ public class MapBuilder : MonoBehaviour
             ceilingHeight,
             Mathf.Abs(end.z - start.z)
         );
+
+        bool isHorizontal = wall.start[1] == wall.end[1]; // Same row (Z), changes in X
+        bool isVertical = wall.start[0] == wall.end[0];   // Same column (X), changes in Z
+
+        if (isHorizontal)
+        {
+            wallPos = "horizontal";
+        }
+
+        if (isVertical)
+        {
+            wallPos = "vertical";
+        }
 
         // get the material data
         Material material = null;
@@ -298,7 +344,7 @@ public class MapBuilder : MonoBehaviour
         meshRight.RecalculateNormals();
 
         // create the object and tiles
-        var wallObj = new GameObject("Wall:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1])
+        var wallObj = new GameObject("Wall:" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1] + "_" + wallPos)
         {
             tag = "wall"
         };
@@ -307,10 +353,10 @@ public class MapBuilder : MonoBehaviour
         string materialname;
         materialname = RemoveUnityEngineMaterial(material.ToString());
 
-        var wallFront = new GameObject("Front "+materialname+":" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
-        var wallBack = new GameObject("Back "+materialname+":" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
-        var wallLeft = new GameObject("Left "+materialname+":" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
-        var wallRight = new GameObject("Right "+materialname+":" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
+        var wallFront = new GameObject("Front " + materialname + ":" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
+        var wallBack = new GameObject("Back " + materialname + ":" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
+        var wallLeft = new GameObject("Left " + materialname + ":" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
+        var wallRight = new GameObject("Right " + materialname + ":" + startArr[0] + "_" + startArr[1] + "_" + endArr[0] + "_" + endArr[1]);
         var wallPieces = new[] { (wallFront, meshFront), (wallBack, meshBack), (wallLeft, meshLeft), (wallRight, meshRight) };
 
 
@@ -322,8 +368,13 @@ public class MapBuilder : MonoBehaviour
             obj.transform.parent = wallObj.transform;
             //add mesh renderer and filter
             obj.tag = "wall";
-            AddComponentsToMaterial(obj);
-            
+            AddComponentsToWall(obj, wallPos);
+
+        }
+
+        foreach (var (obj, mesh) in wallPieces)
+        {
+            MaterialConfigComponentsWall(material, feedbackSettings, mesh, obj, wallPos);
         }
 
         // rotate the wall pieces
@@ -332,11 +383,6 @@ public class MapBuilder : MonoBehaviour
         wallLeft.transform.Rotate(0, 90, 0);
         wallRight.transform.Rotate(0, -90, 0);
 
-        // add the meshes to the wall
-        foreach (var (obj, mesh) in wallPieces)
-        {
-            MaterialConfigComponents(material, feedbackSettings, mesh, obj);
-        }
 
         wallObj.transform.position = start + center;
         wallObj.transform.rotation = Quaternion.identity;
@@ -354,6 +400,30 @@ public class MapBuilder : MonoBehaviour
         obj.AddComponent<BoxCollider>();
 
         
+    }
+
+    private static void AddComponentsToWall(GameObject obj, string wallPos)
+    {
+
+        obj.AddComponent<MeshRenderer>();
+        obj.AddComponent<ObjectFeedbackSettings>();
+        obj.AddComponent<MeshFilter>();
+
+        if (wallPos == "horizontal" && !(obj.name.Contains("Front") || (obj.name.Contains("Back"))))
+        {
+            obj.AddComponent<BoxCollider>();
+        }
+
+        if (wallPos == "vertical" && !(obj.name.Contains("Left") || (obj.name.Contains("Right"))))
+        {
+            obj.AddComponent<BoxCollider>();
+        }
+
+       
+        
+
+        
+
     }
 
     private void InstanceCeilingTile(Ceiling ceiling)

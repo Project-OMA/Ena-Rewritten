@@ -5,7 +5,7 @@ public class HapticFeedback
 {
     private InputDevice xrController;
     private MonoBehaviour self;
-    private bool isHapticFeedbackPlaying = false;
+    public bool isHapticFeedbackPlaying = false;
     private float stopDuration = 30f; // Stop haptic feedback after 30 seconds
 
     private float extra = 0.0f;

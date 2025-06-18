@@ -7,6 +7,9 @@ public class ControllerDetector : MonoBehaviour
     public Transform rightController;
     public Transform leftController;
 
+    public static int waitRight = 1;
+    public static int waitLeft = 1;
+
     public Vector3 PreviousPositionLeft;
 
     public Vector3 PreviousPositionRight;
@@ -24,9 +27,11 @@ public class ControllerDetector : MonoBehaviour
 
     public HandFeedback handFeedback;
 
-    public int frameCounter = 0;
+    public static int frameCounterRight = 0;
 
-    private const int StoppedFrameLimit = 30;
+    public static int frameCounterLeft = 0;
+
+    private const int StoppedFrameLimit = 10;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,29 +49,51 @@ public class ControllerDetector : MonoBehaviour
     // Update is called once per frame
     public void HandVariation()
     {
-
-        if (HandFeedback.innerFeedbackLeft)
+        if (HandFeedback.innerFeedbackLeft && !LeftHand.leftInside)
         {
-            ProcessHand(ref PreviousPositionLeft, leftController, ref canAlternateLeft, ref stoppedLeft, "Left");
+            ProcessHand(ref PreviousPositionLeft, leftController, ref canAlternateLeft, ref stoppedLeft, "Left", ref waitLeft);
         }
 
-        if (HandFeedback.innerFeedbackRight)
+        if (HandFeedback.innerFeedbackRight && !RightHand.rightInside)
         {
-            ProcessHand(ref PreviousPositionRight, rightController, ref canAlternateRight, ref stoppedRight, "Right");
+            ProcessHand(ref PreviousPositionRight, rightController, ref canAlternateRight, ref stoppedRight, "Right", ref waitRight);
         }
 
     }
-    
-    public void ProcessHand(ref Vector3 previousPosition, Transform controller, ref bool canAlternate, ref int stopped, string handLabel)
+
+    public void ProcessHand(ref Vector3 previousPosition, Transform controller, ref bool canAlternate, ref int stopped, string handLabel, ref int wait)
     {
         float distance = Vector3.Distance(previousPosition, controller.position);
         Debug.Log($"{handLabel} Movement: {distance}");
 
         if (distance > distanceThreshold)
         {
-            stopped = 0; 
-            canAlternate = true; 
+            stopped = 0;
+            canAlternate = true;
             handFeedback.VibrationVariation();
+
+            switch (distance)
+            {
+
+                case > 0.5f:
+
+                    wait = 2;
+
+                    break;
+
+                case > 0.2f:
+
+                    wait = 4;
+
+                    break;
+
+                default:
+
+                    wait = 10;
+
+                    break;
+
+            }
         }
         else
         {

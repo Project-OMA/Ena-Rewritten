@@ -64,7 +64,7 @@ public class caneActive : MonoBehaviour
     void Update()
     {
         
-        if((caneButton.action.WasPressedThisFrame() || Input.GetKeyDown(KeyCode.B)) && !HandFeedback.playerColliding && !MapLoader.HasOneMap){
+        if((caneButton.action.WasPressedThisFrame() || Input.GetKeyDown(KeyCode.B)) && !(HandCheck.LeftHand || HandCheck.RightHand) && !MapLoader.HasOneMap){
 
             
 
@@ -98,7 +98,7 @@ public class caneActive : MonoBehaviour
             m_MyAudioSource.Play();
         }
 
-        if((caneTransferLeft.action.WasPressedThisFrame() || Input.GetKeyDown(KeyCode.L)) && !HandFeedback.playerColliding && isItemActive){
+        if((caneTransferLeft.action.WasPressedThisFrame() || Input.GetKeyDown(KeyCode.L)) && !(HandCheck.LeftHand || HandCheck.RightHand) && isItemActive){
 
             if (!transfered)
             {
@@ -109,7 +109,7 @@ public class caneActive : MonoBehaviour
             }
         }
 
-        if((caneTransferRight.action.WasPressedThisFrame() || Input.GetKeyDown(KeyCode.R)) && !HandFeedback.playerColliding && isItemActive){
+        if((caneTransferRight.action.WasPressedThisFrame() || Input.GetKeyDown(KeyCode.R)) && !(HandCheck.LeftHand || HandCheck.RightHand) && isItemActive){
 
             if (transfered)
             {
