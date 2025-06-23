@@ -28,7 +28,11 @@ public class HandFeedback : MonoBehaviour
     public float HapticRight;
     public List<float> hapticListRight;
 
-    
+    private string tagLeft;
+
+    private string tagRight;
+
+
 
     public float ForceCutRight;
 
@@ -63,6 +67,11 @@ public class HandFeedback : MonoBehaviour
     private float differenceLeft;
 
     private float differenceRight;
+
+
+    public static bool outLeft = false;
+
+    public static bool outRight = false;
 
 
 
@@ -135,7 +144,7 @@ public class HandFeedback : MonoBehaviour
 
         return currentObject;
     }
-    
+
 
 
     public void HandleCollisionEnter(Collision collision, string controller)
@@ -143,7 +152,7 @@ public class HandFeedback : MonoBehaviour
 
         // Collisions with the Player game object are reported sometimes. This causes problems in the
         // LocateCollidedObjectRoot method, since the Player is located in the scene root (has no parent)
-        if (collision.gameObject.tag == "car" && collision.gameObject.tag == "Player") return;
+        if (collision.gameObject.tag == "car" || collision.gameObject.tag == "Player") return;
 
         ContactPoint contact = collision.contacts[0];
         Debug.Log("Pos:" + contact.point);
@@ -152,6 +161,7 @@ public class HandFeedback : MonoBehaviour
         // we have to "move up" the object tree until we find the root object of the prop (which 
         // contains the FeedbackSettings component)
         GameObject collidedObject = LocateCollidedObjectRoot(collision.gameObject);
+        string tag = collision.gameObject.tag;
 
         string collidedObjectTag = GetObjectName(collidedObject);
         string playerColliderTag = GetObjectName(gameObject);
@@ -166,12 +176,13 @@ public class HandFeedback : MonoBehaviour
         if (Collisions.TryGetValue(collidedObjectTag + playerColliderTag + controller, out var item))
         {
 
-            playerColliding = true; 
+            playerColliding = true;
 
             if (HandCheck.LeftHand && !innerFeedbackLeft)
             {
 
                 hapticListLeft = feedbackSettings.hapticValues;
+                tagLeft = tag;
 
                 innerFeedbackLeft = true;
             }
@@ -181,6 +192,7 @@ public class HandFeedback : MonoBehaviour
 
 
                 hapticListRight = feedbackSettings.hapticValues;
+                tagRight = tag;
 
                 innerFeedbackRight = true;
             }
@@ -192,8 +204,6 @@ public class HandFeedback : MonoBehaviour
 
             if (!item.CanPlay)
             {
-
-
                 item.Vector3 = contact.point;
                 item.GameObject = collidedObject;
                 noSoundChild = true;
@@ -262,6 +272,7 @@ public class HandFeedback : MonoBehaviour
             if (HandCheck.LeftHand && !innerFeedbackLeft)
             {
                 Debug.Log("HewoLeft" + collisionEvent.Whatcollided);
+                tagLeft = collisionEvent.GameObject.tag;
                 innerFeedbackLeft = true;
                 hapticListLeft = feedbackSettings.hapticValues;
             }
@@ -269,6 +280,7 @@ public class HandFeedback : MonoBehaviour
             if (HandCheck.RightHand && !innerFeedbackRight)
             {
                 Debug.Log("HewoRight" + collisionEvent.Whatcollided);
+                tagRight = collisionEvent.GameObject.tag;
                 innerFeedbackRight = true;
                 hapticListRight = feedbackSettings.hapticValues;
             }
@@ -288,7 +300,7 @@ public class HandFeedback : MonoBehaviour
 
         Debug.Log("amberlamps" + collision.gameObject.tag);
 
-        
+
 
 
 
@@ -325,7 +337,7 @@ public class HandFeedback : MonoBehaviour
                         HandCheck.RightHand = false;
                         RightHand.rightInside = false;
 
-                        if (feedbackCoroutineRight!= null)
+                        if (feedbackCoroutineRight != null)
                         {
                             StopCoroutine(feedbackCoroutineRight);
                             feedbackCoroutineRight = null;
@@ -342,7 +354,7 @@ public class HandFeedback : MonoBehaviour
                         HandCheck.LeftHand = false;
                         LeftHand.leftInside = false;
 
-                        if (feedbackCoroutineLeft!= null)
+                        if (feedbackCoroutineLeft != null)
                         {
                             StopCoroutine(feedbackCoroutineLeft);
                             feedbackCoroutineLeft = null;
@@ -354,7 +366,9 @@ public class HandFeedback : MonoBehaviour
                 playerColliding = false;
             }
 
-            
+
+
+
         }
 
 
@@ -370,7 +384,7 @@ public class HandFeedback : MonoBehaviour
     private void HandleCollisionEnterFeedback(CollisionEvent item)
     {
 
-        Debug.Log("Hewo"+item.CollidedObject);
+        Debug.Log("Hewo" + item.CollidedObject);
 
         item.IsColliding = true;
         item.CanPlay = true;
@@ -491,9 +505,6 @@ public class HandFeedback : MonoBehaviour
 
         Debug.Log("Tag:" + firstLine);
         Debug.Log("Name: " + inputString);
-
-
-
 
         if (collision.CanPlay)
         {
@@ -637,43 +648,43 @@ public class HandFeedback : MonoBehaviour
     {
         RaycastHit hit;
         Vector3 direction = (leftController.position - rayPos.position).normalized;
-        Debug.Log("memebigboy");
+
 
         Debug.DrawRay(rayPos.position, direction * 5, Color.red, 5, true);
 
         if (Physics.Raycast(rayPos.position, direction, out hit, 5))
         {
 
-            Debug.Log("MemeDetect" + hit.collider.gameObject.tag);
 
 
-            if (hit.collider.tag != "Left" && !LeftHand.leftInside)
+
+            if (hit.collider.tag == tagLeft && !LeftHand.leftInside)
             {
-
-                if (feedbackCoroutineLeft == null)
+                Debug.Log("MemeDetect" + hit.collider.gameObject.tag);
+                if (feedbackCoroutineLeft == null && tagLeft != "floor")
                 {
                     LeftHand.leftInside = true;
                     feedbackCoroutineLeft = StartCoroutine(FeedbackRoutineLeft());
                 }
 
-
             }
 
-            if (hit.collider.tag == "Left")
+            if (hit.collider.tag == "Left" && outLeft)
             {
                 HapticImpulseLeft.Stop();
+                outLeft = false;
                 HapticLeft = 0.0f;
                 LeftAdder = 0;
                 innerFeedbackLeft = false;
                 HandCheck.LeftHand = false;
                 LeftHand.leftInside = false;
 
-                if (feedbackCoroutineLeft!= null)
+                if (feedbackCoroutineLeft != null)
                 {
                     StopCoroutine(feedbackCoroutineLeft);
                     feedbackCoroutineLeft = null;
                 }
-                
+
             }
         }
     }
@@ -682,25 +693,30 @@ public class HandFeedback : MonoBehaviour
     {
         RaycastHit hit;
         Vector3 direction = (rightController.position - rayPos.position).normalized;
-        Debug.Log("memebigboy");
-
         Debug.DrawRay(rayPos.position, direction * 5, Color.red, 5, true);
-        
-        
+
 
         if (Physics.Raycast(rayPos.position, direction, out hit, 5))
         {
-            Debug.Log("MemeDetect" + hit.collider.gameObject.tag);
 
-            if (hit.collider.tag != "Cane" && !RightHand.rightInside)
+            Debug.Log("TESTRIGHT" + hit.collider.tag);
+
+            if (hit.collider.tag == tagRight && !RightHand.rightInside)
             {
-                RightHand.rightInside = true;
-                feedbackCoroutineRight = StartCoroutine(FeedbackRoutineRight());
+                Debug.Log("TESTRIGHT" + hit.collider.tag + "1");
+                if (feedbackCoroutineRight == null && tagRight != "floor")
+                {
+
+                    RightHand.rightInside = true;
+                    feedbackCoroutineRight = StartCoroutine(FeedbackRoutineRight());
+                }
+
             }
 
-            if (hit.collider.tag == "Cane")
+            if (hit.collider.tag == "Cane" && outRight)
             {
                 HapticImpulseRight.Stop();
+                outRight = false;
                 HapticRight = 0.0f;
                 RightAdder = 0;
                 innerFeedbackRight = false;
@@ -734,17 +750,21 @@ public class HandFeedback : MonoBehaviour
 
                 float differenceLeft = 1.0f - HapticLeft;
                 Debug.Log("Updated HapticLeft: " + HapticLeft);
+
+
                 HapticImpulseLeft.Adder(differenceLeft);
+
+
             }
 
             DetectControllerLeft();
         }
 
-        
+
 
         feedbackCoroutineLeft = null;
     }
-    
+
     private IEnumerator FeedbackRoutineRight()
     {
         float incrementStep = 0.05f;
@@ -761,10 +781,14 @@ public class HandFeedback : MonoBehaviour
 
                 float differenceRight = 1.0f - HapticRight;
                 Debug.Log("Updated HapticRight: " + HapticRight);
+
+
                 HapticImpulseRight.Adder(differenceRight);
+
+
             }
 
-            DetectControllerRight();  
+            DetectControllerRight();
         }
 
         feedbackCoroutineRight = null;
@@ -772,9 +796,9 @@ public class HandFeedback : MonoBehaviour
 
 
 
-    public void VibrationVariation()
+    public void VibrationVariationLeft()
     {
-        if (innerFeedbackLeft && ControllerDetector.canAlternateLeft)
+        if (ControllerDetector.canAlternateLeft)
         {
             if (HapticLeft < 1.0f && hapticListLeft.Count > 0)
             {
@@ -785,14 +809,20 @@ public class HandFeedback : MonoBehaviour
 
                 }
 
-                differenceLeft = hapticListLeft[LeftAdder] - HapticLeft;
-                Debug.Log("Left Δ: " + differenceLeft);
+                differenceLeft = Mathf.Abs(hapticListLeft[LeftAdder]) - HapticLeft;
+                Debug.Log("Left Δ: " + differenceLeft + "-" + HapticLeft + "-" + hapticListLeft[LeftAdder]);
                 HapticImpulseLeft.Adder(differenceLeft);
             }
             LeftAdder++;
         }
 
-        if (innerFeedbackRight && ControllerDetector.canAlternateRight)
+        
+    }
+    
+    public void VibrationVariationRight()
+    {
+
+        if (ControllerDetector.canAlternateRight)
         {
             if (HapticRight < 1.0f && hapticListRight.Count > 0)
             {
@@ -803,8 +833,8 @@ public class HandFeedback : MonoBehaviour
 
                 }
 
-                differenceRight = hapticListRight[RightAdder] - HapticRight;
-                Debug.Log("Right Δ: " + differenceRight);
+                differenceRight = Mathf.Abs(hapticListRight[RightAdder]) - HapticRight;
+                Debug.Log("Right Δ: " + differenceRight + "-" + HapticRight + "-" + hapticListRight[RightAdder]);
                 HapticImpulseRight.Adder(differenceRight);
             }
             RightAdder++;
@@ -817,4 +847,4 @@ public class HandFeedback : MonoBehaviour
 
 
     #endregion
-    }
+}

@@ -47,14 +47,18 @@ public class ControllerDetector : MonoBehaviour
     }
 
     // Update is called once per frame
-    public void HandVariation()
+    public void HandVariationLeft()
     {
-        if (HandFeedback.innerFeedbackLeft && !LeftHand.leftInside)
+        if (!LeftHand.leftInside)
         {
             ProcessHand(ref PreviousPositionLeft, leftController, ref canAlternateLeft, ref stoppedLeft, "Left", ref waitLeft);
         }
 
-        if (HandFeedback.innerFeedbackRight && !RightHand.rightInside)
+    }
+    public void HandVariationRight()
+    {
+
+        if (!RightHand.rightInside)
         {
             ProcessHand(ref PreviousPositionRight, rightController, ref canAlternateRight, ref stoppedRight, "Right", ref waitRight);
         }
@@ -68,9 +72,22 @@ public class ControllerDetector : MonoBehaviour
 
         if (distance > distanceThreshold)
         {
+
             stopped = 0;
             canAlternate = true;
-            handFeedback.VibrationVariation();
+
+            switch (handLabel)
+            {
+
+                case "Left":
+                    handFeedback.VibrationVariationLeft();
+                    break;
+
+                case "Right":
+                    handFeedback.VibrationVariationRight();
+                    break;
+            }
+            
 
             switch (distance)
             {

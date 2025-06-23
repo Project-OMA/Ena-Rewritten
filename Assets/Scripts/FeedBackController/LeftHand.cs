@@ -39,18 +39,19 @@ public class LeftHand : MonoBehaviour
 
         if (ControllerDetector.frameCounterLeft % ControllerDetector.waitLeft == 0 && HandFeedback.innerFeedbackLeft && !leftInside)
         {
-            controllerDetector.HandVariation();
             handFeedback.DetectControllerLeft();
+            controllerDetector.HandVariationLeft();
             
         }
     }
 
     private void OnCollisionExit(Collision collision)
     {
+        HandFeedback.outLeft = true;
         handFeedback.DetectControllerLeft();
         ControllerDetector.canAlternateLeft = false;
         ControllerDetector.frameCounterLeft = 0;
-        Debug.Log("LEFT");
+        Debug.Log("LEFTaaaaaa");
         handFeedback.HandleCollisionExit(collision, "Left");
 
     }
