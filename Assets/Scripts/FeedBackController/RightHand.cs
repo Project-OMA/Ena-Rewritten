@@ -38,7 +38,7 @@ public class RightHand : MonoBehaviour
         ControllerDetector.frameCounterRight++;
         if (ControllerDetector.frameCounterRight % ControllerDetector.waitRight == 0 && HandFeedback.innerFeedbackRight && !rightInside)
         {
-            Debug.Log("rightcol:" + rightInside);
+            HandFeedback.outRight = false;
             handFeedback.DetectControllerRight();
             controllerDetector.HandVariationRight();
 

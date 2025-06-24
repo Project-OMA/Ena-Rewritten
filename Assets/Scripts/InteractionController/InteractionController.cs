@@ -82,9 +82,6 @@ public class InteractionController : MonoBehaviour
                     
                     player.Translate(moveVector, Space.World);
                     TutorialCheckpoints.playerHasMoved = true;
-    
-
-                    feedbackController.handleStep();
 
                     
                     
@@ -97,9 +94,7 @@ public class InteractionController : MonoBehaviour
 
                         player.Translate(moveVector, Space.World);
                         TutorialCheckpoints.playerHasMoved = true;
-    
 
-                        feedbackController.handleStep();
 
                     }
 
@@ -116,9 +111,6 @@ public class InteractionController : MonoBehaviour
 
                         player.Translate(moveVector, Space.World);
                         TutorialCheckpoints.playerHasMoved = true;
-    
-
-                        feedbackController.handleStep();
 
                     }
 

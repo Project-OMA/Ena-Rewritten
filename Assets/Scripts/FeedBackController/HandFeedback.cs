@@ -256,7 +256,7 @@ public class HandFeedback : MonoBehaviour
 
             var collisionEvent = new CollisionEvent(
                 collidedObject: collidedObjectTag,
-                whatcollided: playerColliderTag,
+                whatcollided: playerColliderTag +"-"+controller,
                 feedbackSettings: feedbackSettings,
                 gameObject: collidedObject,
                 vector3: contact.point,
@@ -669,6 +669,21 @@ public class HandFeedback : MonoBehaviour
 
             }
 
+            if (hit.collider.tag == "Left" && (!outLeft && LeftHand.leftInside))
+            {
+                HapticLeft = 0.25f;
+
+                LeftHand.leftInside = false;
+
+                if (feedbackCoroutineLeft != null)
+                {
+                    StopCoroutine(feedbackCoroutineLeft);
+                    feedbackCoroutineLeft = null;
+                }
+
+            }
+            
+
             if (hit.collider.tag == "Left" && outLeft)
             {
                 HapticImpulseLeft.Stop();
@@ -709,6 +724,20 @@ public class HandFeedback : MonoBehaviour
 
                     RightHand.rightInside = true;
                     feedbackCoroutineRight = StartCoroutine(FeedbackRoutineRight());
+                }
+
+            }
+
+            if (hit.collider.tag == "Right" && (!outRight && RightHand.rightInside))
+            {
+                HapticRight = 0.25f;
+
+                RightHand.rightInside = false;
+                
+                if (feedbackCoroutineRight != null)
+                {
+                    StopCoroutine(feedbackCoroutineRight);
+                    feedbackCoroutineRight = null;
                 }
 
             }
