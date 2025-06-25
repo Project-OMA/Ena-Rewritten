@@ -1989,6 +1989,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 1090207565412135589}
   feedbackController: {fileID: 0}
+  stepThreshold: 0.05
+  frameCheckRate: 10
 --- !u!4 &1090207565412135589 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6368038382758017897, guid: 0329f04dbf5b30441ac4a444193ac58a, type: 3}

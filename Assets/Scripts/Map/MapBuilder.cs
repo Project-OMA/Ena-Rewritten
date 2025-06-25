@@ -190,10 +190,10 @@ public class MapBuilder : MonoBehaviour
         obj.GetComponent<ObjectFeedbackSettings>().settings = feedbackSettings;
         obj.GetComponent<MeshFilter>().mesh = mesh;
 
-          
-            
 
-        if (wallPos == "horizontal" && !(obj.name.Contains("Front") || (obj.name.Contains("Back"))))
+
+
+        if ((wallPos == "vertical" || wallPos == "horizontal") && !(obj.name.Contains("Front") || (obj.name.Contains("Back"))))
         {
             Vector3 newCenter = new Vector3(-0.45f, 0.5f, 0);
             Vector3 newSize = new Vector3(0.1f, 1, 1);
@@ -204,17 +204,17 @@ public class MapBuilder : MonoBehaviour
 
         }
 
-        if (wallPos == "vertical" && !(obj.name.Contains("Left") || (obj.name.Contains("Right"))))
+        if (obj.name.Contains("Front") || (obj.name.Contains("Back")))
         {
-            Vector3 newCenter = new Vector3(-0.45f, 0.5f, 0);
-            Vector3 newSize = new Vector3(0.1f, 1, 1);
+            Vector3 newCenter = new Vector3(-0.5f, 0.5f, 0);
+            Vector3 newSize = new Vector3(0.02f, 1, 1);
             BoxCollider WallBox = obj.GetComponent<BoxCollider>();
             WallBox.center = newCenter;
             WallBox.size = newSize;
 
 
-
         }
+
 
             
 
@@ -409,15 +409,8 @@ public class MapBuilder : MonoBehaviour
         obj.AddComponent<ObjectFeedbackSettings>();
         obj.AddComponent<MeshFilter>();
 
-        if (wallPos == "horizontal" && !(obj.name.Contains("Front") || (obj.name.Contains("Back"))))
-        {
-            obj.AddComponent<BoxCollider>();
-        }
-
-        if (wallPos == "vertical" && !(obj.name.Contains("Left") || (obj.name.Contains("Right"))))
-        {
-            obj.AddComponent<BoxCollider>();
-        }
+        
+        obj.AddComponent<BoxCollider>();
 
        
         

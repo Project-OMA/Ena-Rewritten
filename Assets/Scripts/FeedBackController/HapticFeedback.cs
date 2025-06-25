@@ -47,8 +47,7 @@ public class HapticFeedback
                 for (float elapsed = 0; elapsed < stopDuration; elapsed += Time.deltaTime)
                 {
                     if(isHapticFeedbackPlaying)
-                    {
-                        
+                    {   
                         xrController.SendHapticImpulse(channel, amplitude + extra);
                         yield return null;
                     }
