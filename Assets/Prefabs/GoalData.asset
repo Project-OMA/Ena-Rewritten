@@ -439,3 +439,28 @@ MonoBehaviour:
     feedbackTypes: 
     hapticForce: 0.25
     hapticValues: []
+  - name: TestCube
+    prefab: {fileID: 5495142978414803698, guid: a3a282ff8d2a5e64687e97b1f21564df, type: 3}
+    variations:
+    - id: 100
+      rotationx: 0
+      rotation: 0
+      rotationz: 0
+      offsetX: 0.5
+      offsetY: 0
+    sound1: {fileID: 8300000, guid: ad9feaf1cef2b1e4b8b358e5091cad8f, type: 3}
+    sound2: {fileID: 8300000, guid: 773bcdf2c6cf49d44a183a1520672360, type: 3}
+    sound3: {fileID: 8300000, guid: ad9feaf1cef2b1e4b8b358e5091cad8f, type: 3}
+    feedbackTypes: 01000000020000000300000004000000
+    hapticForce: 0.1
+    hapticValues:
+    - 0.1
+    - 0.2
+    - 0.3
+    - 0.4
+    - 0.5
+    - 0.6
+    - 0.7
+    - 0.8
+    - 0.9
+    - 1

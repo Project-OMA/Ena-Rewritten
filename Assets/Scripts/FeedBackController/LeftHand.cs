@@ -13,6 +13,8 @@ public class LeftHand : MonoBehaviour
 
     public static bool leftInside = false;
 
+    public static bool reducedLeft = false;
+
 
     void Start()
     {

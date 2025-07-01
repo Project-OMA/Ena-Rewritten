@@ -66,16 +66,14 @@
         "door_and_windows": [],
         "furniture": [],
         "utensils": [],
-        "eletronics": [
-            {
+        "eletronics": [],
+        "goals": [{
                 "pos": [
                     12,
                     7
                 ],
-                "type": "2.0"
-            }
-        ],
-        "goals": [],
+                "type": "100"
+            }],
         "persons": [
             {
                 "pos": [

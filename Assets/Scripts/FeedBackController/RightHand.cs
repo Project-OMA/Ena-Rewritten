@@ -11,6 +11,8 @@ public class RightHand : MonoBehaviour
 
     public static bool rightInside = false;
 
+    public static bool reducedRight = false;
+
     void Start()
     {
 

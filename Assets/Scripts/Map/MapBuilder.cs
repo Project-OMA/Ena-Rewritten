@@ -508,6 +508,7 @@ public class MapBuilder : MonoBehaviour
 
 
         string name = prefab.name + ":" + type + "_" + pos[0] + "_" + pos[1];
+        
 
         // Position
         float posX = pos[0] + propData.offsetX;
@@ -526,8 +527,14 @@ public class MapBuilder : MonoBehaviour
 
         obj.transform.parent = parent.transform;
 
-        if(prefab.tag != "Final"){
-          obj.tag = tag;  
+        if (prefab.tag == "Final" || prefab.tag == "TestCube")
+        {
+            Debug.Log("TESTED");
+            
+        }
+        else
+        {
+            obj.tag = tag;
         }
 
         
@@ -535,7 +542,7 @@ public class MapBuilder : MonoBehaviour
         obj.GetComponent<ObjectFeedbackSettings>().settings = feedbackSettings;
 
 
-        if(obj.tag != "Final"){
+        if(obj.tag != "Final" || obj.tag != "TestCube"){
            AddTagsToChildren(obj.transform, obj.tag); 
         }
         

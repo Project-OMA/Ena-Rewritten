@@ -73,6 +73,9 @@ public class HandFeedback : MonoBehaviour
 
     public static bool outRight = false;
 
+    public static float HapticValueRight = 0.0f;
+
+    public static float HapticValueLeft = 0.0f;
 
 
 
@@ -221,6 +224,7 @@ public class HandFeedback : MonoBehaviour
                         if (!audio.isPlaying)
                         {
                             noSoundChild = false;
+                            item.TotalCollisions += 1;
                             HandleCollisionEnterFeedback(item);
                         }
 
@@ -322,7 +326,7 @@ public class HandFeedback : MonoBehaviour
             itemToUpdate.CanPlay = false;
 
             Debug.Log("BRUHP" + itemToUpdate.IsColliding);
-            if (collision.gameObject.tag == "floor")
+            if (collision.gameObject.tag == "floor" || collision.gameObject.tag == "TestCube")
             {
 
                 switch (controller)
@@ -400,7 +404,7 @@ public class HandFeedback : MonoBehaviour
         foreach (var feedbackType in collision.FeedbackSettings?.feedbackTypes ?? new FeedbackTypeEnum[0])
         {
 
-            if (collision.GameObject.tag != "floor")
+            if (collision.GameObject.tag != "floor" || collision.GameObject.tag != "TestCube")
             {
                 switch (collision.TotalCollisions)
                 {
@@ -420,11 +424,13 @@ public class HandFeedback : MonoBehaviour
                         PlaySoundFeedback(collision.FeedbackSettings.sound1, collision);
                         PlayHapticFeedback(collision.FeedbackSettings.hapticForce, collision);
 
+                        if (!audioTrail.isPlaying)
+                        {
 
-                        audioTrail.clip = collision.FeedbackSettings.sound3;
-                        audioTrail.Play();
+                            audioTrail.clip = collision.FeedbackSettings.sound3;
+                            audioTrail.Play();
 
-
+                        }
 
                         collision.TotalCollisions = 0;
 
@@ -433,15 +439,27 @@ public class HandFeedback : MonoBehaviour
                 }
 
             }
-            else
+            else if (collision.GameObject.tag == "floor")
             {
                 FloorFeedback(collision);
+            }
+            else if (collision.GameObject.name == "TestCube")
+            {
+
+                CubeFeedback(collision);
+
             }
 
 
 
 
         }
+    }
+
+    private void CubeFeedback(CollisionEvent collision)
+    {
+        PlaySoundFeedback(collision.FeedbackSettings.sound2, collision);
+        PlayHapticFeedback(collision.FeedbackSettings.hapticForce, collision);
     }
 
     private void FloorFeedback(CollisionEvent collision)
@@ -595,6 +613,7 @@ public class HandFeedback : MonoBehaviour
 
             if (HandCheck.LeftHand && !HapticImpulseLeft.isHapticFeedbackPlaying)
             {
+                HapticValueLeft = hapticForce;
 
                 HapticLeft = hapticForce;
 
@@ -604,6 +623,8 @@ public class HandFeedback : MonoBehaviour
 
             if (HandCheck.RightHand && !HapticImpulseRight.isHapticFeedbackPlaying)
             {
+
+                HapticValueRight = hapticForce;
 
                 HapticRight = hapticForce;
 
@@ -661,7 +682,7 @@ public class HandFeedback : MonoBehaviour
             if (hit.collider.tag == tagLeft && !LeftHand.leftInside)
             {
                 Debug.Log("MemeDetect" + hit.collider.gameObject.tag);
-                if (feedbackCoroutineLeft == null && tagLeft != "floor")
+                if (feedbackCoroutineLeft == null && tagLeft != "floor" && tagLeft != "TestCube")
                 {
                     LeftHand.leftInside = true;
                     feedbackCoroutineLeft = StartCoroutine(FeedbackRoutineLeft());
@@ -671,15 +692,17 @@ public class HandFeedback : MonoBehaviour
 
             if (hit.collider.tag == "Left" && (!outLeft && LeftHand.leftInside))
             {
-                HapticLeft = 0.25f;
-
-                LeftHand.leftInside = false;
-
                 if (feedbackCoroutineLeft != null)
                 {
                     StopCoroutine(feedbackCoroutineLeft);
                     feedbackCoroutineLeft = null;
                 }
+                
+                HapticLeft = 0.25f;
+
+                LeftHand.leftInside = false;
+
+                
 
             }
             
@@ -719,7 +742,7 @@ public class HandFeedback : MonoBehaviour
             if (hit.collider.tag == tagRight && !RightHand.rightInside)
             {
                 Debug.Log("TESTRIGHT" + hit.collider.tag + "1");
-                if (feedbackCoroutineRight == null && tagRight != "floor")
+                if (feedbackCoroutineRight == null && tagRight != "floor" && tagRight != "TestCube")
                 {
 
                     RightHand.rightInside = true;
@@ -764,24 +787,26 @@ public class HandFeedback : MonoBehaviour
 
     private IEnumerator FeedbackRoutineLeft()
     {
-        float incrementStep = 0.05f;
-        HapticLeft = HapticLeft + differenceLeft;
+        float incrementStep = 0.15f;
+        float HapticLeftIncrease = HapticLeft + differenceLeft;
+        float frameCountLeft = 0;
 
 
         while (HandCheck.LeftHand)
         {
             yield return new WaitForSeconds(0.05f);
+            frameCountLeft++;
 
-            if (HapticLeft < 1.0f)
+            if (HapticLeftIncrease < 1.0f - HapticLeft && frameCountLeft%10==0)
             {
-                HapticLeft += incrementStep;
-                HapticLeft = Mathf.Min(HapticLeft, 1.0f);
+                HapticLeftIncrease += incrementStep;
+                HapticLeftIncrease = Mathf.Min(HapticLeftIncrease, 1.0f-HapticLeft);
+                Debug.Log("Updated HapticLeft: " + HapticLeftIncrease);
 
-                float differenceLeft = 1.0f - HapticLeft;
-                Debug.Log("Updated HapticLeft: " + HapticLeft);
+                HapticValueLeft = HapticLeftIncrease;
 
 
-                HapticImpulseLeft.Adder(differenceLeft);
+                HapticImpulseLeft.Adder(HapticLeftIncrease);
 
 
             }
@@ -796,23 +821,22 @@ public class HandFeedback : MonoBehaviour
 
     private IEnumerator FeedbackRoutineRight()
     {
-        float incrementStep = 0.05f;
-        HapticRight = HapticRight + differenceRight;
+        float incrementStep = 0.15f;
+        float HapticRightIncrease = HapticRight + differenceRight;
+        float frameCountRight = 0;
 
         while (HandCheck.RightHand)
         {
             yield return new WaitForSeconds(0.05f);
+            frameCountRight++;
 
-            if (HapticRight < 1.0f)
+            if (HapticRightIncrease < 1.0f - HapticRight  && frameCountRight%10==0)
             {
-                HapticRight += incrementStep;
-                HapticRight = Mathf.Min(HapticRight, 1.0f);
-
-                float differenceRight = 1.0f - HapticRight;
-                Debug.Log("Updated HapticRight: " + HapticRight);
-
-
-                HapticImpulseRight.Adder(differenceRight);
+                HapticRightIncrease += incrementStep;
+                HapticRightIncrease = Mathf.Min(HapticRightIncrease, 1.0f - HapticRight);
+                Debug.Log("Updated HapticRight: " + HapticRightIncrease);
+                HapticValueRight = HapticRightIncrease;
+                HapticImpulseRight.Adder(HapticRightIncrease);
 
 
             }
@@ -827,8 +851,21 @@ public class HandFeedback : MonoBehaviour
 
     public void VibrationVariationLeft()
     {
+        float reduceHapticLeft = (HapticLeft) - 0.01f;
+
         if (ControllerDetector.canAlternateLeft)
         {
+            if (LeftHand.reducedLeft && tagLeft!="TestCube")
+            {
+                LeftHand.reducedLeft = false;
+                float restore = (differenceLeft + HapticLeft) + reduceHapticLeft;
+                HapticValueLeft = HapticLeft + restore;
+                HapticImpulseLeft.Adder(restore);
+
+            }
+
+            LeftHand.reducedLeft = false;
+
             if (HapticLeft < 1.0f && hapticListLeft.Count > 0)
             {
 
@@ -840,9 +877,17 @@ public class HandFeedback : MonoBehaviour
 
                 differenceLeft = Mathf.Abs(hapticListLeft[LeftAdder]) - HapticLeft;
                 Debug.Log("Left Δ: " + differenceLeft + "-" + HapticLeft + "-" + hapticListLeft[LeftAdder]);
+                HapticValueLeft = HapticLeft + differenceLeft;
                 HapticImpulseLeft.Adder(differenceLeft);
             }
             LeftAdder++;
+
+        }
+        else if(!LeftHand.reducedLeft)
+        {
+            LeftHand.reducedLeft = true;
+            HapticValueLeft = HapticLeft -  reduceHapticLeft;
+            HapticImpulseLeft.Adder(-reduceHapticLeft);
         }
 
         
@@ -850,9 +895,21 @@ public class HandFeedback : MonoBehaviour
     
     public void VibrationVariationRight()
     {
+        float reduceHapticRight = (HapticRight)-0.01f;
 
         if (ControllerDetector.canAlternateRight)
         {
+            
+            if (RightHand.reducedRight && tagRight!="TestCube")
+            {
+                RightHand.reducedRight = false;
+                float restore = (differenceRight + HapticRight) + reduceHapticRight;
+                HapticValueRight = HapticRight + restore;
+                HapticImpulseRight.Adder(restore);
+            }
+
+            
+
             if (HapticRight < 1.0f && hapticListRight.Count > 0)
             {
 
@@ -864,9 +921,18 @@ public class HandFeedback : MonoBehaviour
 
                 differenceRight = Mathf.Abs(hapticListRight[RightAdder]) - HapticRight;
                 Debug.Log("Right Δ: " + differenceRight + "-" + HapticRight + "-" + hapticListRight[RightAdder]);
+                HapticValueRight = HapticRight+ differenceRight;
                 HapticImpulseRight.Adder(differenceRight);
             }
             RightAdder++;
+        }
+        else if(!RightHand.reducedRight)
+        {
+            RightHand.reducedRight = true;
+            Debug.Log("Reducing..");
+            HapticValueRight = HapticRight -  reduceHapticRight;
+            HapticImpulseRight.Adder(-reduceHapticRight);
+
         }
     }
 

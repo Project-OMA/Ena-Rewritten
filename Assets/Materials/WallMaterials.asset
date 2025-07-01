@@ -40,9 +40,9 @@ MonoBehaviour:
     materialtype: 
     hapticValues:
     - 0.1
-    - 0.8
+    - 0.3
     - 0.2
-    - 0.5
+    - 0.1
   - id: 3.0
     name: 'Parede de Tijolo '
     material: {fileID: 2100000, guid: a423847a25616a94e9497b5b5525491c, type: 2}
@@ -55,10 +55,8 @@ MonoBehaviour:
     hapticForce: 0.25
     materialtype: 
     hapticValues:
-    - 0.1
+    - 0.2
     - 0.6
-    - 0.1
-    - 0.8
   - id: 4.0
     name: Parede de Vidro
     material: {fileID: 2100000, guid: b18899030e782da57a423c2f4e125a66, type: 2}
@@ -71,8 +69,9 @@ MonoBehaviour:
     hapticForce: 0.25
     materialtype: 
     hapticValues:
-    - 0.7
-    - 0.5
+    - 0.1
+    - 0.2
+    - 0.1
   - id: 5.0
     name: "Parede de Pl\xE1stico "
     material: {fileID: 2100000, guid: ca0a2faa615310b75ac86abdeabcf1a7, type: 2}
@@ -86,7 +85,8 @@ MonoBehaviour:
     materialtype: 
     hapticValues:
     - 0.1
-    - 0.5
+    - 0.2
+    - 0.1
   - id: 6.0
     name: 'Parede de Gesso '
     material: {fileID: 2100000, guid: 6f0bf68d5dd298ffb9df49a0a9fffd38, type: 2}
@@ -100,9 +100,8 @@ MonoBehaviour:
     materialtype: 
     hapticValues:
     - 0.1
+    - 0.1
     - 0.2
-    - 0.3
-    - 0.4
   - id: 7.0
     name: Parede de Madeira 2
     material: {fileID: 2100000, guid: 6fa4952d991f82bcfbb21a85a1e9a62d, type: 2}
@@ -115,5 +114,5 @@ MonoBehaviour:
     hapticForce: 0.25
     materialtype: 
     hapticValues:
-    - 0.5
+    - 0.4
     - 0.2

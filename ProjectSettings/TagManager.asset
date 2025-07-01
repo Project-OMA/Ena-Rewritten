@@ -26,6 +26,7 @@ TagManager:
   - ttsSource
   - car
   - Final
+  - TestCube
   layers:
   - Default
   - TransparentFX

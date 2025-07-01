@@ -31,7 +31,11 @@ public class ControllerDetector : MonoBehaviour
 
     public static int frameCounterLeft = 0;
 
-    private const int StoppedFrameLimit = 10;
+    private const int StoppedFrameLimit = 4;
+
+    public static float DistanceLeft = 0.0f;
+
+    public static float DistanceRight = 0.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -70,6 +74,7 @@ public class ControllerDetector : MonoBehaviour
         float distance = Vector3.Distance(previousPosition, controller.position);
         Debug.Log($"{handLabel} Movement: {distance}");
 
+
         if (distance > distanceThreshold)
         {
 
@@ -78,35 +83,43 @@ public class ControllerDetector : MonoBehaviour
 
             switch (handLabel)
             {
-
                 case "Left":
+                    DistanceLeft = distance;
                     handFeedback.VibrationVariationLeft();
                     break;
 
                 case "Right":
+                    DistanceRight = distance; 
                     handFeedback.VibrationVariationRight();
                     break;
+
             }
-            
+
 
             switch (distance)
             {
 
-                case > 0.5f:
-
-                    wait = 2;
-
-                    break;
-
-                case > 0.2f:
+                case > 0.4f:
 
                     wait = 4;
 
                     break;
 
+                case > 0.3f:
+
+                    wait = 6;
+
+                    break;
+
+                case > 0.2f:
+
+                    wait = 8;
+
+                    break;
+
                 default:
 
-                    wait = 10;
+                    wait = 8;
 
                     break;
 
@@ -114,13 +127,26 @@ public class ControllerDetector : MonoBehaviour
         }
         else
         {
+
             stopped++;
         }
 
-        if (stopped >= StoppedFrameLimit)
+        if (stopped >= StoppedFrameLimit && canAlternate)
         {
             canAlternate = false;
             Debug.Log($"{handLabel} Stopped.");
+
+            switch (handLabel)
+            {
+            case "Left":
+                handFeedback.VibrationVariationLeft();
+                break;
+
+            case "Right":
+                handFeedback.VibrationVariationRight();
+                break;
+                
+            }
         }
 
         previousPosition = controller.position;
