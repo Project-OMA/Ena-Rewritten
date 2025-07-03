@@ -1,14 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System;
 public class ControllerDetector : MonoBehaviour
 {
     public Transform rightController;
     public Transform leftController;
-
-    public static int waitRight = 1;
-    public static int waitLeft = 1;
 
     public Vector3 PreviousPositionLeft;
 
@@ -36,6 +33,9 @@ public class ControllerDetector : MonoBehaviour
     public static float DistanceLeft = 0.0f;
 
     public static float DistanceRight = 0.0f;
+
+    private float distanceLimitLeft = 0.0f;
+    private float distanceLimitRight = 0.0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,7 +55,7 @@ public class ControllerDetector : MonoBehaviour
     {
         if (!LeftHand.leftInside)
         {
-            ProcessHand(ref PreviousPositionLeft, leftController, ref canAlternateLeft, ref stoppedLeft, "Left", ref waitLeft);
+            ProcessHand(ref PreviousPositionLeft, leftController, ref canAlternateLeft, ref stoppedLeft, "Left", ref distanceLimitLeft);
         }
 
     }
@@ -64,66 +64,45 @@ public class ControllerDetector : MonoBehaviour
 
         if (!RightHand.rightInside)
         {
-            ProcessHand(ref PreviousPositionRight, rightController, ref canAlternateRight, ref stoppedRight, "Right", ref waitRight);
+            ProcessHand(ref PreviousPositionRight, rightController, ref canAlternateRight, ref stoppedRight, "Right", ref distanceLimitRight);
         }
 
     }
 
-    public void ProcessHand(ref Vector3 previousPosition, Transform controller, ref bool canAlternate, ref int stopped, string handLabel, ref int wait)
+    public void ProcessHand(ref Vector3 previousPosition, Transform controller, ref bool canAlternate, ref int stopped, string handLabel, ref float distanceLimit)
     {
         float distance = Vector3.Distance(previousPosition, controller.position);
+        
         Debug.Log($"{handLabel} Movement: {distance}");
 
 
         if (distance > distanceThreshold)
         {
-
+            distanceLimit += distance;
             stopped = 0;
             canAlternate = true;
 
-            switch (handLabel)
+            if (distanceLimit > 0.1f)
             {
-                case "Left":
-                    DistanceLeft = distance;
-                    handFeedback.VibrationVariationLeft();
-                    break;
+                switch (handLabel)
+                {
+                    case "Left":
+                        DistanceLeft = distance;
+                        handFeedback.VibrationVariationLeft();
+                        break;
 
-                case "Right":
-                    DistanceRight = distance; 
-                    handFeedback.VibrationVariationRight();
-                    break;
+                    case "Right":
+                        DistanceRight = distance;
+                        handFeedback.VibrationVariationRight();
+                        break;
+
+                }
+                distanceLimit = 0.0f;
 
             }
 
+            
 
-            switch (distance)
-            {
-
-                case > 0.4f:
-
-                    wait = 4;
-
-                    break;
-
-                case > 0.3f:
-
-                    wait = 6;
-
-                    break;
-
-                case > 0.2f:
-
-                    wait = 8;
-
-                    break;
-
-                default:
-
-                    wait = 8;
-
-                    break;
-
-            }
         }
         else
         {

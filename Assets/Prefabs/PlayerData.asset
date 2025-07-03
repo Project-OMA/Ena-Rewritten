@@ -58,3 +58,21 @@ MonoBehaviour:
       rotationz: 0
       offsetX: 0
       offsetY: 0
+  - name: PlayerNoFeedback
+    prefab: {fileID: 2034380779081966565, guid: 3701f95b9a691ec489c512dd29ec3a2c, type: 3}
+    variations:
+    - id: 100
+      rotationx: 0
+      rotation: 0
+      rotationz: 0
+      offsetX: 0.5
+      offsetY: -0.5
+  - name: Test
+    prefab: {fileID: 2034380779081966565, guid: 3a0d4d9967c001842ac49a21416cc8a8, type: 3}
+    variations:
+    - id: 101
+      rotationx: 0
+      rotation: 0
+      rotationz: 0
+      offsetX: 0.5
+      offsetY: -0.5

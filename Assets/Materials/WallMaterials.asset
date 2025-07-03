@@ -100,7 +100,6 @@ MonoBehaviour:
     materialtype: 
     hapticValues:
     - 0.1
-    - 0.1
     - 0.2
   - id: 7.0
     name: Parede de Madeira 2
@@ -116,3 +115,49 @@ MonoBehaviour:
     hapticValues:
     - 0.4
     - 0.2
+  - id: 100
+    name: Parede Aspera
+    material: {fileID: 2100000, guid: 5d8df4004cc26294c848a6c39e10ecb8, type: 2}
+    useGlobalUV: 0
+    scale: {x: 1, y: 1}
+    sound1: {fileID: 8300000, guid: b152f09b022d3e3439c0521f1c95cdd1, type: 3}
+    sound2: {fileID: 8300000, guid: 773bcdf2c6cf49d44a183a1520672360, type: 3}
+    sound3: {fileID: 8300000, guid: b152f09b022d3e3439c0521f1c95cdd1, type: 3}
+    feedbackTypes: 01000000020000000300000004000000
+    hapticForce: 0.25
+    materialtype: 
+    hapticValues:
+    - 0.2
+    - 0.6
+  - id: 101
+    name: Parede Lisa
+    material: {fileID: 2100000, guid: 4dd5b1988bee1c84f95dc0a510856d8d, type: 2}
+    useGlobalUV: 0
+    scale: {x: 1, y: 1}
+    sound1: {fileID: 8300000, guid: b152f09b022d3e3439c0521f1c95cdd1, type: 3}
+    sound2: {fileID: 8300000, guid: 773bcdf2c6cf49d44a183a1520672360, type: 3}
+    sound3: {fileID: 8300000, guid: b152f09b022d3e3439c0521f1c95cdd1, type: 3}
+    feedbackTypes: 01000000020000000300000004000000
+    hapticForce: 0.25
+    materialtype: 
+    hapticValues:
+    - 0.2
+    - 0.3
+  - id: 102
+    name: Parede Irregular
+    material: {fileID: 2100000, guid: 340084b2c786f854f847af30a708ad4d, type: 2}
+    useGlobalUV: 0
+    scale: {x: 1, y: 1}
+    sound1: {fileID: 8300000, guid: b152f09b022d3e3439c0521f1c95cdd1, type: 3}
+    sound2: {fileID: 8300000, guid: 773bcdf2c6cf49d44a183a1520672360, type: 3}
+    sound3: {fileID: 8300000, guid: b152f09b022d3e3439c0521f1c95cdd1, type: 3}
+    feedbackTypes: 01000000020000000300000004000000
+    hapticForce: 0.25
+    materialtype: 
+    hapticValues:
+    - 0.1
+    - 0.3
+    - 0.5
+    - 0.2
+    - 0.3
+    - 0.4

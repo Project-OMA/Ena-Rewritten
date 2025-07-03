@@ -10,7 +10,9 @@ public class VibrationDetection : MonoBehaviour
 
     public InputActionProperty VibrationButton;
 
-    private float nextUpdate=0.0f;
+    public static bool canPress=false;
+
+    private float nextUpdate = 0.0f;
 
     private float timeCut;
 
@@ -18,7 +20,7 @@ public class VibrationDetection : MonoBehaviour
 
     private bool hasCollided = false;
 
-    private bool win = false;
+    public static bool win = false;
 
     public AudioSource winSource;
 
@@ -27,23 +29,24 @@ public class VibrationDetection : MonoBehaviour
     void Update()
     {
 
+
         if (Time.time >= nextUpdate)
         {
             Debug.Log(Time.time + ">=" + nextUpdate);
 
             nextUpdate = Time.time + 0.1f;
-            duration = HandFeedback.playerColliding ? Time.time - timeCut: duration;
+            duration = canPress ? Time.time - timeCut : duration;
 
 
 
-            if (!HandFeedback.playerColliding)
+            if (!canPress)
             {
 
                 timeCut = Time.time;
 
 
             }
-            else if(!hasCollided)
+            else if (!hasCollided)
             {
                 hasCollided = true;
                 var vibrationEvent = new VibrationEvent(
@@ -55,12 +58,13 @@ public class VibrationDetection : MonoBehaviour
 
                 Vibration.Add(Time.time.ToString(), vibrationEvent);
             }
-            
-    		
-    	}
 
-        if (!win && !HandFeedback.playerColliding && hasCollided)
+
+        }
+
+        if (!win && !canPress && hasCollided)
         {
+
 
             var vibrationEvent = new VibrationEvent(
                 timeVibrating: duration,
@@ -76,7 +80,7 @@ public class VibrationDetection : MonoBehaviour
 
         }
 
-        if ((VibrationButton.action.WasPressedThisFrame() || Input.GetKeyDown(KeyCode.Q)) && HandFeedback.playerColliding && !win)
+        if ((VibrationButton.action.WasPressedThisFrame() || Input.GetKeyDown(KeyCode.J)) && canPress && !win)
         {
             win = true;
 

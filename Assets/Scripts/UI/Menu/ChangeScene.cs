@@ -12,15 +12,23 @@ public class ChangeScene : MonoBehaviour
 
     private readonly string fileName = $"{Directory.GetCurrentDirectory()}/PlayerLogs/feedback.csv";
 
+    public void basic_change(string scene_name)
+    {
+        BasicSceneChanger.pos += 1;
+        VibrationDetection.win = false;
+        SceneManager.LoadScene(scene_name); 
+    }
 
 
-    public void scene_changer(string scene_name, string mapChoice){
+
+    public void scene_changer(string scene_name, string mapChoice)
+    {
         MapLoader.isInMenu = false;
         collectLogs.SaveCollisionDataToCsv();
         TutorialCheckpoints.playerInTutorial = false;
         MapLoader.mapMenu = mapChoice;
-        SceneManager.LoadScene(scene_name);  
-      
+        SceneManager.LoadScene(scene_name);
+
     }
 
     public void scene_changer_menu(string scene_name, string mapChoice){

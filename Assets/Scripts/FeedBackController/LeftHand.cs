@@ -39,7 +39,7 @@ public class LeftHand : MonoBehaviour
     {
         ControllerDetector.frameCounterLeft++;
 
-        if (ControllerDetector.frameCounterLeft % ControllerDetector.waitLeft == 0 && HandFeedback.innerFeedbackLeft && !leftInside)
+        if (ControllerDetector.frameCounterLeft % 2 == 0 && HandFeedback.innerFeedbackLeft && !leftInside)
         {
             HandFeedback.outLeft = false;
             handFeedback.DetectControllerLeft();

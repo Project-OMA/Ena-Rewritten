@@ -180,6 +180,7 @@ public class HandFeedback : MonoBehaviour
         {
 
             playerColliding = true;
+            VibrationDetection.canPress = true;
 
             if (HandCheck.LeftHand && !innerFeedbackLeft)
             {
@@ -271,6 +272,7 @@ public class HandFeedback : MonoBehaviour
 
 
             playerColliding = true;
+            VibrationDetection.canPress = true;
 
 
             if (HandCheck.LeftHand && !innerFeedbackLeft)
@@ -368,6 +370,7 @@ public class HandFeedback : MonoBehaviour
                 }
 
                 playerColliding = false;
+                VibrationDetection.canPress = false;
             }
 
 
