@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/TrafficTest.unity
     guid: c2dce5204a8958548b117e0ebf97efeb
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/CubeNoFeedback.unity
     guid: 90d1d64fbaf0b1e4bac2900d24d139a7
   - enabled: 1

@@ -142,7 +142,7 @@ MonoBehaviour:
     materialtype: 
     hapticValues:
     - 0.2
-    - 0.3
+    - 0.25
   - id: 102
     name: Parede Irregular
     material: {fileID: 2100000, guid: 340084b2c786f854f847af30a708ad4d, type: 2}

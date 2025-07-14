@@ -17,6 +17,9 @@ public class VibrationEvent
     [CsvColumn("Status")]
     public string Status {get; set; }
 
+    [CsvColumn("BoxSize")]
+    public Vector3 BoxSize {get;}
+
 
     public VibrationEvent(float timeVibrating,
                         float timeToWin,
@@ -27,6 +30,7 @@ public class VibrationEvent
         TimeToWin = timeToWin;
         TimeVibrating = timeVibrating;
         Status = status;
+        BoxSize = ColliderResizer.boxSize;
 
     }
 }

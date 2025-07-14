@@ -13,15 +13,14 @@ public class BasicSceneChanger : MonoBehaviour
 
     public static bool end = false;
 
-    private string[] scenes = new string[] { "BasicTest", "WallTest" };
 
     void Update() {
 
         if ((showButton.action.WasPressedThisFrame() || Input.GetKeyDown(KeyCode.K)))
         {
-            if (pos < 2)
+            if (pos < 1)
             {
-                changeScene.basic_change(scenes[pos]);
+                changeScene.basic_change("WallTest");
             }
             else
             {
