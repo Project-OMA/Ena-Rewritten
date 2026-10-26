@@ -67,6 +67,13 @@ public class MapBuilder : MonoBehaviour
     private string defaultMapPath;
     private TextAsset defaultMapFile;
 
+    //Guardando as referencias em uma lista para a criação do sistema de objetivos:
+    private List<GameObject> spawnedGoals = new List<GameObject>();
+    //Para acessar no ObjectiveManager
+    public IReadOnlyList<GameObject> SpawnedGoals => spawnedGoals;
+    //Referencia do jogador
+    public GameObject playerReference;
+
     private void InstanceFloorTile(Floor floor)
     {
         string code = floor.type;
@@ -520,6 +527,10 @@ public class MapBuilder : MonoBehaviour
 
         // Create the object
         GameObject obj = Instantiate(prefab, vecpos, rot);
+        if (tag == "Goals")
+        {
+            spawnedGoals.Add(obj);
+        }
         // Debug.LogWarning($"nome: {.name} quantidade: {obj.GetComponents<MeshCollider>().Count()}");
         // Debug.LogWarning($"nome: {obj.name} quantidade: {prefab.GetComponents<MeshCollider>().Count()}");
 
@@ -595,6 +606,8 @@ public class MapBuilder : MonoBehaviour
 
         // Create the object
         GameObject player = Instantiate(prefab, vecpos, rot);
+        //referencia para o objectivemanager:
+        playerReference = player;
         // Debug.LogWarning($"nome: {.name} quantidade: {player.GetComponents<MeshCollider>().Count()}");
         // Debug.LogWarning($"nome: {player.name} quantidade: {prefab.GetComponents<MeshCollider>().Count()}");
 

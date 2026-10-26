@@ -11,6 +11,9 @@ public class LeftHand : MonoBehaviour
     
     public ControllerDetector controllerDetector;
 
+    //para o objectiveManager (verificando os objetos q o usuario tem interacao):
+    private ObjectiveManager objectiveManager;
+
     public static bool leftInside = false;
 
     public static bool reducedLeft = false;
@@ -20,7 +23,7 @@ public class LeftHand : MonoBehaviour
     {
 
         controllerDetector = GameObject.Find("ControllerDetector").GetComponent<ControllerDetector>();
-        
+        objectiveManager = FindObjectOfType<ObjectiveManager>();
         
     }
     
@@ -30,6 +33,11 @@ public class LeftHand : MonoBehaviour
         {
             HandCheck.LeftHand = true;
             handFeedback.HandleCollisionEnter(collision, "Left"); 
+        }
+         //para o objectiveManager
+        if (objectiveManager != null)
+        {
+            objectiveManager.CheckGoalTouch(collision.gameObject);
         }
         
 

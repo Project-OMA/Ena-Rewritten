@@ -224,9 +224,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66f6000ec91ff06b79a1b1797f273426, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 1
+  walkDistance: 1.5
   runSpeed: 2.5
+  player: {fileID: 0}
+  Offset: {fileID: 0}
   cam: {fileID: 8939087551377575032}
+  upperRayPos: {fileID: 0}
+  lowerRayPos: {fileID: 0}
+  xrOrigin: {fileID: 0}
+  feedbackController: {fileID: 0}
 --- !u!54 &2779065291594842828
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -290,7 +296,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensitivity: 200
-  playerBody: {fileID: 0}
+  camera: {fileID: 0}
 --- !u!1001 &5978277418700109651
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -343,33 +349,39 @@ PrefabInstance:
       propertyPath: m_Name
       value: XR Origin
       objectReference: {fileID: 0}
+    - target: {fileID: 5726248477854088382, guid: 6a895a66e31cbb00995fb943587d615d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5726248477854088382, guid: 6a895a66e31cbb00995fb943587d615d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5726248477854088382, guid: 6a895a66e31cbb00995fb943587d615d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.001
+      objectReference: {fileID: 0}
+    - target: {fileID: 5726248477854088382, guid: 6a895a66e31cbb00995fb943587d615d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5726248477854088382, guid: 6a895a66e31cbb00995fb943587d615d, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5726248477854088382, guid: 6a895a66e31cbb00995fb943587d615d, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5726248477854088382, guid: 6a895a66e31cbb00995fb943587d615d, type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1481539418968850795, guid: 6a895a66e31cbb00995fb943587d615d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 601190212201631735}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a895a66e31cbb00995fb943587d615d, type: 3}
---- !u!1 &5077922808042583608 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1481539418968850795, guid: 6a895a66e31cbb00995fb943587d615d, type: 3}
-  m_PrefabInstance: {fileID: 5978277418700109651}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &601190212201631735
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5077922808042583608}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5e487039280002f4587e215c292d9818, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  alarme: {fileID: 0}
-  rb: {fileID: 0}
 --- !u!4 &6050883240767125224 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 76022006844359099, guid: 6a895a66e31cbb00995fb943587d615d, type: 3}
